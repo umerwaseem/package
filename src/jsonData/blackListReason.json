@@ -1,0 +1,32 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "reasonId": 1,
+            "reasonName" : "Reason name one",
+            "blackReasonDescription": "Description no 1",
+            "institution":"Meezan Bank Limited",
+            "revokedRole": 1,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T09:31:08.668Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-22T10:36:30.771Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "reasonId": 2,
+            "reasonName" : "Reason name two",
+            "blackReasonDescription": "Description no 2",
+            "institution":"Meezan Bank Limited",
+            "revokedRole": 2,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T09:31:08.668Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-22T10:36:30.771Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 6,
+    "Data": [
+        {
+            "riskCategoryId": 6,
+            "riskCategoryName": "risk category no 1",
+            "institution": "Meezan Bank Limited",
+            "riskCategoryDescription": "Kaim khani",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T09:31:08.668Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-22T10:36:30.771Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "riskCategoryId": 5,
+            "riskCategoryName": "risk category no 2",
+            "institution": "Habib Bank Limited",
+            "riskCategoryDescription": "Al-Meezan nothing",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T08:00:24.534Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "riskCategoryId": 4,
+            "riskCategoryName": "risk category no 3",
+            "institution": "UBL Bank Limited",
+            "riskCategoryDescription": "Al-Meezan nothing",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T07:59:49.731Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "riskCategoryId": 3,
+            "riskCategoryName": "risk category no 4",
+            "institution": "Dubai Islamic Bank Limited",
+            "riskCategoryDescription": "Al-Meezan nothing",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-22T07:27:26.595Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

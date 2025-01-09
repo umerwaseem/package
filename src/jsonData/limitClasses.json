@@ -1,0 +1,58 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 4,
+    "Data": [
+        {
+            "limitClassesId":9 ,
+            "limitSetConfigurationName": "limit set no 1",
+            "limitSetConfigurationDescription": "hahha",
+            "institution": "Hbl",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-23T05:30:19.225Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "limitSetConfigurationId": 3,
+            "limitSetConfigurationName": "limit set no 2",
+            "limitSetConfigurationDescription": "hello",
+            "institution": "Ubl",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T07:56:59.607Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "limitSetConfigurationId": 2,
+            "limitSetConfigurationName": "limit set no 3",
+            "limitSetConfigurationDescription": "bye",
+            "institution": "Meezan",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T06:57:35.079Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-17T08:00:49.647Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "limitSetConfigurationId": 1,
+            "limitSetConfigurationName": "limit set no 4",
+            "limitSetConfigurationDescription": "helloooooo",
+            "institution": "ipath",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-17T04:47:36.919Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-17T05:37:55.392Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

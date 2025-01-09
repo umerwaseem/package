@@ -1,0 +1,46 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "feeSetConfigurationId": 2,
+            "feeSetConfigurationName": "Fee set no 1",
+            "feeSetConfigurationDescription": "meezan bank limited",
+            "currency": "",
+            "feeType": "",
+            "institution": "hbl",
+            "threshold": "0.00",
+            "min": "0.05",
+            "max": "50",
+            "onTop": "0.00",
+            "percentage": "5",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-07-26T07:47:26.642Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "feeSetConfigurationId": 1,
+            "feeSetConfigurationName": "Fee set no 2",
+            "feeSetConfigurationDescription": "kawish  bank",
+            "currency": "",
+            "feeType": "",
+            "institution": "ubl",
+            "threshold": "0.00",
+            "min": "0.05",
+            "max": "50",
+            "onTop": "0.00",
+            "percentage": "5",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-23T11:52:47.268Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-07-26T07:46:59.476Z",
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

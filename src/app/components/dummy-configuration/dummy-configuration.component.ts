@@ -1,6 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { provideNativeDateAdapter } from '@angular/material/core';
@@ -41,15 +41,19 @@ export class DummyConfigurationComponent implements OnInit{
   isData: any
   step = 0;
   form= new FormGroup({
-    firstName: new FormControl(''),
+    firstName: new FormControl('', Validators.required),
+   // duplicateFirstName: new FormControl(''),
+  })
+  duplicateForm = new FormGroup({
     duplicateFirstName: new FormControl(''),
+    
   })
   constructor() {
   }
   ngOnInit(): void {
     setTimeout(() => {
       this.form.get('firstName')?.valueChanges.subscribe((value) => {
-        this.form.get('duplicateFirstName')?.setValue(value);
+        this.duplicateForm.get('duplicateFirstName')?.setValue(value);
       });
     }, 0);
   }
@@ -60,9 +64,17 @@ export class DummyConfigurationComponent implements OnInit{
 
   nextStep() {
     this.step++;
+  
   }
 
   prevStep() {
     this.step--;
+  }
+
+
+  submitForm(){
+    if(this.form.valid){
+    
+    }
   }
 }

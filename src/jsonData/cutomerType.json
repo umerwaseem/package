@@ -1,0 +1,45 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "customerTypeId": 3,
+            "customerTypeName": "Customer type no 1",
+            "customerTypeDescription": "ABC1",
+            "institution": "hbl",
+            "isActive": false,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:18:11.307Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "customerTypeId": 2,
+            "customerTypeName": "Customer type no 2",
+            "customerTypeDescription": "Nothing",
+            "institution": "ubl",
+            "isActive": true,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:16:35.875Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "customerTypeId": 1,
+            "customerTypeName": "Customer type no 3",
+            "customerTypeDescription": "hello kawish crown bank",
+            "institution": "kawish",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-08T12:04:27.832Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

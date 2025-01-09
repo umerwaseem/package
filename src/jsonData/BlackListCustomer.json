@@ -1,0 +1,42 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "blackListCustomerId": "12",
+            "customerId": "18",
+            "firstName": "Ahmed Raza",
+            "lastName": "Khan",
+            "institution": "hbl",
+            "blackListResonId": "1",
+            "blackListResonName"  : "Reason name One",
+            "comment": "comment no 1",           
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        },
+        {
+            "blackListCustomerId": "11",
+            "customerId": "17",
+            "firstName": "Shahbaz Raza",
+            "lastName": "Arain",
+            "institution": "ubl",
+            "blackListResonId": "2",
+            "blackListResonName" : "Reason name Two",
+            "comment": "comment no 2",           
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        },
+        {
+            "blackListCustomerId": "10",
+            "customerId": "18",
+            "firstName": "Zain ALi",
+            "lastName": "Khan",
+            "institution": "meezan",
+            "blackListResonId": "3",
+            "blackListResonName" : "Reason name Three",
+            "comment": "comment no 3",           
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        }
+    ]
+}

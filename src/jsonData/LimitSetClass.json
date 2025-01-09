@@ -1,0 +1,32 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "id": "1",
+            "limitSetId": "Limit set one",
+            "limitClassId": "limit Class one",
+            "institution": "hbl",
+            "useCaseId": "Use Case one",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "id": "1",
+            "limitSetId":"Limit set two",
+            "institution": "ubl",
+            "limitClassId":"limit Class two",
+            "useCaseId":"Use Case two",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

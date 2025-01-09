@@ -1,0 +1,48 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 5,
+    "Data": [
+        {
+            "batchName": "Batch Name 1",
+            "batchDetails": " Batch Detail 1",
+            "status": "Completed",
+            "institution": "Hbl",
+            "jobStartAt": "Job Start At 1",
+            "jobEndAt": "Job End At 1",
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:07:50.804Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "batchName": "Batch Name 2",
+            "batchDetails": " Batch Detail 2",
+            "status":"Running",
+            "institution": "Ubl",
+            "jobStartAt": "Job Start At 2",
+            "jobEndAt": "Job End At 2",
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:07:50.804Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "batchName": "Batch Name 3",
+            "batchDetails": " Batch Detail 3",
+            "status": "Fail",
+            "institution": "Meezan",
+            "jobStartAt": "Job Start At 3",
+            "jobEndAt": "Job End At 3",
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:07:50.804Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

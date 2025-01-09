@@ -1,0 +1,51 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 8,
+    "Data": [
+        {
+            "institutionId": 8,
+            "institutionName": "Meeezan Bank Limited",
+            "contactPersonName": "mubbashir",
+            "contactPersonPhone": "03232490178",
+            "contactPersonNic": "4125478854779",
+            "contactPersonEmail": "depakS@gmail.com",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-09-12T07:31:27.557Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "institutionId": 7,
+            "institutionName": "Al Habib Bank Limited",
+            "contactPersonName": "Zain Khan",
+            "contactPersonPhone": "03232490179",
+            "contactPersonNic": "4789547578559",
+            "contactPersonEmail": "zain@gmail.com",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-08-30T07:24:12.422Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "institutionId": 6,
+            "institutionName": "Habib bank limited",
+            "contactPersonName": "Mubbashir",
+            "contactPersonPhone": "03053448869",
+            "contactPersonNic": "41302-0416744-9",
+            "contactPersonEmail": "mubashirk8@gmail.com",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-08-30T06:31:54.389Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

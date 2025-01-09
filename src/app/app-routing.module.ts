@@ -1,49 +1,22 @@
-import { Routes } from '@angular/router';
-import { AdminLayoutComponent } from './elements/admin-layout/admin-layout.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { ProjectComponent } from './pages/project/project.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { KanbanComponent } from './pages/kanban/kanban.component';
-import { MessagesComponent } from './pages/messages/messages.component';
-import { ComposeComponent } from './pages/apps/email/compose/compose.component';
-import { InboxComponent } from './pages/apps/email/inbox/inbox.component';
-import { ReadComponent } from './pages/apps/email/read/read.component';
-import { PostDetailsComponent } from './pages/apps/post-details/post-details.component';
-import { ProfileComponent } from './pages/apps/profile/profile.component';
-import { CalenderComponent } from './pages/calender/calender.component';
-import { AppCalenderComponent } from './pages/apps/app-calender/app-calender.component';
-import { CheckoutComponent } from './pages/apps/shop/checkout/checkout.component';
-import { EcomCustomersComponent } from './pages/apps/shop/ecom-customers/ecom-customers.component';
-import { InvoiceComponent } from './pages/apps/shop/invoice/invoice.component';
-import { OrderComponent } from './pages/apps/shop/order/order.component';
-import { ProductDetailComponent } from './pages/apps/shop/product-detail/product-detail.component';
-import { ProductGridComponent } from './pages/apps/shop/product-grid/product-grid.component';
-import { ProductListComponent } from './pages/apps/shop/product-list/product-list.component';
-import { AreaComponent } from './plugins/charts/apex/area/area.component';
-import { BarComponent } from './plugins/charts/apex/bar/bar.component';
-import { BubbleComponent } from './plugins/charts/apex/bubble/bubble.component';
-import { CandlestickComponent } from './plugins/charts/apex/candlestick/candlestick.component';
-import { ColumnComponent } from './plugins/charts/apex/column/column.component';
-import { HeatmapComponent } from './plugins/charts/apex/heatmap/heatmap.component';
-import { LineComponent } from './plugins/charts/apex/line/line.component';
-import { MixedComponent } from './plugins/charts/apex/mixed/mixed.component';
-import { PieComponent } from './plugins/charts/apex/pie/pie.component';
-import { PolarAreaComponent } from './plugins/charts/apex/polar-area/polar-area.component';
-import { RadarComponent } from './plugins/charts/apex/radar/radar.component';
-import { RadialbarComponent } from './plugins/charts/apex/radialbar/radialbar.component';
-import { ScatterComponent } from './plugins/charts/apex/scatter/scatter.component';
-import { SparklinesComponent } from './plugins/charts/apex/sparklines/sparklines.component';
-import { TimelineComponent } from './plugins/charts/apex/timeline/timeline.component';
-import { TreemapComponent } from './plugins/charts/apex/treemap/treemap.component';
-import { AnimationChartjsComponent } from './plugins/charts/chart-js/animation-chartjs/animation-chartjs.component';
-import { AreaChartjsComponent } from './plugins/charts/chart-js/area-chartjs/area-chartjs.component';
-import { BarChartjsComponent } from './plugins/charts/chart-js/bar-chartjs/bar-chartjs.component';
-import { BubbleChartjsComponent } from './plugins/charts/chart-js/bubble-chartjs/bubble-chartjs.component';
-import { GeneralChartjsComponent } from './plugins/charts/chart-js/general-chartjs/general-chartjs.component';
-import { LineChartjsComponent } from './plugins/charts/chart-js/line-chartjs/line-chartjs.component';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import {
+  OnlyLoggedOutUserGuard,
+  OnlyLoggedInUserGuard,
+  IsForceChangePassword,
+  forgotPasswordUserGuard,
+} from "../services/authentication.service";
+
+import { LockScreenComponent } from './pages/authentication/lock-screen/lock-screen.component';
+import { ForgotPasswordComponent } from './pages/authentication/forgot-password/forgot-password.component';
+import { Error400Component } from './pages/error/error400/error400.component';
+import { Error403Component } from './pages/error/error403/error403.component';
+import { Error404Component } from './pages/error/error404/error404.component';
+import { Error500Component } from './pages/error/error500/error500.component';
+import { Error503Component } from './pages/error/error503/error503.component';
+import { CarouselComponent } from 'ngx-owl-carousel-o';
 import { AccordionComponent } from './components/bootstrap/accordion/accordion.component';
 import { AlertComponent } from './components/bootstrap/alert/alert.component';
-import { CarouselComponent } from './components/bootstrap/carousel/carousel.component';
 import { BadgeComponent } from './components/bootstrap/badge/badge.component';
 import { ButtonGroupComponent } from './components/bootstrap/button-group/button-group.component';
 import { ButtonComponent } from './components/bootstrap/button/button.component';
@@ -59,6 +32,9 @@ import { ProgressbarComponent } from './components/bootstrap/progressbar/progres
 import { TablesComponent } from './components/bootstrap/tables/tables.component';
 import { TabsComponent } from './components/bootstrap/tabs/tabs.component';
 import { TypographyComponent } from './components/bootstrap/typography/typography.component';
+import { DummyConfigurationComponent } from './components/dummy-configuration/dummy-configuration.component';
+import { DummyPageComponent } from './components/dummy-page/dummy-page.component';
+import { DummyTableComponent } from './components/dummy-table/dummy-table.component';
 import { DzmtAutocompleteComponent } from './components/material/dzmt-autocomplete/dzmt-autocomplete.component';
 import { DzmtBadgeComponent } from './components/material/dzmt-badge/dzmt-badge.component';
 import { DzmtBottomSheetComponent } from './components/material/dzmt-bottom-sheet/dzmt-bottom-sheet.component';
@@ -94,32 +70,65 @@ import { DzmtTabsComponent } from './components/material/dzmt-tabs/dzmt-tabs.com
 import { DzmtToolbarComponent } from './components/material/dzmt-toolbar/dzmt-toolbar.component';
 import { DzmtTooltipComponent } from './components/material/dzmt-tooltip/dzmt-tooltip.component';
 import { DzmtTreeComponent } from './components/material/dzmt-tree/dzmt-tree.component';
-import { ToastrComponent } from './plugins/toastr/toastr.component';
-import { SweetAlertComponent } from './plugins/sweet-alert/sweet-alert.component';
-import { LightGalleryComponent } from './plugins/light-gallery/light-gallery.component';
-import { ElementsComponent } from './pages/forms/elements/elements.component';
-import { EditorComponent } from './pages/forms/editor/editor.component';
-import { FormValidationsComponent } from './pages/forms/form-validations/form-validations.component';
-import { PickersComponent } from './pages/forms/pickers/pickers.component';
-import { EmptyComponent } from './pages/error/empty/empty.component';
-import { ForgotPasswordComponent } from './pages/authentication/forgot-password/forgot-password.component';
-import { LockScreenComponent } from './pages/authentication/lock-screen/lock-screen.component';
+import { AdminLayoutComponent } from './elements/admin-layout/admin-layout.component';
+import { AppCalenderComponent } from './pages/apps/app-calender/app-calender.component';
+import { ComposeComponent } from './pages/apps/email/compose/compose.component';
+import { InboxComponent } from './pages/apps/email/inbox/inbox.component';
+import { ReadComponent } from './pages/apps/email/read/read.component';
+import { PostDetailsComponent } from './pages/apps/post-details/post-details.component';
+import { ProfileComponent } from './pages/apps/profile/profile.component';
+import { CheckoutComponent } from './pages/apps/shop/checkout/checkout.component';
+import { EcomCustomersComponent } from './pages/apps/shop/ecom-customers/ecom-customers.component';
+import { InvoiceComponent } from './pages/apps/shop/invoice/invoice.component';
+import { OrderComponent } from './pages/apps/shop/order/order.component';
+import { ProductDetailComponent } from './pages/apps/shop/product-detail/product-detail.component';
+import { ProductGridComponent } from './pages/apps/shop/product-grid/product-grid.component';
+import { ProductListComponent } from './pages/apps/shop/product-list/product-list.component';
 import { LoginComponent } from './pages/authentication/login/login.component';
 import { RegisterComponent } from './pages/authentication/register/register.component';
-import { Error400Component } from './pages/error/error400/error400.component';
-import { Error403Component } from './pages/error/error403/error403.component';
-import { Error404Component } from './pages/error/error404/error404.component';
-import { Error500Component } from './pages/error/error500/error500.component';
-import { Error503Component } from './pages/error/error503/error503.component';
+import { CalenderComponent } from './pages/calender/calender.component';
+import { ContactComponent } from './pages/contact/contact.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { EmptyComponent } from './pages/error/empty/empty.component';
+import { EditorComponent } from './pages/forms/editor/editor.component';
+import { ElementsComponent } from './pages/forms/elements/elements.component';
+import { FormValidationsComponent } from './pages/forms/form-validations/form-validations.component';
+import { PickersComponent } from './pages/forms/pickers/pickers.component';
+import { KanbanComponent } from './pages/kanban/kanban.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { ProjectComponent } from './pages/project/project.component';
 import { WgCardComponent } from './pages/widget/wg-card/wg-card.component';
 import { WgChartComponent } from './pages/widget/wg-chart/wg-chart.component';
 import { WgListComponent } from './pages/widget/wg-list/wg-list.component';
-import { DummyPageComponent } from './components/dummy-page/dummy-page.component';
-import { DummyConfigurationComponent } from './components/dummy-configuration/dummy-configuration.component';
-import { DummyTableComponent } from './components/dummy-table/dummy-table.component';
+import { AreaComponent } from './plugins/charts/apex/area/area.component';
+import { BarComponent } from './plugins/charts/apex/bar/bar.component';
+import { BubbleComponent } from './plugins/charts/apex/bubble/bubble.component';
+import { CandlestickComponent } from './plugins/charts/apex/candlestick/candlestick.component';
+import { ColumnComponent } from './plugins/charts/apex/column/column.component';
+import { HeatmapComponent } from './plugins/charts/apex/heatmap/heatmap.component';
+import { LineComponent } from './plugins/charts/apex/line/line.component';
+import { MixedComponent } from './plugins/charts/apex/mixed/mixed.component';
+import { PieComponent } from './plugins/charts/apex/pie/pie.component';
+import { PolarAreaComponent } from './plugins/charts/apex/polar-area/polar-area.component';
+import { RadarComponent } from './plugins/charts/apex/radar/radar.component';
+import { RadialbarComponent } from './plugins/charts/apex/radialbar/radialbar.component';
+import { ScatterComponent } from './plugins/charts/apex/scatter/scatter.component';
+import { SparklinesComponent } from './plugins/charts/apex/sparklines/sparklines.component';
+import { TimelineComponent } from './plugins/charts/apex/timeline/timeline.component';
+import { TreemapComponent } from './plugins/charts/apex/treemap/treemap.component';
+import { AnimationChartjsComponent } from './plugins/charts/chart-js/animation-chartjs/animation-chartjs.component';
+import { AreaChartjsComponent } from './plugins/charts/chart-js/area-chartjs/area-chartjs.component';
+import { BarChartjsComponent } from './plugins/charts/chart-js/bar-chartjs/bar-chartjs.component';
+import { BubbleChartjsComponent } from './plugins/charts/chart-js/bubble-chartjs/bubble-chartjs.component';
+import { GeneralChartjsComponent } from './plugins/charts/chart-js/general-chartjs/general-chartjs.component';
+import { LineChartjsComponent } from './plugins/charts/chart-js/line-chartjs/line-chartjs.component';
+import { LightGalleryComponent } from './plugins/light-gallery/light-gallery.component';
+import { SweetAlertComponent } from './plugins/sweet-alert/sweet-alert.component';
+import { ToastrComponent } from './plugins/toastr/toastr.component';
 import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dummy-drag-and-drop.component';
 
-export const routes: Routes = [
+
+const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
   {
     path: 'admin', component: AdminLayoutComponent, children: [
@@ -252,7 +261,7 @@ export const routes: Routes = [
       { path: 'dummy-page', component: DummyPageComponent },
       { path: 'dummy-table', component: DummyTableComponent },
       { path: 'dummy-config', component: DummyConfigurationComponent },
-         { path: 'dummy-drag', component: DummyDragAndDropComponent },
+      { path: 'dummy-drag', component: DummyDragAndDropComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },
@@ -267,3 +276,14 @@ export const routes: Routes = [
   { path: '**', component: Error404Component },
 
 ];
+
+@NgModule({
+  imports: [
+    // RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, { onSameUrlNavigation: "reload" }),
+    RouterModule.forRoot(routes, { useHash: true }),
+
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule { }

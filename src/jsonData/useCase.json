@@ -1,0 +1,45 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "useCaseId": 3,
+            "useCaseName": "Send Money",
+            "description": "Nothing",
+            "institution": "Habib Bank Limited",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-09T10:19:30.757Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "useCaseId": 2,
+            "useCaseName": "Airtime Topup",
+            "description": "Nothing",
+            "institution": "UBL Bank Limited",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-09T07:20:57.302Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "useCaseId": 1,
+            "useCaseName": "Send Voucher",
+            "description": "hello kawish crown bank",
+            "institution": "Dubai Islamic Bank Limited",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-09T06:41:49.413Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

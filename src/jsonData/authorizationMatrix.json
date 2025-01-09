@@ -1,0 +1,32 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "authorizationMatrixId": 18,
+            "useCase": "Use Case One",
+            "institution": "hbl",
+            "count": "4",
+            "authorizationMatrix ": "",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "authorizationMatrixId": 17,
+            "useCase": "Use Case 2",
+            "institution": "ubl",
+            "count": "5",
+            "authorizationMatrix ": "",
+            "createdBy": 1,
+            "createdAt": "2022-07-20T07:05:19.650Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

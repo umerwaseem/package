@@ -1,0 +1,44 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "customerId": 18,
+            "firstName": "Shahbaz",
+            "lastName": "Khan",
+            "institution": "Meezan Bank Limited",
+            "blackListResonId": 1,
+            "contactNo": "03124578877",
+            "Nic": "4130214744456",
+            "address": "Hyderabad",
+            "makerComment": "this user is legal",
+            "checkerComment": "this user is Illegal",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "customerId": 17,
+            "firstName": "Ali",
+            "lastName": "Arain",
+            "institution": "Habib Bank Limited",
+            "blackListResonId": 2,
+            "contactNo": "03124747484",
+            "Nic": "4130214789665",
+            "address": "karachi",
+            "makerComment": "this user is legal",
+            "checkerComment": "this user is Illegal",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-07-20T07:05:19.650Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

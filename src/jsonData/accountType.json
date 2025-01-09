@@ -1,0 +1,45 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "accountTypeId": 3,
+            "accountTypeName": "Account type no 1",
+            "accountTypeDescription": "ABC1",
+            "institution": "Hbl",
+            "isActive": false,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:50:06.339Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "accountTypeId": 2,
+            "accountTypeName": "Account type no 2",
+            "accountTypeDescription": "Nothing",
+            "institution": "Ubl",
+            "isActive": true,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:23:48.683Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "accountTypeId": 1,
+            "accountTypeName": "Account type no 3",
+            "accountTypeDescription": "hello karachi bank",
+            "institution": "karachi",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-08T09:47:11.075Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

@@ -1,0 +1,66 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 4,
+    "Data": [
+        {
+            "glAccountId": 4,
+            "glAccountName": "gl account no 1",
+            "description": "Nothing",
+            "glCode": "1000122298",
+            "institution": "Meezan Bank Limited",
+            "parentGlCode": "55554447",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-11T08:07:55.355Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "glAccountId": 3,
+            "glAccountName": "gl account no 2",
+            "description": "hahahah",
+            "glCode": "10001222979",
+            "institution": "Habib Bank Limited",
+            "parentGlCode": "1000122298",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-10T11:59:54.951Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "glAccountId": 2,
+            "glAccountName": "gl account no 3",
+            "description": "Nothing",
+            "glCode": "10001222988",
+            "institution": "UBL Bank Limited",
+            "parentGlCode": "10001222979",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-09T10:45:43.777Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "glAccountId": 1,
+            "glAccountName": "gl account no 4",
+            "description": "hello kawish crown bank",
+            "glCode": "10001222977",
+            "institution": "Dubai Islamic Bank Limited",
+            "parentGlCode": "10001222988",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-09T09:53:23.520Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

@@ -1,0 +1,39 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 8,
+    "Data": [
+        {
+            "countryId": 11,
+            "countryName": "UAE",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-07-19T12:25:16.611Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "countryId": 7,
+            "countryName": "USA",
+            "isActive": false,
+            "createdBy": 6,
+            "createdAt": "2022-06-03T09:33:32.748Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "countryId": 6,
+            "countryName": "Pakistan",
+            "isActive": false,
+            "createdBy": 6,
+            "createdAt": "2022-06-02T11:25:00.681Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

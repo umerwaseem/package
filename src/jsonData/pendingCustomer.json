@@ -1,0 +1,31 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "checkerMakerId": 12,
+            "jsonData": "{\"customerId\":18,\"firstName\":\"pending customer 1\",\"lastName\":\"Khan\",\"contactNo\":\"03124578877\",\"createdBy\":1,\"createdAt\":\"2022-07-22T09:24:24.081Z\",\"updatedBy\":1,\"updatedAt\":\"2022-07-22T09:24:24.081Z\",\"active\":true}",
+            "moduleType": "customer",
+            "status": "pending",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        },
+        {
+            "checkerMakerId": 10,
+            "jsonData": "{\"customerId\":null,\"firstName\":\"pending customer 2 \",\"lastName\":\"khan\",\"contactNo\":\"03145454\",\"isActive\":null,\"createdBy\":null,\"createdAt\":null,\"updatedBy\":null,\"updatedAt\":null,\"pageIndex\":0,\"pageRecord\":0}",
+            "moduleType": "customer",
+            "status": "pending",
+            "param1": "03145454",
+            "createdBy": 1,
+            "createdAt": "2022-07-20T09:07:45.663Z"
+        },
+        {
+            "checkerMakerId": 11,
+            "jsonData": "{\"customerId\":18,\"firstName\":\"pending customer 3\",\"lastName\":\"Khan\",\"contactNo\":\"03124578877\",\"createdBy\":1,\"createdAt\":\"2022-07-21T12:25:48.285Z\",\"updatedBy\":1,\"updatedAt\":\"2022-07-21T12:25:48.285Z\",\"active\":true}",
+            "moduleType": "customer",
+            "status": "pending",
+            "createdBy": 1,
+            "createdAt": "2022-07-21T12:25:48.289Z"
+        }
+    ]
+}

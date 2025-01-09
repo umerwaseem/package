@@ -1,0 +1,56 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "taskBatchId": 1,
+            "taskBatchName": "Task Batch One",
+            "description": "Description no 1",
+            "institution": "hbl",
+            "createdBy": 1,
+            "createdAt": "2022-06-22T09:31:08.668Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-22T10:36:30.771Z",
+            "pageIndex": 0,
+            "pageRecord": 0,
+            "taskMasterDetails": [
+                {
+                    "taskMasterId": 1,
+                    "taskMasterName": "Task Master One",
+                    "description": "Description no 1"
+                   
+                },
+                {
+                    "taskMasterId": 2,
+                    "taskMasterName": "Task Master Two",
+                    "description": "Description no 2"
+                   
+                }
+            ]
+        },
+        {
+            "taskBatchId": 2,
+            "taskBatchName": "Task Batch Two",
+            "description": "Description no 2",
+            "institution": "hbl",
+            "createdBy": 1,
+            "createdAt": "2022-06-22T09:31:08.668Z",
+            "updatedBy": 1,
+            "updatedAt": "2022-06-22T10:36:30.771Z",
+            "pageIndex": 0,
+            "pageRecord": 0,
+            "taskMasterDetails": [
+                {
+                    "taskMasterId": 3,
+                    "taskMasterName": "Task Master Three",
+                    "description": "Description no 3"
+                },
+                {
+                    "taskMasterId": 4,
+                    "taskMasterName": "Task Master Four",
+                    "description": "Description no 4"
+                }
+            ]
+        }
+    ]
+}

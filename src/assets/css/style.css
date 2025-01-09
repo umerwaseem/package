@@ -42036,7 +42036,7 @@ table.dataTable.display tbody td {
   }
 
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline {
-    height: 65%;
+    height: 100%
   }
   
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix  {
@@ -42055,10 +42055,10 @@ table.dataTable.display tbody td {
   .custom-size-form-field .mat-mdc-form-field-subscript-wrapper{
     height: 1px;
   }
-
+/* 
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-icon-prefix{
     bottom: 8px;
-  }
+  } */
 
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline .mat-mdc-notch-piece .mdc-floating-label{
     font-size: 14px;
@@ -42069,4 +42069,49 @@ table.dataTable.display tbody td {
   }
       .mat-mdc-table .mdc-data-table__content .mat-mdc-row, .mat-mdc-table .mat-mdc-header-row{
     height: 30px;
+}
+
+
+.custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex{
+  height: 36px;
+}
+
+.custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex{
+  height: 36px;
+}
+
+.table-responsive {
+  overflow-x: auto;
+  max-width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+mat-table {
+  width: 100%;
+  table-layout: auto; /* Automatically adjust column widths */
+}
+
+mat-header-cell,
+mat-cell {
+  white-space: nowrap; /* Prevent text from wrapping */
+  text-overflow: ellipsis; /* Show ellipsis when text overflows */
+  overflow: hidden; /* Hide overflow */
+  padding: 8px 16px; /* Add some padding for better spacing */
+}
+
+mat-header-cell {
+  background-color: #f1f1f1; /* Light gray background for header */
+  font-weight: bold; /* Make header text bold */
+}
+
+mat-cell {
+  word-wrap: break-word; /* Allow word break for longer content */
+}
+
+mat-cell, mat-header-cell {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-width: 150px; /* Ensure cells have a minimum width */
 }

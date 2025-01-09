@@ -1,0 +1,54 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "Data": [
+        {
+            "blackListCustomerId": "12",
+            "customerId": "18",
+            "firstName": "Ahmed",
+            "lastName": "Khan",
+            "institution": "Meezan Bank Limited",
+            "blackListResonId": 1,
+            "blackListResonName": "Reason name One",
+            "makerComment": "this user is legal",
+            "checkerComment": "this user is Illegal",
+            "comment": "comment no 1",
+            "status": "pending",
+            "performAction": "created",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        },
+        {
+            "blackListCustomerId": "11",
+            "customerId": "17",
+            "firstName": "Shahbaz",
+            "lastName": "Arain",
+            "institution": "Habib Bank Limited",
+            "blackListResonId": 2,
+            "blackListResonName": "Reason name Two",
+            "makerComment": "this user is legal",
+            "checkerComment": "this user is Illegal",
+            "comment": "comment no 2",
+            "status": "return",
+            "performAction": "modified",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        },
+        {
+            "blackListCustomerId": "10",
+            "customerId": "18",
+            "firstName": "Mubbashir",
+            "lastName": "Khan",
+            "institution": "AL Habib Bank Limited",
+            "blackListResonId": 3,
+            "blackListResonName": "Reason name Three",
+            "makerComment": "this user is legal",
+            "checkerComment": "this user is Illegal",
+            "comment": "comment no 3",
+            "status": "pending",
+            "performAction": "deleted",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.084Z"
+        }
+    ]
+}

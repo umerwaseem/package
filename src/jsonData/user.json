@@ -1,0 +1,55 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 7,
+    "Data": [
+        {
+            "id": "#785",
+            "role": "Manager",
+            "fName": "Muhammad Umer",
+            "email": "umer@*****gmail.com",
+            "lastLogin": "karachi",
+            "lockedUntil": "Sindh",
+            "failedLogin": 123,
+            "isActive": "Active"
+        },
+        {
+            "id": "#785",
+            "role": "Web Developer",
+            "fName": "Muhammad Umer",
+            "email": "umer@*****gmail.com",
+            "lastLogin": "karachi",
+            "lockedUntil": "Sindh",
+            "failedLogin": 123,
+            "isActive": "Active"
+        },
+        {
+            "id": "#785",
+            "role": "Mobile App Developer",
+            "fName": "Henry Cavil",
+            "email": "henry@*****gmail.com",
+            "lastLogin": "Melbourne",
+            "lockedUntil": "Sindh",
+            "failedLogin": 123,
+            "isActive": "Active"
+        },
+        {
+            "id": "#785",
+            "role": "Data Analyst",
+            "fName": "Keanu Reeves",
+            "email": "Keanu@*****gmail.co",
+            "lastLogin": "New York",
+            "lockedUnt": "Sindh",
+            "failedLogin": 123,
+            "isActive": "Inactive"
+        },
+        {
+            "id": "#785",
+            "role": "Project Manager",
+            "fName": "Tom Hardy",
+                    "email": "tom@****gmail.com",
+                      "lastLogin": "Chicago","lockedUntil": "Sindh",
+            "failedLogin": 123,
+            "isActive": "Inactive"
+        }
+    ]
+}

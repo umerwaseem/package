@@ -1,5 +1,6 @@
 import { CommonModule, NgClass } from '@angular/common';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggle, MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -15,18 +16,19 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatTableModule } from '@angular/material/table';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLink } from '@angular/router';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-dummy-table',
-  standalone: true,
+ // standalone: true,
   encapsulation: ViewEncapsulation.None,
   providers: [provideNativeDateAdapter()],
-  imports: [
+  /* imports: [
     CommonModule,
     MatExpansionModule,
     MatIconModule,
@@ -52,65 +54,53 @@ import { RouterLink } from '@angular/router';
     MatButtonModule, 
     MatTooltipModule, 
     MatIconModule
-  ],
+  ], */
   templateUrl: './dummy-table.component.html',
   styleUrl: './dummy-table.component.css'
 })
-export class DummyTableComponent {
-  @ViewChild('group') toggle!: MatButtonToggle;
-  dataSource1 = ELEMENT_DATA;
-  dataSource2 = ELEMENT_DATA;
+export class DummyTableComponent implements OnInit {
+  dataSource = new MatTableDataSource<any>(); // Data source for the table
+  displayedColumns: string[] = []; // Columns to display dynamically
+  columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
 
-  dataSource3 = ELEMENT_DATA;
-  displayedColumns: string[] = Object.keys(ELEMENT_DATA[0]);
-  // Columns visibility mapping
-  columnsVisibility:any = {
-    position: true,
-    name: true,
-    weight: true,
-    symbol: true,
-  };
+  constructor(private service: ApiService) {}
 
-  // List of displayed columns (used by mat-header-row and mat-row)
-  get displayedColumn(): string[] {
-    return Object.keys(this.columnsVisibility).filter(key => this.columnsVisibility[key]);
+  ngOnInit(): void {
+    this.getPosts();
   }
 
-  // Toggle column visibility
-  toggleColumn(column: string): void {
-    this.columnsVisibility[column] = !this.columnsVisibility[column];
+  getPosts(): void {
+    this.service.getPosts().subscribe(
+      (res) => {
+        if (res['ResponseCode'] === '00') {
+          this.dataSource.data = res['Data']; // Assign API data to the table
+          this.initializeColumns(res['Data']); // Initialize columns
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service.refreshToken(ex.status).then(() => this.getPosts());
+      }
+    );
   }
 
+  initializeColumns(data: any[]): void {
+    if (data.length > 0) {
+      this.displayedColumns = Object.keys(data[0]); // Extract column keys from the first data row
+      this.displayedColumns.forEach((col) => {
+        this.columnVisibility[col] = true; // Make all columns visible by default
+      });
 
-
-  columnVisibility3: { [key: string]: boolean } = {};
-  
-  constructor() {
-    // Initialize all columns to be visible by default
-    this.displayedColumns.forEach((col) => (this.columnVisibility3[col] = true));
+      // Ensure 'networkGroupId' is always visible
+      if (this.columnVisibility['networkGroupId'] === undefined) {
+        this.columnVisibility['networkGroupId'] = true;
+      }
+    }
   }
 
   get visibleColumns(): string[] {
-    return this.displayedColumns.filter((col) => this.columnVisibility3[col]);
+    // Filter columns based on visibility
+    return this.displayedColumns.filter((col) => this.columnVisibility[col]);
   }
 }
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
-];

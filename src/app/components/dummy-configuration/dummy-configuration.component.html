@@ -1,12 +1,12 @@
 <div class="content-body">
     <div class="container-fluid">
-        <!--      <div class="row"> -->
-        <form [formGroup]="form" class="row">
+             <div class="row">
             <div class="col-md-7 col-sm-6 col-xs-12">
                 <h2>Global Configurations</h2>
                 
                 <h6>These settings allow you to do this and that. These settings are present here and there.</h6>
                 <h6> You can also setup templates as well.</h6>
+                <form [formGroup]="form" class="row" (submit)="submitForm()">
 
                 <mat-accordion class="example-headers-align">
                     <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
@@ -26,24 +26,30 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
+                                    class="custom-size-form-field ">
                                     <mat-label>First Name</mat-label>
                                     <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
+                                    <mat-error *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
+                                       <small>
+                                        Required
+                                       </small> 
+                                      </mat-error></mat-form-field>
                             </div>
 
-                            <div class="col-md-6">
+                          <!--   <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>First Name</mat-label>
                                     <input matInput placeholder="First Name*" formControlName="firstName">
                                 </mat-form-field>
-                            </div>
+                            </div> -->
                         </div>
 
 
                         <mat-action-row>
-                            <button mat-button color="primary" (click)="nextStep()">Next</button>
+                          <!--   <button mat-button color="primary" (click)="nextStep()" >Next</button> -->
+
+                            <button mat-button type="submit" >Next</button>
                         </mat-action-row>
                     </mat-expansion-panel>
 
@@ -126,12 +132,15 @@
                     </mat-expansion-panel>
 
                 </mat-accordion>
+        </form>
+
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
                 <mat-card class="p-3">
 
                     <h5 class="mb-2"><b>Summary</b></h5>
                     <div class="border-dark border-1 border-top mb-4"></div>
+                    <form [formGroup]="duplicateForm" class="row" >
                     <h6>DB Configuration Pooling</h6>
                     <div class="row  ">
                         <div class="col-md-6">
@@ -189,12 +198,12 @@
                         </div>
 
                     </div>
+                </form>
                 </mat-card>
 
 
             </div>
-        </form>
-        <!--    </div> -->
+           </div>
 
     </div>
 </div>

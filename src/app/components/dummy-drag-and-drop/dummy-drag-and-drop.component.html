@@ -1,0 +1,17 @@
+<div class="content-body">
+    <div class="container-fluid">
+      <div cdkDropList id="box1" class="box" (cdkDropListDropped)="onDrop($event)">
+        <div *ngFor="let item of box1Items" cdkDrag [cdkDragData]="item">
+          {{ item.label }}
+        </div>
+      </div>
+      
+      <div cdkDropList id="box2" class="box" (cdkDropListDropped)="onDrop($event)">
+        <div *ngFor="let item of box2Items">
+          {{ item.label }}
+        </div>
+      </div>
+      
+      
+          
+    </div></div>

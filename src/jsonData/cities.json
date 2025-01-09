@@ -1,0 +1,123 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 1961,
+    "Data": [
+        {
+            "cityId": 1966,
+            "stateId": null,
+            "cityName": "Acton",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1965,
+            "stateId": null,
+            "cityName": "Adelanto",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1964,
+            "stateId": null,
+            "cityName": "Agoura Hills",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1963,
+            "stateId": null,
+            "cityName": "Ten Alameda",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1962,
+            "stateId": null,
+            "cityName": "Alamo",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1961,
+            "stateId": null,
+            "cityName": "Rock Albany",
+            "stateName": "California",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1963,
+            "stateId": null,
+            "cityName": "Milwaukee",
+            "stateName": "Wisconsin",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1962,
+            "stateId": null,
+            "cityName": "Madison",
+            "stateName": "Wisconsin",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "cityId": 1961,
+            "stateId": null,
+            "cityName": "Green Bay",
+            "stateName": "Wisconsin",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2023-04-09T23:16:00Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

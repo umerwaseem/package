@@ -1,0 +1,58 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 4,
+    "Data": [
+        {
+            "feeTypeId": 4,
+            "feeTypeName": "fee type no 1",
+            "description": "nth",
+            "institution" : "Islamic Bank Limited",
+            "isActive": false,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:11:19.288Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "feeTypeId": 3,
+            "feeTypeName": "fee type no 2",
+            "description": "Nothing",
+            "institution" : "United Bank Limited" ,
+            "isActive": true,
+            "createdBy": 6,
+            "createdAt": "2022-06-09T07:09:10.277Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "feeTypeId": 2,
+            "feeTypeName": "fee type no 3",
+            "description": "Nothing",
+            "institution" : "Habib Bank Limited",
+            "isActive": true,
+            "createdBy": 1,
+            "createdAt": "2022-06-08T07:11:01.205Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        },
+        {
+            "feeTypeId": 1,
+            "feeTypeName": "fee type no 4",
+            "description": "hello karachi",
+            "institution" : "Meezan Bank Limited",
+            "isActive": false,
+            "createdBy": 1,
+            "createdAt": "2022-06-08T06:49:41.230Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0
+        }
+    ]
+}

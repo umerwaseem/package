@@ -1,0 +1,50 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 2,
+    "Data": [
+        {
+            "authorizationMatrixId": 18,
+            "useCase": "1",
+            "useCaseName": "Airtime Topup",
+            "institution": "hbl",
+            "method": 2,
+            "flowSequence": "1",
+            "result0": "4",
+            "result1": "5",
+            "result2": "6",
+            "result3": "8",
+            "result4": "9",
+            "count": "4",
+            "authorizationMatrix ": "",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0,
+            "RecId": 898979
+        },
+        {
+            "authorizationMatrixId": 19,
+            "useCase": 2,
+            "useCaseName": "Send Money",
+            "institution": "hbl",
+            "method": 1,
+            "flowSequence": "1",
+            "result0": "4",
+            "result1": "5",
+            "result2": "6",
+            "result3": "8",
+            "result4": "9",
+            "count": "3",
+            "authorizationMatrix ": "",
+            "createdBy": 1,
+            "createdAt": "2022-07-22T09:24:24.081Z",
+            "updatedBy": null,
+            "updatedAt": null,
+            "pageIndex": 0,
+            "pageRecord": 0,
+            "RecId": 898789
+        }
+    ]
+}

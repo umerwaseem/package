@@ -1,0 +1,62 @@
+{
+    "ResponseCode": "00",
+    "noOfRecord": 3,
+    "customerData": [
+        {
+            "customerAccountId": "1",
+            "accountTitle": "Current Account",
+            "accountNumber": "4954785554441",
+            "customerId": 17,
+            "limitSetId": "Limit Set One",
+            "feeSetId": "Fee Set One"
+        },
+        {
+            "customerAccountId": "2",
+            "accountTitle": "Amma Ahsan Account",
+            "accountNumber": "34954785554444",
+            "customerId": 17,
+            "limitSetId": "Limit Set two",
+            "feeSetId": "Fee Set two"
+        },
+        {
+            "customerAccountId": "3",
+            "accountTitle": "Saving Account",
+            "accountNumber": "34954785554441",
+            "customerId": 17,
+            "limitSetId": "Limit Set three",
+            "feeSetId": "Fee Set three"
+        },
+        {
+            "customerAccountId": "4",
+            "accountTitle": "Current Account",
+            "accountNumber": "4954785554445",
+            "customerId": 18,
+            "limitSetId": "Limit Set One",
+            "feeSetId": "Fee Set One"
+        },
+        {
+            "customerAccountId": "5",
+            "accountTitle": "Savings Account",
+            "accountNumber": "47878451203495",
+            "customerId": 18,
+            "limitSetId": "Limit Set two",
+            "feeSetId": "Fee Set two"
+        },
+        {
+            "customerAccountId": "6",
+            "accountTitle": "Foreign Currency Account",
+            "accountNumber": "78554785477034954",
+            "customerId": 18,
+            "limitSetId": "Limit Set three",
+            "feeSetId": "Fee Set three"
+        },
+        {
+            "customerAccountId": "7",
+            "accountTitle": "Fixed Deposit Account",
+            "accountNumber": "855545698740349547",
+            "customerId": 18,
+            "limitSetId": "Limit Set One",
+            "feeSetId": "Fee Set One"
+        }
+    ]
+}
