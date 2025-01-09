@@ -1,0 +1,24 @@
+
+<div class="card-header border-0 pb-0 d-sm-flex d-block">
+    <h4 class="card-title">Visitor Activity</h4>
+    <div class="card-action mb-sm-0 my-2">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="home-tab" href="javascript:void(0);" (click)="updateValue('day')" data-bs-toggle="tab" data-bs-target="#home-tab-pane"  role="tab"  aria-selected="true">Day</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="profile-tab" href="javascript:void(0);" (click)="updateValue('month')" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"  role="tab"  aria-selected="false">Month</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a class="nav-link" id="contact-tab" href="javascript:void(0);" (click)="updateValue('year')" data-bs-toggle="tab" data-bs-target="#contact-tab-pane"  role="tab"  aria-selected="false"> Year</a>
+          </li>
+        </ul>
+    </div>
+</div>
+<div class="card-body">
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="user" role="tabpanel">
+            <canvas #chart style="display: inline; width:100%; max-height: 400px;" height="370"></canvas>
+        </div>
+    </div>
+</div>

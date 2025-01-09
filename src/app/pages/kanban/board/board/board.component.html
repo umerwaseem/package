@@ -1,0 +1,52 @@
+<div cdkDropListGroup class="row kanban-bx">
+  @for(column of boardService.getBoard$() | async; track column){
+  <div class="col mb-3 kanbanPreview-bx">
+    <div class="card-body draggable-zone dropzoneContainer">
+      <!-- Column Title -->
+      <div class="sub-card bg-{{column.bg}} align-items-center d-flex text-white">
+        <div class="me-auto pe-2">
+          <h4 class="fs-20 mb-0 font-w600 text-white">{{column.title}} (<span class="totalCount">{{column.list.length }}</span>) </h4>
+          <span class="fs-14 font-w200 op6">Lorem ipsum dolor sit amet</span>
+        </div>
+        <div class="dropdown">
+          <a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+          <div class="dropdown-menu dropdown-menu-end">
+            <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+            <a class="dropdown-item" href="javascript:void(0);" (click)="onDeleteColumn(column.id)">Delete</a>
+          </div>
+        </div>
+      </div>
+      <!-- Color Panel -->
+      <app-color-panel (emitColor)="onColorChange($event, column.id)"></app-color-panel>
+
+      <div cdkDropList [cdkDropListData]="column.list" class="task-list" (cdkDropListDropped)="drop($event)">
+        @for(item of column.list; track item){
+        <div class="sub-card draggable-handle draggable" cdkDrag [ngStyle]="{background: column.color}">
+          <app-board-item
+          [item]="item"
+          [textColor]="column.bg"
+          (emitText)="onAddComment($event, column.id)"
+          (emitCardItem)="onChangeLike($event, column.id)"
+          (emitDeleteCard)="onDeleteCard($event, column.id)"
+          >
+            <div *ngFor="let comment of item.comments">
+              <app-comment-item [comment]="comment" (emitComment)="onDeleteComment($event, column.id, item)"></app-comment-item>
+            </div>
+          </app-board-item>
+        </div>
+        }
+      </div>
+    </div>
+    <!-- Add New Card To Column -->
+    <app-dialog (emitText)="onAddCard($event, column.id)" [question]="'Add new card in ' + column.title + ' column'">
+      <a href="javascript:void(0);" class="btn btn-primary text-white w-100">+Add Card</a>
+    </app-dialog>
+  </div>
+  }
+</div>

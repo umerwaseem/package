@@ -1,0 +1,98 @@
+<div class="content-body">
+  <!-- row -->
+  <div class="container-fluid">
+    <div class="project-nav">
+      <div class="card-action card-tabs">
+        <ul class="nav nav-tabs style-2" ngbNav #nav1="ngbNav" [(activeId)]="active">
+          <li [ngbNavItem]="1" class="nav-item">
+            <a href="javascript:void(0);" ngbNavLink class="nav-link">
+                All Projects <span class="badge badge-pill shadow-primary badge-primary">7</span>
+            </a>
+            <ng-template ngbNavContent>
+                <app-project-list [data]="'all'" [boxed_navpills]="ListType"></app-project-list>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2" class="nav-item">
+            <a href="javascript:void(0);" ngbNavLink class="nav-link">
+                On Progress <span class="badge badge-pill badge-info shadow-info">2</span>
+            </a>
+            <ng-template ngbNavContent>
+                <app-project-list [data]="'Progress'" [boxed_navpills]="ListType"></app-project-list>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3" class="nav-item">
+            <a href="javascript:void(0);" ngbNavLink class="nav-link">
+                Pending <span class="badge badge-pill badge-warning shadow-warning">4</span>
+            </a>
+            <ng-template ngbNavContent>
+                <app-project-list [data]="'Pending'" [boxed_navpills]="ListType"></app-project-list>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4" class="nav-item">
+            <a href="javascript:void(0);" ngbNavLink class="nav-link">
+                Closed <span class="badge badge-pill badge-danger shadow-danger">1</span>
+            </a>
+            <ng-template ngbNavContent>
+                <app-project-list [data]="'Closed'" [boxed_navpills]="ListType"></app-project-list>
+            </ng-template>
+          </li>
+        </ul>
+      </div>
+      <div class="d-flex align-items-center">
+        <a href="javascript:void(0);" (click)="openCenter(NewProjectModal)" class="btn btn-primary rounded text-white">+ New Project</a>
+        <ul class="grid-tabs nav nav-tabs ms-4">
+          <li class="nav-item">
+            <a href="javascript:void(0);" class="nav-link {{ ListType?'':'active'}}" data-bs-toggle="tab" (click)="listType('list')">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.99976 7H19.9998C20.7954 7 21.5585 6.68393 22.1211 6.12132C22.6837 5.55871 22.9998 4.79565 22.9998 4C22.9998 3.20435 22.6837 2.44129 22.1211 1.87868C21.5585 1.31607 20.7954 1 19.9998 1H3.99976C3.20411 1 2.44104 1.31607 1.87844 1.87868C1.31583 2.44129 0.999756 3.20435 0.999756 4C0.999756 4.79565 1.31583 5.55871 1.87844 6.12132C2.44104 6.68393 3.20411 7 3.99976 7Z" fill="#CBCBCB"></path>
+                <path d="M19.9998 9H3.99976C3.20411 9 2.44104 9.31607 1.87844 9.87868C1.31583 10.4413 0.999756 11.2044 0.999756 12C0.999756 12.7956 1.31583 13.5587 1.87844 14.1213C2.44104 14.6839 3.20411 15 3.99976 15H19.9998C20.7954 15 21.5585 14.6839 22.1211 14.1213C22.6837 13.5587 22.9998 12.7956 22.9998 12C22.9998 11.2044 22.6837 10.4413 22.1211 9.87868C21.5585 9.31607 20.7954 9 19.9998 9Z" fill="#CBCBCB"></path>
+                <path d="M19.9998 17H3.99976C3.20411 17 2.44104 17.3161 1.87844 17.8787C1.31583 18.4413 0.999756 19.2044 0.999756 20C0.999756 20.7956 1.31583 21.5587 1.87844 22.1213C2.44104 22.6839 3.20411 23 3.99976 23H19.9998C20.7954 23 21.5585 22.6839 22.1211 22.1213C22.6837 21.5587 22.9998 20.7956 22.9998 20C22.9998 19.2044 22.6837 18.4413 22.1211 17.8787C21.5585 17.3161 20.7954 17 19.9998 17Z" fill="#CBCBCB"></path>
+              </svg>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="javascript:void(0);" class="nav-link {{ ListType?'active':''}}" data-bs-toggle="tab" (click)="listType('boxed')">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.99976 0.999939H3.99976C2.3429 0.999939 0.999756 2.34308 0.999756 3.99994V7.99994C0.999756 9.65679 2.3429 10.9999 3.99976 10.9999H7.99976C9.65661 10.9999 10.9998 9.65679 10.9998 7.99994V3.99994C10.9998 2.34308 9.65661 0.999939 7.99976 0.999939Z" fill="#CBCBCB"></path>
+                <path d="M19.9998 0.999939H15.9998C14.3429 0.999939 12.9998 2.34308 12.9998 3.99994V7.99994C12.9998 9.65679 14.3429 10.9999 15.9998 10.9999H19.9998C21.6566 10.9999 22.9998 9.65679 22.9998 7.99994V3.99994C22.9998 2.34308 21.6566 0.999939 19.9998 0.999939Z" fill="#CBCBCB"></path>
+                <path d="M7.99976 13H3.99976C2.3429 13 0.999756 14.3431 0.999756 16V20C0.999756 21.6569 2.3429 23 3.99976 23H7.99976C9.65661 23 10.9998 21.6569 10.9998 20V16C10.9998 14.3431 9.65661 13 7.99976 13Z" fill="#CBCBCB"></path>
+                <path d="M19.9998 13H15.9998C14.3429 13 12.9998 14.3431 12.9998 16V20C12.9998 21.6569 14.3429 23 15.9998 23H19.9998C21.6566 23 22.9998 21.6569 22.9998 20V16C22.9998 14.3431 21.6566 13 19.9998 13Z" fill="#CBCBCB"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <!-- Add Order -->
+        <ng-template #NewProjectModal let-modal>
+          <div class="modal-header">
+              <h5 class="modal-title">Add Project</h5>
+              <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label class="text-black font-w500">Project Name</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label class="text-black font-w500">Dadeline</label>
+                <div class="cal-icon"><input type="date" class="form-control"><i class="far fa-calendar-alt"></i></div>
+              </div>
+              <div class="form-group">
+                <label class="text-black font-w500">Client Name</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary">SAVE</button>
+              </div>
+            </form>
+          </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="tab-content">
+      <div class="tab-pane active show" id="list">
+        <div [ngbNavOutlet]="nav1" id="list"></div>
+      </div>
+    </div>
+  </div>
+</div>

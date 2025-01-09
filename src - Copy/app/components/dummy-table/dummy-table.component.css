@@ -1,0 +1,9 @@
+.mat-mdc-table .mdc-data-table__content .mat-mdc-row, .mat-mdc-table .mat-mdc-header-row{
+    height: 30px;
+}
+
+
+.mat-mdc-table .mat-mdc-row, .mat-mdc-table  .mat-mdc-header-row .mat-mdc-header-cell, .mat-mdc-table  .mat-mdc-header-row {
+    height: 30px;
+    min-height: 30px;
+}

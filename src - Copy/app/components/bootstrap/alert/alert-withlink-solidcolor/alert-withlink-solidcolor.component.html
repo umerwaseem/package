@@ -1,0 +1,6 @@
+
+@for(alert of alerts; track alert){
+  <ngb-alert [type]="alert.type" (closed)="close(alert)" class="solid">
+      <strong>{{ alert.typeMsg }} </strong>  <a routerLink="/admin/ui-alert" class="text-white"> {{ alert.message }}</a>
+  </ngb-alert>
+}

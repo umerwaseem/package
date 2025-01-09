@@ -1,0 +1,24 @@
+.custom-header-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline {
+    height: 65%;
+  }
+  
+  .custom-header-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix  {
+    padding: 8px 0 0 0;
+    color: grey;
+  }
+  
+  .custom-header-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-form-field-infix .mat-select .mat-select-trigger .mat-select-value {
+    color: grey;
+  }
+  
+  .custom-header-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline .mat-mdc-notch-piece .mdc-floating-label {
+    padding: 0 0 1.2em 0;
+  }
+
+  .custom-header-form-field .mat-mdc-form-field-subscript-wrapper{
+    height: 1px;
+  }
+
+  .custom-header-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline{
+    top:10px
+  }

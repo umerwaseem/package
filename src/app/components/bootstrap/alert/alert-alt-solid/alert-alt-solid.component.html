@@ -1,0 +1,3 @@
+@for(alert of alerts; track alert){
+  <ngb-alert [type]="alert.type" (closed)="close(alert)" class="alert-alt solid"><strong>{{ alert.typeMsg }}</strong>  {{ alert.message }}</ngb-alert>
+}

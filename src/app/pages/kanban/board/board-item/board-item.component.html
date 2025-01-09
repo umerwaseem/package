@@ -1,0 +1,35 @@
+<div class="justify-content-between align-items-center">
+  <span class="text-{{ textColor }} sub-title">{{ item.position }}</span>
+  <a href="javacscript:void(0)" class="text-danger float-end" (click)="onCardDelete(item.id)"><i class="fas fa-trash-alt"></i></a>
+</div>
+<p class="font-w600">
+  <a routerLink="/admin/post-details" class="text-black">{{ item.text }}</a>
+</p>
+<div class="row justify-content-between align-items-center">
+  <div class="col-6">
+    <span class="fs-14">Aug 4, 2021</span>
+  </div>
+  <ul class="users col-6">
+    <li><img src="assets/images/profile/Untitled-4.jpg" alt=""></li>
+    <li><img src="assets/images/profile/Untitled-5.jpg" alt=""></li>
+    <li><img src="assets/images/profile/Untitled-5.jpg" alt=""></li>
+  </ul>
+</div>
+<span class="kandan-link-color">
+  <a href="javacscript:void(0)" (click)="onCardItemEmit(item, true)" class="me-1 text-black font-w500"><i class="far fa-thumbs-up me-1"></i>{{ item.like }}</a>
+  <a href="javacscript:void(0)" (click)="onCardItemEmit(item, false)" class="text-black font-w500"><i class="far fa-thumbs-down me-2"></i></a>
+  <a href="javacscript:void(0)" (click)="onOpenComment()" class="text-black fs-14 font-w500"><i class="far fa-comment me-2"></i>{{ item.comments.length }} Comment</a>
+</span>
+@if (open) {
+  <div class="input-group my-2">
+    <input type="text" [(ngModel)]="commentInput" (mousedown)="$event.stopPropagation()" class="form-control px-2 py-2 h-25" placeholder="Leave a comment" />
+    @if (commentInput) {
+      <span class="input-group-addon input-group-addon-btn bg-white">
+        <button class="btn py-2 px-2 text-success shadow-none" (click)="onCommentTextEmit(item.id)" type="submit">
+          <i class="fa fa-check" aria-hidden="true"></i>
+        </button>
+      </span>
+    }
+  </div>
+  <ng-content></ng-content>
+}

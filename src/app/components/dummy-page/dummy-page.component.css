@@ -1,0 +1,53 @@
+.mat-mdc-table .mdc-data-table__content .mat-mdc-row, .mat-mdc-table .mat-mdc-header-row{
+    height: 30px;
+}
+
+.mat-mdc-tab-group .mat-mdc-tab-header .mat-mdc-tab-label-container .mat-mdc-tab-list .mat-mdc-tab-labels .mdc-tab{
+    height: 25px;
+}
+
+.custom-paginator,
+.custom-paginator .mat-mdc-paginator-outer-container ,
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container,
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size,
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size .mat-mdc-form-field .mat-mdc-text-field-wrapper{
+    height: 36px;
+    
+}
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size .mat-mdc-paginator-page-size-label{
+    display: none;
+   /*  height: 36px; */
+}
+
+
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size .mat-mdc-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix{
+    padding-top: 5px;
+}
+
+.custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container{
+    min-height: 36px;
+
+
+    display: flex
+;
+
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0 8px;
+    flex-wrap: wrap-reverse;
+    width: 100%;
+}
+
+
+.custom-button {
+    height: 40px; /* Adjust height */
+    width: 40px;  /* Adjust width */
+    padding: 0;
+  }
+
+
+  .custom-icon-size {
+    font-size: 20px; /* Adjust size */
+      /* Adjust width if necessary */
+  }
+  

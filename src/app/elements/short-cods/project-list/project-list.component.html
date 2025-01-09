@@ -1,0 +1,134 @@
+@if(boxed_navpills){
+  <div class="row">
+    @for(item of productList; track item; let i = $index){
+      <div class="col-xl-3 col-xxl-4">
+        <div class="card project-boxed">
+          <div class="img-bx">
+            <img src="{{ item.product_bg_img }}" alt="" class="w-100 ">
+            @if(item.status == 'Pending'){
+              <span class="badge badge-warning">{{item.status}}</span>
+            } @else if(item.status == 'Progress') {
+              <span class="badge badge-info">{{item.status}}</span>
+            } @else {
+              <span class="badge badge-danger">{{item.status}}</span>
+            }
+          </div>
+          <div class="card-header align-items-start">
+            <div>
+              <p class="fs-14 mb-2 text-primary">{{item.id}}</p>
+              <h6 class="fs-18 font-w500 mb-3">
+                <a routerLink="/admin/post-details" class="text-black user-name">{{item.product_name}}</a>
+              </h6>
+              <div class="text-dark fs-14 text-nowrap">
+                <i class="fa fa-calendar-o mr-3" aria-hidden="true"></i> {{item.date}}
+              </div>
+            </div>
+            <div class="dropdown dropdown-arrow-hide" ngbDropdown>
+              <a href="javascript:void(0);" ngbDropdownToggle>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" ngbDropdownMenu>
+                <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                <a class="dropdown-item" href="javascript:void(0);" (click)="deleteProject(i)">Delete</a>
+              </div>
+            </div>
+          </div>
+          <div class="card-body p-0 pb-3">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <span class="mb-0 title">Deadline</span> : <span class="text-black ml-2">{{item.deadline_date}}</span>
+              </li>
+              <li class="list-group-item">
+                <span class="mb-0 title">Client</span> : <span class="text-black ml-2">{{item.client_name}}</span>
+              </li>
+              <li class="list-group-item">
+                <span class="mb-0 title">Person in charge</span> : <span class="text-black desc-text ml-2">{{item.person_name}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+} @else {
+  @for(item of productList; track item; let i = $index){
+  <div class="card">
+    <div class="project-info">
+      <div class="col-xl-3 col-xxl-3 my-2 col-lg-4 col-sm-6">
+          <p class="text-primary mb-1">{{item.id}}</p>
+          <h4 class="title font-w600 mb-2"><a routerLink="/admin/post-details" class="text-black">{{item.product_name}}</a></h4>
+          <div class="text-dark"><i class="far fa-calendar me-3" aria-hidden="true"></i>{{item.date}}</div>
+      </div>
+      <div class="col-xl-2 my-2 col-xxl-3 col-lg-4 col-sm-6">
+          <div class="d-flex align-items-center">
+              <div class="project-media">
+                  @if(item.client_image){
+                      <img src="{{item.client_image}}" alt="">
+                  } @else {
+                      <span class="img-placeholder bgl-danger text-danger">{{item.client_name.substr(0,1)}}</span>
+                  }
+              </div>
+              <div class="ms-3">
+                  <span>Client</span>
+                  <h5 class="mb-0 pt-1 fs-18 font-w50 text-black">{{item.client_name}}</h5>
+              </div>
+          </div>
+      </div>
+      <div class="col-xl-2 my-2 col-xxl-3 col-lg-4 col-sm-6">
+          <div class="d-flex align-items-center">
+              <div class="project-media">
+                  @if(item.person_image){
+                      <img src="{{item.person_image}}" alt="">
+                  } @else {
+                      <span class="img-placeholder bgl-danger text-danger">{{item.person_name.substr(0,1)}}</span>
+                  }
+              </div>
+              <div class="ms-3">
+                  <span>Person in charge</span>
+                  <h5 class="mb-0 pt-1 font-w500 text-black">{{item.person_name}}</h5>
+              </div>
+          </div>
+      </div>
+      <div class="col-xl-3 my-2 col-xxl-3 col-lg-6 col-sm-6">
+          <div class="d-flex align-items-center">
+              <div class="power-ic">
+                  <i class="fa fa-bolt" aria-hidden="true"></i>
+              </div>
+              <div class="ms-3">
+                  <span>Deadline</span>
+                  <h5 class="mb-0 pt-1 font-w500 text-black">{{item.deadline_date}}</h5>
+              </div>
+          </div>
+      </div>
+      <div class="col-xl-2 my-2 col-xxl-3 col-lg-6 col-sm-6">
+          <div class="d-flex project-status align-items-center">
+              @if(item.status == 'Pending'){
+                <a href="javascript:void(0);" class="btn btn-warning light status-btn">{{item.status}}</a>
+              } @else if(item.status == 'Progress') {
+                <a href="javascript:void(0);" class="btn btn-info light status-btn">{{item.status}}</a>
+              } @else {
+                <a href="javascript:void(0);" class="btn btn-danger light status-btn">{{item.status}}</a>
+              }
+              <div class="dropdown dropdown-arrow-hide" ngbDropdown>
+                  <a href="javascript:void(0);" ngbDropdownToggle>
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
+                      <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+                      <a class="dropdown-item" href="javascript:void(0);" (click)="deleteProject(i)">Delete</a>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  }
+}
