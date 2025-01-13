@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HttpClientModule } from "@angular/common/http";
 import { ApiService } from "../services/api.service";
 import { DummyPageComponent } from "./components/dummy-page/dummy-page.component";
+import { DummyExpandableTableComponent } from "./components/dummy-expandable-table/dummy-expandable-table.component";
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { DummyPageComponent } from "./components/dummy-page/dummy-page.component
         DummyTableComponent,
         DummyPageComponent,
         AppComponent,
+        DummyExpandableTableComponent
         /*   FullComponent,
   
         AdminComponent,

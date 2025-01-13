@@ -38,6 +38,6 @@ export class BottomSheetOverviewExampleSheet {
 
   openLink(event: MouseEvent): void {
     this._bottomSheetRef.dismiss();
-    event.preventDefault();
+   // event.preventDefault();
   }
 }

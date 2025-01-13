@@ -118,6 +118,7 @@ import { DummyPageComponent } from './components/dummy-page/dummy-page.component
 import { DummyConfigurationComponent } from './components/dummy-configuration/dummy-configuration.component';
 import { DummyTableComponent } from './components/dummy-table/dummy-table.component';
 import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dummy-drag-and-drop.component';
+import { DummyExpandableTableComponent } from './components/dummy-expandable-table/dummy-expandable-table.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
@@ -239,7 +240,7 @@ export const routes: Routes = [
 
       // widget --
       { path: 'widget-card', component: WgCardComponent },
-      { path: 'widget-chart', component: WgChartComponent},
+      { path: 'widget-chart', component: WgChartComponent },
       { path: 'widget-list', component: WgListComponent },
 
       // Forms
@@ -252,7 +253,9 @@ export const routes: Routes = [
       { path: 'dummy-page', component: DummyPageComponent },
       { path: 'dummy-table', component: DummyTableComponent },
       { path: 'dummy-config', component: DummyConfigurationComponent },
-         { path: 'dummy-drag', component: DummyDragAndDropComponent },
+      { path: 'dummy-drag', component: DummyDragAndDropComponent },
+      { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
+
     ]
   },
   { path: 'page-register', component: RegisterComponent },

@@ -95,14 +95,14 @@
         <button mat-stroked-button class="rounded-3 custom-button" [matMenuTriggerFor]="columnMenu">
           <mat-icon class="mx-1">view_week</mat-icon>
         </button>
-  
+
         <mat-menu #columnMenu="matMenu">
           <mat-checkbox *ngFor="let column of displayedColumns" [(ngModel)]="columnVisibility[column]">
             {{ column | titlecase }}
           </mat-checkbox>
         </mat-menu>
       </div>
-  
+
     </div>
 
 
@@ -114,34 +114,43 @@
           <ng-container *ngIf="columnVisibility[column]">
             <ng-container matColumnDef="{{ column }}">
               <mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </mat-header-cell>
-              <mat-cell *matCellDef="let element" matTooltip="{{element[column]}}">
+              <mat-cell *matCellDef="let element" matTooltip="{{ element[column] }}">
                 {{ element[column] ? element[column] : '- -' }}
               </mat-cell>
             </ng-container>
           </ng-container>
         </ng-container>
 
+        <!-- Header and row definitions -->
         <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
-        <mat-row (click)="getRecord(element.networkGroupId)"
-          *matRowDef="let element; columns: visibleColumns;"></mat-row>
-        <!--  <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row> -->
+        <mat-row *matRowDef="let element; columns: visibleColumns;" (click)="filterToSingleRow(element)">
+        </mat-row><!-- (click)="getRecord(element.networkGroupId)" -->
+
       </table>
+
     </div>
     <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.networkGroupId">
-      <ng-container ><!-- *ngFor="let item of instanceDetails" -->
+      <ng-container><!-- *ngFor="let item of instanceDetails" -->
         <div class="row d-flex align-items-center">
-          <div class="col-md-10" >
+          <div class="col-md-10">
             <h5 class="my-2" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
-              <b>Instance: {{this.instanceDetails.instance}}</b><!-- {{item.jsonParseData ? item.jsonParseData.instance : '--'}} -->
+              <b>Instance:
+                {{this.instanceDetails.instance}}</b><!-- {{item.jsonParseData ? item.jsonParseData.instance : '--'}} -->
             </h5>
           </div>
           <div class="col-md-2 d-flex justify-content-end">
             <span class="mx-2 pointer d-flex align-items-center">
-              <mat-icon class="custom-icon-size">settings</mat-icon>
+              <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
+              <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
             </span>
+           
             <span class="mx-2 pointer d-flex align-items-center">
-              <mat-icon class="custom-icon-size">clear</mat-icon>
+              <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
+              <i class="fa fa-trash" style="font-size: 14px; color: #ff1c1c"></i>
+            </span>
+            <span class="mx-2 pointer d-flex align-items-center" (click)="resetTable()">
+              <mat-icon class="pointer custom-icon-size d-flex align-items-center">clear</mat-icon>
+
             </span>
 
           </div>
@@ -238,26 +247,25 @@
                         </div>
                       </form>
                       <div>
-                        <table mat-table [dataSource]="tableData" class="border">
+                        <table mat-table [dataSource]="datasource1" class="border">
                           <ng-container matColumnDef="id">
                             <th mat-header-cell *matHeaderCellDef> ID </th>
-                            <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+                            <td mat-cell *matCellDef="let element"> {{ element.instance }} </td>
                           </ng-container>
 
                           <ng-container matColumnDef="name">
                             <th mat-header-cell *matHeaderCellDef> Name </th>
-                            <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
+                            <td mat-cell *matCellDef="let element"> {{ element.instanceSummary }} </td>
                           </ng-container>
 
                           <ng-container matColumnDef="age">
                             <th mat-header-cell *matHeaderCellDef> Age </th>
-                            <td mat-cell *matCellDef="let element"> {{ element.age }} </td>
+                            <td mat-cell *matCellDef="let element"> {{ element.ipAddress }} </td>
                           </ng-container>
 
                           <tr mat-header-row *matHeaderRowDef="['id', 'name', 'age']"></tr>
                           <tr mat-row *matRowDef="let row; columns: ['id', 'name', 'age']"
-                            (click)="getFormRecord(row.id)">
-                          </tr>
+                            (click)="getFormRecord(row.id)"></tr>
                         </table>
                         <div class="card shadow-none p-2 bg-transparent" style="border-radius: 0px;"
                           *ngIf="this.isformData">
@@ -478,7 +486,8 @@
                   </p>
                   <p class="mb-2">{{this.instanceDetails.instanceSummary}}</p>
                   <p>IPV6 address</p>
-                  <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '- -'}}</p>
+                  <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '-
+                    -'}}</p>
 
                   <p>Hostname type</p>
 
@@ -489,7 +498,8 @@
 
 
                   <p>Auto-assigned IP address</p>
-                  <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '- -'}}</p>
+                  <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '-
+                    -'}}</p>
 
 
                 </div>
@@ -542,24 +552,26 @@
                   <p> <b>
 
 
-                    instance ID:
-                  </b>
+                      instance ID:
+                    </b>
 
-                </p>
-                <p class="mb-2">{{this.instanceDetails.instanceSummary}}</p>
-                <p>IPV6 address</p>
-                <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '- -'}}</p>
+                  </p>
+                  <p class="mb-2">{{this.instanceDetails.instanceSummary}}</p>
+                  <p>IPV6 address</p>
+                  <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '-
+                    -'}}</p>
 
-                <p>Hostname type</p>
+                  <p>Hostname type</p>
 
-                <p class="mb-2">IP name:ip-172-31-3-251.ec2 internal</p>
+                  <p class="mb-2">IP name:ip-172-31-3-251.ec2 internal</p>
 
-                <p>Answer private resource DNS name</p>
-                <p class="mb-2">{{this.instanceDetails.hostName ? this.instanceDetails.hostName : '- -'}}</p>
+                  <p>Answer private resource DNS name</p>
+                  <p class="mb-2">{{this.instanceDetails.hostName ? this.instanceDetails.hostName : '- -'}}</p>
 
 
-                <p>Auto-assigned IP address</p>
-                <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '- -'}}</p>
+                  <p>Auto-assigned IP address</p>
+                  <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '-
+                    -'}}</p>
 
 
 
@@ -569,24 +581,26 @@
                   <p> <b>
 
 
-                    instance ID:
-                  </b>
+                      instance ID:
+                    </b>
 
-                </p>
-                <p class="mb-2">{{this.instanceDetails.instanceSummary}}</p>
-                <p>IPV6 address</p>
-                <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '- -'}}</p>
+                  </p>
+                  <p class="mb-2">{{this.instanceDetails.instanceSummary}}</p>
+                  <p>IPV6 address</p>
+                  <p class="mb-2">{{this.instanceDetails.instanceSummary ? this.instanceDetails.instanceSummary : '-
+                    -'}}</p>
 
-                <p>Hostname type</p>
+                  <p>Hostname type</p>
 
-                <p class="mb-2">IP name:ip-172-31-3-251.ec2 internal</p>
+                  <p class="mb-2">IP name:ip-172-31-3-251.ec2 internal</p>
 
-                <p>Answer private resource DNS name</p>
-                <p class="mb-2">{{this.instanceDetails.hostName ? this.instanceDetails.hostName : '- -'}}</p>
+                  <p>Answer private resource DNS name</p>
+                  <p class="mb-2">{{this.instanceDetails.hostName ? this.instanceDetails.hostName : '- -'}}</p>
 
 
-                <p>Auto-assigned IP address</p>
-                <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '- -'}}</p>
+                  <p>Auto-assigned IP address</p>
+                  <p class="mb-2">{{this.instanceDetails.assignedIpAddress ? this.instanceDetails.assignedIpAddress : '-
+                    -'}}</p>
 
 
                 </div>

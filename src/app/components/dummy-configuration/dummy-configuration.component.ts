@@ -46,8 +46,9 @@ export class DummyConfigurationComponent implements OnInit{
   })
   duplicateForm = new FormGroup({
     duplicateFirstName: new FormControl(''),
-    
+    firstName: new FormControl(''),
   })
+  panelOpenState = false;
   constructor() {
   }
   ngOnInit(): void {

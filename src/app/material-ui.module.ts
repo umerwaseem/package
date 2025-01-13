@@ -3,6 +3,7 @@ import { CommonModule, NgClass } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatCardModule } from "@angular/material/card";
@@ -55,7 +56,7 @@ import { RouterLink } from "@angular/router";
       MatFormFieldModule,
       DragDropModule,
       MatListModule,
-
+      MatBottomSheetModule,
       RouterLink,FormsModule,      
       NgClass,
        MatMenuModule,

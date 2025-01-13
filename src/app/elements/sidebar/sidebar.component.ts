@@ -631,6 +631,10 @@ export class SidebarComponent {
       icon: "flaticon-newsletter",
       subMenu: [
         {
+          title: "Dummy-Expandable-Table",
+          route: "/admin/dummy-expandable-table"
+        },
+        {
           title: "Dummy-Drag",
           route: "/admin/dummy-drag"
         },

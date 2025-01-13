@@ -126,6 +126,7 @@ import { LightGalleryComponent } from './plugins/light-gallery/light-gallery.com
 import { SweetAlertComponent } from './plugins/sweet-alert/sweet-alert.component';
 import { ToastrComponent } from './plugins/toastr/toastr.component';
 import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dummy-drag-and-drop.component';
+import { DummyExpandableTableComponent } from './components/dummy-expandable-table/dummy-expandable-table.component';
 
 
 const routes: Routes = [
@@ -262,6 +263,8 @@ const routes: Routes = [
       { path: 'dummy-table', component: DummyTableComponent },
       { path: 'dummy-config', component: DummyConfigurationComponent },
       { path: 'dummy-drag', component: DummyDragAndDropComponent },
+            { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
+     
     ]
   },
   { path: 'page-register', component: RegisterComponent },

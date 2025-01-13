@@ -53,36 +53,44 @@ export class DummyPageComponent implements OnInit {
   @ViewChild('group') toggle!: MatButtonToggle;
   networkGroupId: any
   isData: any
-  instanceDetails:any = {}
-  isformData:any
+  instanceDetails: any = {}
+  isformData: any
   step = 0;
   form = new FormGroup({
     firstName: new FormControl(''),
     field2: new FormControl(''),
   })
- dataSource = new MatTableDataSource<any>(); // Data source for the table
+  dataSource = new MatTableDataSource<any>(); // Data source for the table
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-
-  constructor(private service: ApiService) {}
+  datasource1 = new MatTableDataSource<any>();
+  constructor(private service: ApiService,) { }
 
   ngOnInit(): void {
     this.getPosts();
   }
 
-  getPosts(): void {
-    this.service.getPosts().subscribe(
-      (res) => {
-        if (res['ResponseCode'] === '00') {
-          this.dataSource.data = res['Data']; // Assign API data to the table
-          this.initializeColumns(res['Data']); // Initialize columns
-        }
-      },
-      (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+getPosts(): void {
+  this.service.getPosts().subscribe(
+    (res) => {
+      if (res['ResponseCode'] === '00') {
+        this.dataSource.data = res['Data']; // Assign API data to the table
+        console.log('this.dataSource.data', this.dataSource.data);
+
+        const networkDetail = res['Data']?.networkDetail || []; // Access networkDetail correctly
+        console.log('networkDetail', networkDetail);
+
+        this.initializeColumns(res['Data']); // Initialize columns
+        this.datasource1.data = networkDetail; // Assign network details to another datasource
+        console.log('this.datasource1.data', this.datasource1.data);
       }
-    );
-  }
+    },
+    (ex: HttpErrorResponse) => {
+      this.service.refreshToken(ex.status).then(() => this.getPosts());
+    }
+  );
+}
+
 
   initializeColumns(data: any[]): void {
     if (data.length > 0) {
@@ -96,6 +104,7 @@ export class DummyPageComponent implements OnInit {
         this.columnVisibility['networkGroupId'] = true;
       }
     }
+    return
   }
 
   get visibleColumns(): string[] {
@@ -103,13 +112,13 @@ export class DummyPageComponent implements OnInit {
     return this.displayedColumns.filter((col) => this.columnVisibility[col]);
   }
   tabs = [
-    { label: 'Details', type: 'details' },
-    { label: 'Status and Alarm', type: 'form' },
-    { label: 'Monitoring', type: 'table' },
- 
-    { label: 'Security' },
-    { label: 'Networking' },
-    { label: 'Storage' },
+    { label: 'Channels & Endpoint', type: 'details' },
+    { label: 'Channel Queues & Services', type: 'form' },
+    { label: 'Message & Identification', type: 'table' },
+
+    { label: 'Custom Fields' },
+    { label: 'Message field Mapping' },
+    { label: 'Message Routine & Processing' },
     { label: 'Tags' }
   ];
 
@@ -120,26 +129,26 @@ export class DummyPageComponent implements OnInit {
   ];
 
 
-  setStep(index: number) {
-    this.step = index;
-  }
-
-  nextStep() {
-    this.step++;
-  }
-
-  prevStep() {
-    this.step--;
-  }
 
 
   getRecord(val: any) {
     console.log('val', val);
     if (val) {
       //this.isData = val
-      this.networkGroupId= val
+      this.networkGroupId = val
       this.getInstanceDataById();
     }
+  }
+  filterToSingleRow(row: any): void {
+    // Filter table to show only the selected row
+    this.dataSource.data = [row];
+    this.networkGroupId = row.networkGroupId;
+  }
+
+  resetTable(): void {
+    // Reset table to show all rows
+  this.networkGroupId = ''
+    this.getPosts();
   }
 
   getFormRecord(val: any) {
@@ -170,28 +179,28 @@ export class DummyPageComponent implements OnInit {
     console.log('Fetching instance data for ID:', this.networkGroupId);
 
     this.service.getInstanceDetailsById(this.networkGroupId).subscribe(
-        (res) => {
-            console.log('API Response:', res);
-            if (res['ResponseCode'] === '00') {
-              let respnseData = res['Data'];
+      (res) => {
+        console.log('API Response:', res);
+        if (res['ResponseCode'] === '00') {
+          let respnseData = res['Data'];
           /*     respnseData.forEach((data: any) => {
                 data.jsonParseData = JSON.parse(data.jsonData); 
               });
  */
-              console.log(" respnseData ->" ,  respnseData);
+          console.log(" respnseData ->", respnseData);
 
-              this.instanceDetails = respnseData; 
-              console.log(" this.instanceDetails -> after parsing -> " ,  this.instanceDetails.instance);
-              this.initializeColumns(respnseData); 
-            }
-        
-        },
-        (ex: HttpErrorResponse) => {
-            console.error('HTTP Error:', ex);
-            this.service.refreshToken(ex.status).then(() => this.getInstanceDataById());
+          this.instanceDetails = respnseData;
+          console.log(" this.instanceDetails -> after parsing -> ", this.instanceDetails.instance);
+          this.initializeColumns(respnseData);
         }
+
+      },
+      (ex: HttpErrorResponse) => {
+        console.error('HTTP Error:', ex);
+        this.service.refreshToken(ex.status).then(() => this.getInstanceDataById());
+      }
     );
-}
+  }
 
 
 }

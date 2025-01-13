@@ -1,157 +1,105 @@
 <div class="content-body">
     <div class="container-fluid">
-             <div class="row">
+        <div class="row">
             <div class="col-md-7 col-sm-6 col-xs-12">
                 <h2>Global Configurations</h2>
-                
                 <h6>These settings allow you to do this and that. These settings are present here and there.</h6>
-                <h6> You can also setup templates as well.</h6>
+                <h6>You can also setup templates as well.</h6>
                 <form [formGroup]="form" class="row" (submit)="submitForm()">
-
-                <mat-accordion class="example-headers-align">
-                    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
-                        <mat-expansion-panel-header class>
-                            <mat-panel-title>
-
-                                <h4>
-                                    <b>
-                                        DB Configuration Pooling </b>
-
-                                </h4>
-
-
-                            </mat-panel-title>
-
-                        </mat-expansion-panel-header>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field ">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                    <mat-error *ngIf="form.get('firstName')?.touched && form.get('firstName')?.invalid">
-                                       <small>
-                                        Required
-                                       </small> 
-                                      </mat-error></mat-form-field>
+                    <mat-accordion class="example-headers-align" multi>
+                        <!-- DB Configuration Pooling -->
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <h4><b>DB Configuration Pooling</b></h4>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
                             </div>
+                        </mat-expansion-panel>
 
-                          <!--   <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
-                            </div> -->
-                        </div>
-
-
-                        <mat-action-row>
-                          <!--   <button mat-button color="primary" (click)="nextStep()" >Next</button> -->
-
-                            <button mat-button type="submit" >Next</button>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-
-                    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <h4> <b>
-
-
-                                        Thread Pooling </b>
-                                </h4>
-
-
-
-                            </mat-panel-title>
-
-                        </mat-expansion-panel-header>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
+                        <!-- Thread Pooling -->
+                        <mat-expansion-panel [expanded]="true" hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <h4><b>Thread Pooling</b></h4>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
                             </div>
+                        </mat-expansion-panel>
 
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
+                        <!-- File Logging & Services -->
+                        <mat-expansion-panel [expanded]="true" hideToggle>
+                            <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                    <h4><b>File Logging & Services</b></h4>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>First Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
                             </div>
-                        </div>
-
-                        <mat-action-row>
-                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                            <button mat-button color="primary" (click)="nextStep()">Next</button>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-
-                    <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>
-                                <h4>
-                                    <b>
-
-                                        File Logging & Services</b>
-                                </h4>
-
-
-
-                            </mat-panel-title>
-
-                        </mat-expansion-panel-header>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
-                            </div>
-
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
-                                </mat-form-field>
-                            </div>
-                        </div>
-
-
-                        <mat-action-row>
-                            <button mat-button color="warn" (click)="prevStep()">Previous</button>
-                            <button mat-button color="primary" (click)="nextStep()">End</button>
-                        </mat-action-row>
-                    </mat-expansion-panel>
-
-                </mat-accordion>
-        </form>
-
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <div class="col-md-2">
+                        <button mat-flat-button color="primary" class="rounded-3" type="submit">Create</button>
+                    </div>
+                </form>
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
                 <mat-card class="p-3">
 
                     <h5 class="mb-2"><b>Summary</b></h5>
                     <div class="border-dark border-1 border-top mb-4"></div>
-                    <form [formGroup]="duplicateForm" class="row" >
-                    <h6>DB Configuration Pooling</h6>
-                    <div class="row  ">
-                        <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
-                            </mat-form-field>
-                        </div>
+                    <form [formGroup]="duplicateForm" class="row">
+                        <h6>DB Configuration Pooling</h6>
+                        <div class="row  ">
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
+                                </mat-form-field>
+                            </div>
 
-                        <!--  <div class="col-md-6">
+                            <!--  <div class="col-md-6">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
                                 <mat-label>First Name</mat-label>
@@ -159,51 +107,51 @@
                             </mat-form-field>
                         </div> -->
 
-                    </div>
-                    <h6>Thread Pooling</h6>
-                    <div class="row  ">
-                        <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
-                            </mat-form-field>
                         </div>
+                        <h6>Thread Pooling</h6>
+                        <div class="row  ">
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
+                                </mat-form-field>
+                            </div>
 
-                        <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="firstName">
-                            </mat-form-field>
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+
                         </div>
+                        <h6>File Logging & Services</h6>
+                        <div class="row  ">
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
+                                </mat-form-field>
+                            </div>
 
-                    </div>
-                    <h6>File Logging & Services</h6>
-                    <div class="row  ">
-                        <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
-                            </mat-form-field>
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>First Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+
                         </div>
-
-                        <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="firstName">
-                            </mat-form-field>
-                        </div>
-
-                    </div>
-                </form>
+                    </form>
                 </mat-card>
 
 
             </div>
-           </div>
+        </div>
 
     </div>
 </div>
