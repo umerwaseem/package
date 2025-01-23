@@ -1,14 +1,12 @@
 <div class="content-body">
   <div class="container-fluid">
     <div class="row mb-1">
-      <div class="col-md-5">
+      <div class="col-md-5 d-flex align-items-center">
         <h5 class="mb-2"><b>Channel (2)</b></h5>
       </div>
-      <div class="row col-md-7">
+      <div class=" col-md-7 d-flex align-items-center">
 
-        <div class="col-md-2 px-1" style="display: flex
-        ;
-            justify-content: end;">
+        <div class="col-md-2 px-1" style="display: flex;   justify-content: end;">
 
 
           <button mat-stroked-button class="rounded-3 custom-button">
@@ -53,7 +51,7 @@
 
         </div>
         <div class="col-md-3 px-1">
-
+      <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
           <button mat-flat-button color="primary" class="rounded-3">Create Channel</button>
         </div>
       </div>
@@ -157,7 +155,7 @@
         </div>
         <mat-tab-group>
           <mat-tab *ngFor="let tab of tabs">
-            <ng-template mat-tab-label>
+            <ng-template mat-tab-label color="primary">
               <span style="padding: 4px 4px; font-size: 12px;">{{ tab.label }}</span>
             </ng-template>
 

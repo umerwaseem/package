@@ -631,6 +631,11 @@ export class SidebarComponent {
       icon: "flaticon-newsletter",
       subMenu: [
         {
+          title: "Institution List",
+          route: "/admin/manage-institution-list"
+        },
+      /*  */
+        {
           title: "Dummy-Expandable-Table",
           route: "/admin/dummy-expandable-table"
         },

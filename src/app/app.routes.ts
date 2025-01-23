@@ -119,6 +119,8 @@ import { DummyConfigurationComponent } from './components/dummy-configuration/du
 import { DummyTableComponent } from './components/dummy-table/dummy-table.component';
 import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dummy-drag-and-drop.component';
 import { DummyExpandableTableComponent } from './components/dummy-expandable-table/dummy-expandable-table.component';
+import { ManageInstitutionListComponent } from './administration/manage-institution-list/manage-institution-list.component';
+import { AddInstitutionDetailsComponent } from './administration/manage-institution-list/add-institution-details/add-institution-details.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/admin', pathMatch: 'full' },
@@ -255,7 +257,8 @@ export const routes: Routes = [
       { path: 'dummy-config', component: DummyConfigurationComponent },
       { path: 'dummy-drag', component: DummyDragAndDropComponent },
       { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
-
+      { path: 'manage-institution-list', component: ManageInstitutionListComponent },
+      { path: 'manage-institution-details',   component: AddInstitutionDetailsComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },

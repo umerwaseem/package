@@ -23,7 +23,8 @@
 }
 :root {
   /* Primary */
-  --primary: #43DC80;
+  --primary: #7F3E44 ;
+  --secondary: #007F5F;
 }
 
 .released-chart .apexcharts-canvas{

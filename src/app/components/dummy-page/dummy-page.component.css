@@ -9,7 +9,7 @@
     
 }
 
-
+/* 
 .custom-paginator,
 .custom-paginator .mat-mdc-paginator-outer-container ,
 .custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container,
@@ -21,7 +21,7 @@
 }
 .custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size .mat-mdc-paginator-page-size-label{
     display: none;
-   /*  height: 36px; */
+
 }
 
 
@@ -43,7 +43,7 @@
     width: 100%;
 }
 
-
+ */
 .custom-button {
     height: 36px; /* Adjust height */
     width: 40px;  /* Adjust width */
@@ -58,3 +58,7 @@
   .pointer {
     cursor: pointer;
   }
+
+  .mat-tab-label{
+    color: #7F3E44;
+   }

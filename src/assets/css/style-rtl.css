@@ -73,8 +73,8 @@
 @import url(./../vendor/perfect-scrollbar/css/perfect-scrollbar.css);
 @import url(./../vendor/metismenu/css/metisMenu.min.css);
 :root {
-  --primary: #43DC80;
-  --secondary: #864AD1;
+  --primary: #7F3E44;
+  --secondary: #007F5F;
   --primary-hover: #25c766;
   --primary-dark: #15713a;
   --rgba-primary-1: rgba(67, 220, 128, 0.1);
@@ -296,7 +296,7 @@ Fixing Order => Base + Typography >> General Layout + Grid >> Page Layout + Comp
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
-  --bs-body-font-family: Roboto, sans-serif;
+  --bs-body-font-family:  "Inter";
   --bs-body-font-size: 0.875rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
@@ -2436,17 +2436,20 @@ textarea.form-control-lg {
     border-color: #43DC80; }
 
 .btn-secondary {
-  color: #fff;
-  background-color: #864AD1;
-  border-color: #864AD1; }
+  color: #007F5F;
+
+  background-color: #007F5F;
+  border-color: #007F5F; }
   .btn-secondary:hover {
-    color: #fff;
-    background-color: #723fb2;
-    border-color: #6b3ba7; }
+   color: #007F5F;
+
+    background-color: #007F5F;
+    border-color: #007F5F; }
   .btn-check:focus + .btn-secondary, .btn-secondary:focus {
-    color: #fff;
-    background-color: #723fb2;
-    border-color: #6b3ba7;
+   color: #007F5F;
+
+    background-color: #007F5F;
+    border-color: #007F5F;
     box-shadow: 0 0 0 0.25rem rgba(152, 101, 216, 0.5); }
   .btn-check:checked + .btn-secondary,
   .btn-check:active + .btn-secondary, .btn-secondary:active, .btn-secondary.active,

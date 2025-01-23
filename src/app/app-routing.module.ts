@@ -127,6 +127,8 @@ import { SweetAlertComponent } from './plugins/sweet-alert/sweet-alert.component
 import { ToastrComponent } from './plugins/toastr/toastr.component';
 import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dummy-drag-and-drop.component';
 import { DummyExpandableTableComponent } from './components/dummy-expandable-table/dummy-expandable-table.component';
+import { ManageInstitutionListComponent } from './administration/manage-institution-list/manage-institution-list.component';
+import { AddInstitutionDetailsComponent } from './administration/manage-institution-list/add-institution-details/add-institution-details.component';
 
 
 const routes: Routes = [
@@ -249,7 +251,7 @@ const routes: Routes = [
 
       // widget --
       { path: 'widget-card', component: WgCardComponent },
-      { path: 'widget-chart', component: WgChartComponent},
+      { path: 'widget-chart', component: WgChartComponent },
       { path: 'widget-list', component: WgListComponent },
 
       // Forms
@@ -263,8 +265,10 @@ const routes: Routes = [
       { path: 'dummy-table', component: DummyTableComponent },
       { path: 'dummy-config', component: DummyConfigurationComponent },
       { path: 'dummy-drag', component: DummyDragAndDropComponent },
-            { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
-     
+      { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
+      { path: 'manage-institution-list', component: ManageInstitutionListComponent },
+      { path: 'manage-institution-details',   component: AddInstitutionDetailsComponent },
+
     ]
   },
   { path: 'page-register', component: RegisterComponent },
