@@ -634,7 +634,12 @@ export class SidebarComponent {
           title: "Institution List",
           route: "/admin/manage-institution-list"
         },
-      /*  */
+        {
+          title: "Global Configuration List",
+          route: "/admin/manage-global-configuration-list"
+        },
+      /*      { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
+       */ 
         {
           title: "Dummy-Expandable-Table",
           route: "/admin/dummy-expandable-table"

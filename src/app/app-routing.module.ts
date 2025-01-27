@@ -129,6 +129,9 @@ import { DummyDragAndDropComponent } from './components/dummy-drag-and-drop/dumm
 import { DummyExpandableTableComponent } from './components/dummy-expandable-table/dummy-expandable-table.component';
 import { ManageInstitutionListComponent } from './administration/manage-institution-list/manage-institution-list.component';
 import { AddInstitutionDetailsComponent } from './administration/manage-institution-list/add-institution-details/add-institution-details.component';
+import { ManageGlobalConfigurationListComponent } from './administration/manage-global-configuration-list/manage-global-configuration-list.component';
+import { ManageChannelsListComponent } from './administration/manage-institution-list/manage-channels-list/manage-channels-list.component';
+import { AddChannelDetailsComponent } from './administration/manage-institution-list/add-channel-details/add-channel-details.component';
 
 
 const routes: Routes = [
@@ -268,7 +271,9 @@ const routes: Routes = [
       { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
       { path: 'manage-institution-list', component: ManageInstitutionListComponent },
       { path: 'manage-institution-details',   component: AddInstitutionDetailsComponent },
-
+      { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
+      { path: 'manage-channels-list', component: ManageChannelsListComponent },
+      { path: 'manage-channel-details', component: AddChannelDetailsComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },

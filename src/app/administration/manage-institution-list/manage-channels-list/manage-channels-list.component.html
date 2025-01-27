@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row mb-1">
             <div class="col-md-5 d-flex align-items-center">
-                <h5 class="mb-2"><b>Institution List</b></h5>
+                <h5 class="mb-2"><b>Channels</b></h5>
             </div>
             <div class=" col-md-7 d-flex align-items-center">
 
@@ -52,7 +52,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3" routerLink="/admin/manage-institution-details">New Institution</button>
+                    <button mat-flat-button color="primary" class="rounded-3"
+                        routerLink="/admin/manage-channel-details">New Channel</button>
                 </div>
             </div>
 
@@ -139,16 +140,14 @@
                         </h5>
                     </div>
                     <div class="col-md-2 d-flex justify-content-end">
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-channels-list">
-                            <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
-                            <i class="fa fa-circle pointer zoomer" style="font-size: 14px; color: #129b00;"></i>
-                        </span>
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-channel-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
                         </span>
 
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-channel-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-trash" style="font-size: 14px; color: #ff1c1c"></i>
                         </span>
@@ -160,6 +159,12 @@
                     </div>
                 </div>
             </ng-container>
+            <mat-tab-group>
+                <mat-tab *ngFor="let tab of tabs">
+                    <ng-template mat-tab-label color="primary">
+                        <span style="padding: 4px 4px; font-size: 12px;">{{ tab.label }}</span>
+                    </ng-template>
+                </mat-tab></mat-tab-group>
             <div class="row">
                 <div class="col-xxl-12">
                     <div class="card shadow-none">
@@ -300,7 +305,7 @@
                                     </div>
 
 
-                                
+
 
 
 

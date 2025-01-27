@@ -1,0 +1,1318 @@
+<div class="content-body">
+    <div class="container-fluid">
+        <div class="card shadow-none p-2" style="border-radius: 0px;">
+            <mat-tab-group>
+                <mat-tab *ngFor="let tab of tabs">
+                    <ng-template mat-tab-label color="primary">
+                        <span style="padding: 4px 4px; font-size: 12px;">{{ tab.label }}</span>
+                    </ng-template>
+                    <div *ngIf="tab.type === 'Channels'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Channel</b></h4>
+                                            <div class="row  mx-2">
+
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Channel Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Channel Indentifier</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Channel Type</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Bin</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Endpoint Type</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Channel Format</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Channel Timeout</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Active? </mat-checkbox>
+                                                </div>
+                                                <!--  <div class="col-md-1 ">
+                                                    <button mat-stroked-button class="rounded-3" color="primary">
+                                                        Click</button>
+
+
+
+                                                </div> -->
+
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="tab.type === 'Channel Endpoints'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create a new Endpoint</b></h4>
+                                            <div class="row mx-2">
+
+                                                <div class="col-md-6">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>First Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Connection Timeout</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Server? </mat-checkbox>
+                                                </div>
+
+                                                <div class="col-md-2 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field">
+                                                        <mat-label>Whitelisted IPs</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+
+
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row mx-2">
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Enable TLS? </mat-checkbox>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>TLS Version</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Cert Path</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Key File Path</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Client? </mat-checkbox>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <button mat-stroked-button class="d-flex w-100 align-item-center"
+                                                        color="primary">
+                                                        HTTP Headers</button>
+
+
+
+                                                </div>
+                                            </div>
+                                            <div class="row mx-2">
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Authentication </mat-checkbox>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Auth Type</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Username</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Password</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="tab.type === 'Channel Queues'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Channel Queues</b></h4>
+                                            <div class="row mx-2">
+                                                <div class="col-md-6 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Auto Create Queues?
+                                                    </mat-checkbox>
+                                                </div>
+                                            </div>
+                                            <div class="row mx-2">
+                                                <div class="col-md-2  mb-3 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Service Type</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2  mb-3 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Queue Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+                                                <div class="col-md-2  mb-3  d-flex align-items-center">
+                                                    <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                        HTTP Headers</button>
+ -->
+                                                    <mat-icon color="primary">add_box</mat-icon>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div *ngIf="tab.type === 'Channel Services'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Channel Services</b></h4>
+                                            <div class="row mx-2">
+                                                <div class="col-md-6 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Auto Create Services?
+                                                    </mat-checkbox>
+                                                </div>
+                                            </div>
+                                            <div class="row mx-2">
+                                                <div class="col-md-2  mb-3 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Service Type</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2  mb-3 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Node</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+                                                <div class="col-md-2  mb-3  d-flex align-items-center">
+                                                    <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                        HTTP Headers</button>
+ -->
+                                                    <mat-icon color="primary">add_box</mat-icon>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="tab.type === 'Message Initialization'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Field Definition</b></h4>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Field Sequence</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Field Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Field Description</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Internal Tag Name</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Routing Field
+                                                    </mat-checkbox>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Idfentifier
+                                                    </mat-checkbox>
+                                                </div>
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Mandatory
+                                                    </mat-checkbox>
+                                                </div>
+
+                                            </div>
+                                            <h4 class="mx-4"><b>Message Initialization</b></h4>
+
+                                            <div class="row mx-2">
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Message Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Tran Code</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Message Type</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3 ">
+                                                    <button mat-stroked-button class="d-flex w-100 align-item-center"
+                                                        color="primary">
+                                                        Import From </button>
+
+
+
+                                                </div>
+                                                <div class="col-md-2  mb-3  d-flex align-items-center">
+                                                    <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                        HTTP Headers</button>
+ -->
+                                                    <mat-icon color="primary">add_box</mat-icon>
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="tab.type === 'Custom Fields'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Custom Fields</b></h4>
+                                            <div class="row mb-3 mx-2">
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Message</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Conditional
+                                                    </mat-checkbox>
+                                                </div>
+
+
+
+                                                <div class="col-md-2 ">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field">
+                                                        <mat-label>Select Direction</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+
+
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+                                            <div class="row mb-3 mx-2">
+
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Destination Field Tag Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Condition</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="tab.type === 'Message Field Mapping'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Channel</b></h4>
+                                            <div class="row  mx-2">
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Source Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Source Message</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Source Field</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Message</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Field</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+
+                                            </div>
+
+                                            <div class="row mx-2">
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Internal Tag Name</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2  mb-3  d-flex align-items-center">
+                                                    <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                        HTTP Headers</button>
+ -->
+                                                    <mat-icon color="primary">add_box</mat-icon>
+
+                                                </div>
+
+
+
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="tab.type === 'Message Routing'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Message Routing</b></h4>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Sequence</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Source Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Identifier 1 Value</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Identifier 2 Value</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Identifier 3 Value</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Queue</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Select Destination Adaptar</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+
+                                            </div>
+
+
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="tab.type === 'Message Processing Rules'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Message Routing</b></h4>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Routing Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Message Name</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Identifier 1</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Identifier 1 Value</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Identifier 2</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Identifier 2 Value</mat-label>
+                                                        <input matInput placeholder="First Name*"
+                                                            formControlName="firstName">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>Source Channel</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-4 mb-3 d-flex justify-content-start ">
+                                                    <mat-checkbox class="example-margin">Settlement Date</mat-checkbox>
+                                                </div>
+                                                <div class="col-md-4 mb-3 d-flex justify-content-start ">
+                                                    <mat-checkbox class="example-margin">Destination
+                                                        Processing</mat-checkbox>
+                                                </div>
+                                                <div class="col-md-2 mb-3 ">
+                                                    <mat-checkbox class="example-margin">Destination Comms
+                                                    </mat-checkbox>
+                                                </div>
+
+
+
+                                            </div>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-4 mb-3 d-flex justify-content-end ">
+                                                    <mat-checkbox class="example-margin">Settlement Date</mat-checkbox>
+                                                </div>
+                                                <div class="col-md-4 mb-3 d-flex justify-content-end ">
+                                                    <mat-checkbox class="example-margin">Settlement Date</mat-checkbox>
+                                                </div>
+                                                <div class="col-md-4 mb-3 d-flex justify-content-end ">
+                                                    <mat-checkbox class="example-margin">Settlement Date</mat-checkbox>
+                                                </div>
+
+
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="tab.type === 'Preview Configuration'">
+                        <div class="row">
+                            <div class="col-xxl-12">
+                                <div class="card shadow-none">
+                                    <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+                                    <div class="card-body px-0">
+                                        <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                                            class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                                            <h4 class="mx-4"><b>Create Message Routing</b></h4>
+                                            <div class="row  mx-2">
+
+                                                <div class="col-md-2 mb-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class=" custom-size-form-field ">
+                                                        <mat-label>All Fields</mat-label>
+                                                        <mat-select>
+                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                            <mat-option [value]="1">
+                                                                1
+                                                            </mat-option>
+                                                        </mat-select>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-4 mb-3 px-0">
+                                                    <div class="col-md-6  ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3 px-0">
+                                                    <div class="col-md-4 ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="row  mx-2">
+                                                <div class="col-md-6 mb-3 px-0 d-flex justify-content-center">
+                                                     <div class="col-md-4 ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3 px-0 ">
+                                                     <div class="col-md-4 ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="row  mx-2">
+                                                <div class="col-md-6 mb-3 px-0 d-flex justify-content-center">
+                                                     <div class="col-md-4 ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6 mb-3 px-0 ">
+                                                     <div class="col-md-4 ">
+                                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                            class=" custom-size-form-field ">
+                                                            <mat-label>Select Channel</mat-label>
+                                                            <mat-select>
+                                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                                <mat-option [value]="1">
+                                                                    1
+                                                                </mat-option>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>
