@@ -1,18 +1,24 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-add-channel-details',
-
+providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { showError: true },
+    },
+  ],
   templateUrl: './add-channel-details.component.html',
   styleUrl: './add-channel-details.component.css'
 })
 export class AddChannelDetailsComponent {
 
     form = new FormGroup({
-      firstName: new FormControl(''),
-      field2: new FormControl(''),
+      firstName: new FormControl('',[ Validators.required]),
+      field2: new FormControl('',[ Validators.required]),
     })
  constructor(private service: ApiService,) { }
   ngOnInit(): void {

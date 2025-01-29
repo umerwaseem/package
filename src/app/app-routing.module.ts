@@ -132,6 +132,7 @@ import { AddInstitutionDetailsComponent } from './administration/manage-institut
 import { ManageGlobalConfigurationListComponent } from './administration/manage-global-configuration-list/manage-global-configuration-list.component';
 import { ManageChannelsListComponent } from './administration/manage-institution-list/manage-channels-list/manage-channels-list.component';
 import { AddChannelDetailsComponent } from './administration/manage-institution-list/add-channel-details/add-channel-details.component';
+import { AddGlobalConfigurationComponent } from './administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component';
 
 
 const routes: Routes = [
@@ -266,7 +267,7 @@ const routes: Routes = [
       { path: 'empty-page', component: EmptyComponent },
       { path: 'dummy-page', component: DummyPageComponent },
       { path: 'dummy-table', component: DummyTableComponent },
-      { path: 'dummy-config', component: DummyConfigurationComponent },
+      { path: 'dummy-config', component: DummyConfigurationComponent }, 
       { path: 'dummy-drag', component: DummyDragAndDropComponent },
       { path: 'dummy-expandable-table', component: DummyExpandableTableComponent },
       { path: 'manage-institution-list', component: ManageInstitutionListComponent },
@@ -274,6 +275,7 @@ const routes: Routes = [
       { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
       { path: 'manage-channels-list', component: ManageChannelsListComponent },
       { path: 'manage-channel-details', component: AddChannelDetailsComponent },
+      { path: 'manage-global-config-details', component: AddGlobalConfigurationComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },

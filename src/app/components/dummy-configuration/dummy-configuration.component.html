@@ -8,18 +8,28 @@
                 <form [formGroup]="form" class="row" (submit)="submitForm()">
                     <mat-accordion class="example-headers-align" multi>
                         <!-- DB Configuration Pooling -->
-                        <mat-expansion-panel hideToggle>
+                        <mat-expansion-panel [expanded]="true" hideToggle>
                             <mat-expansion-panel-header>
                                 <mat-panel-title>
                                     <h4><b>DB Configuration Pooling</b></h4>
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-label>Minimum Connections</mat-label>
+                                        <input matInput placeholder="Minimum Connections*" formControlName="firstName">
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Maximum Connections</mat-label>
+                                        <input matInput placeholder="Maximum Connections*" formControlName="firstName">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -35,19 +45,19 @@
                                     <h4><b>Thread Pooling</b></h4>
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-label>Minimum Threads</mat-label>
+                                        <input matInput placeholder="Minimum Threads*" formControlName="firstName">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-label>Maximum Threads</mat-label>
+                                        <input matInput placeholder="Maximum Threads*" formControlName="firstName">
                                     </mat-form-field>
                                 </div>
                             </div>
@@ -60,27 +70,43 @@
                                     <h4><b>File Logging & Services</b></h4>
                                 </mat-panel-title>
                             </mat-expansion-panel-header>
-                            <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-6">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-label>Max Log File Size</mat-label>
+                                        <input matInput placeholder="Max Log File Size*" formControlName="firstName">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-6">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>First Name</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="firstName">
+                                        <mat-label>Choose Log File Path</mat-label>
+                                        <input matInput placeholder="Choose Log File Path*" formControlName="firstName">
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Max Log File Size</mat-label>
+                                        <input matInput placeholder="Max Log File Size*" formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Choose Service Config File Path</mat-label>
+                                        <input matInput placeholder="Choose Service Config File Path*"
+                                            formControlName="firstName">
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
                         </mat-expansion-panel>
                     </mat-accordion>
-                    <div class="col-md-2">
-                        <button mat-flat-button color="primary" class="rounded-3" type="submit">Create</button>
-                    </div>
+
                 </form>
             </div>
             <div class="col-md-5 col-sm-6 col-xs-12">
@@ -89,62 +115,94 @@
                     <h5 class="mb-2"><b>Summary</b></h5>
                     <div class="border-dark border-1 border-top mb-4"></div>
                     <form [formGroup]="duplicateForm" class="row">
-                        <h6>DB Configuration Pooling</h6>
-                        <div class="row  ">
+                        <h6 style="color : #007BFF">DB Configuration Pooling</h6>
+                        <div class="row mb-3  ">
                             <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
-                                </mat-form-field>
-                            </div>
-
-                            <!--  <div class="col-md-6">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>First Name</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="firstName">
-                            </mat-form-field>
-                        </div> -->
-
-                        </div>
-                        <h6>Thread Pooling</h6>
-                        <div class="row  ">
-                            <div class="col-md-6">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
+                                    <mat-label>Minimum Connections</mat-label>
+                                    <input matInput placeholder="Minimum Connections*"
+                                        formControlName="duplicateFirstName">
                                 </mat-form-field>
                             </div>
 
                             <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
+                                    <mat-label>Maximum Connections</mat-label>
+                                    <input matInput placeholder="Maximum Connections*" formControlName="firstName">
                                 </mat-form-field>
                             </div>
 
                         </div>
-                        <h6>File Logging & Services</h6>
-                        <div class="row  ">
+                        <h6 style="color : #007BFF">Thread Pooling</h6>
+                        <div class="row mb-3  ">
                             <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="duplicateFirstName">
+                                    <mat-label>Minimum Threads</mat-label>
+                                    <input matInput placeholder="Minimum Threads*" formControlName="duplicateFirstName">
                                 </mat-form-field>
                             </div>
 
                             <div class="col-md-6">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>First Name</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstName">
+                                    <mat-label>Maximum Threads</mat-label>
+                                    <input matInput placeholder="Maximum Threads*" formControlName="firstName">
                                 </mat-form-field>
                             </div>
 
+                        </div>
+                        <h6 style="color : #007BFF">File Logging & Services</h6>
+                        <div class="row mb-3  ">
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Max Log File Size</mat-label>
+                                    <input matInput placeholder="Max Log File Size*"
+                                        formControlName="duplicateFirstName">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Log file Path</mat-label>
+                                    <input matInput placeholder="Log file Path*" formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3  ">
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Log Level</mat-label>
+                                    <input matInput placeholder="Log Level*" formControlName="duplicateFirstName">
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-6">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Services Config File Path</mat-label>
+                                    <input matInput placeholder="Services Config File Path*"
+                                        formControlName="firstName">
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="row mb-3  ">
+                            <div class="col-md-12">
+                                <div class="col-md-3">
+                                    <button mat-flat-button color="primary" class="rounded-3" type="submit">Cancel</button>
+                                </div>
+                                <div class="col-md-3">
+                                    <button mat-flat-button color="primary" class="rounded-3" type="submit">Create Configurations</button>
+                                </div>
+                            </div>
+                           
                         </div>
                     </form>
                 </mat-card>

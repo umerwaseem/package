@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3" routerLink="/admin/manage-institution-details">New Configuration</button>
+                    <button mat-flat-button color="primary" class="rounded-3" routerLink="/admin/manage-global-config-details">New Configuration</button>
                 </div>
             </div>
 
@@ -165,142 +165,80 @@
                         <div class="card-body px-0">
                             <form [formGroup]="form" (ngSubmit)="onSubmit()"
                                 class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                                <div class="row mb-3 mx-2">
-
-                                    <div class="col-md-4">
+                              
+                                <div class="row mb-3  mx-2">
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
                                             class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
+                                            <mat-label>Minimum Connections</mat-label>
+                                            <input matInput placeholder="Minimum Connections*"
+                                                formControlName="minConnections">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-4">
+        
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
+                                            class="custom-size-form-field">
+                                            <mat-label>Maximum Connections</mat-label>
+                                            <input matInput placeholder="Maximum Connections*" formControlName="maxConnections">
                                         </mat-form-field>
                                     </div>
-
-
-                                    <div class="col-md-4 ">
+        
+                             
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field">
-                                            <mat-label>Actions</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
+                                            class="custom-size-form-field">
+                                            <mat-label>Minimum Threads</mat-label>
+                                            <input matInput placeholder="Minimum Threads*" formControlName="minThreads">
                                         </mat-form-field>
-
-
                                     </div>
-
-
-
-
+        
+                                    <div class="col-md-3">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Maximum Threads</mat-label>
+                                            <input matInput placeholder="Maximum Threads*" formControlName="maxThreads">
+                                        </mat-form-field>
+                                    </div>
+        
                                 </div>
-                                <div class="row mb-3 mx-2">
 
-                                    <div class="col-md-4">
+                                <div class="row mb-3   mx-2">
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
                                             class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
+                                            <mat-label>Max Log File Size</mat-label>
+                                            <input matInput placeholder="Max Log File Size*"
+                                                formControlName="logFileSize">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-
-
-                                    <div class="col-md-4 ">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field">
-                                            <mat-label>Actions</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-
-
-                                    </div>
-
-
-
-
-                                </div>
-                                <div class="row mb-3 mx-2">
-
-                                    <div class="col-md-4">
+        
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
                                             class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
+                                            <mat-label>Log file Path</mat-label>
+                                            <input matInput placeholder="Log file Path*" formControlName="logFilePath">
                                         </mat-form-field>
                                     </div>
-                                    <div class="col-md-4">
+        
+                            
+                                    <div class="col-md-3">
                                         <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
+                                            class="custom-size-form-field">
+                                            <mat-label>Log Level</mat-label>
+                                            <input matInput placeholder="Log Level*" formControlName="logLevel">
                                         </mat-form-field>
                                     </div>
-
-
-                                
-
-
-
-
+        
+                                    <div class="col-md-3">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Services Config File Path</mat-label>
+                                            <input matInput placeholder="Services Config File Path*"
+                                                formControlName="configFilePath">
+                                        </mat-form-field>
+                                    </div>
+        
                                 </div>
                             </form>
                         </div>

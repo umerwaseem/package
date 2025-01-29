@@ -17,6 +17,7 @@ import { AddInstitutionDetailsComponent } from "./administration/manage-institut
 import { ManageGlobalConfigurationListComponent } from "./administration/manage-global-configuration-list/manage-global-configuration-list.component";
 import { ManageChannelsListComponent } from "./administration/manage-institution-list/manage-channels-list/manage-channels-list.component";
 import { AddChannelDetailsComponent } from "./administration/manage-institution-list/add-channel-details/add-channel-details.component";
+import { AddGlobalConfigurationComponent } from "./administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { AddChannelDetailsComponent } from "./administration/manage-institution-
         ManageGlobalConfigurationListComponent,
         ManageChannelsListComponent,
         AddChannelDetailsComponent,
+        AddGlobalConfigurationComponent
         /*   FullComponent,
   
         AdminComponent,

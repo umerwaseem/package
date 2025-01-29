@@ -1,9 +1,12 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../services/api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UtilityService } from '../../../services/utility.service';
 
 @Component({
   selector: 'app-manage-global-configuration-list',
@@ -18,13 +21,42 @@ export class ManageGlobalConfigurationListComponent {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   networkGroupId: any
   instanceDetails: any = {}
+  pageTitle = 'Network Group'
+  requestBehaviour = { AddNew: "N", Edit: "E", ViewSingle: "V", Approval: "A", Return: "R", MakerCheckerView: "MCV", FileApproval: "FA" };
+  pageAccess: any = {};
 
-  form = new FormGroup({
-    firstName: new FormControl(''),
-    field2: new FormControl(''),
+  behaviour = "N";
+
+  activeBehaviour: any = {
+    addNew: false,
+    edit: false,
+    approval: false,
+    view: false,
+    return: false,
+    makerCheckerView: false,
+    fileApproval: false,
+  };
+
+  page = {
+    totalElements: 100,
+    size: 20,
+    index: 0,
+  }
+  form= new FormGroup({
+    minConnections: new FormControl(''),
+    maxConnections: new FormControl(''),
+    minThreads: new FormControl(''),
+    maxThreads: new FormControl(''),
+    logFileSize: new FormControl(''),
+    logFilePath: new FormControl(''),
+    logLevel: new FormControl(''),
+    configFilePath: new FormControl(''),
+    isTemplate: new FormControl(''),
   })
-  constructor(private service: ApiService,) { }
+  constructor(private service: ApiService,private dialog: MatDialog, private route: ActivatedRoute,  public router: Router, public util: UtilityService,) { }
   ngOnInit(): void {
+
+    //this.setPaginator();
     this.getPosts();
   }
   ngAfterViewInit() {
@@ -34,6 +66,10 @@ export class ManageGlobalConfigurationListComponent {
   onSubmit() {
     console.log('Form Data:', this.form.value);
   }
+
+
+
+ 
   getPosts(): void {
     this.service.getPosts().subscribe(
       (res) => {
@@ -53,6 +89,37 @@ export class ManageGlobalConfigurationListComponent {
         this.service.refreshToken(ex.status).then(() => this.getPosts());
       }
     );
+  }
+  getNetworkGroupValue(networkGroupId: any) {
+
+    this.service.getInstanceDetailsById(networkGroupId).subscribe((res: { [x: string]: any; }) => {
+      if (res['ResponseCode'] == "00") {
+        this.setValues(res['Data'])
+        this.form.disable()
+
+      }
+    }, (ex: HttpErrorResponse) => {
+      this.service.refreshToken(ex.status).then(
+        () => this.getNetworkGroupValue(networkGroupId)
+      )
+    })
+  }
+
+  setValues(data:any) {
+    if (data) {
+      
+      this.form.controls.minConnections.setValue(data.networkGroupDescription)
+      this.form.controls.maxConnections.setValue(data.networkGroupName)
+      this.form.controls.minThreads.setValue(data.networkGroupCode)
+      this.form.controls.maxThreads.setValue(data.networkGroupId)
+      this.form.controls.logFileSize.setValue(data.networkGroupDescription)
+      this.form.controls.logFilePath.setValue(data.networkGroupName)
+      this.form.controls.logLevel.setValue(data.networkGroupCode)
+      this.form.controls.configFilePath.setValue(data.networkGroupId)
+
+
+
+    }
   }
 
   initializeColumns(data: any[]): void {
@@ -83,12 +150,29 @@ export class ManageGlobalConfigurationListComponent {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.networkGroupId = row.networkGroupId;
+    this.getNetworkGroupValue( this.networkGroupId)
   }
 
   resetTable(): void {
     // Reset table to show all rows
     this.networkGroupId = ''
     this.getPosts();
+  }
+
+
+  setPaginator() {
+    this.page.index = 0;
+    this.page.size = 20;
+  }
+
+  pageEvent: PageEvent = new PageEvent;
+  handlePageEvent(e: PageEvent) {
+    
+    
+    this.page.index = e.pageIndex;
+    this.page.size = e.pageSize;
+    this.page.totalElements = e.length;
+   // this.getAllNetworkGroup(this.searchForm.value, this.page.index, this.page.size)
   }
 
 }
