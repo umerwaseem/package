@@ -7,10 +7,10 @@
             <div class="card-body px-0">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
                     <h4 class="mx-4"><b>Create Channel</b></h4>
-                    <ng-container formGroupName="fieldMappingList">
-                    <div class="row  mx-2">
-                        <div class="col-md-4 mb-3">
-                            <div class="col-md-12 mb-3">
+                    <ng-container formGroupName="fieldMappingDetails">
+                        <div class="row  mx-2">
+
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Select Source Channel</mat-label>
@@ -23,43 +23,12 @@
                                             1
                                         </mat-option>
                                     </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-12 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
-                                    <mat-label>Select Source Message</mat-label>
-                                    <mat-select formControlName="sourceMessageId">
-                                        <!-- <mat-select placeholder="Institution" > -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-
-
-                            <div class="col-md-12 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
-                                    <mat-label>Select Source Field</mat-label>
-                                    <mat-select formControlName="sourceFieldId">
-                                        <!-- <mat-select placeholder="Institution" > -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="col-md-12 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Select Destination Channel</mat-label>
@@ -72,9 +41,36 @@
                                             1
                                         </mat-option>
                                     </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-12 mb-3">
+                        </div>
+
+                        <div class="row  mx-2">
+                            <div class="col-md-3 mb-3">
+
+
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Message</mat-label>
+                                    <mat-select formControlName="sourceMessageId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Select Destination Message</mat-label>
@@ -87,11 +83,39 @@
                                             1
                                         </mat-option>
                                     </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
 
-                            <div class="col-md-12 mb-3">
+
+                        </div>
+
+                        <div class="row  mx-2">
+
+
+
+                            <div class="col-md-3 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Field</mat-label>
+                                    <mat-select formControlName="sourceFieldId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Select Destination Field</mat-label>
@@ -104,12 +128,12 @@
                                             1
                                         </mat-option>
                                     </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
-
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div class="col-md-8 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Internal Tag Name</mat-label>
@@ -119,19 +143,106 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-4  mb-3  d-flex align-items-center">
-                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
-                                    HTTP Headers</button>
-    -->
-                                <mat-icon color="primary">add_box</mat-icon>
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <span>
+
+                                    <mat-icon color="primary" (click)="addFieldMapping()">add_box</mat-icon>
+                                </span>
 
                             </div>
                         </div>
-                    </div>
 
-                  
+                        <div class="row  mx-2">
+
+                            <div class="col-md-6">
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit">Add
+                                    Message Routing</button>
+
+                            </div>
+                        </div>
+
+
+
                     </ng-container>
                 </form>
+                <div class="row mx-3 " *ngIf="fieldMappingList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                        source Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        source Message
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        source Field
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Message
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Field
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        internal Tag
+                                    </small>
+                                </th>
+
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of fieldMappingList; let i = index">
+                                <td>{{record.sourceChannelId || "--"}}</td>
+                                <td>{{record.sourceMessageId || "--"}}</td>
+                                <td>{{record.sourceFieldId || "--"}}</td>
+                                <td>{{record.destinationChannelId || "--"}}</td>
+                                <td>{{record.destinationMessageId || "--"}}</td>
+                                <td>{{record.destinationFieldId || "--"}}</td>
+                                <td>{{record.internalTag || "--"}}</td>
+
+
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="fieldMappingList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>

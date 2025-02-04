@@ -1,1 +1,267 @@
-<p>add-custom-field-details works!</p>
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Custom Fields</b></h4>
+                    <ng-container formGroupName="customFieldsDetails">
+
+                        <div class="row mb-3 mx-2">
+                            <div class="col-md-2">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Channel</mat-label>
+                                    <mat-select formControlName="channelId">
+                                        <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Message</mat-label>
+                                    <mat-select formControlName="messageId">
+                                        <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isConditional"
+                                    (change)="onchangeCondition()">Conditional
+                                </mat-checkbox>
+                            </div>
+
+
+
+                            <div class="col-md-2 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field">
+                                    <mat-label>Select Direction</mat-label>
+                                    <mat-select formControlName="directionId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+                        <div class="row mb-3 mx-2">
+
+                            <div class="col-md-2">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Destination Field Tag Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="fieldTagName">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <ng-container *ngIf="form.get('customFieldsDetails.isConditional')?.value">
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class=" custom-size-form-field ">
+                                        <mat-label>Select Condition</mat-label>
+                                        <mat-select formControlName="conditionId">
+                                            <!-- <mat-select placeholder="Institution"> -->
+                                            <mat-option value="static">
+                                                static
+                                            </mat-option>
+                                            <mat-option value="copy">
+                                                copy
+                                            </mat-option>
+                                            <mat-option value="concat">
+                                                concat
+                                            </mat-option>
+                                            <mat-option value="substring">
+                                                substring
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="form.get('customFieldsDetails.conditionId')?.value === 'static'">
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Destination Field Tag Name</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="fieldTagName">
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="form.get('customFieldsDetails.conditionId')?.value === 'copy'">
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class=" custom-size-form-field">
+                                        <mat-label>Select Direction</mat-label>
+                                        <mat-select formControlName="sourceFieldId">
+                                            <!-- <mat-select placeholder="Institution"> -->
+                                            <mat-option [value]="1">
+                                                1
+                                            </mat-option>
+                                            <mat-option [value]="1">
+                                                1
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+
+
+                            <ng-container *ngIf="form.get('customFieldsDetails.conditionId')?.value === 'concat'">
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class=" custom-size-form-field">
+                                        <mat-label>Toppings</mat-label>
+                                        <mat-select [formControl]="toppings" multiple>
+                                            @for (topping of toppingList; track topping) {
+                                            <mat-option [value]="topping">{{topping}}</mat-option>
+                                            }
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+
+
+                            <ng-container *ngIf="form.get('customFieldsDetails.conditionId')?.value === 'substring'">
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class=" custom-size-form-field">
+                                        <mat-label>Select Direction</mat-label>
+                                        <mat-select formControlName="sourceFieldId">
+                                            <!-- <mat-select placeholder="Institution"> -->
+                                            <mat-option [value]="1">
+                                                1
+                                            </mat-option>
+                                            <mat-option [value]="1">
+                                                1
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>startingIndex</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="startingIndex">
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-2">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Length</mat-label>
+                                        <input matInput placeholder="First Name*" formControlName="length">
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </ng-container>
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                    HTTP Headers</button>
+    -->
+                                <mat-icon color="primary" (click)="addCustomField()">add_box</mat-icon>
+
+                            </div>
+                        </div>
+
+                    </ng-container>
+                </form>
+
+                <div class="row mx-3 " *ngIf="customFieldsList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                    channelId</small>
+                                </th>
+                                <th><small>
+
+                                    messageId</small>
+                                </th>
+
+                                <th><small>
+
+                                    isConditional</small>
+                                </th>
+                                <th><small>
+
+                                    directionId</small>
+                                </th>
+                                <th><small>
+
+                                    fieldTagName</small>
+                                </th>
+                                <th><small>
+
+                                    conditionId</small>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of customFieldsList; let i = index">
+                                <td>{{record.channelId || "--"}}</td>
+                                <td>{{record.messageId || "--"}}</td>
+                                <td>{{record.isConditional ?? false}}</td>
+                                <td>{{record.directionId || "--"}}</td>
+                                <td>{{record.fieldTagName || "--"}}</td>
+                                <td>{{record.conditionId || "--"}}</td>
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="customFieldsList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

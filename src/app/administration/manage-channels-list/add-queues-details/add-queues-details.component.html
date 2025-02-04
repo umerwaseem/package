@@ -1,1 +1,116 @@
-<p>add-queues-details works!</p>
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()"
+                    class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Channel Queues</b></h4>
+                    <div class="row mx-2">
+                        <div class="col-md-6 mb-3 ">
+                            <mat-checkbox class="example-margin" formControlName="isAutoQueue">Auto Create Queues?
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                    <ng-container formGroupName="channelQueueDetails">
+                   
+                    <div class="row mx-2">
+                        <div class="col-md-2  mb-3 ">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Service Type</mat-label>
+                                <mat-select formControlName="serviceType">
+                                    <!-- <mat-select placeholder="Institution"> -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2  mb-3 ">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class="custom-size-form-field">
+                                <mat-label>Queue Name</mat-label>
+                                <input matInput placeholder="First Name*"
+                                    formControlName="queueName">
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+
+
+                        <div class="col-md-2  mb-3  d-flex align-items-center">
+                            <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                HTTP Headers</button>
+-->
+                            <mat-icon color="primary" (click)="addFieldMapping()">add_box</mat-icon>
+
+                        </div>
+
+
+                            <div class="col-md-6">
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit">Add
+                                    Channel Queue</button>
+
+                            </div>
+                    
+                    </div>
+                    </ng-container>
+                </form>
+                <div class="row mx-3 " *ngIf="channelQueueList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                    Service Type
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                    Queue Name
+                                    </small>
+                                </th>
+                                
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of channelQueueList; let i = index">
+                                <td>{{record.serviceType || "--"}}</td>
+                                <td>{{record.queueName || "--"}}</td>
+                          
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="channelQueueList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

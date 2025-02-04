@@ -1,1 +1,256 @@
-<p>add-message-initialization-details works!</p>
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="fieldDefinitionForm" (ngSubmit)="onSubmit()"
+                    class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Channel Queues</b></h4>
+
+                    <ng-container formGroupName="fieldDefinitionDetails">
+
+                        <div class="row  mx-2">
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Sequence</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="fieldSequence">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="fieldName">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Description</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="fieldDescription">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Internal Tag Name</mat-label>
+                                    <mat-select formControlName="internalTagName">
+                                        <!-- <mat-select placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isRoutingField">Routing Field
+                                </mat-checkbox>
+                            </div>
+
+
+                        </div>
+                        <div class="row  mx-2">
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isIdentifier">Idfentifier
+                                </mat-checkbox>
+                            </div>
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isMandatory">Mandatory
+                                </mat-checkbox>
+                            </div>
+
+
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                    HTTP Headers</button>
+-->
+                                <mat-icon color="primary" (click)="addFieldDefinition()">add_box</mat-icon>
+
+                            </div>
+                        </div>
+                    </ng-container>
+                </form>
+                <div class="row mx-3 " *ngIf="fieldDefinitionList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+                                        fieldSequence</small>
+                                </th>
+                                <th><small>
+                                        fieldName</small>
+                                </th>
+                                <th><small>
+                                        fieldDescription</small>
+                                </th>
+                                <th><small>
+                                        internalTagName</small>
+                                </th>
+                                <th><small>
+                                        isRoutingField</small>
+                                </th>
+                                <th><small>
+                                        isIdentifier</small>
+                                </th>
+                                <th><small>
+                                        isMandatory</small>
+                                </th>
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of fieldDefinitionList; let i = index">
+                                <td>{{record.fieldSequence || "--"}}</td>
+                                <td>{{record.fieldName || "--"}}</td>
+                                <td>{{record.fieldDescription || "--"}}</td>
+                                <td>{{record.internalTagName || "--"}}</td>
+                                <td>{{record.isRoutingField || "--"}}</td>
+                                <td>{{record.isIdentifier || "--"}}</td>
+                                <td>{{record.isMandatory || "--"}}</td>
+                              
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeFieldDefinition(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="fieldDefinitionList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <form [formGroup]="messageInitializationForm" (ngSubmit)="onSubmit()"
+                    class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Message Initialization</b></h4>
+                    <ng-container formGroupName="messageInitializationDetails">
+                        <div class="row mx-2">
+
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Message Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="messageName">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Tran Code</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="tranCode">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Message Type</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="messageType">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2 mb-3 ">
+                                <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                    Import From </button>
+
+
+
+                            </div>
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                    HTTP Headers</button>
+-->
+                                <mat-icon color="primary" (click)="addMessageInitialization()">add_box</mat-icon>
+
+                            </div>
+
+
+                        </div>
+                    </ng-container>
+                </form>
+                <div class="row mx-3 " *ngIf="messageInitializationList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                        Service Type
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        Queue Name
+                                    </small>
+                                </th>
+
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of messageInitializationList; let i = index">
+                                <td>{{record.serviceType || "--"}}</td>
+                                <td>{{record.queueName || "--"}}</td>
+
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeMessageInitialization(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="messageInitializationList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

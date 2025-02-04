@@ -5,7 +5,7 @@ import { UtilityService } from '../../../../services/utility.service';
 
 @Component({
   selector: 'app-add-field-mapping-details',
-
+  
   templateUrl: './add-field-mapping-details.component.html',
   styleUrl: './add-field-mapping-details.component.css'
 })
@@ -31,43 +31,41 @@ export class AddFieldMappingDetailsComponent {
     }),
 
   })
-  constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
+  constructor(private util:UtilityService, private fb: FormBuilder, private service: ApiService,) { }
   ngOnInit(): void {
 
   }
   onSubmit() {
-    if (this.fieldMappingList.length == 0) {
-      this.util.failureSnackbar('Atleast 1')
+    if (this.fieldMappingList.length === 0) {
+      this.util.failureSnackbar('At least one field mapping is required.');
     }
-
   }
 
-  addMessageRouting() {
-    if (this.form.get('messageRoutingDetails')?.valid) {
-      const routingDetails = this.form.get('messageRoutingDetails')?.value;
+  addFieldMapping() {
+    if (this.form.get('fieldMappingDetails')?.valid) {
+      const fieldMappingDetails = this.form.get('fieldMappingDetails')?.value;
 
       if (this.editIndex !== null) {
-        // Update the existing entry if in edit mode
-        this.fieldMappingList[this.editIndex] = routingDetails;
-        this.editIndex = null; // Reset edit mode
+        this.fieldMappingList[this.editIndex] = fieldMappingDetails;
+        this.editIndex = null;
       } else {
-        // Add new entry
-        this.fieldMappingList.push(routingDetails);
+        this.fieldMappingList.push(fieldMappingDetails);
       }
 
-      this.form.get('messageRoutingDetails')?.reset(); // Clear form after adding/updating
+      this.form.get('fieldMappingDetails')?.reset();
     }
   }
-  editMessageRouting(index: number) {
+
+  editFieldMapping(index: number) {
     this.editIndex = index;
-    // this.form.get('messageRoutingDetails')?.setValue(this.fieldMappingList[index]);
+    this.form.get('fieldMappingDetails')?.setValue(this.fieldMappingList[index]);
   }
 
-  removeMessageRouting(index: number) {
+  removeFieldMapping(index: number) {
     this.fieldMappingList.splice(index, 1);
     if (this.editIndex === index) {
       this.editIndex = null;
-      this.form.get('messageRoutingDetails')?.reset();
+      this.form.get('fieldMappingDetails')?.reset();
     }
   }
 }
