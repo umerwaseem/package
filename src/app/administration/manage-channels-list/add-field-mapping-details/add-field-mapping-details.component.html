@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Channel</b></h4>
+                    <ng-container formGroupName="fieldMappingList">
+                    <div class="row  mx-2">
+                        <div class="col-md-4 mb-3">
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Channel</mat-label>
+                                    <mat-select formControlName="sourceChannelId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Message</mat-label>
+                                    <mat-select formControlName="sourceMessageId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Field</mat-label>
+                                    <mat-select formControlName="sourceFieldId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Channel</mat-label>
+                                    <mat-select formControlName="destinationChannelId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Message</mat-label>
+                                    <mat-select formControlName="destinationMessageId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="col-md-12 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Field</mat-label>
+                                    <mat-select formControlName="destinationFieldId">
+                                        <!-- <mat-select placeholder="Institution" > -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="col-md-8 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Internal Tag Name</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="internalTag">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-4  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                    HTTP Headers</button>
+    -->
+                                <mat-icon color="primary">add_box</mat-icon>
+
+                            </div>
+                        </div>
+                    </div>
+
+                  
+                    </ng-container>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

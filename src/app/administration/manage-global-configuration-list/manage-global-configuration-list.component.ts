@@ -42,7 +42,7 @@ export class ManageGlobalConfigurationListComponent {
     size: 20,
     index: 0,
   }
-  form= new FormGroup({
+  form = new FormGroup({
     minConnections: new FormControl(''),
     maxConnections: new FormControl(''),
     minThreads: new FormControl(''),
@@ -53,7 +53,7 @@ export class ManageGlobalConfigurationListComponent {
     configFilePath: new FormControl(''),
     isTemplate: new FormControl(''),
   })
-  constructor(private service: ApiService,private dialog: MatDialog, private route: ActivatedRoute,  public router: Router, public util: UtilityService,) { }
+  constructor(private service: ApiService, private dialog: MatDialog, private route: ActivatedRoute, public router: Router, public util: UtilityService,) { }
   ngOnInit(): void {
 
     //this.setPaginator();
@@ -67,9 +67,6 @@ export class ManageGlobalConfigurationListComponent {
     console.log('Form Data:', this.form.value);
   }
 
-
-
- 
   getPosts(): void {
     this.service.getPosts().subscribe(
       (res) => {
@@ -105,9 +102,9 @@ export class ManageGlobalConfigurationListComponent {
     })
   }
 
-  setValues(data:any) {
+  setValues(data: any) {
     if (data) {
-      
+
       this.form.controls.minConnections.setValue(data.networkGroupDescription)
       this.form.controls.maxConnections.setValue(data.networkGroupName)
       this.form.controls.minThreads.setValue(data.networkGroupCode)
@@ -150,7 +147,7 @@ export class ManageGlobalConfigurationListComponent {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.networkGroupId = row.networkGroupId;
-    this.getNetworkGroupValue( this.networkGroupId)
+    this.getNetworkGroupValue(this.networkGroupId)
   }
 
   resetTable(): void {
@@ -167,12 +164,12 @@ export class ManageGlobalConfigurationListComponent {
 
   pageEvent: PageEvent = new PageEvent;
   handlePageEvent(e: PageEvent) {
-    
-    
+
+
     this.page.index = e.pageIndex;
     this.page.size = e.pageSize;
     this.page.totalElements = e.length;
-   // this.getAllNetworkGroup(this.searchForm.value, this.page.index, this.page.size)
+    // this.getAllNetworkGroup(this.searchForm.value, this.page.index, this.page.size)
   }
 
 }

@@ -15,9 +15,19 @@ import { DummyExpandableTableComponent } from "./components/dummy-expandable-tab
 import { ManageInstitutionListComponent } from "./administration/manage-institution-list/manage-institution-list.component";
 import { AddInstitutionDetailsComponent } from "./administration/manage-institution-list/add-institution-details/add-institution-details.component";
 import { ManageGlobalConfigurationListComponent } from "./administration/manage-global-configuration-list/manage-global-configuration-list.component";
-import { ManageChannelsListComponent } from "./administration/manage-institution-list/manage-channels-list/manage-channels-list.component";
-import { AddChannelDetailsComponent } from "./administration/manage-institution-list/add-channel-details/add-channel-details.component";
+import { ManageChannelsListComponent } from "./administration/manage-channels-list/manage-channels-list.component";
+import { AddChannelDetailsComponent } from "./administration/manage-channels-list/add-channel-details/add-channel-details.component";
 import { AddGlobalConfigurationComponent } from "./administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component";
+import { ManageChannelDetailsComponent } from "./administration/manage-channels-list/manage-channel-details/manage-channel-details.component";
+import { AddCustomFieldDetailsComponent } from "./administration/manage-channels-list/add-custom-field-details/add-custom-field-details.component";
+import { AddEndpointDetailsComponent } from "./administration/manage-channels-list/add-endpoint-details/add-endpoint-details.component";
+import { AddFieldMappingDetailsComponent } from "./administration/manage-channels-list/add-field-mapping-details/add-field-mapping-details.component";
+import { AddMessageInitializationDetailsComponent } from "./administration/manage-channels-list/add-message-initialization-details/add-message-initialization-details.component";
+import { AddProcessingRuleDetailsComponent } from "./administration/manage-channels-list/add-processing-rule-details/add-processing-rule-details.component";
+import { AddQueuesDetailsComponent } from "./administration/manage-channels-list/add-queues-details/add-queues-details.component";
+import { AddServicesDetailsComponent } from "./administration/manage-channels-list/add-services-details/add-services-details.component";
+import { PreviewConfigurationComponent } from "./administration/manage-channels-list/preview-configuration/preview-configuration.component";
+import { AddMessageRoutingDetailsComponent } from "./administration/manage-channels-list/add-message-routing-details/add-message-routing-details.component";
 
 
 @NgModule({
@@ -31,7 +41,17 @@ import { AddGlobalConfigurationComponent } from "./administration/manage-global-
         ManageGlobalConfigurationListComponent,
         ManageChannelsListComponent,
         AddChannelDetailsComponent,
-        AddGlobalConfigurationComponent
+        ManageChannelDetailsComponent,
+        AddGlobalConfigurationComponent,
+        AddCustomFieldDetailsComponent,
+        AddEndpointDetailsComponent,
+        AddFieldMappingDetailsComponent,
+        AddMessageInitializationDetailsComponent,
+        AddProcessingRuleDetailsComponent,
+        AddQueuesDetailsComponent,
+        AddServicesDetailsComponent,
+        PreviewConfigurationComponent,
+        AddMessageRoutingDetailsComponent
         /*   FullComponent,
   
         AdminComponent,

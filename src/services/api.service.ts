@@ -758,7 +758,10 @@ getPosts(): Observable<any> {
   return this.http.get(`${this.environmentUrl}getAllUserList`);
 }
 getInstanceDetailsById(id: any): Observable<any> {
+  
   const url = `${this.environmentUrl}getInstanceDataById/${id}`;
+  console.log('url', url);
+
   console.log('API URL:', url);
   return this.http.get(url);
 }

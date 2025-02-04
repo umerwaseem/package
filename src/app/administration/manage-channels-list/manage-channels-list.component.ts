@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ApiService } from '../../../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-manage-channels-list',
@@ -19,10 +19,18 @@ export class ManageChannelsListComponent {
   networkGroupId: any
   instanceDetails: any = {}
 
-  form = new FormGroup({
-    firstName: new FormControl(''),
-    field2: new FormControl(''),
-  })
+    form = new FormGroup({
+      firstName: new FormControl('',),
+
+      channelName: new FormControl('',),
+      channelIndentifier: new FormControl('',),
+      channelType: new FormControl('',),
+      bin: new FormControl('',),
+      endpointType: new FormControl('',),
+      channelFormat: new FormControl('',),
+      channelTimeout: new FormControl('',),
+    //  channelIndentifier: new FormControl('',[ Validators.required]),
+    })
   constructor(private service: ApiService,) { }
   ngOnInit(): void {
     this.getPosts();
@@ -91,13 +99,20 @@ export class ManageChannelsListComponent {
     this.getPosts();
   }
   tabs = [
-    { label: 'Channels & Endpoint', type: 'details' },
-    { label: 'Channel Queues & Services', type: 'form' },
-    { label: 'Message & Identification', type: 'table' },
+    { label: 'Channels', type: 'Channels' },
+    { label: 'Channel Endpoints', type: 'Channel Endpoints' },
+    { label: 'Channel Queues', type: 'Channel Queues' },
 
-    { label: 'Custom Fields' },
-    { label: 'Message field Mapping' },
-    { label: 'Message Routine & Processing' },
+    { label: 'Channel Services' , type: 'Channel Services'},
+    { label: 'Message Initialization' , type: 'Message Initialization'},
+    
+    
+    { label: 'Custom Fields' , type: 'Custom Fields'},
+    { label: 'Message Field Mapping' , type: 'Message Field Mapping'},
+    { label: 'Message Routing' , type: 'Message Routing'},
+    { label: 'Message Processing Rules' , type: 'Message Processing Rules'},
+    { label: 'Preview Configuration' , type: 'Preview Configuration'},
+
 /*     { label: 'Tags' } */
   ];
 }

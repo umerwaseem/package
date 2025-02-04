@@ -52,7 +52,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3" routerLink="/admin/manage-institution-details">New Institution</button>
+                    <button mat-flat-button color="primary" class="rounded-3"
+                        routerLink="/admin/manage-institution-details">New Institution</button>
                 </div>
             </div>
 
@@ -143,12 +144,14 @@
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-circle pointer zoomer" style="font-size: 14px; color: #129b00;"></i>
                         </span>
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-institution-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
                         </span>
 
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-institution-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-trash" style="font-size: 14px; color: #ff1c1c"></i>
                         </span>
@@ -167,146 +170,61 @@
                             <h5 class="mb-2"><b>Custom Fields</b></h5>
                         </div> -->
                         <div class="card-body px-0">
-                            <form [formGroup]="form" (ngSubmit)="onSubmit()"
-                                class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                                <div class="row mb-3 mx-2">
 
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                            <div class="row">
+                                <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p> <b>
+                                            Institution Name:
+                                        </b>
+                                    </p>
+                                    <p class="mb-2">{{this.instanceDetails.institutionName ?
+                                        this.instanceDetails.institutionName : '-
+                                        -'}}</p>
+                                    <p><b>
+                                            Contact Person Name:
+                                        </b></p>
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonName ?
+                                        this.instanceDetails.contactPersonName : '-
+                                        -'}}</p>
 
+                                    <p><b>
+                                            Contact Person Number:
+                                        </b></p>
 
-                                    <div class="col-md-4 ">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field">
-                                            <mat-label>Actions</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonNumber ?
+                                        this.instanceDetails.contactPersonNumber : '-
+                                        -'}}</p>
 
-
-                                    </div>
-
+                                    <p><b>
+                                            Contact Person Id:
+                                        </b></p>
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonEmail ?
+                                        this.instanceDetails.contactPersonEmail : '- -'}}</p>
 
 
 
                                 </div>
-                                <div class="row mb-3 mx-2">
+                                <div class="col-md-6 col-sm-6 col-xs-12 border-dark border-1 border-start">
 
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                                    <p><b>
+                                            Status:
+                                        </b>
+                                    </p>
+                                    <p class="mb-2"> {{this.instanceDetails.status? this.instanceDetails.status : '-
+                                        -'}}</p>
+                                    <p><b>Role</b></p>
+                                    <p class="mb-2">{{this.instanceDetails.role? this.instanceDetails.role : '- -'}}</p>
+                                    <p><b>passwordPolicy</b></p>
 
-
-                                    <div class="col-md-4 ">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field">
-                                            <mat-label>Actions</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-
-
-                                    </div>
-
-
+                                    <p class="mb-2">{{this.instanceDetails.passwordPolicy?
+                                        this.instanceDetails.passwordPolicy : '- -'}}</p>
 
 
                                 </div>
-                                <div class="row mb-3 mx-2">
 
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>First Name</mat-label>
-                                            <input matInput placeholder="First Name*" formControlName="firstName">
-                                            <mat-error>
-                                                <small>Required</small>
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class=" custom-size-form-field ">
-                                            <mat-label>Any State</mat-label>
-                                            <mat-select>
-                                                <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                                <mat-option [value]="1">
-                                                    1
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
+                            </div>
 
-
-                                
-
-
-
-
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>

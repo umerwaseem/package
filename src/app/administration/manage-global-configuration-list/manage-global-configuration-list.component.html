@@ -52,7 +52,8 @@
                 </div>
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3" routerLink="/admin/manage-global-config-details">New Configuration</button>
+                    <button mat-flat-button color="primary" class="rounded-3"
+                        routerLink="/admin/manage-global-config-details">New Configuration</button>
                 </div>
             </div>
 
@@ -134,17 +135,23 @@
                     <div class="col-md-10">
                         <h5 class="my-2"
                             style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
-                            <b>View Institution
+                            <b>View Global Configuration List
                             </b><!-- {{item.jsonParseData ? item.jsonParseData.instance : '--'}} -->
                         </h5>
                     </div>
                     <div class="col-md-2 d-flex justify-content-end">
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-channels-list">
+                            <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
+                            <i class="fa fa-circle pointer zoomer" style="font-size: 14px; color: #129b00;"></i>
+                        </span>
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-institution-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
                         </span>
 
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center"
+                            routerLink="/admin/manage-institution-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-trash" style="font-size: 14px; color: #ff1c1c"></i>
                         </span>
@@ -163,84 +170,65 @@
                             <h5 class="mb-2"><b>Custom Fields</b></h5>
                         </div> -->
                         <div class="card-body px-0">
-                            <form [formGroup]="form" (ngSubmit)="onSubmit()"
-                                class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                              
-                                <div class="row mb-3  mx-2">
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Minimum Connections</mat-label>
-                                            <input matInput placeholder="Minimum Connections*"
-                                                formControlName="minConnections">
-                                        </mat-form-field>
-                                    </div>
-        
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Maximum Connections</mat-label>
-                                            <input matInput placeholder="Maximum Connections*" formControlName="maxConnections">
-                                        </mat-form-field>
-                                    </div>
-        
-                             
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Minimum Threads</mat-label>
-                                            <input matInput placeholder="Minimum Threads*" formControlName="minThreads">
-                                        </mat-form-field>
-                                    </div>
-        
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Maximum Threads</mat-label>
-                                            <input matInput placeholder="Maximum Threads*" formControlName="maxThreads">
-                                        </mat-form-field>
-                                    </div>
-        
+
+                            <div class="row">
+                                <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p> <b>
+                                            Minimum Connections:
+                                        </b>
+                                    </p>
+                                    <p class="mb-2">{{this.instanceDetails.institutionName ?
+                                        this.instanceDetails.institutionName : '-
+                                        -'}}</p>
+                                    <p><b>
+                                            Maximum Connections:
+                                        </b></p>
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonName ?
+                                        this.instanceDetails.contactPersonName : '-
+                                        -'}}</p>
+
+                                    <p><b>
+                                            Minimum Threads:
+                                        </b></p>
+
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonNumber ?
+                                        this.instanceDetails.contactPersonNumber : '-
+                                        -'}}</p>
+
+                                    <p><b>
+                                            Maximum Threads:
+                                        </b></p>
+                                    <p class="mb-2">{{this.instanceDetails.contactPersonEmail ?
+                                        this.instanceDetails.contactPersonEmail : '- -'}}</p>
+
+
+
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 border-dark border-1 border-start">
+
+                                    <p><b>
+                                            Max Log File Size:
+                                        </b>
+                                    </p>
+                                    <p class="mb-2"> {{this.instanceDetails.status? this.instanceDetails.status : '-
+                                        -'}}</p>
+                                    <p><b>Log File Path</b></p>
+                                    <p class="mb-2">{{this.instanceDetails.role? this.instanceDetails.role : '- -'}}</p>
+                                    <p><b>Log Level</b></p>
+
+                                    <p class="mb-2">{{this.instanceDetails.passwordPolicy?
+                                        this.instanceDetails.passwordPolicy : '- -'}}</p>
+                                    <p><b>Service Config File Path</b></p>
+
+                                    <p class="mb-2">{{this.instanceDetails.passwordPolicy?
+                                        this.instanceDetails.passwordPolicy : '- -'}}</p>
+
+
                                 </div>
 
-                                <div class="row mb-3   mx-2">
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Max Log File Size</mat-label>
-                                            <input matInput placeholder="Max Log File Size*"
-                                                formControlName="logFileSize">
-                                        </mat-form-field>
-                                    </div>
-        
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Log file Path</mat-label>
-                                            <input matInput placeholder="Log file Path*" formControlName="logFilePath">
-                                        </mat-form-field>
-                                    </div>
-        
-                            
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Log Level</mat-label>
-                                            <input matInput placeholder="Log Level*" formControlName="logLevel">
-                                        </mat-form-field>
-                                    </div>
-        
-                                    <div class="col-md-3">
-                                        <mat-form-field style="font-size: 14px;" appearance="outline"
-                                            class="custom-size-form-field">
-                                            <mat-label>Services Config File Path</mat-label>
-                                            <input matInput placeholder="Services Config File Path*"
-                                                formControlName="configFilePath">
-                                        </mat-form-field>
-                                    </div>
-        
-                                </div>
-                            </form>
+                            </div>
+
                         </div>
                     </div>
                 </div>

@@ -23,8 +23,8 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
                                                         <mat-label>Channel Name</mat-label>
-                                                        <input matInput placeholder="First Name*"
-                                                            formControlName="firstName">
+                                                        <input matInput placeholder="Channel Name*"
+                                                            formControlName="channelName">
                                                         <mat-error>
                                                             <small>Required</small>
                                                         </mat-error>
@@ -35,8 +35,8 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
                                                         <mat-label>Channel Indentifier</mat-label>
-                                                        <input matInput placeholder="First Name*"
-                                                            formControlName="firstName">
+                                                        <input matInput placeholder="Channel Indentifier*"
+                                                            formControlName="channelIndentifier">
                                                         <mat-error>
                                                             <small>Required</small>
                                                         </mat-error>
@@ -46,7 +46,7 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class=" custom-size-form-field ">
                                                         <mat-label>Channel Type</mat-label>
-                                                        <mat-select>
+                                                        <mat-select placeholder="Channel Type" formControlName="channelType">
                                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
@@ -63,8 +63,8 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
                                                         <mat-label>Bin</mat-label>
-                                                        <input matInput placeholder="First Name*"
-                                                            formControlName="firstName">
+                                                        <input matInput placeholder="Bin*"
+                                                            formControlName="bin">
                                                         <mat-error>
                                                             <small>Required</small>
                                                         </mat-error>
@@ -75,7 +75,7 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class=" custom-size-form-field ">
                                                         <mat-label>Endpoint Type</mat-label>
-                                                        <mat-select>
+                                                        <mat-select placeholder="Endpoint Type" formControlName="endpointType">
                                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
@@ -90,7 +90,7 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class=" custom-size-form-field ">
                                                         <mat-label>Channel Format</mat-label>
-                                                        <mat-select>
+                                                        <mat-select placeholder="Channel Format" formControlName="channelFormat">
                                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
@@ -105,7 +105,7 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class=" custom-size-form-field ">
                                                         <mat-label>Channel Timeout</mat-label>
-                                                        <mat-select>
+                                                        <mat-select placeholder="Channel Timeout" formControlName="channelTimeout">
                                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
@@ -154,9 +154,9 @@
                                                 <div class="col-md-6">
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
-                                                        <mat-label>First Name</mat-label>
-                                                        <input matInput placeholder="First Name*"
-                                                            formControlName="firstName">
+                                                        <mat-label>Url Endpoint</mat-label>
+                                                        <input matInput placeholder="Enter Url Endpoint*"
+                                                            formControlName="urlEnpoint">
                                                         <mat-error>
                                                             <small>Required</small>
                                                         </mat-error>
@@ -166,8 +166,8 @@
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
                                                         <mat-label>Connection Timeout</mat-label>
-                                                        <input matInput placeholder="First Name*"
-                                                            formControlName="firstName">
+                                                        <input matInput placeholder="Enter Connection Timeout*"
+                                                            formControlName="connectionTimeout">
                                                         <mat-error>
                                                             <small>Required</small>
                                                         </mat-error>
@@ -175,39 +175,22 @@
                                                 </div>
 
                                                 <div class="col-md-2 mb-3 ">
-                                                    <mat-checkbox class="example-margin">Server? </mat-checkbox>
+                                                    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
                                                 </div>
 
-                                                <div class="col-md-2 ">
-                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                                        class=" custom-size-form-field">
-                                                        <mat-label>Whitelisted IPs</mat-label>
-                                                        <mat-select>
-                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                                            <mat-option [value]="1">
-                                                                1
-                                                            </mat-option>
-                                                            <mat-option [value]="1">
-                                                                1
-                                                            </mat-option>
-                                                        </mat-select>
-                                                    </mat-form-field>
-
-
-                                                </div>
-
+                                             
 
                                             </div>
                                             <div class="row mx-2">
 
                                                 <div class="col-md-2 mb-3 ">
-                                                    <mat-checkbox class="example-margin">Enable TLS? </mat-checkbox>
+                                                    <mat-checkbox class="example-margin" formControlName="isTls"  (change)="onChangeTLS()">Enable TLS? </mat-checkbox>
                                                 </div>
-                                                <div class="col-md-2 mb-3">
+                                                <div class="col-md-2 mb-3" *ngIf="this.form.controls.isTls.value == true ">
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class=" custom-size-form-field ">
                                                         <mat-label>TLS Version</mat-label>
-                                                        <mat-select>
+                                                        <mat-select formControlName="tlsVersion">
                                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
@@ -304,8 +287,10 @@
                                                     </mat-form-field>
                                                 </div>
 
+                                                <div class="row mx-2" *ngIf="this.form.controls.isServer.value == true ">
 
-
+                                                    SERVER
+                                                </div>
 
 
                                             </div>

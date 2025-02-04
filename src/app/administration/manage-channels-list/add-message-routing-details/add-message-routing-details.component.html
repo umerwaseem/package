@@ -1,0 +1,240 @@
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Message Routing</b></h4>
+                    <ng-container formGroupName="messageRoutingDetails">
+                        <div class="row  mx-2">
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Sequence</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="sequence">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Channel</mat-label>
+                                    <mat-select formControlName="channelId">
+                                        <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Source Channel</mat-label>
+                                    <mat-select formControlName="sourceChannelId">
+                                        <!-- <mat-select placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Channel</mat-label>
+                                    <mat-select formControlName="destinationChannelId">
+                                        <!-- <mat-select placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Identifier 1 Value</mat-label>
+                                    <input matInput placeholder="firstIdentifier*" formControlName="firstIdentifier">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Identifier 2 Value</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="secondIdentifier">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Identifier 3 Value</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="thirdIdentifier">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Queue</mat-label>
+                                    <mat-select formControlName="destinationQueueId">
+                                        <!-- <mat-select placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Destination Adaptar</mat-label>
+                                    <mat-select formControlName="destinationAdaptarId">
+                                        <!-- <mat-select placeholder="Institution""> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2">
+                                <!-- <button mat-flat-button color="primary" class="rounded-3" >Add
+                                    Channel</button> -->
+                                <mat-icon color="primary" type="button"
+                                    (click)="addMessageRouting()">control_point</mat-icon>
+                            </div>
+
+                            <div class="col-md-2">
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit">Add
+                                    Message Routing</button>
+
+                            </div>
+                        </div>
+
+                    </ng-container>
+
+                </form>
+                <div class="row mx-3 " *ngIf="messageRoutingList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                        sequence
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        source Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        1st Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        2nd Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        3rd Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Queue
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Adaptar
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of messageRoutingList; let i = index">
+                                <td>{{record.sequence || "--"}}</td>
+                                <td>{{record.channelId || "--"}}</td>
+                                <td>{{record.sourceChannelId || "--"}}</td>
+                                <td>{{record.destinationChannelId || "--"}}</td>
+                                <td>{{record.firstIdentifier || "--"}}</td>
+                                <td>{{record.secondIdentifier || "--"}}</td>
+                                <td>{{record.thirdIdentifier || "--"}}</td>
+                                <td>{{record.destinationQueueId || "--"}}</td>
+                                <td>{{record.destinationAdaptarId || "--"}}</td>
+
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editMessageRouting(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeMessageRouting(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="messageRoutingList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

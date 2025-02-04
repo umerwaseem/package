@@ -17,8 +17,18 @@ providers: [
 export class AddChannelDetailsComponent {
 
     form = new FormGroup({
-      firstName: new FormControl('',[ Validators.required]),
-      field2: new FormControl('',[ Validators.required]),
+      firstName: new FormControl('',),
+
+
+      urlEnpoint: new FormControl('',[ Validators.required]),
+      connectionTimeout: new FormControl('',[ Validators.required]),
+      isServer: new FormControl(false,[ Validators.required]),
+      isTls: new FormControl(false,[ Validators.required]),
+      tlsVersion: new FormControl('',[ Validators.required]),
+      endpointType: new FormControl('',[ Validators.required]),
+      channelFormat: new FormControl('',[ Validators.required]),
+      channelTimeout: new FormControl('',[ Validators.required]),
+    //  channelIndentifier: new FormControl('',[ Validators.required]),
     })
  constructor(private service: ApiService,) { }
   ngOnInit(): void {
@@ -26,6 +36,21 @@ export class AddChannelDetailsComponent {
   }
   onSubmit(){
 
+  }
+
+  onChangeServer() {
+    
+  }
+  onChangeTLS() {
+    if (this.form.controls.isTls.value === true ) {
+
+      this.form.controls.tlsVersion.setValidators([ Validators.required]);
+    } else {
+      this.form.controls.tlsVersion.reset();
+      this.form.controls.tlsVersion.clearValidators();
+    }
+
+    this.form.updateValueAndValidity();
   }
   tabs = [
     { label: 'Channels', type: 'Channels' },
