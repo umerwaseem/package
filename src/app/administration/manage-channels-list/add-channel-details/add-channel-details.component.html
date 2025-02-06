@@ -36,12 +36,14 @@
                                 <mat-label>Channel Type</mat-label>
                                 <mat-select placeholder="Channel Type" formControlName="channelType">
                                     <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                    <mat-option [value]="1">
-                                        1
+                                  
+                                        <mat-option value="bankingChannel">
+                                            Banking Channel
+                                        </mat-option>
+                                        <mat-option value="nonBankingChannel">
+                                        Non Bannking Channel
                                     </mat-option>
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
+                                    
                                 </mat-select>
                                 <mat-error>
                                     <small>Required</small>
@@ -50,7 +52,7 @@
                         </div>
 
 
-                        <div class="col-md-3 mb-3">
+                        <div class="col-md-3 mb-3" *ngIf="this.form.controls.channelType?.value == 'bankingChannel'">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
                                 <mat-label>Bin</mat-label>

@@ -20,18 +20,18 @@ export class AddEndpointDetailsComponent {
 
 
     endPointDetails: this.fb.group({
-      urlEnpoint: new FormControl('', [Validators.required]),
+      urlEnpoint: new FormControl(''),
 
 
-      connectionTimeout: new FormControl('', [Validators.required]),
+      connectionTimeout: new FormControl(''),
       isTls: new FormControl(false),
       tlsVersion: new FormControl(''),
-      certPath: new FormControl('', [Validators.required]),
-      keyFilePath: new FormControl('', [Validators.required]),
+      certPath: new FormControl(''),
+      keyFilePath: new FormControl(''),
       isClient: new FormControl('',),
-      authtype: new FormControl('', [Validators.required]),
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      authtype: new FormControl(''),
+      username: new FormControl(''),
+      password: new FormControl(''),
 
       sequence: new FormControl('',),
 

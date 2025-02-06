@@ -23,61 +23,6 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>contactPersonName</mat-label>
-                                <input matInput placeholder="Contact Person Name*" formControlName="contactPersonName">
-                                <mat-error>
-                                    <small>Required</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-
-                        <div class="col-md-4  mb-3 ">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Contact Person Number</mat-label>
-                                <input matInput placeholder="Contact Person Number*"
-                                    formControlName="contactPersonNumber">
-                                <mat-error>
-                                    <small>Required</small>
-                                </mat-error>
-                            </mat-form-field>
-
-
-                        </div>
-
-
-
-
-                    </div>
-                    <div class="row mb-2 ">
-
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Contact Person CNIC</mat-label>
-                                <input matInput placeholder="Contact Person CNIC*" formControlName="contactPersonId">
-                                <mat-error>
-                                    <small>Required</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Contact Person Email</mat-label>
-                                <input matInput placeholder="Contact Person Email*"
-                                    formControlName="contactPersonEmail">
-                                <mat-error>
-                                    <small>Required</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-
                         <div class="col-md-4  mb-3 ">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class=" custom-size-form-field">
@@ -101,22 +46,14 @@
 
 
 
-
                     </div>
-                    <div class="row mb-2  ">
+                    <div class="row mb-2 ">
 
                         <div class="col-md-4  mb-3">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class=" custom-size-form-field">
-                                <mat-label>Role</mat-label>
-                                <mat-select placeholder="Role" formControlName="role">
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                </mat-select>
+                                class="custom-size-form-field">
+                                <mat-label>Contact Person Name</mat-label>
+                                <input matInput placeholder="Contact Person Name*" formControlName="contactPersonName">
                                 <mat-error>
                                     <small>Required</small>
                                 </mat-error>
@@ -124,34 +61,35 @@
                         </div>
                         <div class="col-md-4  mb-3">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class=" custom-size-form-field ">
-                                <mat-label>Password Policy</mat-label>
-                                <mat-select placeholder="Password Policy" formControlName="passwordPolicy">
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                </mat-select>
+                                class="custom-size-form-field">
+                                <mat-label>Contact Person Email</mat-label>
+                                <input matInput placeholder="Contact Person Email*"
+                                    formControlName="contactPersonEmail">
                                 <mat-error>
                                     <small>Required</small>
                                 </mat-error>
                             </mat-form-field>
                         </div>
+
+
+
+
+
 
                         <div class="col-md-3">
                             <button mat-flat-button color="primary" class="rounded-3"
                                 routerLink="/admin/manage-institution-details">Create Institution</button>
                         </div>
-
-
-
-
-
                     </div>
-                </form>
-            </div>
+
+
+
+
+
+
+            
+            </form>
         </div>
     </div>
+</div>
 </div>

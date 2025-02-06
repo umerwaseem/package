@@ -11,6 +11,7 @@ import { UtilityService } from '../../../../services/utility.service';
 })
 export class AddMessageInitializationDetailsComponent {
   fieldDefinitionList: any = [];
+  randomString:any 
 
   editFieldIndex: number | null = null;
 
@@ -39,7 +40,7 @@ export class AddMessageInitializationDetailsComponent {
       isRoutingField: new FormControl(''),
       isIdentifier: new FormControl(''),
       isMandatory: new FormControl(''),
-      incorrectTransformation: new FormControl(''),
+      incomingTransformation: new FormControl(''),
       outgoingTransformation: new FormControl(''),
       masking: new FormControl(''),
       customMask: new FormControl(''),
@@ -48,9 +49,10 @@ export class AddMessageInitializationDetailsComponent {
       minRepeatCount: new FormControl(''),
       maxRepeatCount: new FormControl(''),
       nameSpaceAlias: new FormControl(''),
-      lengthtype: new FormControl(''),
+      lengthType: new FormControl(''),
       fixedLength: new FormControl(''),
       isBitMapped: new FormControl(''),
+      isBitMap: new FormControl(''),
       bitmapFieldName: new FormControl(''),
       bitmapBitNumber: new FormControl(''),
       trim: new FormControl(''),
@@ -64,7 +66,14 @@ export class AddMessageInitializationDetailsComponent {
   })
   constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
   ngOnInit(): void {
-
+    let textArray = [
+      'XML',
+      'FIXED-LENGTH',
+      'META-LENGTH'
+  ];
+  this.randomString = Math.floor(Math.random()*textArray.length);
+  console.log(' this.randomString',  this.randomString);
+  
   }
   onSubmit() {
     if (this.fieldDefinitionList.length === 0) {

@@ -36,12 +36,10 @@ export class AddInstitutionDetailsComponent implements OnInit {
   form = new FormGroup({
     institutionName: new FormControl('', [Validators.required]),
     contactPersonName: new FormControl('', [Validators.required]),
-    contactPersonNumber: new FormControl('', [Validators.required]),
-    contactPersonId: new FormControl('', [Validators.required]),
+   
     contactPersonEmail: new FormControl('', [Validators.required]),
     status: new FormControl('', [Validators.required]),
-    role: new FormControl('', [Validators.required]),
-    passwordPolicy: new FormControl('', [Validators.required]),
+
   })
 
   constructor(public route: ActivatedRoute,

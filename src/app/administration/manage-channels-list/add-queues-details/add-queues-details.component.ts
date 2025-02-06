@@ -16,7 +16,7 @@ export class AddQueuesDetailsComponent {
   form = new FormGroup({
     isAutoQueue: new FormControl(true),
     channelQueueDetails: this.fb.group({
-      serviceType: new FormControl(''),
+      serviceTypeId: new FormControl(''),
       queueName: new FormControl(''),
 
 
@@ -25,7 +25,7 @@ export class AddQueuesDetailsComponent {
   })
   constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
   ngOnInit(): void {
-
+    this.onChangeAutoQueue()
   }
   onSubmit() {
     if (this.channelQueueList.length === 0) {
@@ -37,6 +37,17 @@ export class AddQueuesDetailsComponent {
     obj.channelQueueDetails = this.channelQueueList
 
     console.log('channelQueueList', this.channelQueueList)
+  }
+
+
+  onChangeAutoQueue() {
+    if (this.form.controls.isAutoQueue.value) {
+      this.channelQueueList = [{ serviceTypeId: 'TCP/IP', node: 1 }, { serviceTypeId: 'SOAP/REST', node: 1 }]
+    }
+    else {
+      this.channelQueueList = []
+    }
+
   }
 
   addFieldMapping() {
@@ -51,7 +62,7 @@ export class AddQueuesDetailsComponent {
       }
 
       this.form.get('channelQueueDetails')?.reset();
-      
+
     }
   }
 

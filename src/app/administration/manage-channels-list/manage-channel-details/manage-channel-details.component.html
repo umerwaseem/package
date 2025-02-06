@@ -8,24 +8,22 @@
           </ng-template>
         </mat-tab>
       </mat-tab-group>
+     
+      <app-add-channel-details *ngIf="selectedTab === 'Channels'"></app-add-channel-details>
+     
+      <app-add-endpoint-details *ngIf="selectedTab === 'Channel Endpoints'"></app-add-endpoint-details>
+    
+      <app-add-queues-details *ngIf="selectedTab === 'Channel Queues'"></app-add-queues-details>
+    
+      <app-add-services-details *ngIf="selectedTab === 'Channel Services'"></app-add-services-details>
+      
       <app-add-message-initialization-details
         *ngIf="selectedTab === 'Message Initialization'"></app-add-message-initialization-details>
       <app-add-custom-field-details *ngIf="selectedTab === 'Custom Fields'"></app-add-custom-field-details>
 
       <app-add-field-mapping-details *ngIf="selectedTab === 'Message Field Mapping'"></app-add-field-mapping-details>
+      
       <app-add-message-routing-details *ngIf="selectedTab === 'Message Routing'"></app-add-message-routing-details>
-
-      <app-add-channel-details *ngIf="selectedTab === 'Channels'"></app-add-channel-details>
-
-      <app-add-endpoint-details *ngIf="selectedTab === 'Channel Endpoints'"></app-add-endpoint-details>
-
-      <app-add-services-details *ngIf="selectedTab === 'Channel Services'"></app-add-services-details>
-
-
-      <app-add-queues-details *ngIf="selectedTab === 'Channel Queues'"></app-add-queues-details>
-
-
-
 
       <app-add-processing-rule-details
         *ngIf="selectedTab === 'Message Processing Rules'"></app-add-processing-rule-details>

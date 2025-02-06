@@ -231,7 +231,14 @@ export class UtilityService {
 
 
 
-
+  serviceType={
+    tcp_ip: { value: "tcp_ip", text: "TCP/IP" },
+    schedular: { value: "schedular", text: "Schedular" },
+    parser: { value: "parser", text: "Parser" },
+    soap_rest: { value: "soap_rest", text: "SOAP/REST" },
+    rpc: { value: "rpc", text: "RPC" },
+    channelProcessor: { value: "channelProcessor", text: "Channel Processor" },
+  }
 
 
 

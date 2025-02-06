@@ -1,1 +1,276 @@
-<p>add-services-details works!</p>
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Channel Services</b></h4>
+                    <div class="row mx-2">
+                        <div class="col-md-6 mb-3 ">
+                            <mat-checkbox class="example-margin"  formControlName="isAutoCreateService" (change)="onChangeAutoCreateService()">Auto Create Services?
+                            </mat-checkbox>
+                        </div>
+                    </div>
+                    <ng-container formGroupName="channelServiceDetails">
+                        <div class="row mx-2" *ngIf="this.form.controls.isAutoCreateService.value == false">
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Service Type</mat-label>
+                                    <mat-select formControlName="serviceTypeId">
+                                        <!-- <mat-select placeholder="Institution" formControlName="serviceTypeId"> -->
+                                        <mat-option value="tcp_ip">
+                                            TCP/IP
+                                        </mat-option>
+                                        <mat-option value="schedular">
+                                            Schedular
+                                        </mat-option>
+                                        <mat-option value="parser">
+                                            Parser
+                                        </mat-option>
+                                        <mat-option value="soap_rest">
+                                            SOAP/REST
+                                        </mat-option>
+                                        <mat-option value="rpc">
+                                            RPC
+                                        </mat-option>
+                                        <mat-option value="channelProcessor">
+                                            Channel Processor
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Select Node</mat-label>
+                                    <mat-select formControlName="nodeId">
+                                        <!-- <mat-select placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>readQueue</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="readQueue">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                        
+                            <div class="col-md-3  mb-3 "
+                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value != this.util.serviceType.rpc.value">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>writeQueue</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="writeQueue">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 "
+                            *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.tcp_ip.value">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class="custom-size-form-field">
+                                <mat-label>listeningIp</mat-label>
+                                <input matInput placeholder="First Name*" formControlName="listeningIp">
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                            <div class="col-md-3  mb-3 "
+                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>soapDirectory</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="soapDirectory">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 "
+                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>soapEnvelop</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="soapEnvelop">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 "
+                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>writeOutboundQueue</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="writeOutboundQueue">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 "
+                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>readOutboundQueue</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="readOutboundQueue">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>serviceFilePath</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="serviceFilePath">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>logFileName</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="logFileName">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-3  mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isAutoStart">isAutoStart?
+                                </mat-checkbox>
+                            </div>
+                            <div class="col-md-3  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>retryCount</mat-label>
+                                    <input matInput placeholder="First Name*" formControlName="retryCount">
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                HTTP Headers</button>
+-->
+                                <mat-icon color="primary" (click)="addChannelService()">add_box</mat-icon>
+
+                            </div>
+
+
+                        </div>
+                    </ng-container>
+                </form>
+                <div class="row mx-3 " *ngIf="channelServiceList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+
+                                        sequence
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        source Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Channel
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        1st Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        2nd Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        3rd Identifier
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Queue
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        destination Adaptar
+                                    </small>
+                                </th>
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of channelServiceList; let i = index">
+                                <td>{{record.sequence || "--"}}</td>
+                                <td>{{record.channelId || "--"}}</td>
+                                <td>{{record.sourceChannelId || "--"}}</td>
+                                <td>{{record.destinationChannelId || "--"}}</td>
+                                <td>{{record.firstIdentifier || "--"}}</td>
+                                <td>{{record.secondIdentifier || "--"}}</td>
+                                <td>{{record.thirdIdentifier || "--"}}</td>
+                                <td>{{record.destinationQueueId || "--"}}</td>
+                                <td>{{record.destinationAdaptarId || "--"}}</td>
+
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editChannelService(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeChannelService(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="channelServiceList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

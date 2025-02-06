@@ -11,7 +11,7 @@ import { UtilityService } from '../../../../services/utility.service';
 })
 export class AddMessageRoutingDetailsComponent {
 
-  messageRoutingList: any[] = [];
+  messageRoutingList: any = [];
 
   editIndex: number | null = null;
   form = new FormGroup({
@@ -41,13 +41,19 @@ export class AddMessageRoutingDetailsComponent {
     if (this.messageRoutingList.length == 0) {
       this.util.failureSnackbar('Atleast 1')
     }
-   
+    let obj=this.form.getRawValue()
+    obj.messageRoutingDetails = this.messageRoutingList
+
+
+    console.log('obj ==>', obj);
+    
   }
 
   addMessageRouting() {
     if (this.form.get('messageRoutingDetails')?.valid) {
       const routingDetails = this.form.get('messageRoutingDetails')?.value;
-
+      console.log('routingDetails', routingDetails);
+      
       if (this.editIndex !== null) {
         // Update the existing entry if in edit mode
         this.messageRoutingList[this.editIndex] = routingDetails;
