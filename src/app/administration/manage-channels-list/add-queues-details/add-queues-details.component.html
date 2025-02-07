@@ -5,66 +5,68 @@
     <h5 class="mb-2"><b>Custom Fields</b></h5>
 </div> -->
             <div class="card-body px-0">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()"
-                    class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
                     <h4 class="mx-4"><b>Create Channel Queues</b></h4>
                     <div class="row mx-2">
                         <div class="col-md-6 mb-3 ">
-                            <mat-checkbox class="example-margin" formControlName="isAutoQueue" (change)="onChangeAutoQueue()">Auto Create Queues?
+                            <mat-checkbox class="example-margin" formControlName="isAutoQueue"
+                                (change)="onChangeAutoQueue()">Auto Create Queues?
                             </mat-checkbox>
                         </div>
                     </div>
                     <ng-container formGroupName="channelQueueDetails">
-                   
-                    <div class="row mx-2" *ngIf="this.form.controls.isAutoQueue.value == false">
-                        <div class="col-md-2  mb-3 ">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                            class=" custom-size-form-field ">
-                            <mat-label>Service Type</mat-label>
-                            <mat-select formControlName="serviceTypeId">
-                                <!-- <mat-select placeholder="Institution" formControlName="serviceTypeId"> -->
-                                <mat-option value="tcp_ip">
-                                    TCP/IP
-                                </mat-option>
-                                <mat-option value="schedular">
-                                    Schedular
-                                </mat-option>
-                                <mat-option value="parser">
-                                    Parser
-                                </mat-option>
-                                <mat-option value="soap_rest">
-                                    SOAP/REST
-                                </mat-option>
-                                <mat-option value="rpc">
-                                    RPC
-                                </mat-option>
-                                <mat-option value="channelProcessor">
-                                    Channel Processor
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                        </div>
-                        <div class="col-md-2  mb-3 ">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Queue Name</mat-label>
-                                <input matInput placeholder="First Name*"
-                                    formControlName="queueName">
-                                <mat-error>
-                                    <small>Required</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
+
+                        <div class="row mx-2" *ngIf="this.autoQueue == false">
+                            <div class="col-md-2  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Service Type </mat-label>
+                                    <mat-select  placeholder="Select Service Type"  formControlName="serviceTypeId">
+                                        <!-- <mat-select placeholder="Institution" formControlName="serviceTypeId"> -->
+                                        <mat-option value="tcp_ip">
+                                            TCP/IP
+                                        </mat-option>
+                                        <mat-option value="schedular">
+                                            Schedular
+                                        </mat-option>
+                                        <mat-option value="parser">
+                                            Parser
+                                        </mat-option>
+                                        <mat-option value="soap_rest">
+                                            SOAP/REST
+                                        </mat-option>
+                                        <mat-option value="rpc">
+                                            RPC
+                                        </mat-option>
+                                        <mat-option value="channelProcessor">
+                                            Channel Processor
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small> {{fieldErrors("serviceTypeId")}}</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2  mb-3 ">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Queue Name </mat-label>
+                                    <input matInput placeholder="Enter Queue Name" formControlName="queueName">
+                                    <mat-error>
+                                        <small> {{fieldErrors("queueName")}}</small>
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
 
 
 
-                        <div class="col-md-2  mb-3  d-flex align-items-center">
-                            <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
                                 HTTP Headers</button>
 -->
-                            <mat-icon color="primary" (click)="addFieldMapping()">add_box</mat-icon>
+                                <mat-icon color="primary" (click)="addFieldMapping()">add_box</mat-icon>
 
-                        </div>
+                            </div>
 
 
                             <div class="col-md-6">
@@ -72,8 +74,8 @@
                                     Channel Queue</button>
 
                             </div>
-                    
-                    </div>
+
+                        </div>
                     </ng-container>
                 </form>
                 <div class="row mx-3 " *ngIf="channelQueueList.length > 0">
@@ -82,15 +84,15 @@
                             <tr>
                                 <th><small>
 
-                                    Service Type
+                                        Service Type
                                     </small>
                                 </th>
                                 <th><small>
 
-                                    Queue Name
+                                        Queue Name
                                     </small>
                                 </th>
-                                
+
                                 <th><small>
 
                                         Actions
@@ -103,7 +105,7 @@
                             <tr *ngFor="let record of channelQueueList; let i = index">
                                 <td>{{record.serviceType || "--"}}</td>
                                 <td>{{record.queueName || "--"}}</td>
-                          
+
                                 <td>
                                     <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
                                         <mat-icon>edit</mat-icon>

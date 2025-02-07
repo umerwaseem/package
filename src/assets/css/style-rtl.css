@@ -42197,3 +42197,8 @@ table.dataTable.display tbody td {
 [direction="rtl"] .sidebar-right .sidebar-right-trigger,
 [direction="rtl"] .dz-demo-panel .dz-demo-trigger {
   border-radius: 0 5px 5px 0; }
+  .mat-flat-button .mat-accent{
+
+    color: #007F5F;
+    background-color: #007F5F;
+  }

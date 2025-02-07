@@ -14,7 +14,7 @@ import { ApiService } from '../../../../services/api.service';
   styleUrl: './manage-channel-details.component.css'
 })
 export class ManageChannelDetailsComponent {
-  selectedTab: string = 'Channels';
+  selectedTab: string = 'Message Initialization';
 
   onTabChange(event: any) {
     this.selectedTab = this.tabs[event.index].label;  // Get selected tab label

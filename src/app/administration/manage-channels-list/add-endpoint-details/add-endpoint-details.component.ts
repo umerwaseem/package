@@ -10,12 +10,14 @@ import { UtilityService } from '../../../../services/utility.service';
   styleUrl: './add-endpoint-details.component.css'
 })
 export class AddEndpointDetailsComponent {
-  editIndex: number | null = null;
-
-  endpointList: any[] = [];
   @Output() formSubmitted = new EventEmitter<void>();
+  editIndex: number | null = null;
+  endpointList: any[] = [];
   lstHeader: any = [];
-  lstClient: any = []
+  lstClient: any = [];
+   isTlsEnabled:any
+   authType:any
+
   form = new FormGroup({
 
 
@@ -49,7 +51,7 @@ export class AddEndpointDetailsComponent {
       client: this.fb.group({
 
 
-        whiteListIps: new FormControl([],),
+        whiteListIps: ['', []],
 
 
       }),
@@ -64,6 +66,7 @@ export class AddEndpointDetailsComponent {
 
 
   onSubmit() {
+    
     let obj = this.form.getRawValue()
     obj.endPointDetails.header = this.lstHeader;   // Assign lstHeader correctly
     obj.endPointDetails.client = this.lstClient;
@@ -85,21 +88,27 @@ export class AddEndpointDetailsComponent {
   }
 
   onChangeTLS() {
-    const tlsControl = this.form.get('endPointDetails.tlsVersion');
-    const isTlsEnabled = this.form.get('endPointDetails.isTls')?.value;
+   // const tlsControl = this.form.get('endPointDetails.tlsVersion');
+    this.isTlsEnabled = this.form.get('endPointDetails.isTls')?.value;
 
-    if (isTlsEnabled) {
+   /*  if (isTlsEnabled) {
       tlsControl?.setValidators([Validators.required]);
     } else {
       tlsControl?.clearValidators();
       tlsControl?.reset();
     }
 
-    tlsControl?.updateValueAndValidity();
+    tlsControl?.updateValueAndValidity(); */
   }
 
-
+  onAuthTypeSelection(){
+this.authType =this.form.get('endPointDetails.authtype')?.value;
+  }
   addEndpoint() {
+    
+    if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
+      return this.util.failureSnackbar('At least one Header or Ip is required.');
+    }
     if (this.form.get('endPointDetails')?.valid) {
       const endPointDetails = this.form.get('endPointDetails')?.value;
 
@@ -133,19 +142,22 @@ export class AddEndpointDetailsComponent {
 
   // Remove a header FormGroup from the headers FormArray
   addHeader() {
-    const headerForm = this.objHeader;
-
+    console.log('this.objHeader', this.objHeader);
+    
+   
+    let headerForm = this.objHeader;
+   
     // Get values from form fields
-    const headerKey = headerForm.controls['headerKey'].value?.trim();
-    const headerValue = headerForm.controls['headerValue'].value?.trim();
-    const headerSequence = headerForm.controls['headerSequence'].value?.trim();
+    let headerKey = headerForm.controls['headerKey'].value?.trim();
+    let headerValue = headerForm.controls['headerValue'].value?.trim();
+    let headerSequence = headerForm.controls['headerSequence'].value?.trim();
 
-    // Validation: Ensure values are not empty
-    if (!headerKey || !headerValue || !headerSequence) {
-      this.util.failureSnackbar('Header key, value, or sequence cannot be empty.');
-      return;
-    }
 
+      if (!headerKey || !headerValue || !headerSequence) {
+        console.log('headerForm.controls ==>', headerForm.controls);
+        return this.util.failureSnackbar('At least one Header or IP is required.');
+      }
+    
     // Check for duplicates
     const isDuplicate = this.lstHeader.some(
       (header: any) =>
@@ -174,9 +186,9 @@ export class AddEndpointDetailsComponent {
   }
 
   addIp() {
-    const clientForm = this.objIp;
+    let clientForm = this.objIp;
 
-    const ips = clientForm.controls['whiteListIps'].value?.trim();
+    let ips = clientForm.controls['whiteListIps'].value?.trim();
     // Trim extra spaces
     if (!ips) {
       this.util.failureSnackbar('Invalid IP address');

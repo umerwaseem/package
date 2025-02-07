@@ -53,9 +53,9 @@
                                     (change)="onChangeTLS()">Enable
                                     TLS? </mat-checkbox>
                             </div>
-                            <div class="col-md-10 mb-3" *ngIf="form.get('endPointDetails.isTls')?.value != true">
+                            <div class="col-md-10 mb-3" *ngIf="this.isTlsEnabled != true">
                             </div>
-                            <ng-container *ngIf="form.get('endPointDetails.isTls')?.value ">
+                            <ng-container *ngIf="this.isTlsEnabled == true ">
                                 <div class="col-md-2 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class=" custom-size-form-field ">
@@ -107,8 +107,7 @@
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Auth Type</mat-label>
-                                    <mat-select formControlName="authtype">
-                                        <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-select formControlName="authtype" (selectionChange)="onAuthTypeSelection()">
                                         <mat-option value="basicAuth">
                                             basicAuth
                                         </mat-option>
@@ -122,8 +121,8 @@
                                 </mat-form-field>
                             </div>
 
-                            <ng-container *ngIf="this.form.get('endPointDetails.authtype')?.value == 'basicAuth' ||
-                                       this.form.get('endPointDetails.authtype')?.value == 'token'">
+                            <ng-container *ngIf="this.authType == 'basicAuth' ||
+                                       this.authType == 'token'">
 
 
 
@@ -182,11 +181,10 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3   d-flex align-items-center">
 
 
-                                    <mat-icon color="primary" type="button"
-                                        (click)="addHeader()">control_point</mat-icon>
+                                    <mat-icon color="primary" type="button" (click)="addHeader()">add_box</mat-icon>
                                 </div>
                             </ng-container>
 
@@ -237,10 +235,10 @@
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-3   d-flex align-items-center">
 
 
-                                    <mat-icon color="primary" type="button" (click)="addIp()">control_point</mat-icon>
+                                    <mat-icon color="primary" type="button" (click)="addIp()">add_box</mat-icon>
                                 </div>
                             </ng-container>
                         </div>
@@ -288,7 +286,8 @@
 
 
                         <div class="col-md-2">
-                            <button mat-flat-button color="primary" class="rounded-3" type="submit">next</button>
+                            <button mat-flat-button style="background-color: #007F5F;" class="rounded-3 mat-accent"
+                                type="submit">next</button>
 
                         </div>
                     </div>

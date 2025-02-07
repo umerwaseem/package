@@ -128,6 +128,13 @@ export class AppConstants {
  
     }
 
+    public channelType={
+                  
+        bankingChannel: { value: "bankingChannel", text: "Banking Channel" },
+        nonBankingChannel: { value: "nonBankingChannel", text: "Non Bannking Channel" },
+    }
+
+
     public bitmappedDataElementIds= [
         {"Data field": 1, "Type": "b 16", "Usage": "Bitmap"},
         {"Data field": 2, "Type": "n..19", "Usage": "Primary account number (PAN)"},

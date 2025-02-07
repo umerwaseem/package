@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { UtilityService } from '../../../../services/utility.service';
 
@@ -11,7 +11,7 @@ import { UtilityService } from '../../../../services/utility.service';
 })
 export class AddMessageInitializationDetailsComponent {
   fieldDefinitionList: any = [];
-  randomString:any 
+  randomString: any
 
   editFieldIndex: number | null = null;
 
@@ -22,10 +22,16 @@ export class AddMessageInitializationDetailsComponent {
   messageInitializationForm = new FormGroup({
 
     messageInitializationDetails: this.fb.group({
-      messageName: new FormControl(''),
-      tranCode: new FormControl(''),
-      messageType: new FormControl(''),
-
+      messageName: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+      Validators.maxLength(50),]),
+      tranCode: new FormControl('', [Validators.required,
+      Validators.pattern(/^\d+$/),
+      Validators.maxLength(4),]),
+      messageType: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+      Validators.maxLength(50),]),
+      importedFile: new FormControl(''),
     }),
   })
 
@@ -33,10 +39,16 @@ export class AddMessageInitializationDetailsComponent {
   fieldDefinitionForm = new FormGroup({
 
     fieldDefinitionDetails: this.fb.group({
-      fieldSequence: new FormControl(''),
-      fieldName: new FormControl(''),
-      fieldDescription: new FormControl(''),
-      internalTagName: new FormControl(''),
+      fieldSequence: new FormControl('', [Validators.required,
+      Validators.pattern(/^\d+$/),
+      Validators.maxLength(3),]),
+      fieldName: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+      Validators.maxLength(50),]),
+      fieldDescription: new FormControl('', [Validators.required,
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+      Validators.maxLength(100),]),
+      internalTagName: new FormControl('', [Validators.required]),
       isRoutingField: new FormControl(''),
       isIdentifier: new FormControl(''),
       isMandatory: new FormControl(''),
@@ -69,11 +81,11 @@ export class AddMessageInitializationDetailsComponent {
     let textArray = [
       'XML',
       'FIXED-LENGTH',
-      'META-LENGTH'
-  ];
-  this.randomString = Math.floor(Math.random()*textArray.length);
-  console.log(' this.randomString',  this.randomString);
-  
+
+    ];
+    this.randomString = Math.floor(Math.random() * textArray.length);
+    console.log(' this.randomString', this.randomString);
+
   }
   onSubmit() {
     if (this.fieldDefinitionList.length === 0) {
@@ -85,6 +97,10 @@ export class AddMessageInitializationDetailsComponent {
     obj.fieldDefinitionDetails = this.fieldDefinitionList
 
     console.log('fieldDefinitionList', this.fieldDefinitionList)
+    if (this.messageInitializationForm.valid && this.fieldDefinitionForm.valid) {
+      console.log('API PAYLOAD');
+      // this.formSubmitted.emit(); // Notify parent
+    }
   }
 
   addFieldDefinition() {
@@ -141,6 +157,69 @@ export class AddMessageInitializationDetailsComponent {
       this.editMessageIndex = null;
       this.messageInitializationForm.get('messageInitializationDetails')?.reset();
     }
+  }
+
+  fieldErrors(controller: string) {
+    let error = '';
+
+
+    // Ensure this.form is defined and is an instance of FormGroup
+    // if (this.form instanceof FormGroup && this.form.controls[controller]) {
+    let control = this.fieldDefinitionForm.get(`fieldDefinitionDetails.${controller}`) || this.messageInitializationForm.get(`messageInitializationDetails.${controller}`);
+
+    if (control) {
+      if (control.hasError('required')) {
+        error = this.util.ValidationText('required');
+      } else if (control.hasError('email')) {
+        error = this.util.ValidationText('email');
+      } else if (control.hasError('maxlength')) {
+        if (controller === 'fieldSequence') {
+          error = 'Maximum length of field sequence is 999';
+        }
+        if (controller === 'fieldName') {
+          error = 'Maximum length of field name is 50';
+        }
+        if (controller === 'messageType') {
+          error = 'Maximum length of message type is 50';
+        }
+        if (controller === 'messageName') {
+          error = 'Maximum length of message name is 50';
+        }
+        if (controller === 'fieldDescription') {
+          error = 'Maximum length of field description is 100';
+        }
+        if (controller === 'tranCode') {
+          error = 'Maximum length of tran code is 9999';
+        }
+      } else if (control.hasError('pattern')) {
+        if (controller === 'fieldName') {
+          error = 'Only alphanumeric values are allowed';
+        }
+        if (controller === 'fieldDescription') {
+          error = 'Only alphanumeric values are allowed';
+
+        }
+        if (controller === 'messageType') {
+          error = 'Only alphanumeric values are allowed';
+
+        }
+        if (controller === 'messageName') {
+          error = 'Only alphanumeric values are allowed';
+
+        }
+        if (controller === 'tranCode') {
+          error = 'Only numbers are allowed';
+        }
+        if (controller === 'fieldSequence') {
+          error = 'Only numbers are allowed';
+        }
+      } else if (control.hasError('cannotContainLeadingSpace')) {
+        error = this.util.ValidationText('cannotContainLeadingSpace');
+      } else if (control.hasError('cannotContainTrailingSpace')) {
+        error = this.util.ValidationText('cannotContainTrailingSpace');
+      }
+    }
+    return error;
   }
 }
 
