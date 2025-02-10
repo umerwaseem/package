@@ -191,6 +191,7 @@ export class AddMessageInitializationDetailsComponent {
         if (controller === 'tranCode') {
           error = 'Maximum length of tran code is 9999';
         }
+        
       } else if (control.hasError('pattern')) {
         if (controller === 'fieldName') {
           error = 'Only alphanumeric values are allowed';

@@ -3,7 +3,7 @@
         <div class="card shadow-none">
 
             <div class="card-body px-0">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                <form [formGroup]="form" (submit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
                     <h4 class="mx-4"><b>Create a new Endpoint</b></h4>
                     <ng-container formGroupName="endPointDetails">
                         <div class="row mx-2">
@@ -14,7 +14,7 @@
                                     <mat-label>Url Endpoint</mat-label>
                                     <input matInput placeholder="Enter Url Endpoint*" formControlName="urlEnpoint">
                                     <mat-error>
-                                        <small>Required</small>
+                                        <small>{{fieldErrors("urlEnpoint")}}</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
@@ -25,18 +25,22 @@
                                     <input matInput placeholder="Enter Connection Timeout*"
                                         formControlName="connectionTimeout">
                                     <mat-error>
-                                        <small>Required</small>
+                                        <small>{{fieldErrors("connectionTimeout")}}</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
 
-                            <div class="col-md-4 mb-3 ">
+                            <div class="col-md-4 ">
                                 <mat-radio-group aria-label="Select an option" formControlName="isClient"
                                     (change)="onChangeClient()">
                                     <mat-radio-button value="Client"
                                         (change)="onChangeClient()">Client</mat-radio-button>
                                     <mat-radio-button value="Server"
                                         (change)="onChangeServer()">Server</mat-radio-button>
+
+                                    <mat-error>
+                                        <small>{{fieldErrors("isClient")}}</small>
+                                    </mat-error>
                                 </mat-radio-group>
 
                                 <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
@@ -287,10 +291,11 @@
 
                         <div class="col-md-2">
                             <button mat-flat-button style="background-color: #007F5F;" class="rounded-3 mat-accent"
-                                type="submit">next</button>
+                                type="submit">ADD</button>
 
                         </div>
                     </div>
+                    
                 </form>
                 <div class="row mx-3 " *ngIf="endpointList.length > 0">
                     <h4 class="mx-4"><b>Endpoints</b></h4>

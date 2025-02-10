@@ -26,7 +26,8 @@ export class AddFieldMappingDetailsComponent {
       destinationChannelId: new FormControl('', [Validators.required]),
       destinationMessageId: new FormControl('', [Validators.required]),
       destinationFieldId: new FormControl('', [Validators.required]),
-      internalTag: new FormControl('', [Validators.required]),
+      internalTag: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+        Validators.maxLength(50),]),
 
     }),
 
@@ -67,6 +68,48 @@ export class AddFieldMappingDetailsComponent {
       this.editIndex = null;
       this.form.get('fieldMappingDetails')?.reset();
     }
+  }
+
+  fieldErrors(controller: string) {
+    let error = '';
+
+
+    // Ensure this.form is defined and is an instance of FormGroup
+    // if (this.form instanceof FormGroup && this.form.controls[controller]) {
+      let control = this.form.get(`fieldMappingDetails.${controller}`)
+
+    if (control) {
+      if (control.hasError('required')) {
+        error = this.util.ValidationText('required');
+      } else if (control.hasError('email')) {
+        error = this.util.ValidationText('email');
+      } else if (control.hasError('maxlength')) {
+        if (controller === 'internalTag') {
+          error = 'Maximum length of internal tag name is 50';
+        }
+        if (controller === 'channelIndentifier') {
+          error = 'Maximum length of channel indentifier is 4';
+        }
+        if (controller === 'bin') {
+          error = 'Maximum length of bin is 6';
+        }
+      } else if (control.hasError('pattern')) {
+        if (controller === 'internalTag') {
+          error = 'Only alphanumeric values are allowed';
+        }
+        if (controller === 'channelIndentifier' ) {
+          error = 'Only numbers are allowed';
+        }
+        if (controller === 'bin' ) {
+          error = 'Only numbers are allowed';
+        }
+      } else if (control.hasError('cannotContainLeadingSpace')) {
+        error = this.util.ValidationText('cannotContainLeadingSpace');
+      } else if (control.hasError('cannotContainTrailingSpace')) {
+        error = this.util.ValidationText('cannotContainTrailingSpace');
+      }
+    }
+    return error;
   }
 }
 

@@ -13,7 +13,7 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Source Channel</mat-label>
+                                    <mat-label>Select Source Channel </mat-label>
                                     <mat-select formControlName="sourceChannelId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -31,7 +31,7 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Destination Channel</mat-label>
+                                    <mat-label>Select Destination Channel </mat-label>
                                     <mat-select formControlName="destinationChannelId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -54,7 +54,7 @@
 
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Source Message</mat-label>
+                                    <mat-label>Select Source Message </mat-label>
                                     <mat-select formControlName="sourceMessageId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -73,7 +73,7 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Destination Message</mat-label>
+                                    <mat-label>Select Destination Message </mat-label>
                                     <mat-select formControlName="destinationMessageId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -100,7 +100,7 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Source Field</mat-label>
+                                    <mat-label>Select Source Field </mat-label>
                                     <mat-select formControlName="sourceFieldId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -118,7 +118,7 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Destination Field</mat-label>
+                                    <mat-label>Select Destination Field </mat-label>
                                     <mat-select formControlName="destinationFieldId">
                                         <!-- <mat-select placeholder="Institution" > -->
                                         <mat-option [value]="1">
@@ -136,10 +136,10 @@
                             <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>Internal Tag Name</mat-label>
+                                    <mat-label>Internal Tag Name </mat-label>
                                     <input matInput placeholder="First Name*" formControlName="internalTag">
                                     <mat-error>
-                                        <small>Required</small>
+                                        <small>{{fieldErrors("internalTag")}}</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
