@@ -15,14 +15,14 @@ export class AddEndpointDetailsComponent {
   endpointList: any[] = [];
   lstHeader: any = [];
   lstClient: any = [];
-   isTlsEnabled:any
-   authType:any
+  isTlsEnabled: any
+  authType: any
 
   form = new FormGroup({
 
 
     endPointDetails: this.fb.group({
-      urlEnpoint: new FormControl('',[
+      urlEnpoint: new FormControl('', [
         Validators.required,
         Validators.maxLength(999),
         Validators.pattern(
@@ -31,7 +31,7 @@ export class AddEndpointDetailsComponent {
       ]),
 
 
-      connectionTimeout: new FormControl('',[
+      connectionTimeout: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\d+$/),
         Validators.max(2)
@@ -40,11 +40,11 @@ export class AddEndpointDetailsComponent {
       tlsVersion: new FormControl(''),
       certPath: new FormControl(''),
       keyFilePath: new FormControl(''),
-      isClient: new FormControl('',[
+      isClient: new FormControl('', [
         Validators.required,
-  
+
       ]),
-      authtype: new FormControl(''),
+      authtype: new FormControl('', [Validators.required]),
       username: new FormControl(''),
       password: new FormControl(''),
 
@@ -80,13 +80,13 @@ export class AddEndpointDetailsComponent {
 
   onSubmit() {
     if (this.form.valid) {
-    
-    let obj = this.form.getRawValue()
-    obj.endPointDetails.header = this.lstHeader;   // Assign lstHeader correctly
-    obj.endPointDetails.client = this.lstClient;
-    console.log('obj ====>', obj);
 
-       console.log('API PAYLOAD');
+      let obj = this.form.getRawValue()
+      obj.endPointDetails.header = this.lstHeader;   // Assign lstHeader correctly
+      obj.endPointDetails.client = this.lstClient;
+      console.log('obj ====>', obj);
+
+      console.log('API PAYLOAD');
       this.formSubmitted.emit(); // Notify parent
     }
   }
@@ -102,24 +102,31 @@ export class AddEndpointDetailsComponent {
   }
 
   onChangeTLS() {
-   // const tlsControl = this.form.get('endPointDetails.tlsVersion');
+    // const tlsControl = this.form.get('endPointDetails.tlsVersion');
     this.isTlsEnabled = this.form.get('endPointDetails.isTls')?.value;
 
-   /*  if (isTlsEnabled) {
-      tlsControl?.setValidators([Validators.required]);
+    if (this.isTlsEnabled) {
+      this.form.get('endPointDetails.tlsVersion')?.setValidators([Validators.required]);
+      this.form.get('endPointDetails.keyFilePath')?.setValidators([Validators.required]);
+      this.form.get('endPointDetails.certPath')?.setValidators([Validators.required]);
     } else {
-      tlsControl?.clearValidators();
-      tlsControl?.reset();
+      this.form.get('endPointDetails.tlsVersion')?.reset();
+      this.form.get('endPointDetails.tlsVersion')?.clearValidators();
+      this.form.get('endPointDetails.keyFilePath')?.reset();
+      this.form.get('endPointDetails.keyFilePath')?.clearValidators();
+      this.form.get('endPointDetails.certPath')?.reset();
+      this.form.get('endPointDetails.certPath')?.clearValidators();
+
     }
 
-    tlsControl?.updateValueAndValidity(); */
+    this.form.updateValueAndValidity();
   }
 
-  onAuthTypeSelection(){
-this.authType =this.form.get('endPointDetails.authtype')?.value;
+  onAuthTypeSelection() {
+    this.authType = this.form.get('endPointDetails.authtype')?.value;
   }
   addEndpoint() {
-    
+
     if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
       return this.util.failureSnackbar('At least one Header or Ip is required.');
     }
@@ -157,21 +164,21 @@ this.authType =this.form.get('endPointDetails.authtype')?.value;
   // Remove a header FormGroup from the headers FormArray
   addHeader() {
     console.log('this.objHeader', this.objHeader);
-    
-   
+
+
     let headerForm = this.objHeader;
-   
+
     // Get values from form fields
     let headerKey = headerForm.controls['headerKey'].value?.trim();
     let headerValue = headerForm.controls['headerValue'].value?.trim();
     let headerSequence = headerForm.controls['headerSequence'].value?.trim();
 
 
-      if (!headerKey || !headerValue || !headerSequence) {
-        console.log('headerForm.controls ==>', headerForm.controls);
-        return this.util.failureSnackbar('At least one Header or IP is required.');
-      }
-    
+    if (!headerKey || !headerValue || !headerSequence) {
+      console.log('headerForm.controls ==>', headerForm.controls);
+      return this.util.failureSnackbar('At least one Header or IP is required.');
+    }
+
     // Check for duplicates
     const isDuplicate = this.lstHeader.some(
       (header: any) =>
@@ -233,60 +240,60 @@ this.authType =this.form.get('endPointDetails.authtype')?.value;
      // Remove the IP from the array
      this.whiteListIps.setValue(this.whiteListIps.value.filter((item: string) => item !== ip));
    } */
-  /*  removeHeader(recId: number) {
-     this.lstHeader = this.lstHeader.filter((header) => header.RecId !== recId);
+   removeHeader(headerSequence: number) {
+     this.lstHeader = this.lstHeader.filter((header:any) => header.headerSequence !== headerSequence);
    }
-*/
 
 
-fieldErrors(controller: string) {
-  let error = '';
+
+  fieldErrors(controller: string) {
+    let error = '';
 
 
-  // Ensure this.form is defined and is an instance of FormGroup
-  // if (this.form instanceof FormGroup && this.form.controls[controller]) {
-  let control = this.form.get(`endPointDetails.${controller}`)
+    // Ensure this.form is defined and is an instance of FormGroup
+    // if (this.form instanceof FormGroup && this.form.controls[controller]) {
+    let control = this.form.get(`endPointDetails.${controller}`)
 
-  if (control) {
-    if (control.hasError('required')) {
-      error = this.util.ValidationText('required');
-    } else if (control.hasError('email')) {
-      error = this.util.ValidationText('email');
-    } else if (control.hasError('max')) {
-      if (controller === 'connectionTimeout') {
-        error = 'Maximum length of connection timeout is 99';
-      }
-      if (controller === 'subStringLength') {
-        error = 'Maximum length of substring length is 99';
+    if (control) {
+      if (control.hasError('required')) {
+        error = this.util.ValidationText('required');
+      } else if (control.hasError('email')) {
+        error = this.util.ValidationText('email');
+      } else if (control.hasError('max')) {
+        if (controller === 'connectionTimeout') {
+          error = 'Maximum length of connection timeout is 99';
+        }
+        if (controller === 'subStringLength') {
+          error = 'Maximum length of substring length is 99';
 
+        }
+      } else if (control.hasError('maxlength')) {
+        if (controller === 'fieldTagName') {
+          error = 'Maximum length of field tag name is 50';
+        }
+        if (controller === 'channelIndentifier') {
+          error = 'Maximum length of channel indentifier is 4';
+        }
+        if (controller === 'bin') {
+          error = 'Maximum length of bin is 6';
+        }
+      } else if (control.hasError('pattern')) {
+        if (controller === 'fieldTagName') {
+          error = 'Only alphanumeric values are allowed';
+        }
+        if (controller === 'connectionTimeout') {
+          error = 'Only numbers are allowed';
+        }
+        if (controller === 'subStringLength') {
+          error = 'Only numbers are allowed';
+        }
+      } else if (control.hasError('cannotContainLeadingSpace')) {
+        error = this.util.ValidationText('cannotContainLeadingSpace');
+      } else if (control.hasError('cannotContainTrailingSpace')) {
+        error = this.util.ValidationText('cannotContainTrailingSpace');
       }
-    } else if (control.hasError('maxlength')) {
-      if (controller === 'fieldTagName') {
-        error = 'Maximum length of field tag name is 50';
-      }
-      if (controller === 'channelIndentifier') {
-        error = 'Maximum length of channel indentifier is 4';
-      }
-      if (controller === 'bin') {
-        error = 'Maximum length of bin is 6';
-      }
-    } else if (control.hasError('pattern')) {
-      if (controller === 'fieldTagName') {
-        error = 'Only alphanumeric values are allowed';
-      }
-      if (controller === 'connectionTimeout') {
-        error = 'Only numbers are allowed';
-      }
-      if (controller === 'subStringLength') {
-        error = 'Only numbers are allowed';
-      }
-    } else if (control.hasError('cannotContainLeadingSpace')) {
-      error = this.util.ValidationText('cannotContainLeadingSpace');
-    } else if (control.hasError('cannotContainTrailingSpace')) {
-      error = this.util.ValidationText('cannotContainTrailingSpace');
     }
+    return error;
   }
-  return error;
-}
 }
 

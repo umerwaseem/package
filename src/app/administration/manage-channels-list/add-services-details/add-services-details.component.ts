@@ -55,8 +55,9 @@ this.onChangeAutoCreateService()
 
   onChangeAutoCreateService(){
     if(this.form.controls.isAutoCreateService.value ){
-      this.channelServiceList= [{serviceTypeId: 'TCP/IP', node: 1},{serviceTypeId: 'SOAP/REST', node: 1}]
-    }
+      this.channelServiceList = [{ serviceTypeId: 'TCP/IP', node: 'TCP node' }, { serviceTypeId: 'SOAP/REST', node: 'TCP node' }]
+
+     }
     else{
       this.channelServiceList=[]
     }

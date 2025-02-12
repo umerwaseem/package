@@ -49,7 +49,7 @@ export class AddQueuesDetailsComponent {
   onChangeAutoQueue() {
     this.autoQueue = this.form.controls.isAutoQueue.value
     if (this.form.controls.isAutoQueue.value) {
-      this.channelQueueList = [{ serviceTypeId: 'TCP/IP', node: 1 }, { serviceTypeId: 'SOAP/REST', node: 1 }]
+      this.channelQueueList = [{ serviceTypeId: 'TCP/IP', queueName: 'TCP Queue' }, { serviceTypeId: 'SOAP/REST', queueName: 'TCP Queue' }]
     }
     else {
       this.channelQueueList = []

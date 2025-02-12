@@ -11,8 +11,8 @@
                             <div class="col-md-4">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>Url Endpoint</mat-label>
-                                    <input matInput placeholder="Enter Url Endpoint*" formControlName="urlEnpoint">
+                                    <mat-label>Url Endpoint </mat-label>
+                                    <input matInput placeholder="Enter Url Endpoint " formControlName="urlEnpoint">
                                     <mat-error>
                                         <small>{{fieldErrors("urlEnpoint")}}</small>
                                     </mat-error>
@@ -21,8 +21,8 @@
                             <div class="col-md-4">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>Connection Timeout</mat-label>
-                                    <input matInput placeholder="Enter Connection Timeout*"
+                                    <mat-label>Connection Timeout </mat-label>
+                                    <input matInput placeholder="Enter Connection Timeout "
                                         formControlName="connectionTimeout">
                                     <mat-error>
                                         <small>{{fieldErrors("connectionTimeout")}}</small>
@@ -31,18 +31,18 @@
                             </div>
 
                             <div class="col-md-4 ">
-                                <mat-radio-group aria-label="Select an option" formControlName="isClient"
+                                <mat-radio-group aria-label="Select an option " formControlName="isClient"
                                     (change)="onChangeClient()">
                                     <mat-radio-button value="Client"
                                         (change)="onChangeClient()">Client</mat-radio-button>
                                     <mat-radio-button value="Server"
                                         (change)="onChangeServer()">Server</mat-radio-button>
 
-                                    <mat-error>
-                                        <small>{{fieldErrors("isClient")}}</small>
-                                    </mat-error>
-                                </mat-radio-group>
 
+                                </mat-radio-group>
+                                <mat-error *ngIf="form.get('endPointDetails.isClient')?.invalid">
+                                    <small>{{ fieldErrors("isClient") }}</small>
+                                </mat-error>
                                 <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
                            -->
                             </div>
@@ -63,8 +63,8 @@
                                 <div class="col-md-2 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class=" custom-size-form-field ">
-                                        <mat-label>TLS Version</mat-label>
-                                        <mat-select formControlName="tlsVersion">
+                                        <mat-label>TLS Version </mat-label>
+                                        <mat-select placeholder="Select TLS Version " formControlName="tlsVersion">
                                             <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                             <mat-option [value]="1">
                                                 1
@@ -73,6 +73,9 @@
                                                 1
                                             </mat-option>
                                         </mat-select>
+                                        <mat-error>
+                                            <small>Required</small>
+                                        </mat-error>
                                     </mat-form-field>
                                 </div>
 
@@ -81,10 +84,10 @@
                                 <div class="col-md-4 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Cert Path</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="certPath">
+                                        <mat-label>Cert Path </mat-label>
+                                        <input matInput placeholder="Enter Cert Path " formControlName="certPath">
                                         <mat-error>
-                                            <small>Required</small>
+                                            <small>{{fieldErrors("certPath")}}</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
@@ -92,10 +95,10 @@
                                 <div class="col-md-4 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Key File Path</mat-label>
-                                        <input matInput placeholder="keyFilePath*" formControlName="keyFilePath">
+                                        <mat-label>Key File Path </mat-label>
+                                        <input matInput placeholder="keyFilePath " formControlName="keyFilePath">
                                         <mat-error>
-                                            <small>Required</small>
+                                            <small>{{fieldErrors("keyFilePath")}}</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
@@ -113,15 +116,18 @@
                                     <mat-label>Auth Type</mat-label>
                                     <mat-select formControlName="authtype" (selectionChange)="onAuthTypeSelection()">
                                         <mat-option value="basicAuth">
-                                            basicAuth
+                                            Basic Authentication
                                         </mat-option>
                                         <mat-option value="token">
-                                            token
+                                            Token
                                         </mat-option>
                                         <mat-option value="noAuth">
-                                            noAuth
+                                            No Authentication
                                         </mat-option>
                                     </mat-select>
+                                    <mat-error>
+                                        <small>Required</small>
+                                    </mat-error>
                                 </mat-form-field>
                             </div>
 
@@ -201,19 +207,19 @@
                                 <thead>
                                     <tr>
                                         <th>Action</th>
-                                        <th>S.No</th>
-                                        <th style="width: 400px;">KEY</th>
-                                        <th>VALUE</th>
+                                        <th>Sequence</th>
+                                        <th>Key</th>
+                                        <th style="width: 400px;">Value</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let record of lstHeader; let i = index">
                                         <td>
-                                            <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
+                                            <span class="mx-2 pointer" (click)="removeHeader(record)">
                                                 <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                             </span>
                                         </td>
-                                        <td>{{i + 1}}</td>
+                                        <td>{{record.headerSequence || "--"}}</td>
                                         <td>{{record.headerKey || "--"}}</td>
                                         <td>{{record.headerValue || "--"}}</td>
                                     </tr>
@@ -253,9 +259,8 @@
                                 <thead>
                                     <tr>
                                         <th>Action</th>
-                                        <th>S.No</th>
-                                        <th style="width: 400px;">KEY</th>
-                                        <th>VALUE</th>
+                                  
+                                        <th>WhiteList IPs</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -265,9 +270,9 @@
                                                 <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                             </span>
                                         </td>
-                                        <td>{{i + 1}}</td>
-                                        <td>{{record.headerKey || "--"}}</td>
-                                        <td>{{record.headerValue || "--"}}</td>
+                             
+                                        <td>{{record.whiteListIps || "--"}}</td>
+                      
                                     </tr>
 
                                     <tr *ngIf="lstClient.length == 0">
@@ -295,7 +300,7 @@
 
                         </div>
                     </div>
-                    
+
                 </form>
                 <div class="row mx-3 " *ngIf="endpointList.length > 0">
                     <h4 class="mx-4"><b>Endpoints</b></h4>
@@ -305,49 +310,20 @@
                             <tr>
                                 <th><small>
 
-                                        sequence
+                                        Channel Endpoint
                                     </small>
                                 </th>
                                 <th><small>
 
-                                        channel
+                                        Endpoint Mode
                                     </small>
                                 </th>
                                 <th><small>
 
-                                        source Channel
+                                        Auth Type
                                     </small>
                                 </th>
-                                <th><small>
 
-                                        destination Channel
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        1st Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        2nd Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        3rd Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Queue
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Adaptar
-                                    </small>
-                                </th>
                                 <th><small>
 
                                         Actions
@@ -358,20 +334,13 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let record of endpointList; let i = index">
-                                <td>{{record.sequence || "--"}}</td>
-                                <td>{{record.channelId || "--"}}</td>
-                                <td>{{record.sourceChannelId || "--"}}</td>
-                                <td>{{record.destinationChannelId || "--"}}</td>
-                                <td>{{record.firstIdentifier || "--"}}</td>
-                                <td>{{record.secondIdentifier || "--"}}</td>
-                                <td>{{record.thirdIdentifier || "--"}}</td>
-                                <td>{{record.destinationQueueId || "--"}}</td>
-                                <td>{{record.destinationAdaptarId || "--"}}</td>
+                                <td>{{record.urlEnpoint || "--"}}</td>
+                                <td>{{record.isClient || "--"}}</td>
+                                <td>{{record.authtype || "--"}}</td>
+
 
                                 <td>
-                                    <button mat-icon-button color="primary" (click)="editMessageRouting(i)">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
+
                                     <button mat-icon-button color="warn" (click)="removeMessageRouting(i)">
                                         <mat-icon>delete</mat-icon>
                                     </button>

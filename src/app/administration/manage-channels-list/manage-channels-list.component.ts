@@ -13,7 +13,8 @@ import { ApiService } from '../../../services/api.service';
 })
 export class ManageChannelsListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  dataSource = new MatTableDataSource<any>(); // Data source for the table
+  //dataSource = new MatTableDataSource<any>(); // Data source for the table
+    dataSource = new MatTableDataSource(ELEMENT_DATA);
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   networkGroupId: any
@@ -115,4 +116,104 @@ export class ManageChannelsListComponent {
 
 /*     { label: 'Tags' } */
   ];
+
+
 }
+
+const ELEMENT_DATA = [
+  {
+    "ResponseCode": "00",
+    "Data": [
+        {
+            "value": 15,
+            "strValue": null,
+            "text": "Mastercard",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 33,
+            "strValue": null,
+            "text": "VISA",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 37,
+            "strValue": null,
+            "text": "Stripe",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 38,
+            "strValue": null,
+            "text": "Host network",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 39,
+            "strValue": null,
+            "text": "Paypal",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 60,
+            "strValue": null,
+            "text": "network test license",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 66,
+            "strValue": null,
+            "text": "network",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 68,
+            "strValue": null,
+            "text": "network to test",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        },
+        {
+            "value": 78,
+            "strValue": null,
+            "text": "StripeForPayoutFile",
+            "attr1": null,
+            "attr2": null,
+            "institutionId": null,
+            "fileType": null,
+            "useCase": null
+        }
+    ]
+}
+];

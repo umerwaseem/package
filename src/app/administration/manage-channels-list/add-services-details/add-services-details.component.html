@@ -188,49 +188,15 @@
                             <tr>
                                 <th><small>
 
-                                        sequence
-                                    </small>
-                                </th>
-                                <th><small>
+                                    Service Type
+                                </small>
+                            </th>
+                            <th><small>
 
-                                        channel
-                                    </small>
-                                </th>
-                                <th><small>
+                                    Node
+                                </small>
+                            </th>
 
-                                        source Channel
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Channel
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        1st Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        2nd Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        3rd Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Queue
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Adaptar
-                                    </small>
-                                </th>
                                 <th><small>
 
                                         Actions
@@ -241,16 +207,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let record of channelServiceList; let i = index">
-                                <td>{{record.sequence || "--"}}</td>
-                                <td>{{record.channelId || "--"}}</td>
-                                <td>{{record.sourceChannelId || "--"}}</td>
-                                <td>{{record.destinationChannelId || "--"}}</td>
-                                <td>{{record.firstIdentifier || "--"}}</td>
-                                <td>{{record.secondIdentifier || "--"}}</td>
-                                <td>{{record.thirdIdentifier || "--"}}</td>
-                                <td>{{record.destinationQueueId || "--"}}</td>
-                                <td>{{record.destinationAdaptarId || "--"}}</td>
-
+                                <td>{{record.serviceTypeId || "--"}}</td>
+                                <td>{{record.node || "--"}}</td>
                                 <td>
                                     <button mat-icon-button color="primary" (click)="editChannelService(i)">
                                         <mat-icon>edit</mat-icon>

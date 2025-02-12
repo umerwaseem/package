@@ -57,7 +57,7 @@ export class AddCustomFieldDetailsComponent {
     this.form.get('customFieldsDetails.conditionId')?.setValue('')
     this.isCondition = this.form.get('customFieldsDetails.isConditional')?.value;
 
-    if (this.isCondition == this.appConstants.channelType.bankingChannel.value) {
+    if (this.isCondition) {
 
       this.form.get('customFieldsDetails.conditionId')?.setValidators([Validators.required]);
     } else {
