@@ -12,7 +12,7 @@ import { UtilityService } from '../../../../services/utility.service';
 export class AddEndpointDetailsComponent {
   @Output() formSubmitted = new EventEmitter<void>();
   editIndex: number | null = null;
-  endpointList: any[] = [];
+  endpointList: any = [];
   lstHeader: any = [];
   lstClient: any = [];
   isTlsEnabled: any
@@ -22,7 +22,7 @@ export class AddEndpointDetailsComponent {
 
 
     endPointDetails: this.fb.group({
-      urlEnpoint: new FormControl('', [
+      urlEnpoint: new FormControl('https://abc.com', [
         Validators.required,
         Validators.maxLength(999),
         Validators.pattern(
@@ -79,16 +79,16 @@ export class AddEndpointDetailsComponent {
 
 
   onSubmit() {
-    if (this.form.valid) {
-
-      let obj = this.form.getRawValue()
-      obj.endPointDetails.header = this.lstHeader;   // Assign lstHeader correctly
-      obj.endPointDetails.client = this.lstClient;
-      console.log('obj ====>', obj);
-
-      console.log('API PAYLOAD');
-      this.formSubmitted.emit(); // Notify parent
+    
+    if (this.endpointList.length === 0) {
+      this.util.failureSnackbar('At least one header or IP is required.');
     }
+
+    let obj = this.form.getRawValue()
+    console.log('obj', obj)
+    obj.endPointDetails = this.endpointList
+
+    console.log('endpointList', this.endpointList)
   }
   onChangeServer() {
     this.lstClient = []
@@ -126,7 +126,10 @@ export class AddEndpointDetailsComponent {
     this.authType = this.form.get('endPointDetails.authtype')?.value;
   }
   addEndpoint() {
-
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
     if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
       return this.util.failureSnackbar('At least one Header or Ip is required.');
     }

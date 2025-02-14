@@ -31,7 +31,7 @@ export class AddQueuesDetailsComponent {
   }
   onSubmit() {
     if (this.channelQueueList.length === 0) {
-      this.util.failureSnackbar('At least one field mapping is required.');
+      this.util.failureSnackbar('At least one channel queue is required.');
     }
 
     let obj = this.form.getRawValue()

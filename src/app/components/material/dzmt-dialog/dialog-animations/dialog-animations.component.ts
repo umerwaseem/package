@@ -22,7 +22,7 @@ export class DialogAnimationsComponent {
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
     this.dialog.open(DialogAnimationsExampleDialog, {
-      width: '250px',
+      width: '1250px',
       enterAnimationDuration,
       exitAnimationDuration,
     });

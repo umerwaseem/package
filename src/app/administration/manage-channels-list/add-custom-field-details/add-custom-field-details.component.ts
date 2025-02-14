@@ -45,10 +45,15 @@ export class AddCustomFieldDetailsComponent {
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      console.log('API PAYLOAD');
-      // this.formSubmitted.emit(); // Notify parent
+    if (this.customFieldsList.length === 0) {
+      this.util.failureSnackbar('At least one custom field is required.');
     }
+
+    let obj = this.form.getRawValue()
+    console.log('obj', obj)
+    obj.customFieldsDetails = this.customFieldsList
+
+    console.log('customFieldsList', this.customFieldsList)
   }
 
 

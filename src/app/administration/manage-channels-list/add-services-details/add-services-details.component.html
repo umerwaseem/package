@@ -174,7 +174,12 @@
                                 <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
                                 HTTP Headers</button>
 -->
-                                <mat-icon color="primary" (click)="addChannelService()">add_box</mat-icon>
+            
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addChannelService()">Add
+                                    Channel Queue</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit" style="background-color: #007F5F;">Next</button>
 
                             </div>
 
@@ -208,7 +213,7 @@
                         <tbody>
                             <tr *ngFor="let record of channelServiceList; let i = index">
                                 <td>{{record.serviceTypeId || "--"}}</td>
-                                <td>{{record.node || "--"}}</td>
+                                <td>{{record.nodeId || "--"}}</td>
                                 <td>
                                     <button mat-icon-button color="primary" (click)="editChannelService(i)">
                                         <mat-icon>edit</mat-icon>

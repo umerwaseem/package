@@ -39,7 +39,7 @@ export class AddMessageRoutingDetailsComponent {
   }
   onSubmit() {
     if (this.messageRoutingList.length == 0) {
-      this.util.failureSnackbar('Atleast 1')
+      this.util.failureSnackbar('Atleast 1 message routing is required.')
     }
     let obj=this.form.getRawValue()
     obj.messageRoutingDetails = this.messageRoutingList

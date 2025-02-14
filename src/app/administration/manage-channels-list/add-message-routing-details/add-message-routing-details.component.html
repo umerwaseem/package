@@ -131,13 +131,14 @@
                             <div class="col-md-2">
                                 <!-- <button mat-flat-button color="primary" class="rounded-3" >Add
                                     Channel</button> -->
-                                <mat-icon color="primary" type="button"
-                                    (click)="addMessageRouting()">control_point</mat-icon>
+                         
+                                    <button mat-flat-button color="primary" class="rounded-3" type="submit"     (click)="addMessageRouting()">Add
+                                        Message Routing</button>
                             </div>
 
                             <div class="col-md-2">
-                                <button mat-flat-button color="primary" class="rounded-3" type="submit">Add
-                                    Message Routing</button>
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit" style="background-color: #007F5F;">Next</button>
+
 
                             </div>
                         </div>
@@ -171,19 +172,10 @@
                                 </th>
                                 <th><small>
 
-                                        1st Identifier
+                                    Identifier Field Names
                                     </small>
                                 </th>
-                                <th><small>
-
-                                        2nd Identifier
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        3rd Identifier
-                                    </small>
-                                </th>
+                              
                                 <th><small>
 
                                         destination Queue
@@ -208,9 +200,8 @@
                                 <td>{{record.channelId || "--"}}</td>
                                 <td>{{record.sourceChannelId || "--"}}</td>
                                 <td>{{record.destinationChannelId || "--"}}</td>
-                                <td>{{record.firstIdentifier || "--"}}</td>
-                                <td>{{record.secondIdentifier || "--"}}</td>
-                                <td>{{record.thirdIdentifier || "--"}}</td>
+                                <td>{{record.firstIdentifier + record.secondIdentifier + record.thirdIdentifier || "--"}}</td>
+                             
                                 <td>{{record.destinationQueueId || "--"}}</td>
                                 <td>{{record.destinationAdaptarId || "--"}}</td>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../../services/api.service';
 import { UtilityService } from '../../../../services/utility.service';
 
@@ -14,21 +14,21 @@ export class AddServicesDetailsComponent {
 
   editIndex: number | null = null;
   form = new FormGroup({
-    isAutoCreateService: new FormControl(true),
+    isAutoCreateService: new FormControl(false),
     channelServiceDetails: this.fb.group({
-      serviceTypeId: new FormControl(''),
-      nodeId: new FormControl(''),
+      serviceTypeId: new FormControl('',[Validators.required]),
+      nodeId: new FormControl('',[Validators.required]),
 
-      readQueue: new FormControl(''),
+      readQueue: new FormControl('',[Validators.required]),
       writeQueue: new FormControl(''),
-      serviceFilePath: new FormControl(''),
+      serviceFilePath: new FormControl('',[Validators.required]),
 
       listeningIp: new FormControl(''),
       soapDirectory: new FormControl(''),
       soapEnvelop: new FormControl(''),
-      logFileName: new FormControl(''),
+      logFileName: new FormControl('',[Validators.required]),
       isAutoStart: new FormControl(''),
-      retryCount: new FormControl(''),
+      retryCount: new FormControl('',[Validators.required]),
 
 
       writeOutboundQueue: new FormControl(''),
@@ -42,7 +42,7 @@ this.onChangeAutoCreateService()
   }
   onSubmit() {
     if (this.channelServiceList.length === 0) {
-      this.util.failureSnackbar('At least one field mapping is required.');
+      this.util.failureSnackbar('At least one channel service is required.');
     }
 
     let obj = this.form.getRawValue()

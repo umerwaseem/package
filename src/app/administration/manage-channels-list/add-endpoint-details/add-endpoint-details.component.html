@@ -8,7 +8,7 @@
                     <ng-container formGroupName="endPointDetails">
                         <div class="row mx-2">
 
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Url Endpoint </mat-label>
@@ -18,7 +18,7 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-4 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Connection Timeout </mat-label>
@@ -30,7 +30,7 @@
                                 </mat-form-field>
                             </div>
 
-                            <div class="col-md-4 ">
+                            <div class="col-md-4 mb-3 ">
                                 <mat-radio-group aria-label="Select an option " formControlName="isClient"
                                     (change)="onChangeClient()">
                                     <mat-radio-button value="Client"
@@ -40,9 +40,12 @@
 
 
                                 </mat-radio-group>
-                                <mat-error *ngIf="form.get('endPointDetails.isClient')?.invalid">
-                                    <small>{{ fieldErrors("isClient") }}</small>
-                                </mat-error>
+                                <div *ngIf="form.get('endPointDetails.isClient')?.invalid 
+                                && form.get('endPointDetails.isClient')?.touched" class="text-danger"
+                                    style="font-size: 11px;">
+                                    Required
+                                </div>
+
                                 <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
                            -->
                             </div>
@@ -193,8 +196,9 @@
                                 </div>
                                 <div class="col-md-3   d-flex align-items-center">
 
-
-                                    <mat-icon color="primary" type="button" (click)="addHeader()">add_box</mat-icon>
+                                    <button mat-flat-button color="primary" class="rounded-3" type="button"
+                                    (click)="addHeader()">Add Header</button>
+                                   
                                 </div>
                             </ng-container>
 
@@ -246,9 +250,10 @@
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3   d-flex align-items-center">
+                                    <button mat-flat-button color="primary" class="rounded-3" type="button"
+                                    (click)="addIp()">Add IP</button>
 
-
-                                    <mat-icon color="primary" type="button" (click)="addIp()">add_box</mat-icon>
+                              
                                 </div>
                             </ng-container>
                         </div>
@@ -259,7 +264,7 @@
                                 <thead>
                                     <tr>
                                         <th>Action</th>
-                                  
+
                                         <th>WhiteList IPs</th>
                                     </tr>
                                 </thead>
@@ -270,9 +275,9 @@
                                                 <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                             </span>
                                         </td>
-                             
+
                                         <td>{{record.whiteListIps || "--"}}</td>
-                      
+
                                     </tr>
 
                                     <tr *ngIf="lstClient.length == 0">
@@ -288,15 +293,14 @@
 
                         <div class="col-md-2">
                             <button mat-flat-button color="primary" class="rounded-3" type="button"
-                                (click)="addEndpoint()">Add
-                                Endpoint</button>
+                                (click)="addEndpoint()">Add Endpoint</button>
 
                         </div>
 
 
                         <div class="col-md-2">
                             <button mat-flat-button style="background-color: #007F5F;" class="rounded-3 mat-accent"
-                                type="submit">ADD</button>
+                                type="submit">Next</button>
 
                         </div>
                     </div>

@@ -1,0 +1,483 @@
+<div class="row">
+    <div class="col-xxl-12">
+        <div class="card shadow-none">
+            <!--  <div class="card-header d-block pt-3 pb-1">
+    <h5 class="mb-2"><b>Custom Fields</b></h5>
+</div> -->
+            <div class="card-body px-0">
+                <form [formGroup]="fieldDefinitionForm" (ngSubmit)="onSubmit()"
+                    class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <h4 class="mx-4"><b>Create Field Definition</b></h4>
+
+                    <ng-container formGroupName="fieldDefinitionDetails">
+
+                        <div class="row  mx-2">
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Sequence </mat-label>
+                                    <input matInput placeholder="Enter Field Sequence " formControlName="fieldSequence">
+                                    <mat-error>
+                                        <small> {{fieldErrors("fieldSequence")}}</small>
+
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Name </mat-label>
+                                    <input matInput placeholder="Enter Field Name" formControlName="fieldName">
+                                    <mat-error>
+                                        <small> {{fieldErrors("fieldName")}}</small>
+
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class="custom-size-form-field">
+                                    <mat-label>Field Description </mat-label>
+                                    <input matInput placeholder="Enter Field Description "
+                                        formControlName="fieldDescription">
+                                    <mat-error>
+                                        <small> {{fieldErrors("fieldDescription")}}</small>
+
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+                            <div class="col-md-2 mb-3">
+                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    class=" custom-size-form-field ">
+                                    <mat-label>Internal Tag Name </mat-label>
+                                    <mat-select placeholder="Select Internal Tag Name"
+                                        formControlName="internalTagName">
+                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                        <mat-option [value]="1">
+                                            1
+                                        </mat-option>
+                                    </mat-select>
+                                    <mat-error>
+                                        <small> {{fieldErrors("internalTagName")}}</small>
+
+                                    </mat-error>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isRoutingField">isRoutingField
+                                </mat-checkbox>
+                            </div>
+
+
+                        </div>
+                        <div class="row  mx-2">
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isIdentifier">Identifier
+                                </mat-checkbox>
+                            </div>
+                            <div class="col-md-2 mb-3 ">
+                                <mat-checkbox class="example-margin" formControlName="isMandatory">Mandatory
+                                </mat-checkbox>
+                            </div>
+
+
+                            <div class="col-md-2  mb-3  d-flex align-items-center">
+                                <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
+                                                    HTTP Headers</button>
+-->
+   
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addFieldDefinition()">Add
+                                    Channel</button>
+                            </div>
+                            <div class="col-md-3">
+                            
+                                    <div class="col-md-6">
+                                        <button mat-flat-button color="primary" class="rounded-3" type="submit" style="background-color: #007F5F;">Next</button>
+        
+                                    </div>
+        
+                            </div>
+                        </div>
+                        <div class="row mb-3 mx-2">
+                            <mat-accordion class="example-headers-align" multi>
+                                <!-- DB Configuration Pooling -->
+                                <mat-expansion-panel [expanded]="false" hideToggle>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>
+                                            <h4><b>Advance Config</b></h4>
+                                        </mat-panel-title>
+                                    </mat-expansion-panel-header>
+                                    <div class="row mb-3">
+                                        <div class="col-md-3">
+                                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                class="custom-size-form-field">
+                                                <mat-label>incomingTransformation </mat-label>
+                                                <mat-select placeholder="Institution"
+                                                    formControlName="incomingTransformation">
+                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-option [value]="1">
+                                                        1
+                                                    </mat-option>
+                                                    <mat-option [value]="1">
+                                                        1
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                class="custom-size-form-field">
+                                                <mat-label>outgoingTransformation </mat-label>
+                                                <mat-select placeholder="Institution"
+                                                    formControlName="outgoingTransformation">
+                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-option [value]="1">
+                                                        1
+                                                    </mat-option>
+                                                    <mat-option [value]="1">
+                                                        1
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                class="custom-size-form-field">
+                                                <mat-label>Masking </mat-label>
+
+                                                <mat-select placeholder="Institution" formControlName="masking">
+                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-option value="fullMask">
+                                                        full Mask
+                                                    </mat-option>
+                                                    <mat-option value="partialMask">
+                                                        partial Mask
+                                                    </mat-option>
+                                                    <mat-option value="customMask">
+                                                        custom Mask
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-3"
+                                            *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.masking')?.value == 'customMask'">
+                                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                class="custom-size-form-field">
+                                                <mat-label>Custom Mask </mat-label>
+                                                <input matInput placeholder="Enter Custom Mask*"
+                                                    formControlName="customMask">
+                                                <mat-error>
+                                                    <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+
+                                    <ng-container *ngIf="this.randomString == 0">
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>parentTag </mat-label>
+                                                    <mat-select placeholder="Institution" formControlName="parentTag">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-checkbox class="example-margin"
+                                                    formControlName="isRepeatBlock">isRepeatBlock
+
+                                                </mat-checkbox>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isRepeatBlock')?.value">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>Min Repeat Count </mat-label>
+                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                        formControlName="minRepeatCount">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isRepeatBlock')?.value">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>Max Repeat Count </mat-label>
+                                                    <input matInput placeholder="Enter Custom Mask*"
+                                                        formControlName="maxRepeatCount">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>nameSpaceAlias </mat-label>
+                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                        formControlName="nameSpaceAlias">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+
+
+                                    <ng-container *ngIf="this.randomString == 1">
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>lengthtype </mat-label>
+                                                    <mat-select placeholder="Institution" formControlName="lengthType">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option value="fixedLength">
+                                                            fixedLength
+                                                        </mat-option>
+                                                        <mat-option value="metaLength">
+                                                            metaLength
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
+
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>fixedLength </mat-label>
+                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                        formControlName="fixedLength">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'metaLength'">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>metaLengthType </mat-label>
+                                                    <mat-select placeholder="Institution"
+                                                        formControlName="metaLengthType">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'metaLength'">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>metaLength </mat-label>
+                                                    <mat-select placeholder="Institution" formControlName="metaLength">
+
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field"
+                                                    *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
+                                                    <mat-label>trim </mat-label>
+                                                    <mat-select placeholder="Institution" formControlName="trim">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-checkbox class="example-margin" formControlName="padding"
+                                                    *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
+                                                    isPadding
+                                                </mat-checkbox>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.value">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>Padding Value </mat-label>
+                                                    <input matInput placeholder="First Name*"
+                                                        formControlName="paddingValue">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.value">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>alignment </mat-label>
+                                                    <mat-select placeholder="Institution" formControlName="alignment">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-md-3">
+                                                <mat-checkbox class="example-margin" formControlName="isBitMap">isBitMap
+
+                                                </mat-checkbox>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <mat-checkbox class="example-margin"
+                                                    formControlName="isBitMapped">isBitMapped
+
+                                                </mat-checkbox>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isBitMapped')?.value ">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>bitmapFieldName </mat-label>
+                                                    <mat-select placeholder="Institution"
+                                                        formControlName="bitmapFieldName">
+                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                        <mat-option [value]="1">
+                                                            1
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col-md-3"
+                                                *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isBitMapped')?.value ">
+                                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                    class="custom-size-form-field">
+                                                    <mat-label>bitmapBitNumber </mat-label>
+                                                    <input matInput placeholder="First Name*"
+                                                        formControlName="bitmapBitNumber">
+                                                    <mat-error>
+                                                        <small> {{fieldErrors("channelTimeout")}}</small>
+
+                                                    </mat-error>
+                                                </mat-form-field>
+                                            </div>
+
+
+                                        </div>
+                                        <div class="row mb-3">
+
+                                        </div>
+
+                                    </ng-container>
+
+
+                                </mat-expansion-panel>
+
+
+                            </mat-accordion>
+                        </div>
+                    </ng-container>
+                </form>
+                <div class="row mx-3 " *ngIf="fieldDefinitionList.length > 0">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><small>
+                                        fieldSequence</small>
+                                </th>
+                                <th><small>
+                                        fieldName</small>
+                                </th>
+                                <th><small>
+                                        internalTagName</small>
+                                </th>
+                                <th><small>
+                                        fieldDescription</small>
+                                </th>
+
+                                <th><small>
+
+                                        Actions
+                                    </small>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let record of fieldDefinitionList; let i = index">
+                                <td>{{record.fieldSequence || "--"}}</td>
+                                <td>{{record.fieldName || "--"}}</td>
+                                <td>{{record.internalTagName || "--"}}</td>
+                                <td>{{record.fieldDescription || "--"}}</td>
+
+                                <td>
+                                    <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
+                                        <mat-icon>edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button color="warn" (click)="removeFieldDefinition(i)">
+                                        <mat-icon>delete</mat-icon>
+                                    </button>
+                                </td>
+                            </tr>
+
+                            <tr *ngIf="fieldDefinitionList.length == 0">
+                                <td colspan="4">
+                                    <span>Data not found.</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

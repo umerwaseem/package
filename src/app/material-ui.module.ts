@@ -22,6 +22,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { MatStepperModule } from "@angular/material/stepper";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatTooltipModule } from "@angular/material/tooltip";
@@ -94,7 +95,12 @@ import { RouterLink } from "@angular/router";
       NgClass,
        MatMenuModule,
       MatButtonToggleModule,
-
+  MatButtonModule,
+    MatStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
      ]
   })
   export class MaterialUiModule { }

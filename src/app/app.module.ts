@@ -28,6 +28,7 @@ import { AddQueuesDetailsComponent } from "./administration/manage-channels-list
 import { AddServicesDetailsComponent } from "./administration/manage-channels-list/add-services-details/add-services-details.component";
 import { PreviewConfigurationComponent } from "./administration/manage-channels-list/preview-configuration/preview-configuration.component";
 import { AddMessageRoutingDetailsComponent } from "./administration/manage-channels-list/add-message-routing-details/add-message-routing-details.component";
+import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/add-field-definition/add-field-definition.component";
 
 
 @NgModule({
@@ -49,9 +50,10 @@ import { AddMessageRoutingDetailsComponent } from "./administration/manage-chann
         AddMessageInitializationDetailsComponent,
         AddProcessingRuleDetailsComponent,
         AddQueuesDetailsComponent,
-        AddServicesDetailsComponent,
+        AddServicesDetailsComponent, 
         PreviewConfigurationComponent,
-        AddMessageRoutingDetailsComponent
+        AddMessageRoutingDetailsComponent,
+        AddFieldDefinitionComponent,  
         /*   FullComponent,
   
         AdminComponent,
