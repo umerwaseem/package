@@ -16,18 +16,18 @@
                         <div class="col-md-4  mb-3">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
-                                <mat-label>Institution Name</mat-label>
-                                <input matInput placeholder="Institution Name*" formControlName="institutionName">
+                                <mat-label>Institution Name </mat-label>
+                                <input matInput placeholder="Enter Institution Name" formControlName="institutionName">
                                 <mat-error>
-                                    <small>Required</small>
+                                    <small>{{fieldErrors("institutionName")}}</small>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4  mb-3 ">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class=" custom-size-form-field">
-                                <mat-label>Status</mat-label>
-                                <mat-select placeholder="Status" formControlName="status">
+                                <mat-label>Status </mat-label>
+                                <mat-select placeholder="Select Status" formControlName="status">
 
                                     <mat-option [value]="1">
                                         1
@@ -37,7 +37,7 @@
                                     </mat-option>
                                 </mat-select>
                                 <mat-error>
-                                    <small>Required</small>
+                                    <small>{{fieldErrors("status")}}</small>
                                 </mat-error>
                             </mat-form-field>
 
@@ -52,21 +52,21 @@
                         <div class="col-md-4  mb-3">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
-                                <mat-label>Contact Person Name</mat-label>
-                                <input matInput placeholder="Contact Person Name*" formControlName="contactPersonName">
+                                <mat-label>Contact Person Name </mat-label>
+                                <input matInput placeholder="Enter Contact Person Name " formControlName="contactPersonName">
                                 <mat-error>
-                                    <small>Required</small>
+                                    <small>{{fieldErrors("contactPersonName")}}</small>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                         <div class="col-md-4  mb-3">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
-                                <mat-label>Contact Person Email</mat-label>
-                                <input matInput placeholder="Contact Person Email*"
+                                <mat-label>Contact Person Email </mat-label>
+                                <input matInput placeholder="Enter Contact Person Email "
                                     formControlName="contactPersonEmail">
                                 <mat-error>
-                                    <small>Required</small>
+                                    <small>{{fieldErrors("contactPersonEmail")}}</small>
                                 </mat-error>
                             </mat-form-field>
                         </div>

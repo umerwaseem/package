@@ -131,7 +131,7 @@ import { ManageInstitutionListComponent } from './administration/manage-institut
 import { AddInstitutionDetailsComponent } from './administration/manage-institution-list/add-institution-details/add-institution-details.component';
 import { ManageGlobalConfigurationListComponent } from './administration/manage-global-configuration-list/manage-global-configuration-list.component';
 import { ManageChannelsListComponent } from './administration/manage-channels-list/manage-channels-list.component';
-import { AddChannelDetailsComponent } from './administration/manage-channels-list/add-channel-details/add-channel-details.component';
+import { AddChannelDetailsComponent } from './administration/manage-channels-list/Add-Form-Fields/add-channel-details/add-channel-details.component';
 import { AddGlobalConfigurationComponent } from './administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component';
 import { ManageChannelDetailsComponent } from './administration/manage-channels-list/manage-channel-details/manage-channel-details.component';
 

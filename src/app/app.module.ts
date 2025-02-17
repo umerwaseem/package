@@ -16,19 +16,21 @@ import { ManageInstitutionListComponent } from "./administration/manage-institut
 import { AddInstitutionDetailsComponent } from "./administration/manage-institution-list/add-institution-details/add-institution-details.component";
 import { ManageGlobalConfigurationListComponent } from "./administration/manage-global-configuration-list/manage-global-configuration-list.component";
 import { ManageChannelsListComponent } from "./administration/manage-channels-list/manage-channels-list.component";
-import { AddChannelDetailsComponent } from "./administration/manage-channels-list/add-channel-details/add-channel-details.component";
+import { AddChannelDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-channel-details/add-channel-details.component";
 import { AddGlobalConfigurationComponent } from "./administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component";
 import { ManageChannelDetailsComponent } from "./administration/manage-channels-list/manage-channel-details/manage-channel-details.component";
-import { AddCustomFieldDetailsComponent } from "./administration/manage-channels-list/add-custom-field-details/add-custom-field-details.component";
-import { AddEndpointDetailsComponent } from "./administration/manage-channels-list/add-endpoint-details/add-endpoint-details.component";
-import { AddFieldMappingDetailsComponent } from "./administration/manage-channels-list/add-field-mapping-details/add-field-mapping-details.component";
-import { AddMessageInitializationDetailsComponent } from "./administration/manage-channels-list/add-message-initialization-details/add-message-initialization-details.component";
-import { AddProcessingRuleDetailsComponent } from "./administration/manage-channels-list/add-processing-rule-details/add-processing-rule-details.component";
-import { AddQueuesDetailsComponent } from "./administration/manage-channels-list/add-queues-details/add-queues-details.component";
-import { AddServicesDetailsComponent } from "./administration/manage-channels-list/add-services-details/add-services-details.component";
-import { PreviewConfigurationComponent } from "./administration/manage-channels-list/preview-configuration/preview-configuration.component";
-import { AddMessageRoutingDetailsComponent } from "./administration/manage-channels-list/add-message-routing-details/add-message-routing-details.component";
-import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/add-field-definition/add-field-definition.component";
+import { AddCustomFieldDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-custom-field-details/add-custom-field-details.component";
+import { AddEndpointDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-endpoint-details/add-endpoint-details.component";
+import { AddFieldMappingDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-mapping-details/add-field-mapping-details.component";
+import { AddMessageInitializationDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-message-initialization-details/add-message-initialization-details.component";
+import { AddProcessingRuleDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-processing-rule-details/add-processing-rule-details.component";
+import { AddQueuesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-queues-details/add-queues-details.component";
+import { AddServicesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-services-details/add-services-details.component";
+import { PreviewConfigurationComponent } from "./administration/manage-channels-list/Add-Form-Fields/preview-configuration/preview-configuration.component";
+import { AddMessageRoutingDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-message-routing-details/add-message-routing-details.component";
+import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-definition/add-field-definition.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { ViewEndpointDetailsDialogComponent } from "./administration/manage-channels-list/View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component";
 
 
 @NgModule({
@@ -53,7 +55,8 @@ import { AddFieldDefinitionComponent } from "./administration/manage-channels-li
         AddServicesDetailsComponent, 
         PreviewConfigurationComponent,
         AddMessageRoutingDetailsComponent,
-        AddFieldDefinitionComponent,  
+        AddFieldDefinitionComponent, 
+        ViewEndpointDetailsDialogComponent 
         /*   FullComponent,
   
         AdminComponent,
@@ -684,6 +687,7 @@ import { AddFieldDefinitionComponent } from "./administration/manage-channels-li
         BrowserModule,
         CommonModule,
         BrowserAnimationsModule,
+        MatDialogModule,
         HttpClientModule 
     ],
    /*   exports:[DateTimePickerComponent], */

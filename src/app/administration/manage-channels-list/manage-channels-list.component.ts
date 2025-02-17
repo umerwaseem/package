@@ -1,9 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../services/api.service';
+import { MatDialog, MAT_DIALOG_DATA,MatDialogRef  } from '@angular/material/dialog';
+import { ViewEndpointDetailsDialogComponent } from './View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component';
 
 @Component({
   selector: 'app-manage-channels-list',
@@ -19,7 +21,7 @@ export class ManageChannelsListComponent {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   networkGroupId: any
   instanceDetails: any = {}
-
+ displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol'];
     form = new FormGroup({
       firstName: new FormControl('',),
 
@@ -32,7 +34,7 @@ export class ManageChannelsListComponent {
       channelTimeout: new FormControl('',),
     //  channelIndentifier: new FormControl('',[ Validators.required]),
     })
-  constructor(private service: ApiService,) { }
+  constructor(private service: ApiService,public dialog: MatDialog) { }
   ngOnInit(): void {
     this.getPosts();
   }
@@ -117,7 +119,17 @@ export class ManageChannelsListComponent {
 /*     { label: 'Tags' } */
   ];
 
+  viewEndPointDetails(val:any) {
+    // let obj = { behaviour: "V", userData: val, networkGroupId: this.form.controls.networkGroupId.value };
+    let obj = val;
 
+    this.dialog.open(ViewEndpointDetailsDialogComponent, {
+      width: '400px',
+      height: '400px',
+      // Ensure this is passed
+    });
+  }
+  
 }
 
 const ELEMENT_DATA = [
@@ -217,3 +229,4 @@ const ELEMENT_DATA = [
     ]
 }
 ];
+

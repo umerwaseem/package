@@ -115,7 +115,10 @@ export class AddGlobalConfigurationComponent  implements OnInit{
   submitForm(){
     console.log('this.form..value',this.form.value);
     console.log('this.form..valid',this.form.valid);
-    
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Show validation errors
+      return;
+    }
     if(this.form.valid){
     
     }

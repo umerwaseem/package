@@ -34,10 +34,10 @@ export class AddInstitutionDetailsComponent implements OnInit {
     fileApproval: false,
   };
   form = new FormGroup({
-    institutionName: new FormControl('', [Validators.required]),
-    contactPersonName: new FormControl('', [Validators.required]),
+    institutionName: new FormControl('', [Validators.required, Validators.maxLength(50),  Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$')]),
+    contactPersonName: new FormControl('', [Validators.required, Validators.maxLength(50),  Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$')]),
    
-    contactPersonEmail: new FormControl('', [Validators.required]),
+    contactPersonEmail: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]),
     status: new FormControl('', [Validators.required]),
 
   })
@@ -76,24 +76,24 @@ export class AddInstitutionDetailsComponent implements OnInit {
           error = 'Minimum length of network group code is 3';
         }
       } else if (control.hasError('maxlength')) {
-        if (controller === 'networkGroupName') {
-          error = 'Maximum length of network group is 50';
+        if (controller === 'institutionName') {
+          error = 'Maximum length of institution name is 50';
         }
-        if (controller === 'networkGroupCode') {
-          error = 'Maximum length of network group code is 10';
+        if (controller === 'contactPersonName') {
+          error = 'Maximum length of contact person name is 50';
         }
         if (controller === 'networkGroupDescription') {
           error = 'Maximum length of network group Description is 100';
         }
       } else if (control.hasError('pattern')) {
-        if (controller === 'networkGroupName') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+        if (controller === 'institutionName') {
+          error = 'Only alphanumeric values are allowed';
         }
-        if (controller === 'networkGroupCode') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+        if (controller === 'contactPersonName') {
+          error = 'Only alphanumeric values are allowed';
         }
-        if (controller === 'networkGroupDescription') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+        if (controller === 'contactPersonEmail') {
+          error = 'Invalid Email';
         }
       } else if (control.hasError('cannotContainLeadingSpace')) {
         error = this.util.ValidationText('cannotContainLeadingSpace');
