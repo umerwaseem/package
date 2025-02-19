@@ -427,8 +427,8 @@
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 " *ngIf="fieldDefinitionList.length > 0">
-                    <table class="table table-bordered">
+                <div class="row mx-3 " >
+                    <table class="table table-bordered small-row-table">
                         <thead>
                             <tr>
                                 <th><small>
@@ -460,12 +460,15 @@
                                 <td>{{record.fieldDescription || "--"}}</td>
 
                                 <td>
-                                    <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
+                                   <!--  <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                     <button mat-icon-button color="warn" (click)="removeFieldDefinition(i)">
                                         <mat-icon>delete</mat-icon>
-                                    </button>
+                                    </button> -->
+                                    <span class="mx-2 pointer" (click)="removeFieldDefinition(record)"><!--  -->
+                                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                    </span>
                                 </td>
                             </tr>
 

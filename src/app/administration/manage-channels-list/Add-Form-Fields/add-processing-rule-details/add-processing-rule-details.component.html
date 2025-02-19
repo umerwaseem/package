@@ -239,6 +239,12 @@
                             <div class="col-md-2">
                                 <!-- <button mat-flat-button color="primary" class="rounded-3" >Add
                                     Channel</button> -->
+                                    <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addRules()">Auth Matrix
+                                        </button>
+                            </div>
+                            <div class="col-md-2">
+                                <!-- <button mat-flat-button color="primary" class="rounded-3" >Auth Matrix
+                                    Channel</button> -->
                                     <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addRuleProcessing()">Add
                                         Rules</button>
                             </div>
@@ -333,7 +339,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="row mx-3 " *ngIf="ruleProcessingList.length > 0">
+                <div class="row mx-3 " >
                     <h4 class="mx-4"><b>Message Processing</b></h4>
                     
                     <table class="table table-bordered">

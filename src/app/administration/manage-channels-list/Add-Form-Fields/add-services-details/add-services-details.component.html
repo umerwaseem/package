@@ -176,7 +176,7 @@
 -->
             
                                 <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addChannelService()">Add
-                                    Channel Queue</button>
+                                     Service</button>
                             </div>
                             <div class="col-md-2">
                                 <button mat-flat-button color="primary" class="rounded-3" type="submit" style="background-color: #007F5F;">Next</button>
@@ -187,8 +187,8 @@
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 "  *ngIf="channelServiceList.length > 0">
-                    <table class="table table-bordered">
+                <div class="row mx-3 " >
+                    <table class="table table-bordered small-row-table">
                         <thead>
                             <tr>
                                 <th><small>
@@ -215,12 +215,13 @@
                                 <td>{{record.serviceTypeId || "--"}}</td>
                                 <td>{{record.nodeId || "--"}}</td>
                                 <td>
-                                    <button mat-icon-button color="primary" (click)="editChannelService(i)">
+                         <!--            <button mat-icon-button color="primary" (click)="editChannelService(i)">
                                         <mat-icon>edit</mat-icon>
                                     </button>
-                                    <button mat-icon-button color="warn" (click)="removeChannelService(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
+                                    -->
+                                    <span class="mx-2 pointer" (click)="removeChannelService(i)"> <!-- (click)="removeHeader(record)" -->
+                                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                    </span>
                                 </td>
                             </tr>
 

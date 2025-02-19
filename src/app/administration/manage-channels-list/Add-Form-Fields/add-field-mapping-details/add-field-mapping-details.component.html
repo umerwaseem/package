@@ -6,7 +6,7 @@
 </div> -->
             <div class="card-body px-0">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <h4 class="mx-4"><b>Create Channel</b></h4>
+                    <h4 class="mx-4"><b>Create Field Mapping</b></h4>
                     <ng-container formGroupName="fieldMappingDetails">
                         <div class="row  mx-2">
 
@@ -162,7 +162,7 @@
 
                     </ng-container>
                 </form>
-                <div class="row mx-3 " *ngIf="fieldMappingList.length > 0">
+                <div class="row mx-3 ">
                     <table class="table table-bordered">
                         <thead>
                             <tr>

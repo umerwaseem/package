@@ -638,6 +638,10 @@ export class SidebarComponent {
           title: "Global Configuration List",
           route: "/admin/manage-global-configuration-list"
         },
+        {
+          title: "Channel List",
+          route: "/admin/manage-channels-list"
+        },
       /*      { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
        */ 
         {

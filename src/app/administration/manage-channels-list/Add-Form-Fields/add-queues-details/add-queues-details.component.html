@@ -21,7 +21,7 @@
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Service Type </mat-label>
-                                    <mat-select  placeholder="Select Service Type"  formControlName="serviceTypeId">
+                                    <mat-select placeholder="Select Service Type" formControlName="serviceTypeId">
                                         <!-- <mat-select placeholder="Institution" formControlName="serviceTypeId"> -->
                                         <mat-option value="tcp_ip">
                                             TCP/IP
@@ -61,22 +61,24 @@
 
 
                             <div class="col-md-2  mb-3  d-flex align-items-center">
-                     
-                               <button mat-flat-button color="primary" class="rounded-3" type="submit" (click)="addFieldMapping()">Add
-                                Channel Queue</button>
+
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit"
+                                    (click)="addFieldMapping()">Add Queue</button>
                             </div>
 
 
                             <div class="col-md-6">
-                                <button mat-flat-button color="primary" class="rounded-3" type="submit" style="background-color: #007F5F;">Next</button>
+                                <button mat-flat-button color="primary" class="rounded-3" type="submit"
+                                    style="background-color: #007F5F;">Next</button>
 
                             </div>
 
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 " *ngIf="channelQueueList.length > 0">
-                    <table class="table table-bordered">
+                <div class="row mx-3 " >
+                    <table class="table table-bordered small-row-table">
+
                         <thead>
                             <tr>
                                 <th><small>
@@ -104,12 +106,20 @@
                                 <td>{{record.queueName || "--"}}</td>
 
                                 <td>
-                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
+                                    <!--    <button mat-icon-button  style="font-size: 14px;"> -->
+                                  <!--   <span>
+
+                                        <mat-icon color="primary" (click)="editFieldMapping(i)"
+                                            style="font-size: 16px !important; width: 16px !important; height: 16px !important; line-height: 16px !important;">
+                                            edit
+                                        </mat-icon>
+                                    </span> -->
+
+
+                   
+                                    <span class="mx-2 pointer"><!-- (click)="removeFieldMapping(record)" -->
+                                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                    </span>
                                 </td>
                             </tr>
 

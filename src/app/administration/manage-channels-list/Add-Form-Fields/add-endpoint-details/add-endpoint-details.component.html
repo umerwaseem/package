@@ -207,7 +207,7 @@
                         <div class="row mx-3 " *ngIf="lstHeader.length > 0">
                             <h4 class="mx-4"><b>Headers</b></h4>
 
-                            <table class="table table-bordered">
+                             <table class="table table-bordered small-row-table">
                                 <thead>
                                     <tr>
                                         <th>Action</th>
@@ -260,7 +260,7 @@
                         <div class="row mx-3 " *ngIf="lstClient.length > 0">
                             <h4 class="mx-4"><b>whitelist IPs</b></h4>
 
-                            <table class="table table-bordered">
+                             <table class="table table-bordered small-row-table">
                                 <thead>
                                     <tr>
                                         <th>Action</th>
@@ -306,10 +306,10 @@
                     </div>
 
                 </form>
-                <div class="row mx-3 " *ngIf="endpointList.length > 0">
+                <div class="row mx-3 " >
                     <h4 class="mx-4"><b>Endpoints</b></h4>
 
-                    <table class="table table-bordered">
+                     <table class="table table-bordered small-row-table">
                         <thead>
                             <tr>
                                 <th><small>
@@ -345,9 +345,9 @@
 
                                 <td>
 
-                                    <button mat-icon-button color="warn" (click)="removeMessageRouting(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
+                                    <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
+                                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                    </span>
                                 </td>
                             </tr>
 
