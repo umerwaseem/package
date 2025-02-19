@@ -22,7 +22,7 @@ export class AddEndpointDetailsComponent {
 
 
     endPointDetails: this.fb.group({
-      urlEnpoint: new FormControl('https://abc.com', [
+      urlEndpoint: new FormControl('https://abc.com', [
         Validators.required,
         Validators.maxLength(999),
         Validators.pattern(

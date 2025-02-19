@@ -14,13 +14,13 @@
                         </div>
                     </div>
                     <ng-container formGroupName="channelServiceDetails">
-                        <div class="row mx-2" *ngIf="this.form.controls.isAutoCreateService.value == false">
+                        <div class="row mx-2"  *ngIf="this.form.controls.isAutoCreateService.value == false">
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Service Type</mat-label>
-                                    <mat-select formControlName="serviceTypeId">
-                                        <!-- <mat-select placeholder="Institution" formControlName="serviceTypeId"> -->
+                                    <mat-label>Service Type </mat-label>
+                                    <mat-select placeholder="Select Service Type" formControlName="serviceTypeId">
+                                        <!-- <mat-select placeholder="Select " formControlName="serviceTypeId"> -->
                                         <mat-option value="tcp_ip">
                                             TCP/IP
                                         </mat-option>
@@ -45,9 +45,9 @@
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Select Node</mat-label>
-                                    <mat-select formControlName="nodeId">
-                                        <!-- <mat-select placeholder="Institution"> -->
+                                    <mat-label>Node </mat-label>
+                                    <mat-select placeholder="Select Node" formControlName="nodeId">
+                                        <!-- <mat-select placeholder="Select "> -->
                                         <mat-option [value]="1">
                                             1
                                         </mat-option>
@@ -61,8 +61,8 @@
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>readQueue</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="readQueue">
+                                    <mat-label>Read Queue </mat-label>
+                                    <input matInput placeholder="Enter Read Queue " formControlName="readQueue">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
@@ -70,66 +70,66 @@
                             </div>
                         
                             <div class="col-md-3  mb-3 "
-                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value != this.util.serviceType.rpc.value">
+                                 *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value != this.util.serviceType.rpc.value">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>writeQueue</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="writeQueue">
+                                    <mat-label>Write Queue </mat-label>
+                                    <input matInput placeholder="Enter Write Queue " formControlName="writeQueue">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3  mb-3 "
-                            *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.tcp_ip.value">
+                             *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.tcp_ip.value">
                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                 class="custom-size-form-field">
-                                <mat-label>listeningIp</mat-label>
-                                <input matInput placeholder="First Name*" formControlName="listeningIp">
+                                <mat-label>Listening Ip </mat-label>
+                                <input matInput placeholder="Enter Listening Ip " formControlName="listeningIp">
                                 <mat-error>
                                     <small>Required</small>
                                 </mat-error>
                             </mat-form-field>
                         </div>
                             <div class="col-md-3  mb-3 "
-                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
+                                 *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>soapDirectory</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="soapDirectory">
+                                    <mat-label>Soap Directory </mat-label>
+                                    <input matInput placeholder="Enter Soap Directory " formControlName="soapDirectory">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3  mb-3 "
-                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
+                                 *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.soap_rest.value">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>soapEnvelop</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="soapEnvelop">
+                                    <mat-label>Soap Envelop </mat-label>
+                                    <input matInput placeholder="Enter Soap Envelop " formControlName="soapEnvelop">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3  mb-3 "
-                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
+                                 *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>writeOutboundQueue</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="writeOutboundQueue">
+                                    <mat-label>Write Outbound Queue </mat-label>
+                                    <input matInput placeholder="Enter Write Outbound Queue " formControlName="writeOutboundQueue">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3  mb-3 "
-                                *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
+                                 *ngIf="this.form.get('channelServiceDetails.serviceTypeId')?.value == this.util.serviceType.parser.value">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>readOutboundQueue</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="readOutboundQueue">
+                                    <mat-label>Read Outbound Queue </mat-label>
+                                    <input matInput placeholder="Enter Read Outbound Queue " formControlName="readOutboundQueue">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
@@ -138,8 +138,8 @@
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>serviceFilePath</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="serviceFilePath">
+                                    <mat-label>Service File Path </mat-label>
+                                    <input matInput placeholder="Enter Service File Path " formControlName="serviceFilePath">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
@@ -148,8 +148,8 @@
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>logFileName</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="logFileName">
+                                    <mat-label>Log File Name </mat-label>
+                                    <input matInput placeholder="Enter Log File Name " formControlName="logFileName">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
@@ -162,8 +162,8 @@
                             <div class="col-md-3  mb-3 ">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>retryCount</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="retryCount">
+                                    <mat-label>Retry Count </mat-label>
+                                    <input matInput placeholder="Enter Retry Count " formControlName="retryCount">
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
@@ -187,7 +187,7 @@
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 " *ngIf="channelServiceList.length > 0">
+                <div class="row mx-3 "  *ngIf="channelServiceList.length > 0">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -211,7 +211,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let record of channelServiceList; let i = index">
+                            <tr  *ngFor="let record of channelServiceList; let i = index">
                                 <td>{{record.serviceTypeId || "--"}}</td>
                                 <td>{{record.nodeId || "--"}}</td>
                                 <td>
@@ -224,7 +224,7 @@
                                 </td>
                             </tr>
 
-                            <tr *ngIf="channelServiceList.length == 0">
+                            <tr  *ngIf="channelServiceList.length == 0">
                                 <td colspan="4">
                                     <span>Data not found.</span>
                                 </td>

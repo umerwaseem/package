@@ -6,22 +6,22 @@
                 <form [formGroup]="form" (submit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
                     <h4 class="mx-4"><b>Create a new Endpoint</b></h4>
                     <ng-container formGroupName="endPointDetails">
-                        <div class="row mx-2">
+                        <div class="row mb-2 mx-2">
 
                             <div class="col-md-4 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>Url Endpoint </mat-label>
-                                    <input matInput placeholder="Enter Url Endpoint " formControlName="urlEnpoint">
+                                    <mat-label>Url Endpoint  </mat-label>
+                                    <input matInput placeholder="Enter Url Endpoint " formControlName="urlEndpoint">
                                     <mat-error>
-                                        <small>{{fieldErrors("urlEnpoint")}}</small>
+                                        <small>{{fieldErrors("urlEndpoint")}}</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
-                                    <mat-label>Connection Timeout </mat-label>
+                                    <mat-label>Connection Timeout  </mat-label>
                                     <input matInput placeholder="Enter Connection Timeout "
                                         formControlName="connectionTimeout">
                                     <mat-error>
@@ -30,7 +30,7 @@
                                 </mat-form-field>
                             </div>
 
-                            <div class="col-md-4 mb-3 ">
+                            <div class="col-md-4 d-flex flex-column ">
                                 <mat-radio-group aria-label="Select an option " formControlName="isClient"
                                     (change)="onChangeClient()">
                                     <mat-radio-button value="Client"
@@ -40,11 +40,11 @@
 
 
                                 </mat-radio-group>
-                                <div *ngIf="form.get('endPointDetails.isClient')?.invalid 
+                                <span *ngIf="form.get('endPointDetails.isClient')?.invalid 
                                 && form.get('endPointDetails.isClient')?.touched" class="text-danger"
                                     style="font-size: 11px;">
                                     Required
-                                </div>
+                                </span>
 
                                 <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
                            -->
@@ -53,7 +53,7 @@
 
 
                         </div>
-                        <div class="row mx-2">
+                        <div class="row mb-2 mx-2">
 
                             <div class="col-md-2 mb-3 ">
                                 <mat-checkbox class="example-margin" formControlName="isTls"
@@ -66,9 +66,9 @@
                                 <div class="col-md-2 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class=" custom-size-form-field ">
-                                        <mat-label>TLS Version </mat-label>
+                                        <mat-label>TLS Version  </mat-label>
                                         <mat-select placeholder="Select TLS Version " formControlName="tlsVersion">
-                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
+                                            <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
                                             <mat-option [value]="1">
                                                 1
                                             </mat-option>
@@ -87,7 +87,7 @@
                                 <div class="col-md-4 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Cert Path </mat-label>
+                                        <mat-label>Cert Path  </mat-label>
                                         <input matInput placeholder="Enter Cert Path " formControlName="certPath">
                                         <mat-error>
                                             <small>{{fieldErrors("certPath")}}</small>
@@ -98,8 +98,8 @@
                                 <div class="col-md-4 mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Key File Path </mat-label>
-                                        <input matInput placeholder="keyFilePath " formControlName="keyFilePath">
+                                        <mat-label>Key File Path  </mat-label>
+                                        <input matInput placeholder="Enter Key File Path " formControlName="keyFilePath">
                                         <mat-error>
                                             <small>{{fieldErrors("keyFilePath")}}</small>
                                         </mat-error>
@@ -110,13 +110,13 @@
                             </ng-container>
 
                         </div>
-                        <div class="row mx-2">
+                        <div class="row mb-2 mx-2">
 
 
                             <div class="col-md-4  mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
-                                    <mat-label>Auth Type</mat-label>
+                                    <mat-label>Auth Type </mat-label>
                                     <mat-select formControlName="authtype" (selectionChange)="onAuthTypeSelection()">
                                         <mat-option value="basicAuth">
                                             Basic Authentication
@@ -142,8 +142,8 @@
                                 <div class="col-md-4  mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Username</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="username">
+                                        <mat-label>Username </mat-label>
+                                        <input matInput placeholder="Enter Username" formControlName="username">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -152,8 +152,8 @@
                                 <div class="col-md-4  mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Password</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="password">
+                                        <mat-label>Password </mat-label>
+                                        <input matInput placeholder="Enter Password" formControlName="password">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -162,13 +162,13 @@
 
                             </ng-container>
                         </div>
-                        <div class="row mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
+                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
                             <ng-container formGroupName="header">
                                 <div class="col-md-2">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Header Key</mat-label>
-                                        <input matInput placeholder="Enter *" formControlName="headerKey">
+                                        <mat-label>Header Key </mat-label>
+                                        <input matInput placeholder="Enter Header Key" formControlName="headerKey">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -177,8 +177,8 @@
                                 <div class="col-md-2">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Header Value</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="headerValue">
+                                        <mat-label>Header Value </mat-label>
+                                        <input matInput placeholder="Enter Header Value" formControlName="headerValue">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -187,8 +187,8 @@
                                 <div class="col-md-2">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Sequence</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="headerSequence">
+                                        <mat-label>Sequence </mat-label>
+                                        <input matInput placeholder="Enter " formControlName="headerSequence">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
@@ -236,14 +236,14 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="row mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
+                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
 
                             <ng-container formGroupName="client">
                                 <div class="col-md-2">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>White List IPs</mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="whiteListIps">
+                                        <mat-label>White List IPs </mat-label>
+                                        <input matInput placeholder="Enter IP" formControlName="whiteListIps">
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>

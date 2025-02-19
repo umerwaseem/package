@@ -52,7 +52,7 @@
                                     <mat-label>Internal Tag Name </mat-label>
                                     <mat-select placeholder="Select Internal Tag Name"
                                         formControlName="internalTagName">
-                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                         <mat-option [value]="1">
                                             1
                                         </mat-option>
@@ -115,10 +115,10 @@
                                         <div class="col-md-3">
                                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                                 class="custom-size-form-field">
-                                                <mat-label>incomingTransformation </mat-label>
-                                                <mat-select placeholder="Institution"
+                                                <mat-label>Incoming Transformation </mat-label>
+                                                <mat-select placeholder="Select Incoming Transformation"
                                                     formControlName="incomingTransformation">
-                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                     <mat-option [value]="1">
                                                         1
                                                     </mat-option>
@@ -131,10 +131,10 @@
                                         <div class="col-md-3">
                                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                                 class="custom-size-form-field">
-                                                <mat-label>outgoingTransformation </mat-label>
-                                                <mat-select placeholder="Institution"
+                                                <mat-label>Outgoing Transformation </mat-label>
+                                                <mat-select placeholder="Select Outgoing Transformation"
                                                     formControlName="outgoingTransformation">
-                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                     <mat-option [value]="1">
                                                         1
                                                     </mat-option>
@@ -149,8 +149,8 @@
                                                 class="custom-size-form-field">
                                                 <mat-label>Masking </mat-label>
 
-                                                <mat-select placeholder="Institution" formControlName="masking">
-                                                    <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                <mat-select placeholder="Select Masking" formControlName="masking">
+                                                    <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                     <mat-option value="fullMask">
                                                         full Mask
                                                     </mat-option>
@@ -168,7 +168,7 @@
                                             <mat-form-field style="font-size: 14px;" appearance="outline"
                                                 class="custom-size-form-field">
                                                 <mat-label>Custom Mask </mat-label>
-                                                <input matInput placeholder="Enter Custom Mask*"
+                                                <input matInput placeholder="Enter Custom Mask"
                                                     formControlName="customMask">
                                                 <mat-error>
                                                     <small> {{fieldErrors("channelTimeout")}}</small>
@@ -183,9 +183,9 @@
                                             <div class="col-md-3">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>parentTag </mat-label>
-                                                    <mat-select placeholder="Institution" formControlName="parentTag">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-label>Parent Tag </mat-label>
+                                                    <mat-select placeholder="Select Parent Tag" formControlName="parentTag">
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
                                                         </mat-option>
@@ -206,7 +206,7 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Min Repeat Count </mat-label>
-                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                    <input matInput placeholder="Enter Minimum Connections"
                                                         formControlName="minRepeatCount">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
@@ -219,7 +219,7 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Max Repeat Count </mat-label>
-                                                    <input matInput placeholder="Enter Custom Mask*"
+                                                    <input matInput placeholder="Enter Max Repeat Count"
                                                         formControlName="maxRepeatCount">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
@@ -233,8 +233,8 @@
                                             <div class="col-md-3">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>nameSpaceAlias </mat-label>
-                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                    <mat-label>Name Space Alias </mat-label>
+                                                    <input matInput placeholder="Enter Name Space Alias"
                                                         formControlName="nameSpaceAlias">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
@@ -252,9 +252,9 @@
                                             <div class="col-md-3">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>lengthtype </mat-label>
-                                                    <mat-select placeholder="Institution" formControlName="lengthType">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-label>Length Type </mat-label>
+                                                    <mat-select placeholder="Select Length Type" formControlName="lengthType">
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option value="fixedLength">
                                                             fixedLength
                                                         </mat-option>
@@ -269,8 +269,8 @@
 
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>fixedLength </mat-label>
-                                                    <input matInput placeholder="Enter Minimum Connections*"
+                                                    <mat-label>Fixed Length </mat-label>
+                                                    <input matInput placeholder="Enter Fixed Length"
                                                         formControlName="fixedLength">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
@@ -284,10 +284,10 @@
                                                 *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'metaLength'">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>metaLengthType </mat-label>
-                                                    <mat-select placeholder="Institution"
+                                                    <mat-label>Meta Length Type </mat-label>
+                                                    <mat-select placeholder="Select Meta Length Type"
                                                         formControlName="metaLengthType">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
                                                         </mat-option>
@@ -301,8 +301,8 @@
                                                 *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'metaLength'">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>metaLength </mat-label>
-                                                    <mat-select placeholder="Institution" formControlName="metaLength">
+                                                    <mat-label>Meta Length </mat-label>
+                                                    <mat-select placeholder="Select Meta Length" formControlName="metaLength">
 
                                                         <mat-option [value]="1">
                                                             1
@@ -319,9 +319,9 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field"
                                                     *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
-                                                    <mat-label>trim </mat-label>
-                                                    <mat-select placeholder="Institution" formControlName="trim">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-label>Trim </mat-label>
+                                                    <mat-select placeholder="Select Trim" formControlName="trim">
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
                                                         </mat-option>
@@ -342,7 +342,7 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Padding Value </mat-label>
-                                                    <input matInput placeholder="First Name*"
+                                                    <input matInput placeholder="Enter Padding Value"
                                                         formControlName="paddingValue">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
@@ -354,9 +354,9 @@
                                                 *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.value">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>alignment </mat-label>
-                                                    <mat-select placeholder="Institution" formControlName="alignment">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                    <mat-label>Alignment </mat-label>
+                                                    <mat-select placeholder="Select Alignment" formControlName="alignment">
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
                                                         </mat-option>
@@ -384,10 +384,10 @@
                                                 *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isBitMapped')?.value ">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>bitmapFieldName </mat-label>
-                                                    <mat-select placeholder="Institution"
+                                                    <mat-label>Bitmap Field Name </mat-label>
+                                                    <mat-select placeholder="Select Bitmap Field Name"
                                                         formControlName="bitmapFieldName">
-                                                        <!-- <mat-select placeholder="Institution" placeholder="Institution"> -->
+                                                        <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
                                                         </mat-option>
@@ -401,8 +401,8 @@
                                                 *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.isBitMapped')?.value ">
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
-                                                    <mat-label>bitmapBitNumber </mat-label>
-                                                    <input matInput placeholder="First Name*"
+                                                    <mat-label>Bitmap Bit Number </mat-label>
+                                                    <input matInput placeholder="Enter Bitmap Bit Number"
                                                         formControlName="bitmapBitNumber">
                                                     <mat-error>
                                                         <small> {{fieldErrors("channelTimeout")}}</small>
