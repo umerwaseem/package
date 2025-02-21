@@ -2,78 +2,280 @@
     <div class="col-xxl-12">
         <div class="card shadow-none">
 
-            <div class="card-body px-0">
-                <form [formGroup]="form" (submit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <h4 class="mx-4"><b>Create a new Endpoint</b></h4>
-                    <ng-container formGroupName="endPointDetails">
-                        <div class="row mb-2 mx-2">
+            <div class="card m-2">
+                <div class="card-header d-block">
+                    <h4><b>Create a new Endpoint</b></h4>
+                </div>
+                <div class="card-body pb-0 px-0">
+                    <form [formGroup]="form" (submit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                       
+                        <ng-container formGroupName="endPointDetails">
+                            <div class="row mb-2 mx-2">
 
-                            <div class="col-md-4 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>Url Endpoint  </mat-label>
-                                    <input matInput placeholder="Enter Url Endpoint " formControlName="urlEndpoint">
-                                    <mat-error>
-                                        <small>{{fieldErrors("urlEndpoint")}}</small>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-                            <div class="col-md-4 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class="custom-size-form-field">
-                                    <mat-label>Connection Timeout  </mat-label>
-                                    <input matInput placeholder="Enter Connection Timeout "
-                                        formControlName="connectionTimeout">
-                                    <mat-error>
-                                        <small>{{fieldErrors("connectionTimeout")}}</small>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
+                                <div class="col-md-6 ">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Url Endpoint </mat-label>
+                                        <input matInput placeholder="Enter Url Endpoint " formControlName="urlEndpoint">
+                                        <mat-error>
+                                            <small>{{fieldErrors("urlEndpoint")}}</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                        class="custom-size-form-field">
+                                        <mat-label>Connection Timeout </mat-label>
+                                        <input matInput placeholder="Enter Connection Timeout "
+                                            formControlName="connectionTimeout">
+                                        <mat-error>
+                                            <small>{{fieldErrors("connectionTimeout")}}</small>
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
 
-                            <div class="col-md-4 d-flex flex-column ">
-                                <mat-radio-group aria-label="Select an option " formControlName="isClient"
-                                    (change)="onChangeClient()">
-                                    <mat-radio-button value="Client"
-                                        (change)="onChangeClient()">Client</mat-radio-button>
-                                    <mat-radio-button value="Server"
-                                        (change)="onChangeServer()">Server</mat-radio-button>
+                                <div class="col-md-3  ">
+                                    <mat-radio-group aria-label="Select an option " formControlName="isClient"
+                                        (change)="onChangeClient()">
+                                        <mat-radio-button value="Client"
+                                            (change)="onChangeClient()">Client</mat-radio-button>
+                                        <mat-radio-button value="Server"
+                                            (change)="onChangeServer()">Server</mat-radio-button>
 
 
-                                </mat-radio-group>
-                                <span *ngIf="form.get('endPointDetails.isClient')?.invalid 
+                                    </mat-radio-group>
+                                 <!--    <span *ngIf="form.get('endPointDetails.isClient')?.invalid 
                                 && form.get('endPointDetails.isClient')?.touched" class="text-danger"
-                                    style="font-size: 11px;">
-                                    Required
-                                </span>
+                                        style="font-size: 11px;">
+                                        Required
+                                    </span> -->
 
-                                <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
+                                    <!--    <mat-checkbox class="example-margin" formControlName="isServer" (change)="onChangeServer()">Server? </mat-checkbox>
                            -->
+                                </div>
+
+
+
                             </div>
-
-
-
-                        </div>
-                        <div class="row mb-2 mx-2">
-
-                            <div class="col-md-2 mb-3 ">
-                                <mat-checkbox class="example-margin" formControlName="isTls"
-                                    (change)="onChangeTLS()">Enable
-                                    TLS? </mat-checkbox>
+                            <div class="row mb-3 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value ">
+                                <mat-accordion class="example-headers-align" >
+                                    <!-- DB Configuration Pooling -->
+                                    <mat-expansion-panel [expanded]="false" >
+                                        <mat-expansion-panel-header>
+                                            <mat-panel-title>
+                                                <h4><b>Advance Config</b></h4>
+                                            </mat-panel-title>
+                                        </mat-expansion-panel-header>
+                                        <mat-divider class="mb-2"></mat-divider>
+                                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
+                                            <ng-container formGroupName="header">
+                                                <div class="col-md-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Header Key </mat-label>
+                                                        <input matInput placeholder="Enter Header Key" formControlName="headerKey">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Header Value </mat-label>
+                                                        <input matInput placeholder="Enter Header Value"
+                                                            formControlName="headerValue">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>Sequence </mat-label>
+                                                        <input matInput placeholder="Enter " formControlName="headerSequence">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3   ">
+            
+                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                                                        type="button" (click)="addHeader()">Add Header</button>
+            
+                                                </div>
+                                            </ng-container>
+            
+            
+                                        </div>
+                                        <div class="row mx-3 " *ngIf="lstHeader.length > 0">
+                                            <h4 class="mx-4"><b>Headers</b></h4>
+            
+                                            <table class="table table-bordered small-row-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+                                                        <th>Sequence</th>
+                                                        <th>Key</th>
+                                                        <th style="width: 400px;">Value</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let record of lstHeader; let i = index">
+                                                        <td>
+                                                            <span class="mx-2 pointer" (click)="removeHeader(record)">
+                                                                <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                                            </span>
+                                                        </td>
+                                                        <td>{{record.headerSequence || "--"}}</td>
+                                                        <td>{{record.headerKey || "--"}}</td>
+                                                        <td>{{record.headerValue || "--"}}</td>
+                                                    </tr>
+            
+                                                    <tr *ngIf="lstHeader.length == 0">
+                                                        <td colspan="4">
+                                                            <span>Data not found.</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
+            
+                                            <ng-container formGroupName="client">
+                                                <div class="col-md-3">
+                                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                                        class="custom-size-form-field">
+                                                        <mat-label>White List IPs </mat-label>
+                                                        <input matInput placeholder="Enter IP" formControlName="whiteListIps">
+                                                        <mat-error>
+                                                            <small>Required</small>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-md-3  ">
+                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                                                        type="button" (click)="addIp()">Add IP</button>
+            
+            
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                        <div class="row mx-3 " *ngIf="lstClient.length > 0">
+                                            <h4 class="mx-4"><b>whitelist IPs</b></h4>
+            
+                                            <table class="table table-bordered small-row-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Action</th>
+            
+                                                        <th>WhiteList IPs</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr *ngFor="let record of lstClient; let i = index">
+                                                        <td>
+                                                            <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
+                                                                <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                                            </span>
+                                                        </td>
+            
+                                                        <td>{{record.whiteListIps || "--"}}</td>
+            
+                                                    </tr>
+            
+                                                    <tr *ngIf="lstClient.length == 0">
+                                                        <td colspan="4">
+                                                            <span>Data not found.</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+    
+    
+                                    </mat-expansion-panel>
+    
+    
+                                </mat-accordion>
                             </div>
-                            <div class="col-md-10 mb-3" *ngIf="this.isTlsEnabled != true">
+                            <div class="row mb-2 mx-2">
+
+                                <div class="col-md-3 ">
+                                    <mat-checkbox class="example-margin" formControlName="isTls"
+                                        (change)="onChangeTLS()">Enable
+                                        TLS? </mat-checkbox>
+                                </div>
+                               <!--  <div class="col-md-9 mb-3" *ngIf="this.isTlsEnabled != true">
+                                </div> -->
+                                <ng-container *ngIf="this.isTlsEnabled == true ">
+                                    <div class="col-md-3 ">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class=" custom-size-form-field ">
+                                            <mat-label>TLS Version </mat-label>
+                                            <mat-select placeholder="Select TLS Version " formControlName="tlsVersion">
+                                                <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
+                                                <mat-option [value]="1">
+                                                    1
+                                                </mat-option>
+                                                <mat-option [value]="1">
+                                                    1
+                                                </mat-option>
+                                            </mat-select>
+                                            <mat-error>
+                                                <small>Required</small>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+
+
+                                    <div class="col-md-3 ">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Cert Path </mat-label>
+                                            <input matInput placeholder="Enter Cert Path " formControlName="certPath">
+                                            <mat-error>
+                                                <small>{{fieldErrors("certPath")}}</small>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                    <div class="col-md-3 ">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Key File Path </mat-label>
+                                            <input matInput placeholder="Enter Key File Path "
+                                                formControlName="keyFilePath">
+                                            <mat-error>
+                                                <small>{{fieldErrors("keyFilePath")}}</small>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+
+                                </ng-container>
+
                             </div>
-                            <ng-container *ngIf="this.isTlsEnabled == true ">
-                                <div class="col-md-2 mb-3">
+                            <div class="row mb-2 mx-2">
+
+
+                                <div class="col-md-3  mb-3">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class=" custom-size-form-field ">
-                                        <mat-label>TLS Version  </mat-label>
-                                        <mat-select placeholder="Select TLS Version " formControlName="tlsVersion">
-                                            <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
-                                            <mat-option [value]="1">
-                                                1
+                                        <mat-label>Auth Type </mat-label>
+                                        <mat-select formControlName="authtype"
+                                            (selectionChange)="onAuthTypeSelection()">
+                                            <mat-option value="basicAuth">
+                                                Basic Authentication
                                             </mat-option>
-                                            <mat-option [value]="1">
-                                                1
+                                            <mat-option value="token">
+                                                Token
+                                            </mat-option>
+                                            <mat-option value="noAuth">
+                                                No Authentication
                                             </mat-option>
                                         </mat-select>
                                         <mat-error>
@@ -82,258 +284,104 @@
                                     </mat-form-field>
                                 </div>
 
-
-
-                                <div class="col-md-4 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Cert Path  </mat-label>
-                                        <input matInput placeholder="Enter Cert Path " formControlName="certPath">
-                                        <mat-error>
-                                            <small>{{fieldErrors("certPath")}}</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-
-                                <div class="col-md-4 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Key File Path  </mat-label>
-                                        <input matInput placeholder="Enter Key File Path " formControlName="keyFilePath">
-                                        <mat-error>
-                                            <small>{{fieldErrors("keyFilePath")}}</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-
-
-                            </ng-container>
-
-                        </div>
-                        <div class="row mb-2 mx-2">
-
-
-                            <div class="col-md-4  mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
-                                    <mat-label>Auth Type </mat-label>
-                                    <mat-select formControlName="authtype" (selectionChange)="onAuthTypeSelection()">
-                                        <mat-option value="basicAuth">
-                                            Basic Authentication
-                                        </mat-option>
-                                        <mat-option value="token">
-                                            Token
-                                        </mat-option>
-                                        <mat-option value="noAuth">
-                                            No Authentication
-                                        </mat-option>
-                                    </mat-select>
-                                    <mat-error>
-                                        <small>Required</small>
-                                    </mat-error>
-                                </mat-form-field>
-                            </div>
-
-                            <ng-container *ngIf="this.authType == 'basicAuth' ||
+                                <ng-container *ngIf="this.authType == 'basicAuth' ||
                                        this.authType == 'token'">
 
 
 
-                                <div class="col-md-4  mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Username </mat-label>
-                                        <input matInput placeholder="Enter Username" formControlName="username">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
+                                    <div class="col-md-3  mb-3">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Username </mat-label>
+                                            <input matInput placeholder="Enter Username" formControlName="username">
+                                            <mat-error>
+                                                <small>Required</small>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="col-md-3  mb-3">
+                                        <mat-form-field style="font-size: 14px;" appearance="outline"
+                                            class="custom-size-form-field">
+                                            <mat-label>Password </mat-label>
+                                            <input matInput placeholder="Enter Password" formControlName="password">
+                                            <mat-error>
+                                                <small>Required</small>
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                </ng-container>
+                                <div class="col-md-3">
+                                    <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button"
+                                        (click)="addEndpoint()">Add Endpoint</button>
+    
                                 </div>
-                                <div class="col-md-4  mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Password </mat-label>
-                                        <input matInput placeholder="Enter Password" formControlName="password">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
+                            </div>
+                            
+                        </ng-container>
+                       <!--  <div class="row mx-2">
 
-                            </ng-container>
-                        </div>
-                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
-                            <ng-container formGroupName="header">
-                                <div class="col-md-2">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Header Key </mat-label>
-                                        <input matInput placeholder="Enter Header Key" formControlName="headerKey">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Header Value </mat-label>
-                                        <input matInput placeholder="Enter Header Value" formControlName="headerValue">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-2">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>Sequence </mat-label>
-                                        <input matInput placeholder="Enter " formControlName="headerSequence">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3   d-flex align-items-center">
-
-                                    <button mat-flat-button color="primary" class="rounded-3" type="button"
-                                    (click)="addHeader()">Add Header</button>
-                                   
-                                </div>
-                            </ng-container>
+                           
 
 
-                        </div>
-                        <div class="row mx-3 " *ngIf="lstHeader.length > 0">
-                            <h4 class="mx-4"><b>Headers</b></h4>
+                            <div class="col-md-2">
+                                <button mat-flat-button style="background-color: #007F5F;"
+                                    class="rounded-3 custom-button mat-accent" type="submit">Next</button>
 
-                             <table class="table table-bordered small-row-table">
-                                <thead>
-                                    <tr>
-                                        <th>Action</th>
-                                        <th>Sequence</th>
-                                        <th>Key</th>
-                                        <th style="width: 400px;">Value</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let record of lstHeader; let i = index">
-                                        <td>
-                                            <span class="mx-2 pointer" (click)="removeHeader(record)">
-                                                <i class="fa fa-trash" style="color: #ff1c1c"></i>
-                                            </span>
-                                        </td>
-                                        <td>{{record.headerSequence || "--"}}</td>
-                                        <td>{{record.headerKey || "--"}}</td>
-                                        <td>{{record.headerValue || "--"}}</td>
-                                    </tr>
+                            </div>
+                        </div> -->
 
-                                    <tr *ngIf="lstHeader.length == 0">
-                                        <td colspan="4">
-                                            <span>Data not found.</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
-
-                            <ng-container formGroupName="client">
-                                <div class="col-md-2">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
-                                        class="custom-size-form-field">
-                                        <mat-label>White List IPs </mat-label>
-                                        <input matInput placeholder="Enter IP" formControlName="whiteListIps">
-                                        <mat-error>
-                                            <small>Required</small>
-                                        </mat-error>
-                                    </mat-form-field>
-                                </div>
-                                <div class="col-md-3   d-flex align-items-center">
-                                    <button mat-flat-button color="primary" class="rounded-3" type="button"
-                                    (click)="addIp()">Add IP</button>
-
-                              
-                                </div>
-                            </ng-container>
-                        </div>
-                        <div class="row mx-3 " *ngIf="lstClient.length > 0">
-                            <h4 class="mx-4"><b>whitelist IPs</b></h4>
-
-                             <table class="table table-bordered small-row-table">
-                                <thead>
-                                    <tr>
-                                        <th>Action</th>
-
-                                        <th>WhiteList IPs</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let record of lstClient; let i = index">
-                                        <td>
-                                            <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
-                                                <i class="fa fa-trash" style="color: #ff1c1c"></i>
-                                            </span>
-                                        </td>
-
-                                        <td>{{record.whiteListIps || "--"}}</td>
-
-                                    </tr>
-
-                                    <tr *ngIf="lstClient.length == 0">
-                                        <td colspan="4">
-                                            <span>Data not found.</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </ng-container>
-                    <div class="row mx-2">
-
-                        <div class="col-md-2">
-                            <button mat-flat-button color="primary" class="rounded-3" type="button"
-                                (click)="addEndpoint()">Add Endpoint</button>
-
-                        </div>
-
-
-                        <div class="col-md-2">
-                            <button mat-flat-button style="background-color: #007F5F;" class="rounded-3 mat-accent"
-                                type="submit">Next</button>
-
-                        </div>
+                    </form>
+                   
+                </div>
+                <mat-divider></mat-divider>
+                <div class="row mx-3 mt-3 mb-2">
+                    <div class="col-md-2">
+                        
+                        <h4 ><b>Endpoints  ({{ this.endpointList.length || 0 }})</b></h4>
                     </div>
+                    <div class="col-md-6 pr-1">
 
-                </form>
-                <div class="row mx-3 " >
-                    <h4 class="mx-4"><b>Endpoints</b></h4>
-
-                     <table class="table table-bordered small-row-table">
+                        <mat-form-field style="font-size: 14px;" appearance="outline" class="custom-size-form-field">
+                            <mat-label>Filter</mat-label>
+                            <input matInput  placeholder="Ex. ium" #input>
+                            <mat-icon matPrefix> search</mat-icon>
+        
+                        </mat-form-field>
+        
+                    </div>
+             
+                    <div class="col-md-4">
+                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                            class="custom-paginator bg-transparent"></mat-paginator>
+        
+        
+                    </div>
+                    <table class="table table-bordered small-row-table">
                         <thead>
                             <tr>
                                 <th><small>
-
+                
                                         Channel Endpoint
                                     </small>
                                 </th>
                                 <th><small>
-
+                
                                         Endpoint Mode
                                     </small>
                                 </th>
                                 <th><small>
-
+                
                                         Auth Type
                                     </small>
                                 </th>
-
+                
                                 <th><small>
-
+                
                                         Actions
                                     </small>
                                 </th>
-
+                
                             </tr>
                         </thead>
                         <tbody>
@@ -341,16 +389,16 @@
                                 <td>{{record.urlEnpoint || "--"}}</td>
                                 <td>{{record.isClient || "--"}}</td>
                                 <td>{{record.authtype || "--"}}</td>
-
-
+                
+                
                                 <td>
-
+                
                                     <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
                                         <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                     </span>
                                 </td>
                             </tr>
-
+                
                             <tr *ngIf="endpointList.length == 0">
                                 <td colspan="4">
                                     <span>Data not found.</span>
@@ -361,5 +409,12 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row  mx-2 " style="display: flex ; justify-content: end; position: absolute; bottom: 0;">
+
+    <div class="col-md-12">
+
+        <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;" type="submit">Next</button>
     </div>
 </div>

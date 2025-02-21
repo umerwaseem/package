@@ -41,7 +41,7 @@ export class AddEndpointDetailsComponent {
       certPath: new FormControl(''),
       keyFilePath: new FormControl(''),
       isClient: new FormControl('', [
-        Validators.required,
+
 
       ]),
       authtype: new FormControl('', [Validators.required]),
@@ -130,9 +130,9 @@ export class AddEndpointDetailsComponent {
       this.form.markAllAsTouched();
       return;
     }
-    if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
+   /*  if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
       return this.util.failureSnackbar('At least one Header or Ip is required.');
-    }
+    } */
     if (this.form.get('endPointDetails')?.valid) {
       const endPointDetails = this.form.get('endPointDetails')?.value;
 

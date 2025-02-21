@@ -2,57 +2,14 @@
     <div class="container-fluid">
         <div class="row mb-1">
             <div class="col-md-5 d-flex align-items-center">
-                <h5 class="mb-2"><b>Global Configuration List</b></h5>
+                <h5 class="mb-2"><b>Global Configuration List  ({{ this.dataSource.data.length || 0 }})</b></h5>
             </div>
-            <div class=" col-md-7 d-flex align-items-center">
+            <div class=" col-md-7 d-flex align-items-center justify-content-end">
 
-                <div class="col-md-2 px-1" style="display: flex;   justify-content: end;">
-
-
-                    <button mat-stroked-button class="rounded-3 custom-button">
-                        <mat-icon class="mx-0">replay</mat-icon>
-                    </button>
-                </div>
-                <div class="col-md-2 px-1">
-
-
-                    <button mat-stroked-button class="rounded-3">Connect</button>
-                </div>
-                <div class="col-md-3 px-1">
-                    <mat-form-field style="font-size: 14px;" appearance="outline" class=" custom-size-form-field">
-                        <mat-label>Actions</mat-label>
-                        <mat-select>
-                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                            <mat-option [value]="1">
-                                1
-                            </mat-option>
-                            <mat-option [value]="1">
-                                1
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-
-                </div>
-                <div class="col-md-2 px-1">
-                    <mat-form-field style="font-size: 14px;" appearance="outline" class=" custom-size-form-field">
-                        <mat-label>Any State</mat-label>
-                        <mat-select>
-                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                            <mat-option [value]="1">
-                                1
-                            </mat-option>
-                            <mat-option [value]="1">
-                                1
-                            </mat-option>
-                        </mat-select>
-                    </mat-form-field>
-
-
-                </div>
-                <div class="col-md-3 px-1">
+                
+                <div class="col-md-3 ">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3"
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
                         routerLink="/admin/manage-global-config-details">New Configuration</button>
                 </div>
             </div>

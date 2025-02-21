@@ -1,4 +1,4 @@
-<div class="content-body">
+<div class="content-body "  >
   <div class="container-fluid">
     <div class="card shadow-none " style="border-radius: 0px;">
             <mat-tab-group (selectedTabChange)="onTabChange($event)">
@@ -12,7 +12,7 @@
         <mat-step *ngFor="let tab of tabs">
           <span>{{ tab.label }}</span> -->
 
-          <app-add-channel-details *ngIf="selectedTab === 'Channels'"></app-add-channel-details>
+          <app-add-channel-details *ngIf="selectedTab === 'Channels'" style=" height: 75vh;"></app-add-channel-details >
 
           <app-add-endpoint-details *ngIf="selectedTab === 'Channel Endpoints'"></app-add-endpoint-details>
 

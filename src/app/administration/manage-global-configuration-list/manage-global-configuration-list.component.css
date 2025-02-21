@@ -1,3 +1,10 @@
 .pointer {
     cursor: pointer;
   }
+  .custom-button {
+    height: 32px;
+ 
+
+    font-size: 14px;
+    font-weight: 250;
+   }

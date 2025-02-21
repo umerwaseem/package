@@ -1,11 +1,16 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, Inject, signal, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../services/api.service';
 import { MatDialog, MAT_DIALOG_DATA,MatDialogRef  } from '@angular/material/dialog';
 import { ViewEndpointDetailsDialogComponent } from './View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { ENTER, COMMA } from '@angular/cdk/keycodes';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
+import { startWith, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-channels-list',
@@ -21,6 +26,9 @@ export class ManageChannelsListComponent {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   networkGroupId: any
   instanceDetails: any = {}
+
+
+  
  displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol'];
     form = new FormGroup({
       firstName: new FormControl('',),
@@ -34,7 +42,14 @@ export class ManageChannelsListComponent {
       channelTimeout: new FormControl('',),
     //  channelIndentifier: new FormControl('',[ Validators.required]),
     })
-  constructor(private service: ApiService,public dialog: MatDialog) { }
+  filteredFruits: any;
+  fruitCtrl: any;
+  allFruits: any;
+  constructor(private service: ApiService,public dialog: MatDialog) { 
+    }
+  _filter(fruit: string): any {
+    throw new Error('Method not implemented.');
+  }
   ngOnInit(): void {
     this.getPosts();
   }
@@ -130,8 +145,60 @@ export class ManageChannelsListComponent {
     });
   }
   
-}
+  /// chip datA
+  readonly addOnBlur = true;
+  readonly separatorKeysCodes = [ENTER, COMMA] as const;
+  readonly fruits = signal<Fruit[]>([{name: 'Lemon'}, {name: 'Lime'}, {name: 'Apple'}]);
+  readonly announcer = inject(LiveAnnouncer);
 
+  add(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+
+    // Add our fruit
+    if (value) {
+      this.fruits.update(fruits => [...fruits, {name: value}]);
+    }
+
+    // Clear the input value
+    event.chipInput!.clear();
+  }
+
+  remove(fruit: Fruit): void {
+    this.fruits.update(fruits => {
+      const index = fruits.indexOf(fruit);
+      if (index < 0) {
+        return fruits;
+      }
+
+      fruits.splice(index, 1);
+      this.announcer.announce(`Removed ${fruit.name}`);
+      return [...fruits];
+    });
+  }
+
+  edit(fruit: Fruit, event: MatChipEditedEvent) {
+    const value = event.value.trim();
+
+    // Remove fruit if it no longer has a name
+    if (!value) {
+      this.remove(fruit);
+      return;
+    }
+
+    // Edit existing fruit
+    this.fruits.update(fruits => {
+      const index = fruits.indexOf(fruit);
+      if (index >= 0) {
+        fruits[index].name = value;
+        return [...fruits];
+      }
+      return fruits;
+    });
+  }
+}
+export interface Fruit {
+  name: string;
+}
 const ELEMENT_DATA = [
   {
     "ResponseCode": "00",
