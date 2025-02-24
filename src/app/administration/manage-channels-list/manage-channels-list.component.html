@@ -84,8 +84,8 @@
                 <ng-container *ngFor="let column of displayedColumns">
                     <ng-container *ngIf="columnVisibility[column]">
                         <ng-container matColumnDef="{{ column }}">
-                            <mat-header-cell *matHeaderCellDef [style.border]="'0.25pt solid grey'"> {{ column | titlecase }} </mat-header-cell>
-                            <mat-cell *matCellDef="let element" matTooltip="{{ element[column] }}" [style.border]="'0.25pt solid grey'">
+                            <mat-header-cell *matHeaderCellDef [style.border]="'0.25pt solid grey'" [style.border-width]="'thin'"> {{ column | titlecase }} </mat-header-cell>
+                            <mat-cell *matCellDef="let element" matTooltip="{{ element[column] }}" [style.border]="'0.25pt solid grey'" [style.border-width]="'thin'">
                                 {{ element[column] ? element[column] : '- -' }}
                             </mat-cell>
                         </ng-container>

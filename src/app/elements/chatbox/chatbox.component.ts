@@ -18,8 +18,8 @@ interface chatlistType {
 }
 @Component({
   selector: 'app-chatbox',
-  standalone: true,
-  imports: [NgbModule],
+/*   standalone: true, 
+  imports: [NgbModule], */
   templateUrl: './chatbox.component.html',
   styleUrl: './chatbox.component.css'
 })

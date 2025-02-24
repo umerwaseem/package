@@ -9891,7 +9891,7 @@ svg.pulse-svg {
     transform: rotate(0); } }
 
 .deznav {
-  width: 12rem;/*  */
+  width: 15%;/*  */
   padding-bottom: 0;
   height: calc(100% );/*   height: calc(100% - 5.5rem); */
   position: absolute;
@@ -42162,20 +42162,22 @@ mat-cell, mat-header-cell {
   height: 32px;
   width: 10rem;
   padding: 0;
-  font-size: 18px;
-  font-weight: 300;
+  font-size: 12px;
+  font-weight: 200;
+  font-family: "Inter";
  }
 @media (min-width: 993px) and (max-width: 1160px) {
   .custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size{
     width: 24%;
   }
 
-  .custom-button {
+ .custom-button {
     height: 32px;
     width: 10rem;
     padding: 0;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: 12px;
+    font-weight: 200;
+    font-family: "Inter";
    }
  }
 
@@ -42238,4 +42240,17 @@ mat-cell, mat-header-cell {
 
 .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-chip-set .mdc-evolution-chip-set__chips .mat-mdc-chip {
   height: 20px;
+}
+
+
+   .fixed-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* 100% */ /* 83% */
+    background: white; 
+    padding: 10px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 }

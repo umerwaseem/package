@@ -4,8 +4,7 @@ import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav-header',
-  standalone: true,
-  imports: [NgClass, RouterLink],
+
   templateUrl: './nav-header.component.html',
   styleUrl: './nav-header.component.css'
 })

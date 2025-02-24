@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-xxl-12">
-        <div class="card shadow-none">
-            <!--  <div class="card-header d-block pt-3 pb-1">
-    <h5 class="mb-2"><b>Custom Fields</b></h5>
-</div> -->
-            <div class="card-body px-0">
+        <div class="card m-2">
+            <div class="card-header d-block">
+                <h4 ><b>Create Channel Queues</b></h4>
+            </div>
+            <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <h4 class="mx-4"><b>Create Channel Queues</b></h4>
+                 
                     <div class="row mx-2">
                         <div class="col-md-6 mb-3 ">
                             <mat-checkbox class="example-margin" formControlName="isAutoQueue"
@@ -76,7 +76,7 @@
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 " >
+                <div class="row mx-3 ">
                     <table class="table table-bordered small-row-table">
 
                         <thead>
@@ -107,7 +107,7 @@
 
                                 <td>
                                     <!--    <button mat-icon-button  style="font-size: 14px;"> -->
-                                  <!--   <span>
+                                    <!--   <span>
 
                                         <mat-icon color="primary" (click)="editFieldMapping(i)"
                                             style="font-size: 16px !important; width: 16px !important; height: 16px !important; line-height: 16px !important;">
@@ -116,7 +116,7 @@
                                     </span> -->
 
 
-                   
+
                                     <span class="mx-2 pointer"><!-- (click)="removeFieldMapping(record)" -->
                                         <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                     </span>
@@ -132,6 +132,19 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="my-2 fixed-bottom-bar">
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button">
+                Previous
+            </button>
+
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+                type="submit">
+                Next
+            </button>
+
         </div>
     </div>
 </div>

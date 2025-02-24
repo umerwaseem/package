@@ -3,7 +3,7 @@
 import { NgModule } from "@angular/core";
 import { DummyTableComponent } from "./components/dummy-table/dummy-table.component";
 import { MaterialUiModule } from "./material-ui.module";
-import { CommonModule } from "@angular/common";
+import { CommonModule, NgClass } from "@angular/common";
 import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 import { AppRoutingModule } from "./app-routing.module";
@@ -31,10 +31,28 @@ import { AddMessageRoutingDetailsComponent } from "./administration/manage-chann
 import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-definition/add-field-definition.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ViewEndpointDetailsDialogComponent } from "./administration/manage-channels-list/View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component";
-
+import { AdminLayoutComponent } from "./elements/admin-layout/admin-layout.component";
+import { RouterOutlet } from "@angular/router";
+import { ChatboxComponent } from "./elements/chatbox/chatbox.component";
+import { FooterComponent } from "./elements/footer/footer.component";
+import { HeaderComponent } from "./elements/header/header.component";
+import { NavHeaderComponent } from "./elements/nav-header/nav-header.component";
+import { SidebarComponent } from "./elements/sidebar/sidebar.component";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
     declarations: [
+
+   
+        
+        NavHeaderComponent,
+        ChatboxComponent,
+        HeaderComponent,
+        SidebarComponent,
+        FooterComponent,
+        AdminLayoutComponent,
+
+
         DummyTableComponent,
         DummyPageComponent,
         AppComponent,
@@ -682,6 +700,7 @@ import { ViewEndpointDetailsDialogComponent } from "./administration/manage-chan
         DateTimePickerComponent*/
     ],
     imports: [
+        NgbModule,
         MaterialUiModule,
         AppRoutingModule,
         BrowserModule,
@@ -706,6 +725,6 @@ import { ViewEndpointDetailsDialogComponent } from "./administration/manage-chan
          OnlyLoggedInUserGuard,
          OnlyLoggedOutUserGuard, */
      ],
-     bootstrap: [AppComponent] 
+     bootstrap: [AdminLayoutComponent] 
 })
 export class AppModule { }

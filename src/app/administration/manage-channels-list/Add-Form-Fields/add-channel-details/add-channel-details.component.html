@@ -6,16 +6,16 @@
 </div> -->
             <div class="card m-2">
                 <div class="card-header d-block">
-                    <h4 ><b>Create Channel</b></h4>
+                    <h4><b>Create Channel</b></h4>
                 </div>
-                <div class="card-body px-0">
+                <div class="card-body  pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
 
                     <!--  </div>
             </div>
             <div class="card "> -->
                     <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
 
-                       
+
                         <div class="row  mx-2 ">
 
                             <div class="col-md-3 mb-3">
@@ -143,11 +143,16 @@
             </div>
 
         </div>
-    </div>
-    <div class="row  mx-2 " style="display: flex ; justify-content: end; position: absolute; bottom: 0;">
+        <div class="my-2 fixed-bottom-bar">
 
-        <div class="col-md-12">
 
-            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit">Next</button>
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+                type="submit">
+                Next
+            </button>
+
         </div>
     </div>
+
+</div>

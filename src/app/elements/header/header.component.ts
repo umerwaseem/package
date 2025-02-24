@@ -14,7 +14,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 @Component({
   selector: 'app-header',
-  standalone: true,
+ /*  standalone: true,
     encapsulation: ViewEncapsulation.None,
   
   imports: [
@@ -38,7 +38,7 @@ import { MatTabsModule } from '@angular/material/tabs';
             NgClass, 
         
      
-  ],
+  ], */
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

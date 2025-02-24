@@ -1,12 +1,12 @@
 <div class="row">
-    <div class="col-xxl-12">
-        <div class="card shadow-none">
+    <div class="col-md-12">
+       
 
             <div class="card m-2">
                 <div class="card-header d-block">
                     <h4><b>Create a new Endpoint</b></h4>
                 </div>
-                <div class="card-body pb-0 px-0">
+                <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
                     <form [formGroup]="form" (submit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
                        
                         <ng-container formGroupName="endPointDetails">
@@ -15,8 +15,8 @@
                                 <div class="col-md-6 ">
                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                         class="custom-size-form-field">
-                                        <mat-label>Url Endpoint </mat-label>
-                                        <input matInput placeholder="Enter Url Endpoint " formControlName="urlEndpoint">
+                                        <mat-label>URL Endpoint </mat-label>
+                                        <input matInput placeholder="Enter URL Endpoint " formControlName="urlEndpoint">
                                         <mat-error>
                                             <small>{{fieldErrors("urlEndpoint")}}</small>
                                         </mat-error>
@@ -63,11 +63,11 @@
                                     <mat-expansion-panel [expanded]="false" >
                                         <mat-expansion-panel-header>
                                             <mat-panel-title>
-                                                <h4><b>Advance Config</b></h4>
+                                                <h5><b>Advance Config</b></h5>
                                             </mat-panel-title>
                                         </mat-expansion-panel-header>
-                                        <mat-divider class="mb-2"></mat-divider>
-                                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
+                                        <mat-divider class="mb-3"></mat-divider>
+                                        <div class="row mb-3 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Client'">
                                             <ng-container formGroupName="header">
                                                 <div class="col-md-3">
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
@@ -102,7 +102,7 @@
                                                 </div>
                                                 <div class="col-md-3   ">
             
-                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button"  style="background-color: #007F5F;"
                                                         type="button" (click)="addHeader()">Add Header</button>
             
                                                 </div>
@@ -111,27 +111,27 @@
             
                                         </div>
                                         <div class="row mx-3 " *ngIf="lstHeader.length > 0">
-                                            <h4 class="mx-4"><b>Headers</b></h4>
+                                            <h5 class=""><b>HTTP Headers</b></h5>
             
                                             <table class="table table-bordered small-row-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Action</th>
                                                         <th>Sequence</th>
                                                         <th>Key</th>
                                                         <th style="width: 400px;">Value</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let record of lstHeader; let i = index">
+                                                        <td>{{record.headerSequence || "--"}}</td>
+                                                        <td>{{record.headerKey || "--"}}</td>
+                                                        <td>{{record.headerValue || "--"}}</td>
                                                         <td>
                                                             <span class="mx-2 pointer" (click)="removeHeader(record)">
                                                                 <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                                             </span>
                                                         </td>
-                                                        <td>{{record.headerSequence || "--"}}</td>
-                                                        <td>{{record.headerKey || "--"}}</td>
-                                                        <td>{{record.headerValue || "--"}}</td>
                                                     </tr>
             
                                                     <tr *ngIf="lstHeader.length == 0">
@@ -142,13 +142,13 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="row mb-2 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
+                                        <div class="row mb-3 mx-2" *ngIf="form.get('endPointDetails.isClient')?.value === 'Server'">
             
                                             <ng-container formGroupName="client">
                                                 <div class="col-md-3">
                                                     <mat-form-field style="font-size: 14px;" appearance="outline"
                                                         class="custom-size-form-field">
-                                                        <mat-label>White List IPs </mat-label>
+                                                        <mat-label>Whitelist IPs </mat-label>
                                                         <input matInput placeholder="Enter IP" formControlName="whiteListIps">
                                                         <mat-error>
                                                             <small>Required</small>
@@ -156,7 +156,7 @@
                                                     </mat-form-field>
                                                 </div>
                                                 <div class="col-md-3  ">
-                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                                                    <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
                                                         type="button" (click)="addIp()">Add IP</button>
             
             
@@ -164,25 +164,25 @@
                                             </ng-container>
                                         </div>
                                         <div class="row mx-3 " *ngIf="lstClient.length > 0">
-                                            <h4 class="mx-4"><b>whitelist IPs</b></h4>
+                                            <h5 class=""><b>Whitelist IPs</b></h5>
             
                                             <table class="table table-bordered small-row-table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Action</th>
-            
+                                                        
                                                         <th>WhiteList IPs</th>
+                                                        <th>Action</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr *ngFor="let record of lstClient; let i = index">
+                                                        
+                                                        <td>{{record.whiteListIps || "--"}}</td>
                                                         <td>
                                                             <span class="mx-2 pointer"><!-- (click)="removeHeader(record)" -->
                                                                 <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                                             </span>
                                                         </td>
-            
-                                                        <td>{{record.whiteListIps || "--"}}</td>
             
                                                     </tr>
             
@@ -312,7 +312,7 @@
 
                                 </ng-container>
                                 <div class="col-md-3">
-                                    <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button"
+                                    <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button"  style="background-color: #007F5F;"
                                         (click)="addEndpoint()">Add Endpoint</button>
     
                                 </div>
@@ -334,30 +334,14 @@
                     </form>
                    
                 </div>
-                <mat-divider></mat-divider>
-                <div class="row mx-3 mt-3 mb-2">
-                    <div class="col-md-2">
+               <!--  <mat-divider></mat-divider> -->
+                <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+                    <div class="col-md-12">
                         
-                        <h4 ><b>Endpoints  ({{ this.endpointList.length || 0 }})</b></h4>
+                        <h4 style="padding: 10px 32px;"><b>Endpoints  ({{ this.endpointList.length || 0 }})</b></h4>
                     </div>
-                    <div class="col-md-6 pr-1">
-
-                        <mat-form-field style="font-size: 14px;" appearance="outline" class="custom-size-form-field">
-                            <mat-label>Filter</mat-label>
-                            <input matInput  placeholder="Ex. ium" #input>
-                            <mat-icon matPrefix> search</mat-icon>
-        
-                        </mat-form-field>
-        
-                    </div>
-             
-                    <div class="col-md-4">
-                        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
-                            class="custom-paginator bg-transparent"></mat-paginator>
-        
-        
-                    </div>
-                    <table class="table table-bordered small-row-table">
+                  
+                    <table class="table table-bordered small-row-table px-1">
                         <thead>
                             <tr>
                                 <th><small>
@@ -408,13 +392,34 @@
                     </table>
                 </div>
             </div>
-        </div>
+ 
+            <div class="my-2 fixed-bottom-bar">
+                
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                         type="button">
+                        Previous
+                    </button>
+               
+                
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
+                        style="background-color: #007F5F;" type="submit">
+                        Next
+                    </button>
+               
+            </div>
     </div>
 </div>
-<div class="row  mx-2 " style="display: flex ; justify-content: end; position: absolute; bottom: 0;">
-
-    <div class="col-md-12">
-
-        <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;" type="submit">Next</button>
+<!-- <div class="row mx-2 fixed-bottom d-flex justify-content-between" style="z-index: 2;">
+    <div class="col-md-3">
+        <button mat-flat-button color="primary" class="rounded-3 custom-button"
+             type="button">
+            Previous
+        </button>
     </div>
-</div>
+    <div class="col-md-3">
+        <button mat-flat-button color="primary" class="rounded-3 custom-button"
+            style="background-color: #007F5F;" type="submit">
+            Next
+        </button>
+    </div>
+</div> -->

@@ -9,8 +9,8 @@ import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-admin-layout',
-  standalone: true,
-  imports: [
+  //standalone: true,
+/*   imports: [
     NgClass,
     RouterOutlet,
     NavHeaderComponent,
@@ -18,7 +18,7 @@ import { NgClass } from '@angular/common';
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-  ],
+  ], */
   templateUrl: './admin-layout.component.html',
   styleUrl: './admin-layout.component.css'
 })
