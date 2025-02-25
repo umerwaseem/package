@@ -42246,7 +42246,7 @@ mat-cell, mat-header-cell {
    .fixed-bottom-bar {
     position: fixed;
     bottom: 0;
-    width: 100%; /* 100% */ /* 83% */
+    width: 83%; /* 100% */ /* 83% */
     background: white; 
     padding: 10px;
     z-index: 3;

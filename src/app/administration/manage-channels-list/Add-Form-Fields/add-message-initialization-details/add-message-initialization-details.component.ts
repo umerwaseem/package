@@ -3,6 +3,7 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
 import { PageEvent } from '@angular/material/paginator';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-add-message-initialization-details',
@@ -11,6 +12,30 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrl: './add-message-initialization-details.component.css'
 })
 export class AddMessageInitializationDetailsComponent {
+  todo = [
+    'Yellow Color',
+    '4 wheels',
+    '2 Wheels',
+    'Red'
+  ];
+
+  done = [
+    'Apple',
+    'Banana',
+    'Car',
+    'Bike'
+  ];
+
+  drop(event: CdkDragDrop<string[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+    } else {
+      transferArrayItem(event.previousContainer.data,
+                        event.container.data,
+                        event.previousIndex,
+                        event.currentIndex);
+    }
+  }
   fieldDefinitionList: any = [{ fieldSequence: 'TCP/IP', fieldName: 'TCP Queue', internalTagName: 'TCP Queue', fieldDescription: 'TCP Queue' },{ fieldSequence: 'TCP/IP', fieldName: 'TCP Queue', internalTagName: 'TCP Queue', fieldDescription: 'TCP Queue' },];
   pagedList: any[] = [];
   page = {

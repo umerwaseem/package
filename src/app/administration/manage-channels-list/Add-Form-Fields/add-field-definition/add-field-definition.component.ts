@@ -50,7 +50,7 @@ export class AddFieldDefinitionComponent {
         bitmapFieldName: new FormControl(''),
         bitmapBitNumber: new FormControl(''),
         trim: new FormControl(''),
-        padding: new FormControl(''),
+        padding: new FormControl(false),
         paddingValue: new FormControl(''),
         alignment: new FormControl(''),
         metaLengthType: new FormControl(''),
@@ -86,7 +86,33 @@ export class AddFieldDefinitionComponent {
           // this.formSubmitted.emit(); // Notify parent
         }
       }
+      onChangePadding(){
+        if (this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.value === true ) {
+
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.paddingValue')?.setValidators([ Validators.required]);
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.alignment')?.setValidators([ Validators.required]);
+        } else {
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.alignment')?.reset();
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.alignment')?.clearValidators();
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.paddingValue')?.reset();
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.paddingValue')?.clearValidators();
+        }
     
+        this.fieldDefinitionForm.updateValueAndValidity();
+      }
+      onChangeLengthType(){
+        if (this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value  ) {
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.setValidators([ Validators.required]);
+        //  this.fieldDefinitionForm.get('fieldDefinitionDetails.alignment')?.setValidators([ Validators.required]);
+        }
+        else {
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.reset();
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.clearValidators();
+      /*     this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.reset();
+          this.fieldDefinitionForm.get('fieldDefinitionDetails.padding')?.clearValidators(); */
+        }
+        this.fieldDefinitionForm.updateValueAndValidity();
+      }
       addFieldDefinition() {
         if (this.fieldDefinitionForm.get('fieldDefinitionDetails')?.valid) {
           const fieldDefinitionDetails = this.fieldDefinitionForm.get('fieldDefinitionDetails')?.value;
@@ -115,6 +141,9 @@ export class AddFieldDefinitionComponent {
           this.fieldDefinitionForm.get('fieldDefinitionDetails')?.reset();
         }
       }
+
+
+
       fieldErrors(controller: string) {
         let error = '';
     

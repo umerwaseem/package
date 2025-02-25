@@ -1,18 +1,18 @@
 <div class="row">
     <div class="col-xxl-12">
-        <div class="card shadow-none">
-            <!--  <div class="card-header d-block pt-3 pb-1">
-    <h5 class="mb-2"><b>Custom Fields</b></h5>
-</div> -->
-            <div class="card-body px-0">
+        <div class="card m-2">
+            <div class="card-header d-block">
+                <h4><b>Create Field Definition</b></h4>
+            </div>
+            <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+
                 <form [formGroup]="fieldDefinitionForm" (ngSubmit)="onSubmit()"
                     class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <h4 class="mx-4"><b>Create Field Definition</b></h4>
 
                     <ng-container formGroupName="fieldDefinitionDetails">
 
-                        <div class="row  mx-2">
-                            <div class="col-md-2 mb-3">
+                        <div class="row mb-2 mx-2">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Field Sequence </mat-label>
@@ -23,7 +23,7 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Field Name </mat-label>
@@ -34,7 +34,7 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Field Description </mat-label>
@@ -46,7 +46,7 @@
                                     </mat-error>
                                 </mat-form-field>
                             </div>
-                            <div class="col-md-2 mb-3">
+                            <div class="col-md-3 mb-3">
                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                     class=" custom-size-form-field ">
                                     <mat-label>Internal Tag Name </mat-label>
@@ -67,19 +67,16 @@
                                 </mat-form-field>
                             </div>
 
-                            <div class="col-md-2 mb-3 ">
+                            <div class="col-md-3 mb-3 ">
                                 <mat-checkbox class="example-margin" formControlName="isRoutingField">isRoutingField
                                 </mat-checkbox>
                             </div>
 
-
-                        </div>
-                        <div class="row  mx-2">
-                            <div class="col-md-2 mb-3 ">
+                            <div class="col-md-3 mb-3 ">
                                 <mat-checkbox class="example-margin" formControlName="isIdentifier">Identifier
                                 </mat-checkbox>
                             </div>
-                            <div class="col-md-2 mb-3 ">
+                            <div class="col-md-3 mb-3 ">
                                 <mat-checkbox class="example-margin" formControlName="isMandatory">Mandatory
                                 </mat-checkbox>
                             </div>
@@ -89,19 +86,13 @@
                                 <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
                                                     HTTP Headers</button>
 -->
-   
-                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" (click)="addFieldDefinition()">Add
-                                    Channel</button>
-                            </div>
-                            <div class="col-md-3">
-                            
-                                    <div class="col-md-6">
-                                        <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" style="background-color: #007F5F;">Next</button>
-        
-                                    </div>
-        
+
+                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit"
+                                    (click)="addFieldDefinition()" style="background-color: #007F5F;">Add
+                                    Field</button>
                             </div>
                         </div>
+                        
                         <div class="row mb-3 mx-2">
                             <mat-accordion class="example-headers-align" multi>
                                 <!-- DB Configuration Pooling -->
@@ -184,7 +175,8 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Parent Tag </mat-label>
-                                                    <mat-select placeholder="Select Parent Tag" formControlName="parentTag">
+                                                    <mat-select placeholder="Select Parent Tag"
+                                                        formControlName="parentTag">
                                                         <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
@@ -253,7 +245,8 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Length Type </mat-label>
-                                                    <mat-select placeholder="Select Length Type" formControlName="lengthType">
+                                                    <mat-select placeholder="Select Length Type"
+                                                        formControlName="lengthType" (selectionChange)="onChangeLengthType()">
                                                         <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option value="fixedLength">
                                                             fixedLength
@@ -302,7 +295,8 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Meta Length </mat-label>
-                                                    <mat-select placeholder="Select Meta Length" formControlName="metaLength">
+                                                    <mat-select placeholder="Select Meta Length"
+                                                        formControlName="metaLength">
 
                                                         <mat-option [value]="1">
                                                             1
@@ -332,7 +326,7 @@
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-3">
-                                                <mat-checkbox class="example-margin" formControlName="padding"
+                                                <mat-checkbox class="example-margin" formControlName="padding" (change)="onChangePadding()"
                                                     *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
                                                     isPadding
                                                 </mat-checkbox>
@@ -355,7 +349,8 @@
                                                 <mat-form-field style="font-size: 14px;" appearance="outline"
                                                     class="custom-size-form-field">
                                                     <mat-label>Alignment </mat-label>
-                                                    <mat-select placeholder="Select Alignment" formControlName="alignment">
+                                                    <mat-select placeholder="Select Alignment"
+                                                        formControlName="alignment">
                                                         <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option [value]="1">
                                                             1
@@ -427,60 +422,80 @@
                         </div>
                     </ng-container>
                 </form>
-                <div class="row mx-3 " >
-                    <table class="table table-bordered small-row-table">
-                        <thead>
-                            <tr>
-                                <th><small>
-                                        fieldSequence</small>
-                                </th>
-                                <th><small>
-                                        fieldName</small>
-                                </th>
-                                <th><small>
-                                        internalTagName</small>
-                                </th>
-                                <th><small>
-                                        fieldDescription</small>
-                                </th>
 
-                                <th><small>
+            </div>
+            <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+                <div class="col-md-12">
 
-                                        Actions
-                                    </small>
-                                </th>
+                    <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.fieldDefinitionList.length || 0 }})</b>
+                    </h5>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let record of fieldDefinitionList; let i = index">
-                                <td>{{record.fieldSequence || "--"}}</td>
-                                <td>{{record.fieldName || "--"}}</td>
-                                <td>{{record.internalTagName || "--"}}</td>
-                                <td>{{record.fieldDescription || "--"}}</td>
+                </div>
+                <table class="table table-bordered small-row-table">
+                    <thead>
+                        <tr>
+                            <th><small>
+                                    fieldSequence</small>
+                            </th>
+                            <th><small>
+                                    fieldName</small>
+                            </th>
+                            <th><small>
+                                    internalTagName</small>
+                            </th>
+                            <th><small>
+                                    fieldDescription</small>
+                            </th>
 
-                                <td>
-                                   <!--  <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
+                            <th><small>
+
+                                    Actions
+                                </small>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let record of fieldDefinitionList; let i = index">
+                            <td>{{record.fieldSequence || "--"}}</td>
+                            <td>{{record.fieldName || "--"}}</td>
+                            <td>{{record.internalTagName || "--"}}</td>
+                            <td>{{record.fieldDescription || "--"}}</td>
+
+                            <td>
+                                <!--  <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
                                         <mat-icon>edit</mat-icon>
                                     </button>
                                     <button mat-icon-button color="warn" (click)="removeFieldDefinition(i)">
                                         <mat-icon>delete</mat-icon>
                                     </button> -->
-                                    <span class="mx-2 pointer" (click)="removeFieldDefinition(record)"><!--  -->
-                                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
-                                    </span>
-                                </td>
-                            </tr>
+                                <span class="mx-2 pointer" (click)="removeFieldDefinition(record)"><!--  -->
+                                    <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                                </span>
+                            </td>
+                        </tr>
 
-                            <tr *ngIf="fieldDefinitionList.length == 0">
-                                <td colspan="4">
-                                    <span>Data not found.</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        <tr *ngIf="fieldDefinitionList.length == 0">
+                            <td colspan="4">
+                                <span>Data not found.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+        </div>
+        <div class="my-2 fixed-bottom-bar">
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button">
+                Previous
+            </button>
+
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+                type="submit">
+                Next
+            </button>
+
         </div>
     </div>
 </div>
