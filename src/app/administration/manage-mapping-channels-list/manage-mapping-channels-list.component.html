@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="row mb-1">
             <div class="col-md-5 d-flex align-items-center">
-                <h5 class="mb-2"><b>Channels  ({{ this.dataSource.data.length || 0 }})</b></h5>
+                <h5 class="mb-2"><b>Mappings  ({{ this.dataSource.data.length || 0 }})</b></h5>
             </div>
             <div class=" col-md-7 d-flex align-items-center justify-content-end">
 
@@ -13,7 +13,7 @@
                 <div class="col-md-3 ">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
                     <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                        routerLink="/admin/manage-channel-details">New Channel</button>
+                        routerLink="/admin/manage-mapping-channels-details">New Mapping</button>
                 </div>
             </div>
 
@@ -86,7 +86,7 @@
                         <ng-container matColumnDef="{{ column }}">
                             <mat-header-cell *matHeaderCellDef [style.border]="'0.25pt solid grey'" [style.border-width]="'thin'"> {{ column | titlecase }} </mat-header-cell>
                             <mat-cell *matCellDef="let element" matTooltip="{{ element[column] }}" [style.border]="'0.25pt solid grey'" [style.border-width]="'thin'">
-                                  {{ element[column] ? element[column] : '- -' }}
+                                {{ element[column] ? element[column] : '- -' }}
                             </mat-cell>
                         </ng-container>
                     </ng-container>

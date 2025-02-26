@@ -89,8 +89,8 @@
                     </ng-container>
                 </form>
                 <div class="d-flex justify-content-between mx-4 mb-3">
-                    <div class="example-container col-md-5" style=" border: 1px solid lightgray;   height: 180px;">
-                        <h5 class="p-2 mb-0">Identifier Fields</h5>
+                    <div class="example-container col-md-5" style=" border: 1px solid lightgray;   height: 115px;">
+                        <h5 class="p-2 mb-0">All Fields</h5>
 
                         <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo"
                             [cdkDropListConnectedTo]="[doneList]" class="example-list"
@@ -102,7 +102,7 @@
                         <mat-icon style="font-size: 5rem; height: 72px;
     width: 72px;">compare_arrows</mat-icon>
                     </div>
-                    <div class="example-container  col-md-5" style=" border: 1px solid lightgray;   height: 180px;">
+                    <div class="example-container  col-md-5" style=" border: 1px solid lightgray;   height: 115px;">
                         <h5 class="p-2 mb-0">Message Fields</h5>
 
                         <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done"
@@ -132,7 +132,7 @@
             <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
                 <div class="col-md-12">
 
-                    <h5 style="padding: 10px 32px;"><b>Messages ({{ this.messageInitializationList.length || 0 }})</b>
+                    <h5 style="padding: 10px 32px;"><b>Message List ({{ this.messageInitializationList.length || 0 }})</b>
                     </h5>
                 </div>
 

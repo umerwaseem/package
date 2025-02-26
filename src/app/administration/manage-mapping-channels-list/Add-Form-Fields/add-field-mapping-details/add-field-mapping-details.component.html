@@ -1,12 +1,15 @@
 <div class="row">
-    <div class="col-xxl-12">
-        <div class="card shadow-none">
-            <!--  <div class="card-header d-block pt-3 pb-1">
-    <h5 class="mb-2"><b>Custom Fields</b></h5>
-</div> -->
-            <div class="card-body px-0">
+    <div class="col-md-12">
+
+
+        <div class="card m-2">
+            <div class="card-header d-block pt-3 pb-1">
+                <h4><b>Create Field Mapping</b></h4>
+            </div>
+            <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+
                 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <h4 class="mx-4"><b>Create Field Mapping</b></h4>
+                   
                     <ng-container formGroupName="fieldMappingDetails">
                         <div class="row  mx-2">
 
@@ -145,102 +148,111 @@
                             </div>
                             <div class="col-md-3  mb-3  d-flex align-items-center">
                    
-                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" (click)="addFieldMapping()">Add
-                                     Routing</button>
+                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" (click)="addFieldMapping()" style="background-color: #007F5F;">Add
+                                     Field Mapping</button>
                             </div>
                         </div>
 
-                        <div class="row  mx-2">
-
-                            <div class="col-md-6">
-                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" style="background-color: #007F5F;">Next</button>
-
-                            </div>
-                        </div>
+                       
 
 
 
                     </ng-container>
                 </form>
-                <div class="row mx-3 ">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th><small>
-
-                                        source Channel
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        source Message
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        source Field
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Channel
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Message
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                        destination Field
-                                    </small>
-                                </th>
-                                <th><small>
-
-                                    Mapped Field Name
-                                    </small>
-                                </th>
-
-                                <th><small>
-
-                                        Actions
-                                    </small>
-                                </th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let record of fieldMappingList; let i = index">
-                                <td>{{record.sourceChannelId || "--"}}</td>
-                                <td>{{record.sourceMessageId || "--"}}</td>
-                                <td>{{record.sourceFieldId || "--"}}</td>
-                                <td>{{record.destinationChannelId || "--"}}</td>
-                                <td>{{record.destinationMessageId || "--"}}</td>
-                                <td>{{record.destinationFieldId || "--"}}</td>
-                                <td>{{record.internalTag || "--"}}</td>
-
-
-                                <td>
-                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <tr *ngIf="fieldMappingList.length == 0">
-                                <td colspan="4">
-                                    <span>Data not found.</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+              
 
             </div>
+            <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+                <div class="col-md-12">
+
+                    <h5 style="padding: 10px 32px;"><b>Mapping Fields ({{ this.fieldMappingList.length || 0 }})</b></h5>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th><small>
+
+                                    source Channel
+                                </small>
+                            </th>
+                            <th><small>
+
+                                    source Message
+                                </small>
+                            </th>
+                            <th><small>
+
+                                    source Field
+                                </small>
+                            </th>
+                            <th><small>
+
+                                    destination Channel
+                                </small>
+                            </th>
+                            <th><small>
+
+                                    destination Message
+                                </small>
+                            </th>
+                            <th><small>
+
+                                    destination Field
+                                </small>
+                            </th>
+                            <th><small>
+
+                                Mapped Field Name
+                                </small>
+                            </th>
+
+                            <th><small>
+
+                                    Actions
+                                </small>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let record of fieldMappingList; let i = index">
+                            <td>{{record.sourceChannelId || "--"}}</td>
+                            <td>{{record.sourceMessageId || "--"}}</td>
+                            <td>{{record.sourceFieldId || "--"}}</td>
+                            <td>{{record.destinationChannelId || "--"}}</td>
+                            <td>{{record.destinationMessageId || "--"}}</td>
+                            <td>{{record.destinationFieldId || "--"}}</td>
+                            <td>{{record.internalTag || "--"}}</td>
+
+
+                            <td>
+                                <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+
+                        <tr *ngIf="fieldMappingList.length == 0">
+                            <td colspan="4">
+                                <span>Data not found.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="my-2 fixed-bottom-bar">
+
+            
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+                type="submit">
+                Next
+            </button>
+
         </div>
     </div>
 </div>

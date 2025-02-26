@@ -134,6 +134,8 @@ import { ManageChannelsListComponent } from './administration/manage-channels-li
 import { AddChannelDetailsComponent } from './administration/manage-channels-list/Add-Form-Fields/add-channel-details/add-channel-details.component';
 import { AddGlobalConfigurationComponent } from './administration/manage-global-configuration-list/add-global-configuration/add-global-configuration.component';
 import { ManageChannelDetailsComponent } from './administration/manage-channels-list/manage-channel-details/manage-channel-details.component';
+import { ManageMappingChannelsListComponent } from './administration/manage-mapping-channels-list/manage-mapping-channels-list.component';
+import { ManageMappingChannelsDetailsComponent } from './administration/manage-mapping-channels-list/manage-mapping-channels-details/manage-mapping-channels-details.component';
 
 
 const routes: Routes = [
@@ -289,6 +291,8 @@ const routes: Routes = [
       { path: 'manage-channels-list', component: ManageChannelsListComponent },
       { path: 'manage-channel-details', component: ManageChannelDetailsComponent },
       { path: 'manage-global-config-details', component: AddGlobalConfigurationComponent },
+      { path: 'mapping-channels-list', component: ManageMappingChannelsListComponent },
+      { path: 'manage-mapping-channels-details', component: ManageMappingChannelsDetailsComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },

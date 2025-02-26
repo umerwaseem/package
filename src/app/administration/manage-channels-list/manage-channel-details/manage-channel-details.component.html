@@ -24,15 +24,7 @@
             *ngIf="selectedTab === 'Message Initialization'"></app-add-message-initialization-details>
           <app-add-custom-field-details *ngIf="selectedTab === 'Custom Fields'"></app-add-custom-field-details>
 
-          <app-add-field-mapping-details
-            *ngIf="selectedTab === 'Message Field Mapping'"></app-add-field-mapping-details>
-
-          <app-add-message-routing-details *ngIf="selectedTab === 'Message Routing'"></app-add-message-routing-details>
-
-          <app-add-processing-rule-details
-            *ngIf="selectedTab === 'Message Processing Rules'"></app-add-processing-rule-details>
-
-          <app-preview-configuration *ngIf="selectedTab === 'Preview Configuration'"></app-preview-configuration>
+        
          <!--  <div>
             <button mat-button matStepperPrevious>Back</button>
             <button mat-button matStepperNext>Next</button>

@@ -14,7 +14,7 @@ import { ApiService } from '../../../../services/api.service';
   styleUrl: './manage-channel-details.component.css'
 })
 export class ManageChannelDetailsComponent {
-  selectedTab: string = 'Field Definition';
+  selectedTab: string = 'Channels';
 
   onTabChange(event: any) {
     this.selectedTab = this.tabs[event.index].label;  // Get selected tab label
@@ -28,10 +28,7 @@ export class ManageChannelDetailsComponent {
 
     { label: 'Message Initialization' , type: 'Message Initialization'},
     { label: 'Custom Fields' , type: 'Custom Fields'},
-    { label: 'Message Field Mapping' , type: 'Message Field Mapping'},
-    { label: 'Message Routing' , type: 'Message Routing'},   
-    { label: 'Message Processing Rules' , type: 'Message Processing Rules'},
-    { label: 'Preview Configuration' , type: 'Preview Configuration'},
+
 
 /*     { label: 'Tags' } */
   ];

@@ -21,13 +21,13 @@ import { AddGlobalConfigurationComponent } from "./administration/manage-global-
 import { ManageChannelDetailsComponent } from "./administration/manage-channels-list/manage-channel-details/manage-channel-details.component";
 import { AddCustomFieldDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-custom-field-details/add-custom-field-details.component";
 import { AddEndpointDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-endpoint-details/add-endpoint-details.component";
-import { AddFieldMappingDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-mapping-details/add-field-mapping-details.component";
+import { AddFieldMappingDetailsComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/add-field-mapping-details/add-field-mapping-details.component";
 import { AddMessageInitializationDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-message-initialization-details/add-message-initialization-details.component";
-import { AddProcessingRuleDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-processing-rule-details/add-processing-rule-details.component";
+import { AddProcessingRuleDetailsComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/add-processing-rule-details/add-processing-rule-details.component";
 import { AddQueuesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-queues-details/add-queues-details.component";
 import { AddServicesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-services-details/add-services-details.component";
-import { PreviewConfigurationComponent } from "./administration/manage-channels-list/Add-Form-Fields/preview-configuration/preview-configuration.component";
-import { AddMessageRoutingDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-message-routing-details/add-message-routing-details.component";
+import { PreviewConfigurationComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/preview-configuration/preview-configuration.component";
+import { AddMessageRoutingDetailsComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/add-message-routing-details/add-message-routing-details.component";
 import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-definition/add-field-definition.component";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ViewEndpointDetailsDialogComponent } from "./administration/manage-channels-list/View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component";
@@ -39,6 +39,8 @@ import { HeaderComponent } from "./elements/header/header.component";
 import { NavHeaderComponent } from "./elements/nav-header/nav-header.component";
 import { SidebarComponent } from "./elements/sidebar/sidebar.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ManageMappingChannelsListComponent } from "./administration/manage-mapping-channels-list/manage-mapping-channels-list.component";
+import { ManageMappingChannelsDetailsComponent } from "./administration/manage-mapping-channels-list/manage-mapping-channels-details/manage-mapping-channels-details.component";
 
 @NgModule({
     declarations: [
@@ -52,7 +54,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         FooterComponent,
         AdminLayoutComponent,
 
-
+        ManageMappingChannelsListComponent,
+        ManageMappingChannelsDetailsComponent,
         DummyTableComponent,
         DummyPageComponent,
         AppComponent,

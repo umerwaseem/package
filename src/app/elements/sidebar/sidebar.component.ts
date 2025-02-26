@@ -643,6 +643,10 @@ export class SidebarComponent {
         },
       /*      { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
        */ 
+      {
+        title: "Mapping Channels",
+        route: "/admin/mapping-channels-list"
+      },
         {
           title: "Dummy-Expandable-Table",
           route: "/admin/dummy-expandable-table"

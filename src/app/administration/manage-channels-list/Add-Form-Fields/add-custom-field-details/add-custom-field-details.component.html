@@ -4,7 +4,7 @@
 
         <div class="card m-2">
             <div class="card-header d-block pt-3 pb-1">
-                <h5><b>Create Custom Fields</b></h5>
+                <h4><b>Create Custom Fields</b></h4>
             </div>
             <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
 
@@ -219,94 +219,94 @@
                                 <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
                                     HTTP Headers</button>
     -->
-                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit" style="background-color: #007F5F;"
-                                    (click)="addCustomField()">Add Custom Field</button>
+                                <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit"
+                                    style="background-color: #007F5F;" (click)="addCustomField()">Add Custom
+                                    Field</button>
 
 
                             </div>
                         </div>
 
                     </ng-container>
-                    
+
                 </form>
 
-            
+
             </div>
             <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
                 <div class="col-md-12">
-                        
+
                     <h5 style="padding: 10px 32px;"><b>Custom Fields ({{ this.customFieldsList.length || 0 }})</b></h5>
                 </div>
                 <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th><small>
+                    <thead>
+                        <tr>
+                            <th><small>
 
-                                        Sequence</small>
-                                </th>
-                                <th><small>
+                                    Sequence</small>
+                            </th>
+                            <th><small>
 
-                                        channelId</small>
-                                </th>
-                                <th><small>
+                                    channelId</small>
+                            </th>
+                            <th><small>
 
-                                        messageId</small>
-                                </th>
+                                    messageId</small>
+                            </th>
 
-                                <th><small>
+                            <th><small>
 
-                                        isConditional</small>
-                                </th>
-                                <th><small>
+                                    isConditional</small>
+                            </th>
+                            <th><small>
 
-                                        directionId</small>
-                                </th>
-                                <th><small>
+                                    directionId</small>
+                            </th>
+                            <th><small>
 
-                                        Action</small>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let record of customFieldsList; let i = index">
-                                <td>{{i+1 || "--"}}</td>
+                                    Action</small>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let record of customFieldsList; let i = index">
+                            <td>{{i+1 || "--"}}</td>
 
-                                <td>{{record.channelId || "--"}}</td>
-                                <td>{{record.messageId || "--"}}</td>
-                                <td>{{record.isConditional ?? false}}</td>
-                                <td>{{record.directionId || "--"}}</td>
-                                <td>
-                                    <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button>
-                                </td>
-                            </tr>
+                            <td>{{record.channelId || "--"}}</td>
+                            <td>{{record.messageId || "--"}}</td>
+                            <td>{{record.isConditional ?? false}}</td>
+                            <td>{{record.directionId || "--"}}</td>
+                            <td>
+                                <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
 
-                            <tr *ngIf="customFieldsList.length == 0">
-                                <td colspan="4">
-                                    <span>Data not found.</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                        <tr *ngIf="customFieldsList.length == 0">
+                            <td colspan="4">
+                                <span>Data not found.</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
         <div class="my-2 fixed-bottom-bar">
-                
-            <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                 type="button">
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button">
                 Previous
             </button>
-       
-        
-            <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                style="background-color: #007F5F;" type="submit">
+
+
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+                type="submit">
                 Next
             </button>
-       
-    </div>
+
+        </div>
     </div>
 </div>
