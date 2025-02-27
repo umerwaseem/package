@@ -757,7 +757,7 @@ progress {
 .container-xxl {
   width: 100%;
   padding-right: var(--bs-gutter-x, 15px);
-  padding-left: var(--bs-gutter-x, 15px);
+  padding-left: var(--bs-gutter-x, 15px);/*  //umer */
   margin-right: auto;
   margin-left: auto; }
 
@@ -8270,19 +8270,24 @@ a {
   margin-top: 40px; }
 
 .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
-  padding-top: 10px;
+/*   padding-top: 10px;
   padding-right: 20px;
-  padding-left: 20px; }
+  padding-left: 20px;  */
+  margin-top: 4rem;}
   @media only screen and (max-width: 1200px) {
     .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
-      padding-top: 30px;
+      /* padding-top: 30px; */ /* UMER */
       padding-right: 10px;
-      padding-left: 10px; } }
+      padding-left: 10px; 
+      height: 60vh; 
+      margin-top: 4rem;/*  UMER */} }
   @media only screen and (max-width: 767px) {
     .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
-      padding-top: 20px;
+      /* padding-top: 10px; */
       padding-right: 20px;
-      padding-left: 20px; } }
+      padding-left: 20px; 
+      height: 60vh;
+      margin-top: 4rem; /*  UMER */} }
   @media only screen and (max-width: 575px) {
     .content-body .container-fluid, .content-body .container-sm, .content-body .container-md, .content-body .container-lg, .content-body .container-xl, .content-body .container-xxl {
       padding-top: 15px;
@@ -9235,7 +9240,7 @@ svg.pulse-svg {
   width: 100%; }
 
 [data-header-position="fixed"] .content-body {
-  padding-top: 3.5rem; }
+/*   padding-top: 3.5rem;  */}
   @media only screen and (max-width: 1199px) {
     [data-header-position="fixed"] .content-body {
       padding-top: 2rem; } }
@@ -9721,7 +9726,7 @@ svg.pulse-svg {
   top: 0.625rem; }
 
 .content-body {
-  margin-left: 11.5rem;
+  margin-left: 12.5rem;
   z-index: 0;
   transition: all .2s ease; }
   @media only screen and (max-width: 1350px) {
@@ -9886,7 +9891,7 @@ svg.pulse-svg {
     transform: rotate(0); } }
 
 .deznav {
-  width: 12rem;/*  */
+  width: 15%;/*  */
   padding-bottom: 0;
   height: calc(100% );/*   height: calc(100% - 5.5rem); */
   position: absolute;
@@ -37093,7 +37098,7 @@ button {
     border-color: #EEEEEE;
     position: relative;
     background: transparent;
-    padding: 1.5rem 1.875rem 1.25rem;
+    padding: 0.75rem 1.875rem 0.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -42039,11 +42044,11 @@ table.dataTable.display tbody td {
   }
 
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline {
-    height: 100%
+    height: 90%
   }
   
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix  {
-    padding: 8px 0 0 0;
+    padding: 4px 0 0 0;
     color: grey;
   }
   
@@ -42052,7 +42057,7 @@ table.dataTable.display tbody td {
   }
   
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline .mat-mdc-notch-piece .mdc-floating-label {
-    padding: 0 0 1.3em 0;
+    padding: 0 0 2em 0;
   }
 
   .custom-size-form-field .mat-mdc-form-field-subscript-wrapper{
@@ -42064,10 +42069,10 @@ table.dataTable.display tbody td {
   } */
 
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mdc-notched-outline .mat-mdc-notch-piece .mdc-floating-label{
-    font-size: 14px;
+    font-size: 12px;
   }
   .custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-select .mat-mdc-select-trigger .mat-mdc-select-value .mat-mdc-select-value-text {
-    font-size: 14px;
+    font-size: 12px;
 
   }
       .mat-mdc-table .mdc-data-table__content .mat-mdc-row, .mat-mdc-table .mat-mdc-header-row{
@@ -42116,7 +42121,7 @@ mat-cell, mat-header-cell {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  min-width: 160px; /* Ensure cells have a minimum width */
+  min-width: 180px; /* Ensure cells have a minimum width */
 }
 
 
@@ -42154,20 +42159,26 @@ mat-cell, mat-header-cell {
     width: 100%;
 }
 .custom-button {
-  height: 36px; /* Adjust height */
-  width: 40px;  /* Adjust width */
+  height: 32px;
+  width: 10rem;
   padding: 0;
-}
+  font-size: 12px;
+  font-weight: 200;
+  font-family: "Inter";
+ }
 @media (min-width: 993px) and (max-width: 1160px) {
   .custom-paginator .mat-mdc-paginator-outer-container .mat-mdc-paginator-container .mat-mdc-paginator-page-size{
     width: 24%;
   }
 
-  .custom-button {
-    height: 36px; /* Adjust height */
-    width: 40px;  /* Adjust width */
+ .custom-button {
+    height: 32px;
+    width: 10rem;
     padding: 0;
-  }
+    font-size: 12px;
+    font-weight: 200;
+    font-family: "Inter";
+   }
  }
 
 
@@ -42203,5 +42214,43 @@ mat-cell, mat-header-cell {
 }
 
 .custom-size-form-field .mat-mdc-form-field-subscript-wrapper .mat-mdc-form-field-error-wrapper {
-  padding:0px
+  padding:0px;
+  top: -7px;
+
+}
+
+
+.small-row-table th, 
+.small-row-table td {
+    padding: 4px 6px !important; /* Reduce padding */
+    line-height: 2 !important; /* Reduce line height */
+    font-size: 14px !important; /* Optional: Adjust font size */
+    height: 24px !important; /* Force a smaller row height */
+    vertical-align: middle !important; /* Align content properly */
+}
+
+.small-row-table tr {
+    height: 24px !important; /* Adjust row height */
+}
+
+.custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-select .mat-mdc-select-trigger .mat-mdc-select-arrow-wrapper .mat-mdc-select-arrow{
+  
+}
+
+
+.custom-size-form-field .mat-mdc-text-field-wrapper .mat-mdc-form-field-flex .mat-mdc-form-field-infix .mat-mdc-chip-set .mdc-evolution-chip-set__chips .mat-mdc-chip {
+  height: 20px;
+}
+
+
+   .fixed-bottom-bar {
+    position: fixed;
+    bottom: 0;
+    width: 83%; /* 100% */ /* 83% */
+    background: white; 
+    padding: 10px;
+    z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.35);
 }
