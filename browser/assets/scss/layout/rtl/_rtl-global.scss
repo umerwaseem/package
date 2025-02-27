@@ -1,0 +1,57 @@
+// html[dir="rtl"] {
+
+//content body
+[direction="rtl"] {	
+	.bootstrap-select .dropdown-toggle .filter-option{
+		text-align: right
+	}
+	.noUi-horizontal .noUi-handle {
+		left: auto;
+		right: 0;
+	}
+	.noUi-vertical .noUi-pips-vertical {
+		left: -20px;
+	}
+	.message-search-area .form-control{
+		border-bottom-left-radius:0;
+		border-top-left-radius:0;
+		border-top-right-radius:30px!important;
+		border-bottom-right-radius:30px!important;
+	}
+	.lg-outer{
+		direction:ltr;
+	}
+	.breadcrumb-item + .breadcrumb-item::before {
+		float: right;
+		padding-left: 0.5rem;
+	}
+	.modal-header .btn-close{
+		margin: -0.5rem auto -0.5rem -0.5rem;
+	}
+	.alert-dismissible .btn-close{
+		  right: auto;
+		  left: 0;
+	}
+	.btn-icon-end{
+		margin: -1rem 1rem -1rem -0.25rem;
+		padding: 1rem  1.25rem 1rem  0;
+	}
+	.btn-icon-start{
+		margin: -0.5rem -1.188rem -0.5rem 0.75rem;
+	}
+	.btn-group > .btn:nth-child(n+3), .btn-group > :not(.btn-check) + .btn, .btn-group > .btn-group:not(:first-child) > .btn{
+		border-top-left-radius: $radius;
+		border-bottom-left-radius: $radius;
+		border-top-right-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.btn-group > .btn:not(:last-child):not(.dropdown-toggle), .btn-group > .btn-group:not(:last-child) > .btn{
+		border-top-left-radius: 0;
+		border-bottom-left-radius: 0;
+		border-top-right-radius: $radius;
+		border-bottom-right-radius: $radius;
+	}
+	.widget-timeline.style-1 .timeline .timeline-badge.timeline-badge + .timeline-panel{
+		border-width: 0 5px 0 0;
+	}
+}
