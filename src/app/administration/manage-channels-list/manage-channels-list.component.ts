@@ -29,7 +29,7 @@ export class ManageChannelsListComponent {
 
 
   
- displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol'];
+ displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol'];
     form = new FormGroup({
       firstName: new FormControl('',),
 
@@ -113,7 +113,7 @@ export class ManageChannelsListComponent {
 
   resetTable(): void {
     // Reset table to show all rows
-    this.networkGroupId = ''
+    this.networkGroupId = null
     this.getPosts();
   }
   tabs = [
@@ -122,14 +122,12 @@ export class ManageChannelsListComponent {
     { label: 'Channel Queues', type: 'Channel Queues' },
 
     { label: 'Channel Services' , type: 'Channel Services'},
+    { label: 'Field Definition' , type: 'Field Definition'},
     { label: 'Message Initialization' , type: 'Message Initialization'},
     
     
     { label: 'Custom Fields' , type: 'Custom Fields'},
-    { label: 'Message Field Mapping' , type: 'Message Field Mapping'},
-    { label: 'Message Routing' , type: 'Message Routing'},
-    { label: 'Message Processing Rules' , type: 'Message Processing Rules'},
-    { label: 'Preview Configuration' , type: 'Preview Configuration'},
+
 
 /*     { label: 'Tags' } */
   ];

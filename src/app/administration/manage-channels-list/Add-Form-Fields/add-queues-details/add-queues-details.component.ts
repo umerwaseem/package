@@ -11,6 +11,7 @@ import { UtilityService } from '../../../../../services/utility.service';
 })
 export class AddQueuesDetailsComponent {
   channelQueueList: any = [];
+  displayedColumns: string[] = ['serviceType', 'queueName', 'actions'];
   autoQueue:any
   editIndex: number | null = null;
   form = new FormGroup({

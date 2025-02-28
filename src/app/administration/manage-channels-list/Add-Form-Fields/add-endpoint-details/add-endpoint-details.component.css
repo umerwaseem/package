@@ -7,4 +7,34 @@
     font-family: "Inter";
    }
 
- 
+
+   .table-container {
+    width: 100%;
+    overflow-x: auto; /* Enables horizontal scrolling */
+    max-width: 100%;
+    border: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Ensure horizontal scrolling */
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    white-space: nowrap; /* Prevents text wrapping */
+}
+
+th {
+    background-color: #f4f4f4;
+}
+/* In your component's CSS file (e.g., add-endpoint-details.component.css) */
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Make JSON text readable */

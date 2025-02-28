@@ -42113,9 +42113,7 @@ mat-header-cell {
   font-weight: bold; /* Make header text bold */
 }
 
-mat-cell {
-  word-wrap: break-word; /* Allow word break for longer content */
-}
+
 
 mat-cell, mat-header-cell {
   display: flex;
@@ -42193,7 +42191,7 @@ mat-cell, mat-header-cell {
 .mat-mdc-table .mat-mdc-row, .mat-mdc-table  .mat-mdc-header-row .mat-mdc-header-cell, .mat-mdc-table  .mat-mdc-header-row {
     height: 30px;
     min-height: 30px;
-    
+    width: 100%;
 }
 
 .pointer {

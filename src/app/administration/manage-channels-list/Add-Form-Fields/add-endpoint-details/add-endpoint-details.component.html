@@ -423,3 +423,42 @@
         </button>
     </div>
 </div> -->
+<div class="card-header d-block">
+    <h5 style="padding: 10px 32px;"><b>Endpoints  ({{ this.dataSource.length || 0 }})</b></h5>
+</div>
+<div style="overflow-x: auto;" class="m-2">
+    <table border="1" style="border-collapse: collapse; white-space: nowrap;">
+      <thead>
+        <tr>
+          <th>URL Endpoint</th>
+          <th>Connection Timeout</th>
+          <th>Is TLS</th>
+          <th>TLS Version</th>
+          <th>Cert Path</th>
+          <th>Key File Path</th>
+          <th>Auth Type</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Headers</th>
+          <th>Client</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of dataSource">
+          <td>{{ data.urlEndpoint }}</td>
+          <td>{{ data.connectionTimeout }}</td>
+          <td>{{ data.isTls }}</td>
+          <td>{{ data.tlsVersion }}</td>
+          <td>{{ data.certPath }}</td>
+          <td>{{ data.keyFilePath }}</td>
+          <td>{{ data.authtype }}</td>
+          <td>{{ data.username }}</td>
+          <td>{{ data.password }}</td>
+          <td>{{ data.headers | json }}</td>
+          <td>{{ data.client | json }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+
