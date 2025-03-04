@@ -92,7 +92,7 @@
                                     Field</button>
                             </div>
                         </div>
-                        
+
                         <div class="row mb-3 mx-2">
                             <mat-accordion class="example-headers-align" multi>
                                 <!-- DB Configuration Pooling -->
@@ -246,7 +246,8 @@
                                                     class="custom-size-form-field">
                                                     <mat-label>Length Type </mat-label>
                                                     <mat-select placeholder="Select Length Type"
-                                                        formControlName="lengthType" (selectionChange)="onChangeLengthType()">
+                                                        formControlName="lengthType"
+                                                        (selectionChange)="onChangeLengthType()">
                                                         <!-- <mat-select placeholder="Select " placeholder="Select "> -->
                                                         <mat-option value="fixedLength">
                                                             fixedLength
@@ -326,7 +327,8 @@
                                                 </mat-form-field>
                                             </div>
                                             <div class="col-md-3">
-                                                <mat-checkbox class="example-margin" formControlName="padding" (change)="onChangePadding()"
+                                                <mat-checkbox class="example-margin" formControlName="padding"
+                                                    (change)="onChangePadding()"
                                                     *ngIf="this.fieldDefinitionForm.get('fieldDefinitionDetails.lengthType')?.value == 'fixedLength'">
                                                     isPadding
                                                 </mat-checkbox>
@@ -424,64 +426,61 @@
                 </form>
 
             </div>
-            <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-                <div class="col-md-12">
+            <div class="card-body py-0 px-0 " style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+                <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
 
-                    <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.fieldDefinitionList.length || 0 }})</b>
-                    </h5>
+                    <div class="col-md-12">
 
-                </div>
-                <table class="table table-bordered small-row-table">
-                    <thead>
-                        <tr>
-                            <th><small>
-                                    fieldSequence</small>
-                            </th>
-                            <th><small>
-                                    fieldName</small>
-                            </th>
-                            <th><small>
-                                    internalTagName</small>
-                            </th>
-                            <th><small>
-                                    fieldDescription</small>
-                            </th>
+                        <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.fieldDefinitionList.length || 0
+                                }})</b>
+                        </h5>
 
-                            <th><small>
+                    </div>
+                    <table mat-table [dataSource]="fieldDefinitionList" class="mat-elevation-z8">
 
-                                    Actions
-                                </small>
-                            </th>
+                        <ng-container matColumnDef="fieldSequence">
+                            <th mat-header-cell *matHeaderCellDef> fieldSequence </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.fieldSequence || '--' }} </td>
+                        </ng-container>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let record of fieldDefinitionList; let i = index">
-                            <td>{{record.fieldSequence || "--"}}</td>
-                            <td>{{record.fieldName || "--"}}</td>
-                            <td>{{record.internalTagName || "--"}}</td>
-                            <td>{{record.fieldDescription || "--"}}</td>
 
-                            <td>
-                                <!--  <button mat-icon-button color="primary" (click)="editFieldDefinition(i)">
-                                        <mat-icon>edit</mat-icon>
-                                    </button>
-                                    <button mat-icon-button color="warn" (click)="removeFieldDefinition(i)">
-                                        <mat-icon>delete</mat-icon>
-                                    </button> -->
-                                <span class="mx-2 pointer" (click)="removeFieldDefinition(record)"><!--  -->
+                        <ng-container matColumnDef="fieldName">
+                            <th mat-header-cell *matHeaderCellDef>fieldName</th>
+                            <td mat-cell *matCellDef="let record"> {{ record.fieldName || '--' }}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="internalTagName">
+                            <th mat-header-cell *matHeaderCellDef> internalTagName </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.internalTagName || '--' }} </td>
+                        </ng-container>
+
+
+                        <ng-container matColumnDef="fieldDescription">
+                            <th mat-header-cell *matHeaderCellDef> fieldDescription </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.fieldDescription || '--' }} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="actions">
+                            <th mat-header-cell *matHeaderCellDef> Actions </th>
+                            <td mat-cell *matCellDef="let record">
+                                <span class="mx-2 pointer">
                                     <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                 </span>
                             </td>
-                        </tr>
+                        </ng-container>
 
-                        <tr *ngIf="fieldDefinitionList.length == 0">
-                            <td colspan="4">
-                                <span>Data not found.</span>
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let record; columns: displayedColumns;"></mat-row>
+
+                        <tr *ngIf="fieldDefinitionList.length === 0">
+                            <td [attr.colspan]="displayedColumns.length" class="text-center">
+                                <span>No data available.</span>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+
+                    </table>
+                </div>
             </div>
         </div>
         <div class="my-2 fixed-bottom-bar">
@@ -497,5 +496,182 @@
             </button>
 
         </div>
+    </div>
+</div>
+
+
+<div class="card-body py-0 px-0 mb-5" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+
+    <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
+        <div class="col-md-12">
+
+            <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.fieldDefinitionList.length || 0 }})</b>
+            </h5>
+
+        </div>
+        <table mat-table [dataSource]="fieldDefinitionList" class="mat-elevation-z8">
+
+            <ng-container matColumnDef="fieldSequence">
+                <th mat-header-cell *matHeaderCellDef> fieldSequence </th>
+                <td mat-cell *matCellDef="let record"> {{ record.fieldSequence || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fieldName">
+                <th mat-header-cell *matHeaderCellDef>fieldName</th>
+                <td mat-cell *matCellDef="let record"> {{ record.fieldName || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="fieldDescription">
+                <th mat-header-cell *matHeaderCellDef> fieldDescription </th>
+                <td mat-cell *matCellDef="let record"> {{ record.fieldDescription || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="internalTagName">
+                <th mat-header-cell *matHeaderCellDef> internalTagName </th>
+                <td mat-cell *matCellDef="let record"> {{ record.internalTagName || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="isRoutingField">
+                <th mat-header-cell *matHeaderCellDef> isRoutingField </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isRoutingField || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="isIdentifier">
+                <th mat-header-cell *matHeaderCellDef>isIdentifier</th>
+                <td mat-cell *matCellDef="let record"> {{ record.isIdentifier || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isMandatory">
+                <th mat-header-cell *matHeaderCellDef> isMandatory </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isMandatory || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="incomingTransformation">
+                <th mat-header-cell *matHeaderCellDef> incomingTransformation </th>
+                <td mat-cell *matCellDef="let record"> {{ record.incomingTransformation || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="outgoingTransformation">
+                <th mat-header-cell *matHeaderCellDef> outgoingTransformation </th>
+                <td mat-cell *matCellDef="let record"> {{ record.outgoingTransformation || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="masking">
+                <th mat-header-cell *matHeaderCellDef>masking</th>
+                <td mat-cell *matCellDef="let record"> {{ record.masking || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="customMask">
+                <th mat-header-cell *matHeaderCellDef> customMask </th>
+                <td mat-cell *matCellDef="let record"> {{ record.customMask || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="parentTag">
+                <th mat-header-cell *matHeaderCellDef> parentTag </th>
+                <td mat-cell *matCellDef="let record"> {{ record.parentTag || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="isRepeatBlock">
+                <th mat-header-cell *matHeaderCellDef> isRepeatBlock </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isRepeatBlock || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="minRepeatCount">
+                <th mat-header-cell *matHeaderCellDef>minRepeatCount</th>
+                <td mat-cell *matCellDef="let record"> {{ record.minRepeatCount || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="maxRepeatCount">
+                <th mat-header-cell *matHeaderCellDef> maxRepeatCount </th>
+                <td mat-cell *matCellDef="let record"> {{ record.maxRepeatCount || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="nameSpaceAlias">
+                <th mat-header-cell *matHeaderCellDef> nameSpaceAlias </th>
+                <td mat-cell *matCellDef="let record"> {{ record.nameSpaceAlias || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="lengthType">
+                <th mat-header-cell *matHeaderCellDef> lengthType </th>
+                <td mat-cell *matCellDef="let record"> {{ record.lengthType || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="fixedLength">
+                <th mat-header-cell *matHeaderCellDef>fixedLength</th>
+                <td mat-cell *matCellDef="let record"> {{ record.fixedLength || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="isBitMapped">
+                <th mat-header-cell *matHeaderCellDef> isBitMapped </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isBitMapped || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="isBitMap">
+                <th mat-header-cell *matHeaderCellDef> isBitMap </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isBitMap || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="bitmapFieldName">
+                <th mat-header-cell *matHeaderCellDef> bitmapFieldName </th>
+                <td mat-cell *matCellDef="let record"> {{ record.bitmapFieldName || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="bitmapBitNumber">
+                <th mat-header-cell *matHeaderCellDef>bitmapBitNumber</th>
+                <td mat-cell *matCellDef="let record"> {{ record.bitmapBitNumber || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="trim">
+                <th mat-header-cell *matHeaderCellDef> trim </th>
+                <td mat-cell *matCellDef="let record"> {{ record.trim || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="padding">
+                <th mat-header-cell *matHeaderCellDef> padding </th>
+                <td mat-cell *matCellDef="let record"> {{ record.padding || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="paddingValue">
+                <th mat-header-cell *matHeaderCellDef> paddingValue </th>
+                <td mat-cell *matCellDef="let record"> {{ record.paddingValue || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="alignment">
+                <th mat-header-cell *matHeaderCellDef>alignment</th>
+                <td mat-cell *matCellDef="let record"> {{ record.alignment || '--' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="metaLengthType">
+                <th mat-header-cell *matHeaderCellDef> metaLengthType </th>
+                <td mat-cell *matCellDef="let record"> {{ record.metaLengthType || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="metaLength">
+                <th mat-header-cell *matHeaderCellDef> metaLength </th>
+                <td mat-cell *matCellDef="let record"> {{ record.metaLength || '--' }} </td>
+            </ng-container>
+
+          
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumnsView"></mat-header-row>
+            <mat-row *matRowDef="let record; columns: displayedColumnsView;"></mat-row>
+
+            <tr *ngIf="fieldDefinitionList.length === 0">
+                <td [attr.colspan]="displayedColumnsView.length" class="text-center">
+                    <span>No data available.</span>
+                </td>
+            </tr>
+
+        </table>
+
     </div>
 </div>

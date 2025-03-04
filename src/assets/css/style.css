@@ -42091,8 +42091,7 @@ table.dataTable.display tbody td {
 .table-responsive {
   overflow-x: auto;
   max-width: 100%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+
 }
 
 mat-table {
@@ -42188,10 +42187,14 @@ mat-cell, mat-header-cell {
 }
 
 
-.mat-mdc-table .mat-mdc-row, .mat-mdc-table  .mat-mdc-header-row .mat-mdc-header-cell, .mat-mdc-table  .mat-mdc-header-row {
+.mat-mdc-table .mat-mdc-row, .mat-mdc-table  .mat-mdc-header-row .mat-mdc-header-cell, .mat-mdc-table  .mat-mdc-header-row, .mat-mdc-table .mat-mdc-row .mat-mdc-cell {
     height: 30px;
     min-height: 30px;
     width: 100%;
+    display: flex
+;
+    align-items: center;
+    min-width: 180px;
 }
 
 .pointer {

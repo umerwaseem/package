@@ -12,14 +12,12 @@
           <mat-step *ngFor="let tab of tabs">
             <span>{{ tab.label }}</span> -->
  
-            <app-add-field-mapping-details
-              *ngIf="selectedTab === 'Message Field Mapping'"></app-add-field-mapping-details>
+            <app-preview-message-routing
+              *ngIf="selectedTab === 'Preview Message Field Mapping'"></app-preview-message-routing>
   
-            <app-add-message-routing-details *ngIf="selectedTab === 'Message Routing'"></app-add-message-routing-details>
+            <app-preview-message-field-mapping *ngIf="selectedTab === 'Preview Message Routing'"></app-preview-message-field-mapping>
   
-            <app-add-processing-rule-details
-              *ngIf="selectedTab === 'Message Processing Rules'"></app-add-processing-rule-details>
-  
+          
         
            <!--  <div>
               <button mat-button matStepperPrevious>Back</button>

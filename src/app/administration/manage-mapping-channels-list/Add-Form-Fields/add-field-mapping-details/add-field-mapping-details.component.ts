@@ -5,14 +5,30 @@ import { UtilityService } from '../../../../../services/utility.service';
 
 @Component({
   selector: 'app-add-field-mapping-details',
-  
+
   templateUrl: './add-field-mapping-details.component.html',
   styleUrl: './add-field-mapping-details.component.css'
 })
 export class AddFieldMappingDetailsComponent {
 
   fieldMappingList: any[] = [];
-
+  displayedColumns: string[] = [
+    'sourceChannelId',
+    'sourceMessageId',
+    'sourceFieldId',
+    'destinationChannelId',
+    'destinationMessageId',
+    'destinationFieldId',
+    'internalTag',
+    
+    'actions']
+    displayedColumnsView: string[] = [    'sourceChannelId',
+      'sourceMessageId',
+      'sourceFieldId',
+      'destinationChannelId',
+      'destinationMessageId',
+      'destinationFieldId',
+      'internalTag',]
   editIndex: number | null = null;
   form = new FormGroup({
 
@@ -27,12 +43,12 @@ export class AddFieldMappingDetailsComponent {
       destinationMessageId: new FormControl('', [Validators.required]),
       destinationFieldId: new FormControl('', [Validators.required]),
       internalTag: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
-        Validators.maxLength(50),]),
+      Validators.maxLength(50),]),
 
     }),
 
   })
-  constructor(private util:UtilityService, private fb: FormBuilder, private service: ApiService,) { }
+  constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
   ngOnInit(): void {
 
   }
@@ -50,7 +66,9 @@ export class AddFieldMappingDetailsComponent {
         this.fieldMappingList[this.editIndex] = fieldMappingDetails;
         this.editIndex = null;
       } else {
-        this.fieldMappingList.push(fieldMappingDetails);
+
+        this.fieldMappingList = [...this.fieldMappingList, fieldMappingDetails];
+
       }
 
       this.form.get('fieldMappingDetails')?.reset();
@@ -76,7 +94,7 @@ export class AddFieldMappingDetailsComponent {
 
     // Ensure this.form is defined and is an instance of FormGroup
     // if (this.form instanceof FormGroup && this.form.controls[controller]) {
-      let control = this.form.get(`fieldMappingDetails.${controller}`)
+    let control = this.form.get(`fieldMappingDetails.${controller}`)
 
     if (control) {
       if (control.hasError('required')) {
@@ -97,10 +115,10 @@ export class AddFieldMappingDetailsComponent {
         if (controller === 'internalTag') {
           error = 'Only alphanumeric values are allowed';
         }
-        if (controller === 'channelIndentifier' ) {
+        if (controller === 'channelIndentifier') {
           error = 'Only numbers are allowed';
         }
-        if (controller === 'bin' ) {
+        if (controller === 'bin') {
           error = 'Only numbers are allowed';
         }
       } else if (control.hasError('cannotContainLeadingSpace')) {

@@ -17,7 +17,7 @@ export class ManageMappingChannelsDetailsComponent {
     { label: 'Message Field Mapping' , type: 'Message Field Mapping'},
     { label: 'Message Routing' , type: 'Message Routing'},   
     { label: 'Message Processing Rules' , type: 'Message Processing Rules'},
-    { label: 'Preview Configuration' , type: 'Preview Configuration'},
+
 
 /*     { label: 'Tags' } */
   ];

@@ -12,6 +12,22 @@ import { VOLUME_DOWN } from '@angular/cdk/keycodes';
   styleUrl: './add-custom-field-details.component.css'
 })
 export class AddCustomFieldDetailsComponent {
+
+  displayedColumns: string[] = ['channelId', 'messageId', 'isConditional', 'directionId', 'actions']
+  displayedColumnsView: string[] = [
+    'channelId',
+    'messageId',
+    'isConditional',
+    'directionId',
+    'fieldTagName',
+    'conditionId',
+    'sourceFieldId',
+    'staticValue',
+    'concat',
+    'startingIndex',
+    'subStringLength',
+  
+    ];
   toppings = new FormControl('');
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
   customFieldsList: any = [];
@@ -134,7 +150,8 @@ export class AddCustomFieldDetailsComponent {
         this.customFieldsList[this.editIndex] = customFieldsDetails;
         this.editIndex = null;
       } else {
-        this.customFieldsList.push(customFieldsDetails);
+
+        this.customFieldsList = [...this.customFieldsList, customFieldsDetails]; 
       }
 
       this.form.get('customFieldsDetails')?.reset();

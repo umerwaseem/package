@@ -10,83 +10,83 @@ import { UtilityService } from '../../../../../services/utility.service';
   styleUrl: './add-endpoint-details.component.css'
 })
 export class AddEndpointDetailsComponent {
+  dataSource = [
+    {
+      urlEndpoint: 'https://abc.com',
+      connectionTimeout: 30,
+      isTls: true,
+      tlsVersion: '1.2',
+      certPath: 'C:dx',
+      keyFilePath: 'E:D',
+      authtype: 'Basic Auth',
+      username: 'testUser',
+      password: 'password123',
+      headers: [
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+      ],
+      client: [
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' },
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' }
+      ]
+    },
+    {
+      urlEndpoint: 'https://abc.com',
+      connectionTimeout: 30,
+      isTls: true,
+      tlsVersion: '1.2',
+      certPath: 'C:dx',
+      keyFilePath: 'E:D',
+      authtype: 'Basic Auth',
+      username: 'testUser',
+      password: 'password123',
+      isClient: false,
+      headers: [
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+      ],
+      client: [
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' },
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' }
+      ]
+    },
+    {
+      urlEndpoint: 'https://abc.com',
+      connectionTimeout: 30,
+      isTls: true,
+      tlsVersion: '1.2',
+      certPath: 'C:dx',
+      keyFilePath: 'E:D',
+      authtype: 'Basic Auth',
+      username: 'testUser',
+      password: 'password123',
+      isClient: true,
+      headers: [
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
+        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
+        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+      ],
+      client: [
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' },
+        { whiteListIps: '192.168.1.1' },
+        { whiteListIps: '192.168.1.2' }
+      ]
+    }
+  
+  ];
+  displayedColumns: string[] = ['urlEndpoint','authtype', 'actions']
+  displayedColumnsView: string[] = ['urlEndpoint', 'connectionTimeout', 'isClient', 'isTls', 'tlsVersion','certPath','keyFilePath', 'authtype', 'username', 'password','headers', 'client'];
 
-  displayedColumns: string[] = ['urlEndpoint', 'connectionTimeout', 'isClient', 'isTls', 'tlsVersion','certPath','keyFilePath', 'authtype', 'username', 'headers', 'client'];
-
-dataSource = [
-  {
-    urlEndpoint: 'https://abc.com',
-    connectionTimeout: 30,
-    isTls: true,
-    tlsVersion: '1.2',
-    certPath: 'C:dx',
-    keyFilePath: 'E:D',
-    authtype: 'Basic Auth',
-    username: 'testUser',
-    password: 'password123',
-    headers: [
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
-    ],
-    client: [
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' },
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' }
-    ]
-  },
-  {
-    urlEndpoint: 'https://abc.com',
-    connectionTimeout: 30,
-    isTls: true,
-    tlsVersion: '1.2',
-    certPath: 'C:dx',
-    keyFilePath: 'E:D',
-    authtype: 'Basic Auth',
-    username: 'testUser',
-    password: 'password123',
-    isClient: false,
-    headers: [
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
-    ],
-    client: [
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' },
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' }
-    ]
-  },
-  {
-    urlEndpoint: 'https://abc.com',
-    connectionTimeout: 30,
-    isTls: true,
-    tlsVersion: '1.2',
-    certPath: 'C:dx',
-    keyFilePath: 'E:D',
-    authtype: 'Basic Auth',
-    username: 'testUser',
-    password: 'password123',
-    isClient: true,
-    headers: [
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-      { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-      { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
-    ],
-    client: [
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' },
-      { whiteListIps: '192.168.1.1' },
-      { whiteListIps: '192.168.1.2' }
-    ]
-  }
-
-];
 
   @Output() formSubmitted = new EventEmitter<void>();
   editIndex: number | null = null;
@@ -233,7 +233,8 @@ dataSource = [
         this.editIndex = null; // Reset edit mode
       } else {
         // Add new entry
-        this.endpointList.push(endPointDetails);
+
+        this.endpointList = [...this.endpointList, endPointDetails]; 
       }
 
       this.form.get('endPointDetails')?.reset(); // Clear form after adding/updating

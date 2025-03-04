@@ -171,7 +171,7 @@ export class SidebarComponent {
         }
       ]
     },
-    {
+/*     {
       title: "Apps",
       icon: "flaticon-monitor",
       subMenu: [
@@ -624,9 +624,9 @@ export class SidebarComponent {
           route: "/admin/form-validation"
         }
       ]
-    },
+    }, */
     {
-      title: "Pages",
+      title: "Channel Management",
       icon: "flaticon-newsletter",
       subMenu: [
         {
@@ -647,7 +647,11 @@ export class SidebarComponent {
         title: "Mapping Channels",
         route: "/admin/mapping-channels-list"
       },
-        {
+      {
+        title: "Preview Configurations",
+        route: "/admin/preview-channel-mapping"
+      },
+        /* {
           title: "Dummy-Expandable-Table",
           route: "/admin/dummy-expandable-table"
         },
@@ -707,7 +711,7 @@ export class SidebarComponent {
         {
           title: "Empty Page ",
           route: "/admin/empty-page"
-        }
+        } */
       ]
     },
   ]

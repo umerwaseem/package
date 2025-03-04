@@ -22,12 +22,47 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
+import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeFlatDataSource, MatTreeFlattener, MatTreeNestedDataSource } from '@angular/material/tree';
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+{
+    name: 'Source Channel 2',
+    children: [
+      {
+        name: 'Routing Channel 1',
+        children: [
+          {name: 'Destination Channel 1'},
+          {name: 'Destination Channel 2'},
+        ]
+      }, {
+        name: 'Routing Channel 2',
+        children: [
+          {name: 'Destination Channel 1'},
+          {name: 'Destination Channel 2'},
+        ]
+      },
+    ]
+  },
+];
+
+/** Flat node with expandable and level information */
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
+
 
 @Component({
   selector: 'app-dummy-table',
  // standalone: true,
-  encapsulation: ViewEncapsulation.None,
-  providers: [provideNativeDateAdapter()],
+
   /* imports: [
     CommonModule,
     MatExpansionModule,
@@ -59,48 +94,54 @@ import { ApiService } from '../../../services/api.service';
   styleUrl: './dummy-table.component.css'
 })
 export class DummyTableComponent implements OnInit {
-  dataSource = new MatTableDataSource<any>(); // Data source for the table
-  displayedColumns: string[] = []; // Columns to display dynamically
-  columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
+ 
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  }
 
-  constructor(private service: ApiService) {}
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+      node => node.level, node => node.expandable);
+
+  treeFlattener = new MatTreeFlattener(
+      this._transformer, node => node.level, node => node.expandable, node => node.children);
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  constructor() {
+    this.dataSource.data = TREE_DATA;
+  }
+
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   ngOnInit(): void {
-    this.getPosts();
   }
-
-  getPosts(): void {
-    this.service.getPosts().subscribe(
-      (res) => {
-        if (res['ResponseCode'] === '00') {
-          this.dataSource.data = res['Data']; // Assign API data to the table
-          this.initializeColumns(res['Data']); // Initialize columns
-        }
-      },
-      (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+  transactionData = {
+    transactionId: '123456',
+    customerName: 'John Doe',
+    status: 'Approved',
+    panels: [
+      {
+        title: 'Source Channel 2',
+        description: 'Details of Source Channel',
+        children: [
+          {
+            title: 'Routing Channel ',
+            description: 'Details of Routing Channel',
+            children: [
+              {
+                title: 'Destination Channel',
+                description: 'Details of Destination Channel'
+              }
+            ]
+          }
+        ]
       }
-    );
-  }
-
-  initializeColumns(data: any[]): void {
-    if (data.length > 0) {
-      this.displayedColumns = Object.keys(data[0]); // Extract column keys from the first data row
-      this.displayedColumns.forEach((col) => {
-        this.columnVisibility[col] = true; // Make all columns visible by default
-      });
-
-      // Ensure 'networkGroupId' is always visible
-      if (this.columnVisibility['networkGroupId'] === undefined) {
-        this.columnVisibility['networkGroupId'] = true;
-      }
-    }
-  }
-
-  get visibleColumns(): string[] {
-    // Filter columns based on visibility
-    return this.displayedColumns.filter((col) => this.columnVisibility[col]);
-  }
+    ]
+  };
 }
 
 

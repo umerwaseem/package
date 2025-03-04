@@ -11,34 +11,36 @@ import { UtilityService } from '../../../../../services/utility.service';
 })
 export class AddServicesDetailsComponent {
   channelServiceList: any = [];
+  displayedColumns: string[] = ['serviceTypeId', 'nodeId', 'actions'];
+  displayedColumnsView: string[] = ['serviceTypeId', 'nodeId', 'readQueue', 'writeQueue', 'serviceFilePath', 'listeningIp', 'soapDirectory', 'soapEnvelop', 'logFileName', 'isAutoStart', 'retryCount', 'writeOutboundQueue', 'readOutboundQueue',];
 
   editIndex: number | null = null;
   form = new FormGroup({
     isAutoCreateService: new FormControl(false),
     channelServiceDetails: this.fb.group({
-      serviceTypeId: new FormControl('',[Validators.required]),
-      nodeId: new FormControl('',[Validators.required]),
+      serviceTypeId: new FormControl('', [Validators.required]),
+      nodeId: new FormControl('', [Validators.required]),
 
-      readQueue: new FormControl('',[Validators.required]),
+      readQueue: new FormControl('', [Validators.required]),
       writeQueue: new FormControl(''),
-      serviceFilePath: new FormControl('',[Validators.required]),
+      serviceFilePath: new FormControl('', [Validators.required]),
 
       listeningIp: new FormControl(''),
       soapDirectory: new FormControl(''),
       soapEnvelop: new FormControl(''),
-      logFileName: new FormControl('',[Validators.required]),
+      logFileName: new FormControl('', [Validators.required]),
       isAutoStart: new FormControl(''),
-      retryCount: new FormControl('',[Validators.required]),
+      retryCount: new FormControl('', [Validators.required]),
 
 
       writeOutboundQueue: new FormControl(''),
       readOutboundQueue: new FormControl(''),
     }),
- 
+
   })
   constructor(public util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
   ngOnInit(): void {
-this.onChangeAutoCreateService()
+    this.onChangeAutoCreateService()
   }
   onSubmit() {
     if (this.channelServiceList.length === 0) {
@@ -53,13 +55,13 @@ this.onChangeAutoCreateService()
   }
 
 
-  onChangeAutoCreateService(){
-    if(this.form.controls.isAutoCreateService.value ){
+  onChangeAutoCreateService() {
+    if (this.form.controls.isAutoCreateService.value) {
       this.channelServiceList = [{ serviceTypeId: 'TCP/IP', node: 'TCP node' }, { serviceTypeId: 'SOAP/REST', node: 'TCP node' }]
 
-     }
-    else{
-      this.channelServiceList=[]
+    }
+    else {
+      this.channelServiceList = []
     }
 
   }
@@ -71,7 +73,8 @@ this.onChangeAutoCreateService()
         this.channelServiceList[this.editIndex] = channelServiceDetails;
         this.editIndex = null;
       } else {
-        this.channelServiceList.push(channelServiceDetails);
+       
+        this.channelServiceList = [...this.channelServiceList, channelServiceDetails]; 
       }
 
       this.form.get('channelServiceDetails')?.reset();

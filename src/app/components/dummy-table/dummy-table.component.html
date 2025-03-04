@@ -1,41 +1,267 @@
+<div class="content-body" style="  
 
 
-    <!-- Column Visibility Menu -->
-    <div class="content-body">
-      <div class="container-fluid">
-    
-        <!-- Column Visibility Menu -->
-        <div class="d-flex justify-content-end">
-          <button mat-stroked-button class="rounded-3 custom-button" [matMenuTriggerFor]="columnMenu">
-            <mat-icon class="mx-1">view_week</mat-icon>
-          </button>
-    
-          <mat-menu #columnMenu="matMenu">
-            <mat-checkbox *ngFor="let column of displayedColumns" [(ngModel)]="columnVisibility[column]">
-              {{ column | titlecase }}
-            </mat-checkbox>
-          </mat-menu>
-        </div>
-    
-        <!-- Responsive Table Container -->
-        <div class="table-responsive" style="overflow-x: auto; max-width: 100%; border: 1px solid #ccc; border-radius: 5px;">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-            <ng-container *ngFor="let column of displayedColumns">
-              <ng-container *ngIf="columnVisibility[column]">
-                <ng-container matColumnDef="{{ column }}">
-                  <mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </mat-header-cell>
-                  <mat-cell *matCellDef="let element" matTooltip="{{element[column]}}"> 
-                    {{ element[column] ? element[column] : '- -' }} 
-                  </mat-cell>
-                </ng-container>
-              </ng-container>
-            </ng-container>
-    
-            <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
-            <mat-row *matRowDef="let row; columns: visibleColumns;"></mat-row>
-          </table>
-        </div>
+ ">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3 ">
+        <mat-form-field style="font-size: 14px;" appearance="outline" class=" custom-size-form-field ">
+          <mat-label>Channel</mat-label>
+          <mat-select placeholder="Select Channel" formControlName="tlsVersion">
+            <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
+            <mat-option [value]="1">
+              1
+            </mat-option>
+            <mat-option [value]="1">
+              1
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <small>Required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3 ">
+        <mat-form-field style="font-size: 14px;" appearance="outline" class=" custom-size-form-field ">
+          <mat-label>Channel</mat-label>
+          <mat-select placeholder="Select Channel" formControlName="tlsVersion">
+            <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
+            <mat-option [value]="1">
+              1
+            </mat-option>
+            <mat-option [value]="1">
+              1
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <small>Required</small>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="col-md-3 ">
+        <mat-form-field style="font-size: 14px;" appearance="outline" class=" custom-size-form-field ">
+          <mat-label>Channel</mat-label>
+          <mat-select placeholder="Select Channel" formControlName="tlsVersion">
+            <!-- <mat-select placeholder="Select " formControlName="Select Id"> -->
+            <mat-option [value]="1">
+              1
+            </mat-option>
+            <mat-option [value]="1">
+              1
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <small>Required</small>
+          </mat-error>
+        </mat-form-field>
       </div>
     </div>
+    <!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+ 
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding style="background-color: rgb(188, 255, 121);">
     
+    <button mat-icon-button disabled></button>
+    {{node.name}}
+  </mat-tree-node>
 
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding style="background-color: rgb(147, 206, 255);">
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    {{node.name}}
+  </mat-tree-node>
+</mat-tree> 
+     -->
+    <mat-accordion multi="true">
+      <ng-container *ngFor="let panel of transactionData.panels">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ panel.title }} </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>{{ panel.description }}</p>
+
+          <ng-container *ngIf="panel.children">
+            <mat-accordion>
+              <ng-container *ngFor="let child of panel.children">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title> {{ child.title }} </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <p>{{ child.description }}</p>
+
+                  <ng-container *ngIf="child.children">
+                    <mat-accordion>
+                      <ng-container *ngFor="let subChild of child.children">
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <p>{{ subChild.description }}</p>
+
+                        </mat-expansion-panel>
+                      </ng-container>
+                    </mat-accordion>
+                  </ng-container>
+
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-accordion>
+          </ng-container>
+
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+    <mat-accordion multi="true">
+      <ng-container *ngFor="let panel of transactionData.panels">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ panel.title }} </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>{{ panel.description }}</p>
+
+          <ng-container *ngIf="panel.children">
+            <mat-accordion>
+              <ng-container *ngFor="let child of panel.children">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title> {{ child.title }} </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <p>{{ child.description }}</p>
+
+                  <ng-container *ngIf="child.children">
+                    <mat-accordion>
+                      <ng-container *ngFor="let subChild of child.children">
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <p>{{ subChild.description }}</p>
+
+                        </mat-expansion-panel>
+                      </ng-container>
+                    </mat-accordion>
+                  </ng-container>
+
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-accordion>
+          </ng-container>
+
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+    <mat-accordion multi="true">
+      <ng-container *ngFor="let panel of transactionData.panels">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ panel.title }} </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>{{ panel.description }}</p>
+
+          <ng-container *ngIf="panel.children">
+            <mat-accordion>
+              <ng-container *ngFor="let child of panel.children">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title> {{ child.title }} </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <p>{{ child.description }}</p>
+
+                  <ng-container *ngIf="child.children">
+                    <mat-accordion>
+                      <ng-container *ngFor="let subChild of child.children">
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <p>{{ subChild.description }}</p>
+
+                        </mat-expansion-panel>
+                      </ng-container>
+                    </mat-accordion>
+                  </ng-container>
+
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-accordion>
+          </ng-container>
+
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+    <mat-accordion multi="true">
+      <ng-container *ngFor="let panel of transactionData.panels">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> {{ panel.title }} </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <p>{{ panel.description }}</p>
+
+          <ng-container *ngIf="panel.children">
+            <mat-accordion>
+              <ng-container *ngFor="let child of panel.children">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header>
+                    <mat-panel-title> {{ child.title }} </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <p>{{ child.description }}</p>
+
+                  <ng-container *ngIf="child.children">
+                    <mat-accordion>
+                      <ng-container *ngFor="let subChild of child.children">
+                        <mat-expansion-panel>
+                          <mat-expansion-panel-header>
+                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
+                          </mat-expansion-panel-header>
+
+                          <p>{{ subChild.description }}</p>
+
+                        </mat-expansion-panel>
+                      </ng-container>
+                    </mat-accordion>
+                  </ng-container>
+
+                </mat-expansion-panel>
+              </ng-container>
+            </mat-accordion>
+          </ng-container>
+
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+  </div>
+</div>
+
+
+<!-- <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+ 
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding style="background-color: chartreuse;">
+    
+    <button mat-icon-button disabled></button>
+    {{node.name}}
+  </mat-tree-node>
+
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding style="background-color: rgb(1, 104, 189);">
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+      </mat-icon>
+    </button>
+    {{node.name}}
+  </mat-tree-node>
+</mat-tree> -->

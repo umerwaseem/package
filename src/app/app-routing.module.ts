@@ -136,6 +136,7 @@ import { AddGlobalConfigurationComponent } from './administration/manage-global-
 import { ManageChannelDetailsComponent } from './administration/manage-channels-list/manage-channel-details/manage-channel-details.component';
 import { ManageMappingChannelsListComponent } from './administration/manage-mapping-channels-list/manage-mapping-channels-list.component';
 import { ManageMappingChannelsDetailsComponent } from './administration/manage-mapping-channels-list/manage-mapping-channels-details/manage-mapping-channels-details.component';
+import { PreviewChannelMappingsComponent } from './administration/preview-channel-mappings/preview-channel-mappings.component';
 
 
 const routes: Routes = [
@@ -293,6 +294,7 @@ const routes: Routes = [
       { path: 'manage-global-config-details', component: AddGlobalConfigurationComponent },
       { path: 'mapping-channels-list', component: ManageMappingChannelsListComponent },
       { path: 'manage-mapping-channels-details', component: ManageMappingChannelsDetailsComponent },
+      { path: 'preview-channel-mapping', component: PreviewChannelMappingsComponent },
     ]
   },
   { path: 'page-register', component: RegisterComponent },

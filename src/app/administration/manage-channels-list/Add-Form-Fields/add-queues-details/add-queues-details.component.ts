@@ -61,19 +61,18 @@ export class AddQueuesDetailsComponent {
   addFieldMapping() {
     if (this.form.get('channelQueueDetails')?.valid) {
       const channelQueueDetails = this.form.get('channelQueueDetails')?.value;
-
+  
       if (this.editIndex !== null) {
         this.channelQueueList[this.editIndex] = channelQueueDetails;
         this.editIndex = null;
       } else {
-        this.channelQueueList.push(channelQueueDetails);
+        this.channelQueueList = [...this.channelQueueList, channelQueueDetails]; // Assign a new array
       }
-
+  
       this.form.get('channelQueueDetails')?.reset();
-
     }
   }
-
+  
   editFieldMapping(index: number) {
     this.editIndex = index;
     this.form.get('channelQueueDetails')?.setValue(this.channelQueueList[index]);

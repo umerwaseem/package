@@ -217,8 +217,7 @@
                             </ng-container>
                             <div class="col-md-2  mb-3  d-flex align-items-center">
                                 <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
-                                    HTTP Headers</button>
-    -->
+                                    HTTP Headers</button>    -->
                                 <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit"
                                     style="background-color: #007F5F;" (click)="addCustomField()">Add Custom
                                     Field</button>
@@ -234,65 +233,54 @@
 
             </div>
             <div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-                <div class="col-md-12">
 
-                    <h5 style="padding: 10px 32px;"><b>Custom Fields ({{ this.customFieldsList.length || 0 }})</b></h5>
-                </div>
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th><small>
+                <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
+                    <div class="col-md-12">
 
-                                    Sequence</small>
-                            </th>
-                            <th><small>
+                        <h5 style="padding: 10px 32px;"><b>Custom Fields ({{ this.customFieldsList.length || 0 }})</b>
+                        </h5>
+                    </div>
+                    <table mat-table [dataSource]="customFieldsList" class="mat-elevation-z8">
 
-                                    channelId</small>
-                            </th>
-                            <th><small>
+                        <ng-container matColumnDef="channelId">
+                            <th mat-header-cell *matHeaderCellDef> channelId </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.channelIdId || '--' }} </td>
+                        </ng-container>
 
-                                    messageId</small>
-                            </th>
 
-                            <th><small>
+                        <ng-container matColumnDef="messageId">
+                            <th mat-header-cell *matHeaderCellDef> messageId </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.messageId || '--' }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="internalTagName">
+                            <th mat-header-cell *matHeaderCellDef> Service Type </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.internalTagNameId || '--' }} </td>
+                        </ng-container>
 
-                                    isConditional</small>
-                            </th>
-                            <th><small>
 
-                                    directionId</small>
-                            </th>
-                            <th><small>
+                        <ng-container matColumnDef="isConditional">
+                            <th mat-header-cell *matHeaderCellDef> isConditional </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.isConditional || '--' }} </td>
+                        </ng-container>
+                        <ng-container matColumnDef="directionId">
+                            <th mat-header-cell *matHeaderCellDef> directionId </th>
+                            <td mat-cell *matCellDef="let record"> {{ record.directionId || '--' }} </td>
+                        </ng-container>
+                     
 
-                                    Action</small>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let record of customFieldsList; let i = index">
-                            <td>{{i+1 || "--"}}</td>
 
-                            <td>{{record.channelId || "--"}}</td>
-                            <td>{{record.messageId || "--"}}</td>
-                            <td>{{record.isConditional ?? false}}</td>
-                            <td>{{record.directionId || "--"}}</td>
-                            <td>
-                                <button mat-icon-button color="primary" (click)="editFieldMapping(i)">
-                                    <mat-icon>edit</mat-icon>
-                                </button>
-                                <button mat-icon-button color="warn" (click)="removeFieldMapping(i)">
-                                    <mat-icon>delete</mat-icon>
-                                </button>
-                            </td>
-                        </tr>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let record; columns: displayedColumns;"></mat-row>
+
 
                         <tr *ngIf="customFieldsList.length == 0">
-                            <td colspan="4">
+                            <td colspan="3">
                                 <span>Data not found.</span>
                             </td>
                         </tr>
-                    </tbody>
-                </table>
+
+                    </table>
+                </div>
             </div>
         </div>
         <div class="my-2 fixed-bottom-bar">
@@ -308,5 +296,99 @@
             </button>
 
         </div>
+    </div>
+</div>
+
+
+<div class="card-body py-0 px-0 mb-5" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+
+    <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
+        <div class="col-md-12">
+
+            <h5 style="padding: 10px 32px;"><b>Channel Queues ({{ this.customFieldsList.length || 0 }})</b>
+            </h5>
+
+        </div>
+        <table mat-table [dataSource]="customFieldsList" class="mat-elevation-z8">
+
+
+
+            <ng-container matColumnDef="channelId">
+                <th mat-header-cell *matHeaderCellDef> channelId </th>
+                <td mat-cell *matCellDef="let record"> {{ record.channelId || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="messageId">
+                <th mat-header-cell *matHeaderCellDef>messageId </th>
+                <td mat-cell *matCellDef="let record"> {{ record.messageId || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="isConditional">
+                <th mat-header-cell *matHeaderCellDef> isConditional </th>
+                <td mat-cell *matCellDef="let record"> {{ record.isConditional || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="directionId">
+                <th mat-header-cell *matHeaderCellDef> directionId </th>
+                <td mat-cell *matCellDef="let record"> {{ record.directionId || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="fieldTagName">
+                <th mat-header-cell *matHeaderCellDef> fieldTagName </th>
+                <td mat-cell *matCellDef="let record"> {{ record.fieldTagName || '--' }} </td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="conditionId">
+                <th mat-header-cell *matHeaderCellDef> conditionId </th>
+                <td mat-cell *matCellDef="let record"> {{ record.conditionId || '--' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sourceFieldId">
+                <th mat-header-cell *matHeaderCellDef> sourceFieldId </th>
+                <td mat-cell *matCellDef="let record"> {{ record.sourceFieldId || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="staticValue">
+                <th mat-header-cell *matHeaderCellDef> staticValue </th>
+                <td mat-cell *matCellDef="let record"> {{ record.staticValue || '--' }} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startingIndex">
+                <th mat-header-cell *matHeaderCellDef> startingIndex </th>
+                <td mat-cell *matCellDef="let record"> {{ record.startingIndex || '--' }} </td>
+            </ng-container>
+
+
+
+            <ng-container matColumnDef="subStringLength">
+                <th mat-header-cell *matHeaderCellDef> subStringLength </th>
+                <td mat-cell *matCellDef="let record"> {{ record.subStringLength || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="concat">
+                <th mat-header-cell *matHeaderCellDef> concat </th>
+                <td mat-cell *matCellDef="let record"> {{ record.concat || '--' }} </td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let record">
+                    <span class="mx-2 pointer">
+                        <i class="fa fa-trash" style="color: #ff1c1c"></i>
+                    </span>
+                </td>
+            </ng-container>
+
+
+            <mat-header-row *matHeaderRowDef="displayedColumnsView"></mat-header-row>
+            <mat-row *matRowDef="let record; columns: displayedColumnsView;"></mat-row>
+
+
+            <tr *ngIf="customFieldsList.length == 0">
+                <td colspan="3">
+                    <span>Data not found.</span>
+                </td>
+            </tr>
+
+        </table>
+
     </div>
 </div>

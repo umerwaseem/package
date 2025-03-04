@@ -26,7 +26,6 @@ import { AddMessageInitializationDetailsComponent } from "./administration/manag
 import { AddProcessingRuleDetailsComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/add-processing-rule-details/add-processing-rule-details.component";
 import { AddQueuesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-queues-details/add-queues-details.component";
 import { AddServicesDetailsComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-services-details/add-services-details.component";
-import { PreviewConfigurationComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/preview-configuration/preview-configuration.component";
 import { AddMessageRoutingDetailsComponent } from "./administration/manage-mapping-channels-list/Add-Form-Fields/add-message-routing-details/add-message-routing-details.component";
 import { AddFieldDefinitionComponent } from "./administration/manage-channels-list/Add-Form-Fields/add-field-definition/add-field-definition.component";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -41,12 +40,17 @@ import { SidebarComponent } from "./elements/sidebar/sidebar.component";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ManageMappingChannelsListComponent } from "./administration/manage-mapping-channels-list/manage-mapping-channels-list.component";
 import { ManageMappingChannelsDetailsComponent } from "./administration/manage-mapping-channels-list/manage-mapping-channels-details/manage-mapping-channels-details.component";
-
+import {MatTreeModule} from '@angular/material/tree';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import { PreviewChannelMappingsComponent } from "./administration/preview-channel-mappings/preview-channel-mappings.component";
+import { PreviewMessageFieldMappingComponent } from "./administration/preview-channel-mappings/preview-message-field-mapping/preview-message-field-mapping.component";
+import { PreviewMessageRoutingComponent } from "./administration/preview-channel-mappings/preview-message-routing/preview-message-routing.component";
 @NgModule({
     declarations: [
-
-   
-        
+        PreviewMessageFieldMappingComponent,
+        PreviewMessageRoutingComponent,
+        PreviewChannelMappingsComponent, 
         NavHeaderComponent,
         ChatboxComponent,
         HeaderComponent,
@@ -74,7 +78,7 @@ import { ManageMappingChannelsDetailsComponent } from "./administration/manage-m
         AddProcessingRuleDetailsComponent,
         AddQueuesDetailsComponent,
         AddServicesDetailsComponent, 
-        PreviewConfigurationComponent,
+
         AddMessageRoutingDetailsComponent,
         AddFieldDefinitionComponent, 
         ViewEndpointDetailsDialogComponent 
@@ -703,6 +707,9 @@ import { ManageMappingChannelsDetailsComponent } from "./administration/manage-m
         DateTimePickerComponent*/
     ],
     imports: [
+        MatTreeModule,
+        MatIconModule,
+        MatButtonModule,
         NgbModule,
         MaterialUiModule,
         AppRoutingModule,
