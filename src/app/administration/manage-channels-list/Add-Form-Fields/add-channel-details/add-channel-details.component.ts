@@ -28,10 +28,10 @@ export class AddChannelDetailsComponent {
 
 
     channelName: new FormControl('', [Validators.required,
-    Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+    /* Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'), */
     Validators.maxLength(50),]),
     channelIndentifier: new FormControl('', [Validators.required,
-    Validators.pattern(/^\d+$/),
+    /* Validators.pattern(/^\d+$/), */
     Validators.maxLength(4),]),
     channelType: new FormControl('', [Validators.required]),
     bin: new FormControl(''),
@@ -53,7 +53,8 @@ export class AddChannelDetailsComponent {
 
   }
   onSubmit() {
-
+ this.form.markAllAsTouched();
+  
     if (this.form.valid) {
       console.log('API PAYLOAD');
      // this.formSubmitted.emit(); // Notify parent
@@ -65,7 +66,7 @@ export class AddChannelDetailsComponent {
     if (this.channelType == this.appConstants.channelType.bankingChannel.value) {
 
       this.form.controls.bin.setValidators([Validators.required,
-      Validators.pattern(/^\d+$/),
+      /* Validators.pattern(/^\d+$/), */
       Validators.maxLength(6),]);
     } else {
       this.form.controls.bin.reset();

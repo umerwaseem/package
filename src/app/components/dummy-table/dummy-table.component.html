@@ -75,34 +75,48 @@
   </mat-tree-node>
 </mat-tree> 
      -->
-    <mat-accordion multi="true">
+    <mat-accordion class="custom-accordian" multi="true">
       <ng-container *ngFor="let panel of transactionData.panels">
-        <mat-expansion-panel>
+        <mat-expansion-panel class="shadow-none">
           <mat-expansion-panel-header>
             <mat-panel-title> {{ panel.title }} </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <p>{{ panel.description }}</p>
-
+          <div *ngFor="let child of panel.description">
+            <p>Scheme Name: {{ child.SchemeName }}</p>
+            <p>Tran Code: {{ child.trancode }}</p>
+            <p>Destination Queue: {{ child.DestQueue }}</p>
+            <p>Destination Endpoint: {{ child.DestEndpoint }}</p>
+          </div>
           <ng-container *ngIf="panel.children">
             <mat-accordion>
               <ng-container *ngFor="let child of panel.children">
-                <mat-expansion-panel>
+                <mat-expansion-panel class="shadow-none">
                   <mat-expansion-panel-header>
                     <mat-panel-title> {{ child.title }} </mat-panel-title>
                   </mat-expansion-panel-header>
 
-                  <p>{{ child.description }}</p>
+                  <div *ngFor="let child of panel.description">
+                    <p>Scheme Name: {{ child.SchemeName }}</p>
+                    <p>Tran Code: {{ child.trancode }}</p>
+                    <p>Destination Queue: {{ child.DestQueue }}</p>
+                    <p>Destination Endpoint: {{ child.DestEndpoint }}</p>
+                  </div>
 
                   <ng-container *ngIf="child.children">
                     <mat-accordion>
                       <ng-container *ngFor="let subChild of child.children">
-                        <mat-expansion-panel>
+                        <mat-expansion-panel class="shadow-none p-0">
                           <mat-expansion-panel-header>
                             <mat-panel-title> {{ subChild.title }} </mat-panel-title>
                           </mat-expansion-panel-header>
 
-                          <p>{{ subChild.description }}</p>
+                          <div *ngFor="let child of panel.description">
+                            <p>Scheme Name: {{ child.SchemeName }}</p>
+                            <p>Tran Code: {{ child.trancode }}</p>
+                            <p>Destination Queue: {{ child.DestQueue }}</p>
+                            <p>Destination Endpoint: {{ child.DestEndpoint }}</p>
+                          </div>
 
                         </mat-expansion-panel>
                       </ng-container>
@@ -117,132 +131,7 @@
         </mat-expansion-panel>
       </ng-container>
     </mat-accordion>
-    <mat-accordion multi="true">
-      <ng-container *ngFor="let panel of transactionData.panels">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> {{ panel.title }} </mat-panel-title>
-          </mat-expansion-panel-header>
 
-          <p>{{ panel.description }}</p>
-
-          <ng-container *ngIf="panel.children">
-            <mat-accordion>
-              <ng-container *ngFor="let child of panel.children">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title> {{ child.title }} </mat-panel-title>
-                  </mat-expansion-panel-header>
-
-                  <p>{{ child.description }}</p>
-
-                  <ng-container *ngIf="child.children">
-                    <mat-accordion>
-                      <ng-container *ngFor="let subChild of child.children">
-                        <mat-expansion-panel>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
-                          </mat-expansion-panel-header>
-
-                          <p>{{ subChild.description }}</p>
-
-                        </mat-expansion-panel>
-                      </ng-container>
-                    </mat-accordion>
-                  </ng-container>
-
-                </mat-expansion-panel>
-              </ng-container>
-            </mat-accordion>
-          </ng-container>
-
-        </mat-expansion-panel>
-      </ng-container>
-    </mat-accordion>
-    <mat-accordion multi="true">
-      <ng-container *ngFor="let panel of transactionData.panels">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> {{ panel.title }} </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <p>{{ panel.description }}</p>
-
-          <ng-container *ngIf="panel.children">
-            <mat-accordion>
-              <ng-container *ngFor="let child of panel.children">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title> {{ child.title }} </mat-panel-title>
-                  </mat-expansion-panel-header>
-
-                  <p>{{ child.description }}</p>
-
-                  <ng-container *ngIf="child.children">
-                    <mat-accordion>
-                      <ng-container *ngFor="let subChild of child.children">
-                        <mat-expansion-panel>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
-                          </mat-expansion-panel-header>
-
-                          <p>{{ subChild.description }}</p>
-
-                        </mat-expansion-panel>
-                      </ng-container>
-                    </mat-accordion>
-                  </ng-container>
-
-                </mat-expansion-panel>
-              </ng-container>
-            </mat-accordion>
-          </ng-container>
-
-        </mat-expansion-panel>
-      </ng-container>
-    </mat-accordion>
-    <mat-accordion multi="true">
-      <ng-container *ngFor="let panel of transactionData.panels">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title> {{ panel.title }} </mat-panel-title>
-          </mat-expansion-panel-header>
-
-          <p>{{ panel.description }}</p>
-
-          <ng-container *ngIf="panel.children">
-            <mat-accordion>
-              <ng-container *ngFor="let child of panel.children">
-                <mat-expansion-panel>
-                  <mat-expansion-panel-header>
-                    <mat-panel-title> {{ child.title }} </mat-panel-title>
-                  </mat-expansion-panel-header>
-
-                  <p>{{ child.description }}</p>
-
-                  <ng-container *ngIf="child.children">
-                    <mat-accordion>
-                      <ng-container *ngFor="let subChild of child.children">
-                        <mat-expansion-panel>
-                          <mat-expansion-panel-header>
-                            <mat-panel-title> {{ subChild.title }} </mat-panel-title>
-                          </mat-expansion-panel-header>
-
-                          <p>{{ subChild.description }}</p>
-
-                        </mat-expansion-panel>
-                      </ng-container>
-                    </mat-accordion>
-                  </ng-container>
-
-                </mat-expansion-panel>
-              </ng-container>
-            </mat-accordion>
-          </ng-container>
-
-        </mat-expansion-panel>
-      </ng-container>
-    </mat-accordion>
   </div>
 </div>
 

@@ -31,20 +31,20 @@ interface FoodNode {
 }
 
 const TREE_DATA: FoodNode[] = [
-{
+  {
     name: 'Source Channel 2',
     children: [
       {
         name: 'Routing Channel 1',
         children: [
-          {name: 'Destination Channel 1'},
-          {name: 'Destination Channel 2'},
+          { name: 'Destination Channel 1' },
+          { name: 'Destination Channel 2' },
         ]
       }, {
         name: 'Routing Channel 2',
         children: [
-          {name: 'Destination Channel 1'},
-          {name: 'Destination Channel 2'},
+          { name: 'Destination Channel 1' },
+          { name: 'Destination Channel 2' },
         ]
       },
     ]
@@ -61,7 +61,7 @@ interface ExampleFlatNode {
 
 @Component({
   selector: 'app-dummy-table',
- // standalone: true,
+  // standalone: true,
 
   /* imports: [
     CommonModule,
@@ -94,7 +94,7 @@ interface ExampleFlatNode {
   styleUrl: './dummy-table.component.css'
 })
 export class DummyTableComponent implements OnInit {
- 
+
   private _transformer = (node: FoodNode, level: number) => {
     return {
       expandable: !!node.children && node.children.length > 0,
@@ -104,10 +104,10 @@ export class DummyTableComponent implements OnInit {
   }
 
   treeControl = new FlatTreeControl<ExampleFlatNode>(
-      node => node.level, node => node.expandable);
+    node => node.level, node => node.expandable);
 
   treeFlattener = new MatTreeFlattener(
-      this._transformer, node => node.level, node => node.expandable, node => node.children);
+    this._transformer, node => node.level, node => node.expandable, node => node.children);
 
   dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
 
@@ -126,15 +126,30 @@ export class DummyTableComponent implements OnInit {
     panels: [
       {
         title: 'Source Channel 2',
-        description: 'Details of Source Channel',
+        description: [{
+          SchemeName: 'NADRA',
+          trancode : '344asd',
+          DestQueue : 'asd', 
+          DestEndpoint : 'qwerty',
+        }],
         children: [
           {
             title: 'Routing Channel ',
-            description: 'Details of Routing Channel',
+            description: [{
+              SchemeName: 'NADRA',
+              trancode : '344asd',
+              DestQueue : 'asd', 
+              DestEndpoint : 'qwerty',
+            }],
             children: [
               {
                 title: 'Destination Channel',
-                description: 'Details of Destination Channel'
+                description: [{
+                  SchemeName: 'NADRA',
+                  trancode : '344asd',
+                  DestQueue : 'asd', 
+                  DestEndpoint : 'qwerty',
+                }],
               }
             ]
           }

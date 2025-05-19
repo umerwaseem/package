@@ -5,7 +5,7 @@
                 <h4><b>Create Channel Queues</b></h4>
             </div>
             <div class="card-body pb-0 pt-2 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                <form [formGroup]="form"  class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
 
                     <div class="row mx-2">
                         <div class="col-md-6 mb-3 ">
@@ -130,7 +130,7 @@
 
 
             <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
-                type="submit">
+                 type="button" (click)="onSubmit()">
                 Next
             </button>
 

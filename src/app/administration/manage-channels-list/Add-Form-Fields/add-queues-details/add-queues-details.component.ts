@@ -19,7 +19,7 @@ export class AddQueuesDetailsComponent {
     channelQueueDetails: this.fb.group({
       serviceTypeId: new FormControl('',[Validators.required]),
       queueName: new FormControl('',[Validators.required,
-        Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+       /*  Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'), */
         Validators.maxLength(50),]),
 
 
@@ -59,6 +59,11 @@ export class AddQueuesDetailsComponent {
   }
 
   addFieldMapping() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+  
     if (this.form.get('channelQueueDetails')?.valid) {
       const channelQueueDetails = this.form.get('channelQueueDetails')?.value;
   

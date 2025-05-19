@@ -6,7 +6,7 @@
             </div>
             <div class=" col-md-7 d-flex align-items-center justify-content-end">
 
-               
+
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
                     <button mat-flat-button color="primary" class="rounded-3 custom-button"
@@ -89,18 +89,22 @@
         <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.networkGroupId">
             <ng-container><!-- *ngFor="let item of instanceDetails" -->
                 <div class="row d-flex align-items-center card-header p-1">
-                    <div class="col-md-10">
+                    <div class="col-md-6">
                         <h5 class="my-2"
                             style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
                             <b>View Institution
                             </b><!-- {{item.jsonParseData ? item.jsonParseData.instance : '--'}} -->
                         </h5>
                     </div>
-                    <div class="col-md-2 d-flex justify-content-end">
-                        <span class="mx-2 pointer d-flex align-items-center" routerLink="/admin/manage-channels-list">
-                            <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
-                            <i class="fa fa-circle pointer zoomer" style="font-size: 14px; color: #129b00;"></i>
-                        </span>
+                    <div class="col-md-6 d-flex justify-content-end">
+
+                        <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
+                        <button mat-flat-button color="primary" class="rounded-3 custom-button mx-2"  style="background-color: #007F5F;"
+                            routerLink="/admin/manage-institution-details">Reject</button>
+                        <button mat-flat-button color="primary" class="rounded-3 custom-button mx-2"
+                            routerLink="/admin/manage-institution-details">Approve</button>
+
+                       
                         <span class="mx-2 pointer d-flex align-items-center"
                             routerLink="/admin/manage-institution-details">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
@@ -185,6 +189,17 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="my-2 fixed-bottom-bar" *ngIf="this.networkGroupId">
+
+            <div class="col-md-12 ">
+                <mat-form-field style="font-size: 14px;" appearance="outline"
+                    class="custom-size-form-field">
+                    <mat-label>Checker Comments </mat-label>
+                    <input matInput placeholder="Enter Checker Comments " formControlName="certPath">
+                   
+                </mat-form-field>
             </div>
         </div>
     </div>

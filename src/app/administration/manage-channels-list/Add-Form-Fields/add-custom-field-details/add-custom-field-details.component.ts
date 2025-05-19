@@ -13,7 +13,7 @@ import { VOLUME_DOWN } from '@angular/cdk/keycodes';
 })
 export class AddCustomFieldDetailsComponent {
 
-  displayedColumns: string[] = ['channelId', 'messageId', 'isConditional', 'directionId', 'actions']
+  displayedColumns: string[] = ['channelId', 'messageId', 'isConditional', 'directionId']
   displayedColumnsView: string[] = [
     'channelId',
     'messageId',
@@ -40,7 +40,7 @@ export class AddCustomFieldDetailsComponent {
       messageId: new FormControl('', [Validators.required]),
       isConditional: new FormControl(false),
       directionId: new FormControl('', [Validators.required]),
-      fieldTagName: new FormControl('', [Validators.required, Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+      fieldTagName: new FormControl('', [Validators.required/* , Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$') */,
       Validators.maxLength(50),]),
       conditionId: new FormControl(''),
 
@@ -123,12 +123,12 @@ export class AddCustomFieldDetailsComponent {
       this.form.get('customFieldsDetails.sourceFieldId')?.setValidators([Validators.required]);
       this.form.get('customFieldsDetails.subStringLength')?.setValidators([
         Validators.required,
-        Validators.pattern(/^\d+$/),
+        /* Validators.pattern(/^\d+$/), */
         Validators.max(2)
       ]);
       this.form.get('customFieldsDetails.startingIndex')?.setValidators([
         Validators.required,
-        Validators.pattern(/^\d+$/),
+       /*  Validators.pattern(/^\d+$/), */
         Validators.max(2)
 
       ]);

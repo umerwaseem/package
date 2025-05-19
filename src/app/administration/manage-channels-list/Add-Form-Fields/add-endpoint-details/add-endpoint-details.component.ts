@@ -103,15 +103,15 @@ export class AddEndpointDetailsComponent {
       urlEndpoint: new FormControl('https://abc.com', [
         Validators.required,
         Validators.maxLength(999),
-        Validators.pattern(
+       /*  Validators.pattern(
           '^(https?:\\/\\/)?([a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+)(:\\d+)?(\\/[\\S]*)?(\\?[\\S]*)?(#[\\S]*)?$'
-        ),
+        ), */
       ]),
 
 
       connectionTimeout: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^\d+$/),
+       /*  Validators.pattern(/^\d+$/), */
         Validators.max(2)
       ]),
       isTls: new FormControl(false),

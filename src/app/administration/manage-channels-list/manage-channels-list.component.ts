@@ -24,7 +24,7 @@ export class ManageChannelsListComponent {
     dataSource = new MatTableDataSource(ELEMENT_DATA);
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-  networkGroupId: any
+  channelId: any
   instanceDetails: any = {}
 
 
@@ -51,7 +51,7 @@ export class ManageChannelsListComponent {
     throw new Error('Method not implemented.');
   }
   ngOnInit(): void {
-    this.getPosts();
+    this.getChannels();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -60,8 +60,8 @@ export class ManageChannelsListComponent {
   onSubmit() {
     console.log('Form Data:', this.form.value);
   }
-  getPosts(): void {
-    this.service.getPosts().subscribe(
+  getChannels(): void {
+    this.service.getChannels().subscribe(
       (res) => {
         if (res['ResponseCode'] === '00') {
           this.dataSource.data = res['Data']; // Assign API data to the table
@@ -76,7 +76,7 @@ export class ManageChannelsListComponent {
         }
       },
       (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+        this.service.refreshToken(ex.status).then(() => this.getChannels());
       }
     );
   }
@@ -88,9 +88,9 @@ export class ManageChannelsListComponent {
         this.columnVisibility[col] = true; // Make all columns visible by default
       });
 
-      // Ensure 'networkGroupId' is always visible
-      if (this.columnVisibility['networkGroupId'] === undefined) {
-        this.columnVisibility['networkGroupId'] = true;
+      // Ensure 'channelId' is always visible
+      if (this.columnVisibility['channelId'] === undefined) {
+        this.columnVisibility['channelId'] = true;
       }
     }
     return
@@ -108,13 +108,15 @@ export class ManageChannelsListComponent {
   filterToSingleRow(row: any): void {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
-    this.networkGroupId = row.networkGroupId;
+    this.channelId = row.channelId;
   }
 
   resetTable(): void {
     // Reset table to show all rows
-    this.networkGroupId = null
-    this.getPosts();
+    this.channelId = null
+    this.getChannels();
+    console.log();
+    
   }
   tabs = [
     { label: 'Channels', type: 'Channels' },
@@ -133,7 +135,7 @@ export class ManageChannelsListComponent {
   ];
 
   viewEndPointDetails(val:any) {
-    // let obj = { behaviour: "V", userData: val, networkGroupId: this.form.controls.networkGroupId.value };
+    // let obj = { behaviour: "V", userData: val, channelId: this.form.controls.channelId.value };
     let obj = val;
 
     this.dialog.open(ViewEndpointDetailsDialogComponent, {

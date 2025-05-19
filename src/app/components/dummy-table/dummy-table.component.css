@@ -22,3 +22,8 @@
     font-size: 14px;
   }
   
+
+
+  ::ng-deep .custom-accordian .mat-expansion-panel .mat-expansion-panel-content .mat-expansion-panel-body{
+    padding: 0 0 16px 24px;
+  }

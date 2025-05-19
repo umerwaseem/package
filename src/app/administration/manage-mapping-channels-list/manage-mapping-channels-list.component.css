@@ -6,4 +6,6 @@
     font-weight: 200;
     font-family: "Inter";
    }
-  
+   .highlight-row {
+    background-color: #ff6565 !important; /* Light green for highlighting */
+  }

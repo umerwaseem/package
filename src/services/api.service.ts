@@ -21,7 +21,7 @@ export class ApiService {
   environmentUrl = "http://localhost:3001/";
 
 
-
+  private baseUrl = 'http://localhost:3000/';
   // ------------ for server ---------------------
   // environmentUrl = "/reconx/";
   // environmentUrl = "/";
@@ -753,6 +753,8 @@ getUserDetail(id: any): Observable<any> {
 
 
 
+
+
  
 getPosts(): Observable<any> {
   return this.http.get(`${this.environmentUrl}getAllUserList`);
@@ -764,6 +766,16 @@ getInstanceDetailsById(id: any): Observable<any> {
 
   console.log('API URL:', url);
   return this.http.get(url);
+}
+
+
+getChannels(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}api/channels`);
+  }
+
+
+  getInstitutions(): Observable<any> {
+  return this.http.get(`${this.baseUrl}api/institutions`);
 }
 }
 /*   getAll(id: any): Observable<any> {
@@ -784,3 +796,5 @@ getInstanceDetailsById(id: any): Observable<any> {
     }
   }
  */
+
+  

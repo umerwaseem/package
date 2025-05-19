@@ -1,1 +1,143 @@
-<p>preview-message-field-mapping works!</p>
+<div class="row">
+    <div class="col-md-12">
+
+
+        <div class="card m-2">
+            <div class="card-header d-block pt-3 pb-1">
+                <h4><b>Preview Field Mapping</b></h4>
+            </div>
+            <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <div class="row  mx-2">
+                        <div class="col-md-2 mb-3">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Select Channel Type </mat-label>
+                                <mat-select formControlName="destinationChannelId">
+                                    <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Select Source Channel </mat-label>
+                                <mat-select formControlName="sourceChannelId">
+                                    <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Select Source Channel Message</mat-label>
+                                <mat-select formControlName="destinationChannelId">
+                                    <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Select Destination Channel </mat-label>
+                                <mat-select formControlName="destinationChannelId">
+                                    <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-2 mb-3">
+                            <mat-form-field style="font-size: 14px;" appearance="outline"
+                                class=" custom-size-form-field ">
+                                <mat-label>Select Destination Channel Message</mat-label>
+                                <mat-select formControlName="destinationChannelId">
+                                    <!-- <mat-select placeholder="Institution" > -->
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                    <mat-option [value]="1">
+                                        1
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error>
+                                    <small>Required</small>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                       
+                        <div class="col-md-2 mb-3">
+                            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit"
+                            >Submit</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="container">
+                    <!-- List 1 -->
+                    <div class="list col-md-4 mb-3">
+                        <h5>Channel VISA</h5>
+                        <ul>
+                            <li *ngFor="let item of list1" (click)="onSelect(item)">
+                                {{ item.name }}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="paragraph col-md-4 mb-3">
+                        <h5>Selected Item Description</h5>
+                        <p>{{ selectedDescription }}</p>
+                    </div>
+                    <!-- List 2 -->
+                    <div class="list col-md-4 mb-3" #list2Container>
+                        <h5>Channel Mastercard</h5>
+                        <ul>
+                            <li *ngFor="let detail of list2" 
+                                [id]="'detail-' + detail.id" 
+                                [class.highlight]="detail.id === selectedDetailId">
+                              {{ detail.name }}
+                            </li>
+                          </ul>
+                    </div>
+
+                    <!-- Paragraph -->
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

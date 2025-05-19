@@ -57,7 +57,7 @@ import { PreviewMessageRoutingComponent } from "./administration/preview-channel
         SidebarComponent,
         FooterComponent,
         AdminLayoutComponent,
-
+AppComponent,
         ManageMappingChannelsListComponent,
         ManageMappingChannelsDetailsComponent,
         DummyTableComponent,
@@ -735,6 +735,6 @@ import { PreviewMessageRoutingComponent } from "./administration/preview-channel
          OnlyLoggedInUserGuard,
          OnlyLoggedOutUserGuard, */
      ],
-     bootstrap: [AdminLayoutComponent] 
+     bootstrap: [AppComponent] 
 })
 export class AppModule { }

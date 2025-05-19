@@ -13,7 +13,7 @@
                     <!--  </div>
             </div>
             <div class="card "> -->
-                    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <form [formGroup]="form"  class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
 
 
                         <div class="row  mx-2 ">
@@ -148,7 +148,7 @@
 
 
             <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
-                type="submit">
+                type="button" (click)="onSubmit()">
                 Next
             </button>
 
