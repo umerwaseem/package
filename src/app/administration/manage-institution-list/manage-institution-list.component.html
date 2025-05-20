@@ -9,8 +9,8 @@
 
                 <div class="col-md-3 px-1">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                        routerLink="/admin/manage-institution-details">New Institution</button>
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button" (click)="addInstitutionDetails()"
+                     >New Institution</button>
                 </div>
             </div>
 
@@ -80,13 +80,13 @@
                 <!-- Header and row definitions -->
                 <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
                 <mat-row *matRowDef="let element; columns: visibleColumns;" (click)="filterToSingleRow(element)">
-                </mat-row><!-- (click)="getRecord(element.networkGroupId)" -->
+                </mat-row><!-- (click)="getRecord(element.intitutionId)" -->
 
             </table>
 
         </div>
 
-        <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.networkGroupId">
+        <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.intitutionId">
             <ng-container><!-- *ngFor="let item of instanceDetails" -->
                 <div class="row d-flex align-items-center card-header p-1">
                     <div class="col-md-6">
@@ -105,8 +105,8 @@
                             routerLink="/admin/manage-institution-details">Approve</button>
 
                        
-                        <span class="mx-2 pointer d-flex align-items-center"
-                            routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center" (click)="editInstitutionDetails(this.intitutionId)"
+                          >
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
                         </span>
@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <div class="my-2 fixed-bottom-bar" *ngIf="this.networkGroupId">
+        <div class="my-2 fixed-bottom-bar" *ngIf="this.intitutionId">
 
             <div class="col-md-12 ">
                 <mat-form-field style="font-size: 14px;" appearance="outline"

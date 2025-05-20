@@ -11,6 +11,8 @@ import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
 import { startWith, map, Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UtilityService } from '../../../services/utility.service';
 
 @Component({
   selector: 'app-manage-channels-list',
@@ -26,7 +28,7 @@ export class ManageChannelsListComponent {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   channelId: any
   instanceDetails: any = {}
-
+showChild: boolean = false;
 
   
  displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol'];
@@ -45,7 +47,11 @@ export class ManageChannelsListComponent {
   filteredFruits: any;
   fruitCtrl: any;
   allFruits: any;
-  constructor(private service: ApiService,public dialog: MatDialog) { 
+  constructor(   private service: ApiService,
+      private dialog: MatDialog,
+      private route: ActivatedRoute,
+      public router: Router,
+      public util: UtilityService) { 
     }
   _filter(fruit: string): any {
     throw new Error('Method not implemented.');
@@ -109,11 +115,12 @@ export class ManageChannelsListComponent {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.channelId = row.channelId;
+    this.showChild = !this.showChild;
   }
 
   resetTable(): void {
     // Reset table to show all rows
-    this.channelId = null
+    this.channelId = ''
     this.getChannels();
     console.log();
     
@@ -194,6 +201,13 @@ export class ManageChannelsListComponent {
       }
       return fruits;
     });
+  }
+
+
+  addchannelDetails(){
+
+    this.router.navigate([`/admin/manage-channel-details/N/0`]);
+
   }
 }
 export interface Fruit {

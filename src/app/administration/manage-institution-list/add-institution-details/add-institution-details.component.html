@@ -1,95 +1,126 @@
 <div class="content-body">
-    <div class="container-fluid">
-        <div class="card">
-            <div class="card-header p-3">
-                <span class="breadcrumbs-title" *ngFor="let bread of breadcrumbs; let i = index">
-                    <a class="breadcrumbs-title" href="javascript:void(0)" (click)="navigateBreadcrumbs(bread)">
-                        <b> Institution &nbsp; > &nbsp;</b><!-- {{bread.title}} -->
-                    </a>
-                </span>
-                <h4 class="card-title">Create Institution</h4>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header p-3">
+        <span
+          class="breadcrumbs-title"
+          *ngFor="let bread of breadcrumbs; let i = index"
+        >
+          <a
+            class="breadcrumbs-title"
+            href="javascript:void(0)"
+            (click)="navigateBreadcrumbs(bread)"
+          >
+            <b> Institution &nbsp; > &nbsp;</b
+            ><!-- {{bread.title}} -->
+          </a>
+        </span>
+        <h4 class="card-title">{{ this.pageTitle }}</h4>
+      </div>
+      <div class="card-body">
+        <form
+          [formGroup]="form"
+          (ngSubmit)="onSubmit()"
+          class="col-md-12 col-xs-12 col-lg-12 col-sm-12"
+        >
+          <div class="row mb-2">
+            <div class="col-md-4 mb-3">
+              <mat-form-field
+                style="font-size: 14px"
+                appearance="outline"
+                class="custom-size-form-field"
+              >
+                <mat-label>Institution Name </mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Institution Name"
+                  formControlName="institutionName"
+                />
+                <mat-error>
+                  <small>{{ fieldErrors("institutionName") }}</small>
+                </mat-error>
+              </mat-form-field>
             </div>
-            <div class="card-body">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
-                    <div class="row mb-2 ">
+            <div class="col-md-4 mb-3">
+              <mat-form-field
+                style="font-size: 14px"
+                appearance="outline"
+                class="custom-size-form-field"
+              >
+                <mat-label>Status </mat-label>
+                <mat-select
+                  placeholder="Select Status"
+                  formControlName="status"
+                >
+                  <mat-option [value]="1"> 1 </mat-option>
+                  <mat-option [value]="2"> 1 </mat-option>
+                </mat-select>
+                <mat-error>
+                  <small>{{ fieldErrors("status") }}</small>
+                </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-md-4 mb-3">
+              <mat-form-field
+                style="font-size: 14px"
+                appearance="outline"
+                class="custom-size-form-field"
+              >
+                <mat-label>Contact Person Name </mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Contact Person Name "
+                  formControlName="contactPersonName"
+                />
+                <mat-error>
+                  <small>{{ fieldErrors("contactPersonName") }}</small>
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-md-4 mb-3">
+              <mat-form-field
+                style="font-size: 14px"
+                appearance="outline"
+                class="custom-size-form-field"
+              >
+                <mat-label>Contact Person Email </mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Contact Person Email "
+                  formControlName="contactPersonEmail"
+                />
+                <mat-error>
+                  <small>{{ fieldErrors("contactPersonEmail") }}</small>
+                </mat-error>
+              </mat-form-field>
+            </div>
 
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Institution Name </mat-label>
-                                <input matInput placeholder="Enter Institution Name" formControlName="institutionName">
-                                <mat-error>
-                                    <small>{{fieldErrors("institutionName")}}</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4  mb-3 ">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class=" custom-size-form-field">
-                                <mat-label>Status </mat-label>
-                                <mat-select placeholder="Select Status" formControlName="status">
-
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                    <mat-option [value]="1">
-                                        1
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error>
-                                    <small>{{fieldErrors("status")}}</small>
-                                </mat-error>
-                            </mat-form-field>
-
-
-                        </div>
-
-
-
-                    </div>
-                    <div class="row mb-2 ">
-
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Contact Person Name </mat-label>
-                                <input matInput placeholder="Enter Contact Person Name " formControlName="contactPersonName">
-                                <mat-error>
-                                    <small>{{fieldErrors("contactPersonName")}}</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-4  mb-3">
-                            <mat-form-field style="font-size: 14px;" appearance="outline"
-                                class="custom-size-form-field">
-                                <mat-label>Contact Person Email </mat-label>
-                                <input matInput placeholder="Enter Contact Person Email "
-                                    formControlName="contactPersonEmail">
-                                <mat-error>
-                                    <small>{{fieldErrors("contactPersonEmail")}}</small>
-                                </mat-error>
-                            </mat-form-field>
-                        </div>
-
-
-
-
-
-
-                        <div class="col-md-3">
-                            <button mat-flat-button color="primary" class="rounded-3"
-                                routerLink="/admin/manage-institution-details">Create Institution</button>
-                        </div>
-                    </div>
-
-
-
-
-
-
-            
-            </form>
-        </div>
+            <div class="col-md-3">
+              <button
+                mat-flat-button
+                color="primary"
+                class="rounded-3"
+                *ngIf="this.Params.Mode == 'N'"
+                routerLink="/admin/manage-institution-details"
+              >
+                Create Institution
+              </button>
+          
+              <button
+                mat-flat-button
+                color="primary"
+                class="rounded-3"
+                *ngIf="this.Params.Mode == 'E'"
+                routerLink="/admin/manage-institution-details"
+              >
+                Update Institution
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
-</div>
+  </div>
 </div>

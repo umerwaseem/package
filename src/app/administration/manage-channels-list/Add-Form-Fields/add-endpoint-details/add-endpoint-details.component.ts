@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-endpoint-details',
@@ -10,6 +11,10 @@ import { UtilityService } from '../../../../../services/utility.service';
   styleUrl: './add-endpoint-details.component.css'
 })
 export class AddEndpointDetailsComponent {
+
+
+   @Input() shouldShow: boolean = false;
+  
   dataSource = [
     {
       urlEndpoint: 'https://abc.com',
@@ -86,7 +91,12 @@ export class AddEndpointDetailsComponent {
   ];
   displayedColumns: string[] = ['urlEndpoint','authtype', 'actions']
   displayedColumnsView: string[] = ['urlEndpoint', 'connectionTimeout', 'isClient', 'isTls', 'tlsVersion','certPath','keyFilePath', 'authtype', 'username', 'password','headers', 'client'];
-
+ Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
 
   @Output() formSubmitted = new EventEmitter<void>();
   editIndex: number | null = null;
@@ -148,10 +158,25 @@ export class AddEndpointDetailsComponent {
       }),
     }),
   })
-  constructor(private fb: FormBuilder, private service: ApiService, public util: UtilityService,) {
+  constructor(private fb: FormBuilder, private service: ApiService, public util: UtilityService,public route: ActivatedRoute,) {
 
   }
   ngOnInit(): void {
+this.route.params.subscribe((param) => {
+      console.log('this.route.params ==>',this.route.params, "param ==>", param);
+      
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+     
+      if (param['behavior'] == 'N') {
+       // this.pageTitle = 'Add Institution';
+
+      } else if (param['behavior'] == 'E') {
+       // this.pageTitle = 'Edit Institution Details';
+       // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+
+      } 
+    });
 
   }
   getHeaderKeys(headers: any[]): string[] {

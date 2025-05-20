@@ -1,12 +1,16 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ApiService } from '../../../../../services/api.service';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { UtilityService } from '../../../../../services/utility.service';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppConstants } from '../../../../../services/AppConstants';
-
 
 @Component({
   selector: 'app-add-channel-details',
@@ -17,69 +21,96 @@ import { AppConstants } from '../../../../../services/AppConstants';
     },
   ],
   templateUrl: './add-channel-details.component.html',
-  styleUrl: './add-channel-details.component.css'
+  styleUrl: './add-channel-details.component.css',
 })
 export class AddChannelDetailsComponent {
-
+  @Input() shouldShow: boolean = false;
   @Output() formSubmitted = new EventEmitter<void>();
-  channelType: any
+  channelType: any;
+
   form = new FormGroup({
-    firstName: new FormControl('',),
+    firstName: new FormControl(''),
 
-
-    channelName: new FormControl('', [Validators.required,
-    /* Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'), */
-    Validators.maxLength(50),]),
-    channelIndentifier: new FormControl('', [Validators.required,
-    /* Validators.pattern(/^\d+$/), */
-    Validators.maxLength(4),]),
+    channelName: new FormControl('', [
+      Validators.required,
+      /* Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'), */
+      Validators.maxLength(50),
+    ]),
+    channelIndentifier: new FormControl('', [
+      Validators.required,
+      /* Validators.pattern(/^\d+$/), */
+      Validators.maxLength(4),
+    ]),
     channelType: new FormControl('', [Validators.required]),
     bin: new FormControl(''),
     endpointType: new FormControl('', [Validators.required]),
     channelFormat: new FormControl('', [Validators.required]),
-    isActive: new FormControl(false,),
+    isActive: new FormControl(false),
     channelTimeout: new FormControl('', [Validators.required]),
     //  channelIndentifier: new FormControl('',[ Validators.required]),
-  })
-  constructor(private fb: FormBuilder, public route: ActivatedRoute,
+  });
+  Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(
+    private fb: FormBuilder,
+    public route: ActivatedRoute,
     private service: ApiService,
     public util: UtilityService,
     private http: HttpClient,
     public router: Router,
-    public appConstants: AppConstants,) {
-
-  }
+    public appConstants: AppConstants
+  ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
 
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+
+      if (param['behavior'] == 'N') {
+        // this.pageTitle = 'Add Institution';
+      } else if (param['behavior'] == 'E') {
+        // this.pageTitle = 'Edit Institution Details';
+        // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+      }
+    });
   }
   onSubmit() {
- this.form.markAllAsTouched();
-  
+    this.form.markAllAsTouched();
+
     if (this.form.valid) {
       console.log('API PAYLOAD');
-     // this.formSubmitted.emit(); // Notify parent
+      // this.formSubmitted.emit(); // Notify parent
     }
   }
   onChangeChannelType() {
     this.channelType = this.form.controls.channelType.value;
 
-    if (this.channelType == this.appConstants.channelType.bankingChannel.value) {
-
-      this.form.controls.bin.setValidators([Validators.required,
-      /* Validators.pattern(/^\d+$/), */
-      Validators.maxLength(6),]);
+    if (
+      this.channelType == this.appConstants.channelType.bankingChannel.value
+    ) {
+      this.form.controls.bin.setValidators([
+        Validators.required,
+        /* Validators.pattern(/^\d+$/), */
+        Validators.maxLength(6),
+      ]);
     } else {
       this.form.controls.bin.reset();
       this.form.controls.bin.clearValidators();
-
     }
   }
 
-
-
   fieldErrors(controller: string) {
     let error = '';
-
 
     // Ensure this.form is defined and is an instance of FormGroup
     // if (this.form instanceof FormGroup && this.form.controls[controller]) {
@@ -104,10 +135,10 @@ export class AddChannelDetailsComponent {
         if (controller === 'channelName') {
           error = 'Only alphanumeric values are allowed';
         }
-        if (controller === 'channelIndentifier' ) {
+        if (controller === 'channelIndentifier') {
           error = 'Only numbers are allowed';
         }
-        if (controller === 'bin' ) {
+        if (controller === 'bin') {
           error = 'Only numbers are allowed';
         }
       } else if (control.hasError('cannotContainLeadingSpace')) {

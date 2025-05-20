@@ -277,7 +277,7 @@ const routes: Routes = [
       { path: 'manage-institution-list', component: ManageInstitutionListComponent },
       /*       { path: 'manage-institution-details',   component: AddInstitutionDetailsComponent }, */
       {
-        path: 'manage-institution-details',
+        path: 'manage-institution-details/:behavior/:id',
         component: AddInstitutionDetailsComponent,
         data: {
 
@@ -290,8 +290,8 @@ const routes: Routes = [
       },
       { path: 'manage-global-configuration-list', component: ManageGlobalConfigurationListComponent },
       { path: 'manage-channels-list', component: ManageChannelsListComponent },
-      { path: 'manage-channel-details', component: ManageChannelDetailsComponent },
-      { path: 'manage-global-config-details', component: AddGlobalConfigurationComponent },
+      { path: 'manage-channel-details/:behavior/:id', component: ManageChannelDetailsComponent },
+      { path: 'manage-global-config-details/:behavior/:id', component: AddGlobalConfigurationComponent },
       { path: 'mapping-channels-list', component: ManageMappingChannelsListComponent },
       { path: 'manage-mapping-channels-details', component: ManageMappingChannelsDetailsComponent },
       { path: 'preview-channel-mapping', component: PreviewChannelMappingsComponent },

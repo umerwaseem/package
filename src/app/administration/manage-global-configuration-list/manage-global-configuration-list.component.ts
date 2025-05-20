@@ -12,20 +12,28 @@ import { UtilityService } from '../../../services/utility.service';
   selector: 'app-manage-global-configuration-list',
 
   templateUrl: './manage-global-configuration-list.component.html',
-  styleUrl: './manage-global-configuration-list.component.css'
+  styleUrl: './manage-global-configuration-list.component.css',
 })
 export class ManageGlobalConfigurationListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>(); // Data source for the table
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-  networkGroupId: any
-  instanceDetails: any = {}
-  pageTitle = 'Network Group'
-  requestBehaviour = { AddNew: "N", Edit: "E", ViewSingle: "V", Approval: "A", Return: "R", MakerCheckerView: "MCV", FileApproval: "FA" };
+  globalConfigId: any;
+  globalConfigDetails: any = {};
+  pageTitle = 'Network Group';
+  requestBehaviour = {
+    AddNew: 'N',
+    Edit: 'E',
+    ViewSingle: 'V',
+    Approval: 'A',
+    Return: 'R',
+    MakerCheckerView: 'MCV',
+    FileApproval: 'FA',
+  };
   pageAccess: any = {};
 
-  behaviour = "N";
+  behaviour = 'N';
 
   activeBehaviour: any = {
     addNew: false,
@@ -41,7 +49,7 @@ export class ManageGlobalConfigurationListComponent {
     totalElements: 100,
     size: 20,
     index: 0,
-  }
+  };
   form = new FormGroup({
     minConnections: new FormControl(''),
     maxConnections: new FormControl(''),
@@ -52,12 +60,17 @@ export class ManageGlobalConfigurationListComponent {
     logLevel: new FormControl(''),
     configFilePath: new FormControl(''),
     isTemplate: new FormControl(''),
-  })
-  constructor(private service: ApiService, private dialog: MatDialog, private route: ActivatedRoute, public router: Router, public util: UtilityService,) { }
+  });
+  constructor(
+    private service: ApiService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    public router: Router,
+    public util: UtilityService
+  ) {}
   ngOnInit(): void {
-
     //this.setPaginator();
-    this.getPosts();
+    this.getGlobalConfigurations();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -67,8 +80,8 @@ export class ManageGlobalConfigurationListComponent {
     console.log('Form Data:', this.form.value);
   }
 
-  getPosts(): void {
-    this.service.getPosts().subscribe(
+  getGlobalConfigurations(): void {
+    this.service.getGlobalConfigurations().subscribe(
       (res) => {
         if (res['ResponseCode'] === '00') {
           this.dataSource.data = res['Data']; // Assign API data to the table
@@ -83,39 +96,39 @@ export class ManageGlobalConfigurationListComponent {
         }
       },
       (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getGlobalConfigurations());
       }
     );
   }
-  getNetworkGroupValue(networkGroupId: any) {
-
-    this.service.getInstanceDetailsById(networkGroupId).subscribe((res: { [x: string]: any; }) => {
-      if (res['ResponseCode'] == "00") {
-        this.setValues(res['Data'])
-        this.form.disable()
-
+  getGlobalConfigDetailsById(globalConfigId: any) {
+    this.service.getInstitutionDetailsById(globalConfigId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('globalConfigId ppp ==>', globalConfigId);
+          this.globalConfigDetails = res['Data'];
+          console.log('this.globalConfigDetails ==>', this.globalConfigDetails);
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getGlobalConfigDetailsById(globalConfigId));
       }
-    }, (ex: HttpErrorResponse) => {
-      this.service.refreshToken(ex.status).then(
-        () => this.getNetworkGroupValue(networkGroupId)
-      )
-    })
+    );
   }
 
   setValues(data: any) {
     if (data) {
-
-      this.form.controls.minConnections.setValue(data.networkGroupDescription)
-      this.form.controls.maxConnections.setValue(data.networkGroupName)
-      this.form.controls.minThreads.setValue(data.networkGroupCode)
-      this.form.controls.maxThreads.setValue(data.networkGroupId)
-      this.form.controls.logFileSize.setValue(data.networkGroupDescription)
-      this.form.controls.logFilePath.setValue(data.networkGroupName)
-      this.form.controls.logLevel.setValue(data.networkGroupCode)
-      this.form.controls.configFilePath.setValue(data.networkGroupId)
-
-
-
+      this.form.controls.minConnections.setValue(data.networkGroupDescription);
+      this.form.controls.maxConnections.setValue(data.networkGroupName);
+      this.form.controls.minThreads.setValue(data.networkGroupCode);
+      this.form.controls.maxThreads.setValue(data.globalConfigId);
+      this.form.controls.logFileSize.setValue(data.networkGroupDescription);
+      this.form.controls.logFilePath.setValue(data.networkGroupName);
+      this.form.controls.logLevel.setValue(data.networkGroupCode);
+      this.form.controls.configFilePath.setValue(data.globalConfigId);
     }
   }
 
@@ -126,12 +139,12 @@ export class ManageGlobalConfigurationListComponent {
         this.columnVisibility[col] = true; // Make all columns visible by default
       });
 
-      // Ensure 'networkGroupId' is always visible
-      if (this.columnVisibility['networkGroupId'] === undefined) {
-        this.columnVisibility['networkGroupId'] = true;
+      // Ensure 'globalConfigId' is always visible
+      if (this.columnVisibility['globalConfigId'] === undefined) {
+        this.columnVisibility['globalConfigId'] = true;
       }
     }
-    return
+    return;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -146,30 +159,37 @@ export class ManageGlobalConfigurationListComponent {
   filterToSingleRow(row: any): void {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
-    this.networkGroupId = row.networkGroupId;
-    this.getNetworkGroupValue(this.networkGroupId)
+    this.globalConfigId = row.globalConfigId;
+    this.getGlobalConfigDetailsById(this.globalConfigId);
   }
 
   resetTable(): void {
     // Reset table to show all rows
-    this.networkGroupId = ''
-    this.getPosts();
-  }
+    this.globalConfigId = '';
+    this.globalConfigDetails = {};
 
+    this.getGlobalConfigurations();
+  }
 
   setPaginator() {
     this.page.index = 0;
     this.page.size = 20;
   }
 
-  pageEvent: PageEvent = new PageEvent;
+  pageEvent: PageEvent = new PageEvent();
   handlePageEvent(e: PageEvent) {
-
-
     this.page.index = e.pageIndex;
     this.page.size = e.pageSize;
     this.page.totalElements = e.length;
     // this.getAllNetworkGroup(this.searchForm.value, this.page.index, this.page.size)
   }
 
+  addGlobalConfigDetails() {
+    this.router.navigate([`/admin/manage-global-config-details/N/0`]);
+  }
+  editGlobalConfigDetails(globalConfigId: any) {
+    this.router.navigate([
+      `/admin/manage-global-config-details/E/${globalConfigId}`,
+    ]);
+  }
 }

@@ -234,7 +234,10 @@
                                 <button mat-flat-button color="primary"  class="w-100" type="submit">Cancel</button>
                             </div>
                             <div class="col-md-5">
-                                <button mat-flat-button color="primary" class="w-100" style="background-color: #007F5F;" type="button" (click)="submitForm()">Create
+                                <button   *ngIf="this.Params.Mode == 'N'" mat-flat-button color="primary" class="w-100" style="background-color: #007F5F;" type="button" (click)="submitForm()">Create
+                                    Configurations</button>
+
+                                     <button   *ngIf="this.Params.Mode == 'E'" mat-flat-button color="primary" class="w-100" style="background-color: #007F5F;" type="button" (click)="submitForm()">Update
                                     Configurations</button>
                             </div>
                         </div>

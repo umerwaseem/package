@@ -12,22 +12,29 @@ import { UtilityService } from '../../../services/utility.service';
   selector: 'app-manage-institution-list',
 
   templateUrl: './manage-institution-list.component.html',
-  styleUrl: './manage-institution-list.component.css'
+  styleUrl: './manage-institution-list.component.css',
 })
 export class ManageInstitutionListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>(); // Data source for the table
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-  networkGroupId: any
-  instanceDetails: any = {}
+  intitutionId: any;
+  instanceDetails: any = {};
 
-
-  pageTitle = 'Network Group'
-  requestBehaviour = { AddNew: "N", Edit: "E", ViewSingle: "V", Approval: "A", Return: "R", MakerCheckerView: "MCV", FileApproval: "FA" };
+  pageTitle = 'Network Group';
+  requestBehaviour = {
+    AddNew: 'N',
+    Edit: 'E',
+    ViewSingle: 'V',
+    Approval: 'A',
+    Return: 'R',
+    MakerCheckerView: 'MCV',
+    FileApproval: 'FA',
+  };
   pageAccess: any = {};
 
-  behaviour = "N";
+  behaviour = 'N';
 
   activeBehaviour: any = {
     addNew: false,
@@ -43,30 +50,25 @@ export class ManageInstitutionListComponent implements OnInit {
     totalElements: 100,
     size: 20,
     index: 0,
-  }
-  form = new FormGroup({
-    institutionName: new FormControl(''),
-    contactPersonName: new FormControl(''),
-    contactPersonNumber: new FormControl(''),
-    contactPersonId: new FormControl(''),
-    contactPersonEmail: new FormControl(''),
-    status: new FormControl(''),
-    role: new FormControl(''),
-    passwordPolicy: new FormControl(''),
-  })
-  constructor(private service: ApiService, private dialog: MatDialog, private route: ActivatedRoute, public router: Router, public util: UtilityService,) { }
+  };
+
+  constructor(
+    private service: ApiService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    public router: Router,
+    public util: UtilityService
+  ) {}
   ngOnInit(): void {
-    this.getPosts();
+    this.getInstitutions();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  onSubmit() {
-    console.log('Form Data:', this.form.value);
-  }
-  getPosts(): void {
-    this.service.getPosts().subscribe(
+  onSubmit() {}
+  getInstitutions(): void {
+    this.service.getInstitutions().subscribe(
       (res) => {
         if (res['ResponseCode'] === '00') {
           this.dataSource.data = res['Data']; // Assign API data to the table
@@ -81,46 +83,29 @@ export class ManageInstitutionListComponent implements OnInit {
         }
       },
       (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+        this.service.refreshToken(ex.status).then(() => this.getInstitutions());
       }
     );
   }
 
-  getNetworkGroupValue(networkGroupId: any) {
-    console.log('networkGroupId ==>', networkGroupId);
+  getInstitutionDetailsById(intitutionId: any) {
+    console.log('intitutionId ==>', intitutionId);
 
-    //this.service.getInstanceDetailsById(networkGroupId).subscribe((res: { [x: string]: any; }) => {
-    this.service.getInstanceDetailsById(networkGroupId).subscribe(
+    //this.service.getInstanceDetailsById(intitutionId).subscribe((res: { [x: string]: any; }) => {
+    this.service.getInstitutionDetailsById(intitutionId).subscribe(
       (res) => {
-        if (res['ResponseCode'] == "00") {
-          console.log('networkGroupId ppp ==>', networkGroupId);
-
-          this.setValues(res['Data'])
-          this.form.disable()
-
+        if (res['ResponseCode'] == '00') {
+          console.log('intitutionId ppp ==>', intitutionId);
+          this.instanceDetails = res['Data'];
+          console.log('this.instanceDetails ==>', this.instanceDetails);
         }
-      }, (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(
-          () => this.getNetworkGroupValue(networkGroupId)
-        )
-      })
-  }
-
-  setValues(data: any) {
-    if (data) {
-
-      this.form.controls.institutionName.setValue(data.networkGroupDescription)
-      this.form.controls.contactPersonName.setValue(data.networkGroupName)
-      this.form.controls.contactPersonNumber.setValue(data.networkGroupCode)
-      this.form.controls.contactPersonId.setValue(data.networkGroupId)
-      this.form.controls.contactPersonEmail.setValue(data.networkGroupDescription)
-      this.form.controls.status.setValue(data.networkGroupName)
-      this.form.controls.role.setValue(data.networkGroupCode)
-      this.form.controls.passwordPolicy.setValue(data.networkGroupId)
-
-
-
-    }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getInstitutionDetailsById(intitutionId));
+      }
+    );
   }
 
   initializeColumns(data: any[]): void {
@@ -130,12 +115,12 @@ export class ManageInstitutionListComponent implements OnInit {
         this.columnVisibility[col] = true; // Make all columns visible by default
       });
 
-      // Ensure 'networkGroupId' is always visible
-      if (this.columnVisibility['networkGroupId'] === undefined) {
-        this.columnVisibility['networkGroupId'] = true;
+      // Ensure 'intitutionId' is always visible
+      if (this.columnVisibility['intitutionId'] === undefined) {
+        this.columnVisibility['intitutionId'] = true;
       }
     }
-    return
+    return;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -150,29 +135,35 @@ export class ManageInstitutionListComponent implements OnInit {
   filterToSingleRow(row: any): void {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
-    this.networkGroupId = row.networkGroupId;
-    console.log('this.networkGroupId ==>', this.networkGroupId);
+    this.intitutionId = row.intitutionId;
+    console.log('this.intitutionId ==>', this.intitutionId);
 
-    this.getNetworkGroupValue(this.networkGroupId)
+    this.getInstitutionDetailsById(this.intitutionId);
   }
   resetTable(): void {
     // Reset table to show all rows
-    this.networkGroupId = ''
-    this.getPosts();
+    this.intitutionId = '';
+    this.instanceDetails = {};
+    this.getInstitutions();
   }
   setPaginator() {
     this.page.index = 0;
     this.page.size = 20;
   }
 
-  pageEvent: PageEvent = new PageEvent;
+  pageEvent: PageEvent = new PageEvent();
   handlePageEvent(e: PageEvent) {
-
-
     this.page.index = e.pageIndex;
     this.page.size = e.pageSize;
     this.page.totalElements = e.length;
     // this.getAllNetworkGroup(this.searchForm.value, this.page.index, this.page.size)
   }
-
+  addInstitutionDetails() {
+    this.router.navigate([`/admin/manage-institution-details/N/0`]);
+  }
+  editInstitutionDetails(intitutionId: any) {
+    this.router.navigate([
+      `/admin/manage-institution-details/E/${intitutionId}`,
+    ]);
+  }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -27,7 +27,7 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     FileApproval: 'FA',
   };
   behaviour = "N";
-
+  globalConfigDetails: any = {};
   activeBehaviour: any = {
     addNew: false,
     edit: false,
@@ -38,7 +38,12 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     fileApproval: false,
   };
 
-
+ Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
   form= new FormGroup({
     minConnections: new FormControl('', [Validators.required]),
     maxConnections: new FormControl('', [Validators.required]),
@@ -69,6 +74,23 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     public router: Router,) {
   }
   ngOnInit(): void {
+
+     this.route.params.subscribe((param) => {
+      console.log('this.route.params ==>',this.route.params, "param ==>", param);
+      
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+     
+      if (param['behavior'] == 'N') {
+       // this.pageTitle = 'Add Institution';
+
+      } else if (param['behavior'] == 'E') {
+       // this.pageTitle = 'Edit Institution Details';
+        this.getGlobalConfigDetailsById(  this.Params.institutionId);
+
+      } 
+    });
+
     setTimeout(() => {
       this.form.get('minConnections')?.valueChanges.subscribe((value) => {
         this.duplicateForm.get('duplicateMinConnections')?.setValue(value);
@@ -171,6 +193,21 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     }
     return error;
 }
-
+  getGlobalConfigDetailsById(globalConfigId: any) {
+    this.service.getInstitutionDetailsById(globalConfigId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('globalConfigId ppp ==>', globalConfigId);
+          this.globalConfigDetails = res['Data'];
+          console.log('this.globalConfigDetails ==>', this.globalConfigDetails);
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getGlobalConfigDetailsById(globalConfigId));
+      }
+    );
+  }
 }
 

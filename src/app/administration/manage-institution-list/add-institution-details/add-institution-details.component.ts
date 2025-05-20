@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UtilityService } from '../../../../services/utility.service';
 import { filter, pairwise } from 'rxjs';
@@ -22,6 +22,13 @@ export class AddInstitutionDetailsComponent implements OnInit {
     MakerCheckerView: 'MCV',
     FileApproval: 'FA',
   };
+    Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  pageTitle = '';
   behaviour = "N";
   breadcrumbs = [];
   activeBehaviour: any = {
@@ -49,7 +56,21 @@ export class AddInstitutionDetailsComponent implements OnInit {
     public router: Router,) {
   }
   ngOnInit(): void {
-    
+     this.route.params.subscribe((param) => {
+      console.log('this.route.params ==>',this.route.params, "param ==>", param);
+      
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+     
+      if (param['behavior'] == 'N') {
+        this.pageTitle = 'Add Institution';
+
+      } else if (param['behavior'] == 'E') {
+        this.pageTitle = 'Edit Institution Details';
+        this.getInstitutionDetailsById(  this.Params.institutionId);
+
+      } 
+    });
     this.getPreviousRoute();
   }
 
@@ -130,4 +151,38 @@ export class AddInstitutionDetailsComponent implements OnInit {
       // this.router.navigateByUrl(breadcrumbsData.url);
     }
   }
+
+
+
+    getInstitutionDetailsById(intitutionId: any) {
+      console.log('intitutionId ==>', intitutionId);
+  
+      //this.service.getInstanceDetailsById(intitutionId).subscribe((res: { [x: string]: any; }) => {
+      this.service.getInstitutionDetailsById(intitutionId).subscribe(
+        (res) => {
+          if (res['ResponseCode'] == "00") {
+            console.log('intitutionId ppp ==>', intitutionId);
+  
+            this.setValues(res['Data'])
+       /*      this.form.disable() */
+  
+          }
+        }, (ex: HttpErrorResponse) => {
+          this.service.refreshToken(ex.status).then(
+            () => this.getInstitutionDetailsById(intitutionId)
+          )
+        })
+    }
+  
+    setValues(data: any) {
+       if (data) {
+    console.log('data  ==>', data);
+
+    this.form.controls.institutionName.setValue(data.institutionName);
+    this.form.controls.contactPersonName.setValue(data.contactPersonName);
+    this.form.controls.contactPersonEmail.setValue(data.contactPersonEmail);
+    this.form.controls.status.setValue(data.status);
+  }
+    }
+  
 }

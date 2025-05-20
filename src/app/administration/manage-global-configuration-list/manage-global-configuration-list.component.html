@@ -9,8 +9,7 @@
                 
                 <div class="col-md-3 ">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                        routerLink="/admin/manage-global-config-details">New Configuration</button>
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button" (click)="addGlobalConfigDetails()">New Configuration</button>
                 </div>
             </div>
 
@@ -80,14 +79,14 @@
                 <!-- Header and row definitions -->
                 <mat-header-row *matHeaderRowDef="visibleColumns"></mat-header-row>
                 <mat-row *matRowDef="let element; columns: visibleColumns;" (click)="filterToSingleRow(element)">
-                </mat-row><!-- (click)="getRecord(element.networkGroupId)" -->
+                </mat-row><!-- (click)="getRecord(element.globalConfigId)" -->
 
             </table>
 
         </div>
 
-        <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.networkGroupId">
-            <ng-container><!-- *ngFor="let item of instanceDetails" -->
+        <div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="this.globalConfigId">
+            <ng-container><!-- *ngFor="let item of globalConfigDetails" -->
                 <div class="row d-flex align-items-center card-header p-1">
                     <div class="col-md-10">
                         <h5 class="my-2"
@@ -101,8 +100,7 @@
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-circle pointer zoomer" style="font-size: 14px; color: #129b00;"></i>
                         </span>
-                        <span class="mx-2 pointer d-flex align-items-center"
-                            routerLink="/admin/manage-institution-details">
+                        <span class="mx-2 pointer d-flex align-items-center" (click)="editGlobalConfigDetails(this.globalConfigId)">
                             <!--      <mat-icon class="custom-icon-size">settings</mat-icon> -->
                             <i class="fa fa-pen pointer zoomer" style="font-size: 14px; color: #003F9B;"></i>
                         </span>
@@ -135,29 +133,29 @@
                                             Minimum Connections:
                                         </b>
                                     </p>
-                                    <p class="mb-2">{{this.instanceDetails.institutionName ?
-                                        this.instanceDetails.institutionName : '-
+                                    <p class="mb-2">{{this.globalConfigDetails.institutionName ?
+                                        this.globalConfigDetails.institutionName : '-
                                         -'}}</p>
                                     <p><b>
                                             Maximum Connections:
                                         </b></p>
-                                    <p class="mb-2">{{this.instanceDetails.contactPersonName ?
-                                        this.instanceDetails.contactPersonName : '-
+                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonName ?
+                                        this.globalConfigDetails.contactPersonName : '-
                                         -'}}</p>
 
                                     <p><b>
                                             Minimum Threads:
                                         </b></p>
 
-                                    <p class="mb-2">{{this.instanceDetails.contactPersonNumber ?
-                                        this.instanceDetails.contactPersonNumber : '-
+                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonNumber ?
+                                        this.globalConfigDetails.contactPersonNumber : '-
                                         -'}}</p>
 
                                     <p><b>
                                             Maximum Threads:
                                         </b></p>
-                                    <p class="mb-2">{{this.instanceDetails.contactPersonEmail ?
-                                        this.instanceDetails.contactPersonEmail : '- -'}}</p>
+                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonEmail ?
+                                        this.globalConfigDetails.contactPersonEmail : '- -'}}</p>
 
 
 
@@ -168,18 +166,18 @@
                                             Max Log File Size:
                                         </b>
                                     </p>
-                                    <p class="mb-2"> {{this.instanceDetails.status? this.instanceDetails.status : '-
+                                    <p class="mb-2"> {{this.globalConfigDetails.status? this.globalConfigDetails.status : '-
                                         -'}}</p>
                                     <p><b>Log File Path</b></p>
-                                    <p class="mb-2">{{this.instanceDetails.role? this.instanceDetails.role : '- -'}}</p>
+                                    <p class="mb-2">{{this.globalConfigDetails.role? this.globalConfigDetails.role : '- -'}}</p>
                                     <p><b>Log Level</b></p>
 
-                                    <p class="mb-2">{{this.instanceDetails.passwordPolicy?
-                                        this.instanceDetails.passwordPolicy : '- -'}}</p>
+                                    <p class="mb-2">{{this.globalConfigDetails.passwordPolicy?
+                                        this.globalConfigDetails.passwordPolicy : '- -'}}</p>
                                     <p><b>Service Config File Path</b></p>
 
-                                    <p class="mb-2">{{this.instanceDetails.passwordPolicy?
-                                        this.instanceDetails.passwordPolicy : '- -'}}</p>
+                                    <p class="mb-2">{{this.globalConfigDetails.passwordPolicy?
+                                        this.globalConfigDetails.passwordPolicy : '- -'}}</p>
 
 
                                 </div>

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row"  *ngIf="this.Params.Mode == 'N'">
     <div class="col-xxl-12">
         <div class="card shadow-none">
             <!--  <div class="card-header d-block pt-3 pb-1">
@@ -158,7 +158,7 @@
 </div>
 
 
-<div class="card shadow-none p-2" style="border-radius: 0px;" >
+<div class="card shadow-none p-2" style="border-radius: 0px;"  *ngIf="shouldShow">
    
     <div class="row">
         <div class="col-xxl-12">
@@ -175,7 +175,7 @@
                                 Channel Name:
                                 </b>
                             </p>
-                            <p class="mb-2">Abc Channel</p>
+                            <p class="mb-2">Abcddd Channel</p>
                             <p><b>
                                 Channel Indentifier
                                 </b></p>

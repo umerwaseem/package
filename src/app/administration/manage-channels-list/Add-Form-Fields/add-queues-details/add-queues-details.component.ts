@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppConstants } from '../../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-queues-details',
@@ -10,6 +13,8 @@ import { UtilityService } from '../../../../../services/utility.service';
   styleUrl: './add-queues-details.component.css'
 })
 export class AddQueuesDetailsComponent {
+   @Input() shouldShow: boolean = false;
+  
   channelQueueList: any = [];
   displayedColumns: string[] = ['serviceType', 'queueName', 'actions'];
   autoQueue:any
@@ -26,8 +31,34 @@ export class AddQueuesDetailsComponent {
     }),
 
   })
-  constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
+   Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(private fb: FormBuilder, public route: ActivatedRoute,
+      private service: ApiService,
+      public util: UtilityService,
+      private http: HttpClient,
+      public router: Router,
+      public appConstants: AppConstants,) { }
   ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      console.log('this.route.params ==>',this.route.params, "param ==>", param);
+      
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+     
+      if (param['behavior'] == 'N') {
+       // this.pageTitle = 'Add Institution';
+
+      } else if (param['behavior'] == 'E') {
+       // this.pageTitle = 'Edit Institution Details';
+       // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+
+      } 
+    });
     this.onChangeAutoQueue()
   }
   onSubmit() {

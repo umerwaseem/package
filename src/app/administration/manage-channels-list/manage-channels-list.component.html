@@ -12,8 +12,7 @@
              
                 <div class="col-md-3 ">
                     <!--     <button mat-flat-button color="secondary" class="rounded-3">Create Channel</button> -->
-                    <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                        routerLink="/admin/manage-channel-details">New Channel</button>
+                    <button mat-flat-button color="primary" class="rounded-3 custom-button" (click)="addchannelDetails()">New Channel</button>
                 </div>
             </div>
 
@@ -139,17 +138,16 @@
                         <span style="padding: 4px 4px; font-size: 12px;">{{ tab.label }}</span>
                     </ng-template>
                     <div *ngIf="tab.type === 'Channels'">
-                        <div class="row">
+                        <app-add-channel-details [shouldShow]="showChild"></app-add-channel-details>
+                       <!--  <div class="row">
                             <div class="col-xxl-12">
                                 <div class="card shadow-none">
-                                    <!--  <div class="card-header d-block pt-3 pb-1">
-                                        <h5 class="mb-2"><b>Custom Fields</b></h5>
-                                    </div> -->
-                                    <div class="card-body px-0">
-            
+                                
+                                    <div class="card-body px-0"> 
+
+           
                                         <div class="row">
-                                            <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
-                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                             <div class="col-md-6 col-sm-6 col-xs-12">
                                                 <p> <b>
                                                     Channel Name:
                                                     </b>
@@ -193,43 +191,36 @@
             
                                             </div>
             
-                                        </div>
-            
-                                    </div>
+                                        </div>  </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div *ngIf="tab.type === 'Channel Endpoints'">
-                        <div class="row">
+                        <app-add-endpoint-details [shouldShow]="showChild"> </app-add-endpoint-details>
+                      <!--   <div class="row">
                             <div class="col-xxl-12">
                                 <div class="card shadow-none">
-                                    <!--  <div class="card-header d-block pt-3 pb-1">
-                            <h5 class="mb-2"><b>Custom Fields</b></h5>
-                        </div> -->
+                                    
                                     <div class="card-body px-0">
                                         <table mat-table [dataSource]="dataSource">
 
-                                            <!-- Position Column -->
                                             <ng-container matColumnDef="position">
                                                 <th mat-header-cell *matHeaderCellDef> No. </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.networkGroupName}} </td>
                                             </ng-container>
                                     
-                                            <!-- Name Column -->
                                             <ng-container matColumnDef="name">
                                                 <th mat-header-cell *matHeaderCellDef> Name </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.networkGroupDescription}} </td>
                                             </ng-container>
                                     
-                                            <!-- Weight Column -->
                                             <ng-container matColumnDef="weight">
                                                 <th mat-header-cell *matHeaderCellDef> Weight </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
                                             </ng-container>
                                     
-                                            <!-- Symbol Column -->
                                             <ng-container matColumnDef="symbol">
                                                 <th mat-header-cell *matHeaderCellDef> Symbol </th>
                                                 <td mat-cell *matCellDef="let element"> {{element.createdBy}} </td>
@@ -238,7 +229,6 @@
                                             <tr mat-header-row *matHeaderRowDef="displayedColumnssss"></tr>
                                             <tr mat-row *matRowDef="let row; columns: displayedColumnssss;" (click)="viewEndPointDetails(row.networkGroupName)"></tr>
                                     
-                                            <!-- Row shown when there is no matching data. -->
                                             <tr class="mat-row" *matNoDataRow>
                                                 <td class="mat-cell" colspan="4">No data matching the filter "{{chipGrid.value}}"</td> 
                                             </tr>
@@ -246,15 +236,14 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div *ngIf="tab.type === 'Channel Queues'">
-                        <div class="row">
+                        <app-add-queues-details [shouldShow]="showChild"></app-add-queues-details>
+                        <!-- <div class="row">
                             <div class="col-xxl-12">
                                 <div class="card shadow-none">
-                                    <!--  <div class="card-header d-block pt-3 pb-1">
-                            <h5 class="mb-2"><b>Custom Fields</b></h5>
-                        </div> -->
+                                  
                                     <div class="card-body px-0">
                                         <form [formGroup]="form" (ngSubmit)="onSubmit()"
                                             class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
@@ -271,7 +260,6 @@
                                                         class=" custom-size-form-field ">
                                                         <mat-label>Service Type</mat-label>
                                                         <mat-select>
-                                                            <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
                                                             <mat-option [value]="1">
                                                                 1
                                                             </mat-option>
@@ -296,9 +284,8 @@
 
 
                                                 <div class="col-md-2  mb-3  d-flex align-items-center">
-                                                    <!--  <button mat-stroked-button class="d-flex w-100 align-item-center" color="primary">
-                                                        HTTP Headers</button>
- -->
+                                                   
+
                                                     <mat-icon color="primary">add_box</mat-icon>
 
                                                 </div>
@@ -310,7 +297,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
 
 

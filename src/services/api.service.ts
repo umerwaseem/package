@@ -1,25 +1,28 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
-import { MatDialog } from "@angular/material/dialog";
-import { Router, ActivatedRoute } from "@angular/router";
-import { UtilityService } from "./utility.service";
-import { EditActionDataService } from "./edit-action-data.service";
-import { Observable, ObservableInput, of, throwError } from "rxjs";
-import { catchError, tap } from "rxjs/operators";
-import * as UserList from "../jsonData/Users.json";
-import * as InstitutionList from "../jsonData/institution.json";
-import * as RoleDetail from "../jsonData/roleDetails.json";
-import * as MenuList from "../jsonData/menuList.json";
-import { CustomerRegistrationDropDown } from "./drop-down";
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpParams,
+} from '@angular/common/http';
+import { MatDialog } from '@angular/material/dialog';
+import { Router, ActivatedRoute } from '@angular/router';
+import { UtilityService } from './utility.service';
+import { EditActionDataService } from './edit-action-data.service';
+import { Observable, ObservableInput, of, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
+import * as UserList from '../jsonData/Users.json';
+import * as InstitutionList from '../jsonData/institution.json';
+import * as RoleDetail from '../jsonData/roleDetails.json';
+import * as MenuList from '../jsonData/menuList.json';
+import { CustomerRegistrationDropDown } from './drop-down';
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root' // This ensures that the service is provided at the root level
+  providedIn: 'root', // This ensures that the service is provided at the root level
 })
 export class ApiService {
-
   // ------------ for local ---------------------
-  environmentUrl = "http://localhost:3001/";
-
+  environmentUrl = 'http://localhost:3001/';
 
   private baseUrl = 'http://localhost:3000/';
   // ------------ for server ---------------------
@@ -35,11 +38,11 @@ export class ApiService {
     public util: UtilityService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
+  ) {}
   headers = {
     headers: new HttpHeaders({
       //"Content-Type": "application/x-www-form-urlencoded",
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
       // 'Access-Control-Allow-Origin': '*',
       /*     Authorization:
             "Basic " + btoa("IWallet:1807be52-70ae-45ff-a7e2-b23b3b3dfb33"), */
@@ -47,13 +50,13 @@ export class ApiService {
   };
 
   data = {
-    refresh_token: localStorage.getItem("refresh_token"),
-  }
+    refresh_token: localStorage.getItem('refresh_token'),
+  };
 
   headerForRefreshToken = {
     headers: new HttpHeaders({
       //"Content-Type": "application/x-www-form-urlencoded",
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'application/x-www-form-urlencoded',
       // 'Access-Control-Allow-Origin': '*',
       /*     Authorization:
             "Basic " + btoa("IWallet:1807be52-70ae-45ff-a7e2-b23b3b3dfb33"), */
@@ -63,38 +66,36 @@ export class ApiService {
   restHeader() {
     return {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: "bearer " + localStorage.getItem("access_token"),
-        userId: localStorage.getItem("userId") || '',
-        roleId: localStorage.getItem("roleId") || '',
-        institutionId: localStorage.getItem("institutionId") || '',
-        email: localStorage.getItem("email") || '',
-        firstName: localStorage.getItem("firstName") || '',
-        username: localStorage.getItem("firstName") || '',
-        roleName: localStorage.getItem("roleName") || '',
-        Accept: "*",
+        'Content-Type': 'application/json',
+        Authorization: 'bearer ' + localStorage.getItem('access_token'),
+        userId: localStorage.getItem('userId') || '',
+        roleId: localStorage.getItem('roleId') || '',
+        institutionId: localStorage.getItem('institutionId') || '',
+        email: localStorage.getItem('email') || '',
+        firstName: localStorage.getItem('firstName') || '',
+        username: localStorage.getItem('firstName') || '',
+        roleName: localStorage.getItem('roleName') || '',
+        Accept: '*',
       }),
     };
   }
-
 
   restMultipartHeader() {
     return {
       headers: new HttpHeaders({
         // 'Content-Type': 'multipart/form-data',
-        Authorization: "bearer " + localStorage.getItem("access_token"),
-        userId: localStorage.getItem("userId") || '',
-        roleId: localStorage.getItem("roleId") || '',
-        institutionId: localStorage.getItem("institutionId") || '',
-        email: localStorage.getItem("email") || '',
-        firstName: localStorage.getItem("firstName") || '',
-        username: localStorage.getItem("firstName") || '',
-        roleName: localStorage.getItem("roleName") || '',
+        Authorization: 'bearer ' + localStorage.getItem('access_token'),
+        userId: localStorage.getItem('userId') || '',
+        roleId: localStorage.getItem('roleId') || '',
+        institutionId: localStorage.getItem('institutionId') || '',
+        email: localStorage.getItem('email') || '',
+        firstName: localStorage.getItem('firstName') || '',
+        username: localStorage.getItem('firstName') || '',
+        roleName: localStorage.getItem('roleName') || '',
         //    Accept: "",/////////////////////////
       }),
     };
   }
-
 
   successHandlerNotHideLoader(data: HttpErrorResponse) {
     this.successCheck(data, false);
@@ -114,11 +115,11 @@ export class ApiService {
       this.util.handleLoader(false);
     }
 
-    // 
+    //
 
     // && data['ResponseCode'] != "024"
-    if (data["ResponseCode"] && data["ResponseCode"] != "00") {
-      this.util.failureSnackbar(data["ResponseMsg"]);
+    if (data['ResponseCode'] && data['ResponseCode'] != '00') {
+      this.util.failureSnackbar(data['ResponseMsg']);
     }
     // else if (data['ResponseCode'] == "00" && data['noOfRecord'] == "0") {
     //   this.util.failureSnackbar("no record found")
@@ -126,41 +127,46 @@ export class ApiService {
   }
 
   errorHandler(error: any) {
-    // 
-    this.util.handleLoader(false)
+    //
+    this.util.handleLoader(false);
     // debugger
-    // 
+    //
 
     try {
-      let errMsg
-      // 
+      let errMsg;
+      //
       if (error.status === 401) {
-        errMsg = error
+        errMsg = error;
         // window.location.reload();
       } else if (error.status === 400) {
         // this.http.post(`${this.environmentUrl}oauth/token?refresh_token&${localStorage.getItem('refresh_token')}grant_type=refresh_token&client_id=mmp_portal`, "", this.headers).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
         // localStorage.clear()
         // location.reload()
         // debugger
-        // 
+        //
         errMsg = error.error.error_description;
-      } else if (error.status != null && error.statusText != null && error.status != 401) {
-        errMsg = error.status == 0 ? 'The service is unavailable at this time' : `${error.status} ${error.statusText}`
+      } else if (
+        error.status != null &&
+        error.statusText != null &&
+        error.status != 401
+      ) {
+        errMsg =
+          error.status == 0
+            ? 'The service is unavailable at this time'
+            : `${error.status} ${error.statusText}`;
 
-        this.util.failureSnackbar(errMsg)
+        this.util.failureSnackbar(errMsg);
       } else if (error.message != null) {
-        errMsg = error.message
-      }
-      else {
-        errMsg = "Server Error"
-        this.util.failureSnackbar(errMsg)
+        errMsg = error.message;
+      } else {
+        errMsg = 'Server Error';
+        this.util.failureSnackbar(errMsg);
       }
       return throwError(errMsg);
     } catch (error) {
-      // 
+      //
     }
-    return "";
-
+    return '';
   }
 
   ///Authentication APIs
@@ -171,11 +177,9 @@ export class ApiService {
         subscribe.complete();
       });
     } else {
-      
       this.util.handleLoader(true);
       this.headers.headers = this.headers.headers.set('email', obj.email);
 
-      
       /* obj.grant_type = "password";
      obj.client_id = "ReconX_Client";
     const body = new HttpParams()
@@ -185,17 +189,12 @@ export class ApiService {
        .set("client_id", "IWallet"); */
       // return this.http.post(`${this.environmentUrl}oauth/token?username=${obj.username}&password=${obj.password}&grant_type=${obj.grant_type}&client_id=${obj.client_id}`, "", this.headers).pipe(catchError(this.errorHandler.bind(this)))
       return this.http
-        .post(
-          `${this.environmentUrl}v1/auth/keycloak/login`,
-          obj,
-          this.headers
-        )
+        .post(`${this.environmentUrl}v1/auth/keycloak/login`, obj, this.headers)
         .pipe(catchError(this.errorHandler.bind(this)))
         .pipe(tap(this.successHandler.bind(this)));
     }
   }
   signUp(obj: any): Observable<any> {
-    
     // this.headers.headers = this.headers.headers.set('institutionId', obj.institutionId);
 
     if (this.util.isRunProtoType) {
@@ -205,13 +204,9 @@ export class ApiService {
       });
     } else {
       this.util.handleLoader(true);
-      
 
       return this.http
-        .post(`${this.environmentUrl}v1/user/signup`,
-          obj,
-          this.headers
-        )
+        .post(`${this.environmentUrl}v1/user/signup`, obj, this.headers)
         .pipe(catchError(this.errorHandler.bind(this)))
         .pipe(tap(this.successHandler.bind(this)));
     }
@@ -233,34 +228,33 @@ export class ApiService {
   getMenuList(id: any): Observable<any> {
     if (this.util.isRunProtoType) {
       return new Observable((subscribe) => {
-        // 
-        subscribe.next(MenuList as any["default"]);
+        //
+        subscribe.next(MenuList as any['default']);
         subscribe.complete();
       });
     } else {
-      // 
+      //
       this.util.handleLoader(true);
       return this.http
-        .get<any>(`${this.environmentUrl}v1/common/getMenu/${id}`,
+        .get<any>(
+          `${this.environmentUrl}v1/common/getMenu/${id}`,
 
-          this.restHeader())
+          this.restHeader()
+        )
         .pipe(catchError(this.errorHandler.bind(this)))
         .pipe(tap(this.successHandler.bind(this)));
     }
   }
 
-
-  forgotPassword( obj: any): Observable<any> {
-   
+  forgotPassword(obj: any): Observable<any> {
     if (this.util.isRunProtoType) {
       return new Observable((subscribe) => {
         subscribe.next(this.editData.Roles);
         subscribe.complete();
       });
     } else {
-      
       this.util.handleLoader(true);
-      
+
       return this.http
         .post(
           `${this.environmentUrl}v1/user/forgot/password`,
@@ -272,7 +266,6 @@ export class ApiService {
     }
   }
 
-  
   resetPassword(obj: any): Observable<any> {
     if (this.util.isRunProtoType) {
       return new Observable((subscribe) => {
@@ -281,7 +274,7 @@ export class ApiService {
       });
     } else {
       this.util.handleLoader(true);
-      
+
       return this.http
         .post(
           `${this.environmentUrl}v1/user/forgot/password/link`,
@@ -293,26 +286,21 @@ export class ApiService {
     }
   }
 
-
   restHeaderForGlobal() {
     return {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
-        Authorization: "bearer " + (localStorage.getItem("access_token") || ""),
-        userId: localStorage.getItem("userId") || "",
-        roleId: localStorage.getItem("roleId") || "",
-        email: localStorage.getItem("email") || "",
-        firstName: localStorage.getItem("firstName") || "",
-        username: localStorage.getItem("firstName") || "",
-        roleName: localStorage.getItem("roleName") || "",
-        Accept: "*",
+        'Content-Type': 'application/json',
+        Authorization: 'bearer ' + (localStorage.getItem('access_token') || ''),
+        userId: localStorage.getItem('userId') || '',
+        roleId: localStorage.getItem('roleId') || '',
+        email: localStorage.getItem('email') || '',
+        firstName: localStorage.getItem('firstName') || '',
+        username: localStorage.getItem('firstName') || '',
+        roleName: localStorage.getItem('roleName') || '',
+        Accept: '*',
       }),
     };
   }
-  
- 
- 
-
 
   ///////////////////RefreshToken
   /* refreshToken(error: any) {
@@ -395,60 +383,58 @@ export class ApiService {
     }
   } */
 
+  refreshToken(error: any): Promise<any> {
+    const refreshToken = localStorage.getItem('refresh_token');
 
-    refreshToken(error: any): Promise<any> {
-      const refreshToken = localStorage.getItem("refresh_token");
-    
-      if (refreshToken != null) {
-        if (error === 401) {
-          return new Promise((resolve, reject) => {
-            this.http
-              .post(
-                `${this.environmentUrl}v1/auth/keycloak/refresh-token-access`,
-                this.data,
-                this.headerForRefreshToken
-              )
-              .toPromise()
-              .then(
-                (res: any) => {
-                  if (res?.access_token) {
-                    localStorage.setItem("access_token", res.access_token);
-                    localStorage.setItem("refresh_token", res.refresh_token);
-                    localStorage.setItem("userName", res.userName);
-                    localStorage.setItem("userId", res.userId);
-                    localStorage.setItem("userGroupId", res.userGroupId);
-                    localStorage.setItem("expires_in", res.expires_in);
-                    this.util.setSessionExpireTimeInLocalStorage(res.expires_in);
-                    resolve("");
-                  } else {
-                    this.router.navigate(["/login"]);
-                    this.util.subscription?.unsubscribe(); // Handle subscription cleanup
-                    reject("Failed to refresh token");
-                  }
-                },
-                (msg) => {
-                  if (error === 401) {
-                    this.dialog.closeAll();
-                    this.util.failureSnackbar("Session Expired");
-                    localStorage.clear();
-                    this.router.navigate(["/page-login"]);
-                  }
-                  reject(msg);
+    if (refreshToken != null) {
+      if (error === 401) {
+        return new Promise((resolve, reject) => {
+          this.http
+            .post(
+              `${this.environmentUrl}v1/auth/keycloak/refresh-token-access`,
+              this.data,
+              this.headerForRefreshToken
+            )
+            .toPromise()
+            .then(
+              (res: any) => {
+                if (res?.access_token) {
+                  localStorage.setItem('access_token', res.access_token);
+                  localStorage.setItem('refresh_token', res.refresh_token);
+                  localStorage.setItem('userName', res.userName);
+                  localStorage.setItem('userId', res.userId);
+                  localStorage.setItem('userGroupId', res.userGroupId);
+                  localStorage.setItem('expires_in', res.expires_in);
+                  this.util.setSessionExpireTimeInLocalStorage(res.expires_in);
+                  resolve('');
+                } else {
+                  this.router.navigate(['/login']);
+                  this.util.subscription?.unsubscribe(); // Handle subscription cleanup
+                  reject('Failed to refresh token');
                 }
-              );
-          });
-        } else {
-          this.refreshTokenError = 0;
-          return new Promise((_, reject) => {
-            reject("Unauthorized access");
-          });
-        }
+              },
+              (msg) => {
+                if (error === 401) {
+                  this.dialog.closeAll();
+                  this.util.failureSnackbar('Session Expired');
+                  localStorage.clear();
+                  this.router.navigate(['/page-login']);
+                }
+                reject(msg);
+              }
+            );
+        });
       } else {
-        // Handle the case where refreshToken is null
-        return Promise.reject("No refresh token available");
+        this.refreshTokenError = 0;
+        return new Promise((_, reject) => {
+          reject('Unauthorized access');
+        });
       }
+    } else {
+      // Handle the case where refreshToken is null
+      return Promise.reject('No refresh token available');
     }
-    
+  }
 
   getDropdown(type: any, obj?: any) {
     if (this.util.isRunProtoType) {
@@ -473,28 +459,30 @@ export class ApiService {
   }
 
   logoutSession() {
-    let refreshToken = localStorage.getItem("refresh_token");
-    
+    let refreshToken = localStorage.getItem('refresh_token');
 
     if (refreshToken != null) {
       this.util.handleLoader(true);
       this.http
-        .get(`${this.environmentUrl}v1/auth/logout/${refreshToken}`, this.restHeader())
+        .get(
+          `${this.environmentUrl}v1/auth/logout/${refreshToken}`,
+          this.restHeader()
+        )
         .subscribe(
           (res) => {
             localStorage.clear();
-            this.router.navigate(["/page-login"]);
+            this.router.navigate(['/page-login']);
             this.util.handleLoader(false);
             //unsubscribe for refresh function loop
-            // 
+            //
             // this.util.subscription.unsubscribe()
           },
           (ex) => {
             localStorage.clear();
-            this.router.navigate(["/page-login"]);
+            this.router.navigate(['/page-login']);
             this.util.handleLoader(false);
             //unsubscribe for refresh function loop
-            // 
+            //
             this.util.subscription.unsubscribe();
           }
         );
@@ -619,164 +607,206 @@ export class ApiService {
     return ResponseData;
   }
 
-
-
-
- 
-
   getAllDashboards(obj: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.post(`${this.environmentUrl}v1/dashboard/getAllDashboard`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-
-  addDashboard(obj: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.post(`${this.environmentUrl}v1/dashboard/addDashboard`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-  updateDashboardDetail(obj: any, id: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.put(`${this.environmentUrl}v1/dashboard/editDashboard/${id}`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-  getDashboardDetail(id: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.get(`${this.environmentUrl}v1/dashboard/getDashboardById/${id}`, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-
-  dashboardStatus(id: any, obj: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.post(`${this.environmentUrl}v1/dashboard/activeInactive/${id}`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-  editStarred(id: any, obj: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.put(`${this.environmentUrl}v1/dashboard/starredUnStarredById/${id}`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-  editDefaultDashboard(id: any, obj: any): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.put(`${this.environmentUrl}v1/dashboard/setDefaultDashboard/${id}`, obj, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-  getStarredMenu(): Observable<any> {
-    this.util.handleLoader(true)
-    return this.http.post(`${this.environmentUrl}v1/dashboard/getAllDashboardStarred`, { pageIndex: 0, pageRecord: 20 }, this.restHeader()).pipe(catchError(this.errorHandler.bind(this))).pipe(tap(this.successHandler.bind(this)))
-  }
-
-
- ////// USER APIS
- getUserList(obj: any): Observable<any> {
-  if (this.util.isRunProtoType) {
-    return new Observable((subscribe) => {
-      subscribe.next(UserList as any["default"]);
-      subscribe.complete();
-    });
-  } else {
-    
     this.util.handleLoader(true);
     return this.http
       .post(
-        `${this.environmentUrl}v1/user/users`,
+        `${this.environmentUrl}v1/dashboard/getAllDashboard`,
         obj,
         this.restHeader()
       )
       .pipe(catchError(this.errorHandler.bind(this)))
       .pipe(tap(this.successHandler.bind(this)));
   }
-}
 
-
-
-addUser(obj: any): Observable<any> {
-  if (this.util.isRunProtoType) {
-    return new Observable((subscribe) => {
-      subscribe.next(this.editData.Users);
-      subscribe.complete();
-    });
-  } else {
+  addDashboard(obj: any): Observable<any> {
     this.util.handleLoader(true);
     return this.http
-      .post(`${this.environmentUrl}v1/user/add`, obj, this.restHeader())
+      .post(
+        `${this.environmentUrl}v1/dashboard/addDashboard`,
+        obj,
+        this.restHeader()
+      )
       .pipe(catchError(this.errorHandler.bind(this)))
       .pipe(tap(this.successHandler.bind(this)));
   }
-}
-inviteUser(obj: any): Observable<any> {
-  if (this.util.isRunProtoType) {
-    return new Observable((subscribe) => {
-      subscribe.next(this.editData.Users);
-      subscribe.complete();
-    });
-  } else {
-    this.util.handleLoader(true);
-    return this.http
-      .post(`${this.environmentUrl}v1/user/invite`, obj, this.restHeader())
-      .pipe(catchError(this.errorHandler.bind(this)))
-      .pipe(tap(this.successHandler.bind(this)));
-  }
-}
-updateUserDetail(obj: any, id: any): Observable<any> {
-  if (this.util.isRunProtoType) {
-    return new Observable((subscribe) => {
-      subscribe.next(this.editData.Users);
-      subscribe.complete();
-    });
-  } else {
+  updateDashboardDetail(obj: any, id: any): Observable<any> {
     this.util.handleLoader(true);
     return this.http
       .put(
-        `${this.environmentUrl}v1/user/update/${id}`,
+        `${this.environmentUrl}v1/dashboard/editDashboard/${id}`,
         obj,
         this.restHeader()
       )
       .pipe(catchError(this.errorHandler.bind(this)))
       .pipe(tap(this.successHandler.bind(this)));
   }
-}
-
-
-
-getUserDetail(id: any): Observable<any> {
-  if (this.util.isRunProtoType) {
-    return new Observable((subscribe) => {
-      subscribe.next(this.editData.Users);
-      subscribe.complete();
-    });
-  } else {
+  getDashboardDetail(id: any): Observable<any> {
     this.util.handleLoader(true);
     return this.http
       .get(
-        `${this.environmentUrl}v1/user/${id}`,
+        `${this.environmentUrl}v1/dashboard/getDashboardById/${id}`,
         this.restHeader()
       )
       .pipe(catchError(this.errorHandler.bind(this)))
       .pipe(tap(this.successHandler.bind(this)));
   }
-}
 
+  dashboardStatus(id: any, obj: any): Observable<any> {
+    this.util.handleLoader(true);
+    return this.http
+      .post(
+        `${this.environmentUrl}v1/dashboard/activeInactive/${id}`,
+        obj,
+        this.restHeader()
+      )
+      .pipe(catchError(this.errorHandler.bind(this)))
+      .pipe(tap(this.successHandler.bind(this)));
+  }
+  editStarred(id: any, obj: any): Observable<any> {
+    this.util.handleLoader(true);
+    return this.http
+      .put(
+        `${this.environmentUrl}v1/dashboard/starredUnStarredById/${id}`,
+        obj,
+        this.restHeader()
+      )
+      .pipe(catchError(this.errorHandler.bind(this)))
+      .pipe(tap(this.successHandler.bind(this)));
+  }
+  editDefaultDashboard(id: any, obj: any): Observable<any> {
+    this.util.handleLoader(true);
+    return this.http
+      .put(
+        `${this.environmentUrl}v1/dashboard/setDefaultDashboard/${id}`,
+        obj,
+        this.restHeader()
+      )
+      .pipe(catchError(this.errorHandler.bind(this)))
+      .pipe(tap(this.successHandler.bind(this)));
+  }
+  getStarredMenu(): Observable<any> {
+    this.util.handleLoader(true);
+    return this.http
+      .post(
+        `${this.environmentUrl}v1/dashboard/getAllDashboardStarred`,
+        { pageIndex: 0, pageRecord: 20 },
+        this.restHeader()
+      )
+      .pipe(catchError(this.errorHandler.bind(this)))
+      .pipe(tap(this.successHandler.bind(this)));
+  }
 
+  ////// USER APIS
+  getUserList(obj: any): Observable<any> {
+    if (this.util.isRunProtoType) {
+      return new Observable((subscribe) => {
+        subscribe.next(UserList as any['default']);
+        subscribe.complete();
+      });
+    } else {
+      this.util.handleLoader(true);
+      return this.http
+        .post(`${this.environmentUrl}v1/user/users`, obj, this.restHeader())
+        .pipe(catchError(this.errorHandler.bind(this)))
+        .pipe(tap(this.successHandler.bind(this)));
+    }
+  }
 
+  addUser(obj: any): Observable<any> {
+    if (this.util.isRunProtoType) {
+      return new Observable((subscribe) => {
+        subscribe.next(this.editData.Users);
+        subscribe.complete();
+      });
+    } else {
+      this.util.handleLoader(true);
+      return this.http
+        .post(`${this.environmentUrl}v1/user/add`, obj, this.restHeader())
+        .pipe(catchError(this.errorHandler.bind(this)))
+        .pipe(tap(this.successHandler.bind(this)));
+    }
+  }
+  inviteUser(obj: any): Observable<any> {
+    if (this.util.isRunProtoType) {
+      return new Observable((subscribe) => {
+        subscribe.next(this.editData.Users);
+        subscribe.complete();
+      });
+    } else {
+      this.util.handleLoader(true);
+      return this.http
+        .post(`${this.environmentUrl}v1/user/invite`, obj, this.restHeader())
+        .pipe(catchError(this.errorHandler.bind(this)))
+        .pipe(tap(this.successHandler.bind(this)));
+    }
+  }
+  updateUserDetail(obj: any, id: any): Observable<any> {
+    if (this.util.isRunProtoType) {
+      return new Observable((subscribe) => {
+        subscribe.next(this.editData.Users);
+        subscribe.complete();
+      });
+    } else {
+      this.util.handleLoader(true);
+      return this.http
+        .put(
+          `${this.environmentUrl}v1/user/update/${id}`,
+          obj,
+          this.restHeader()
+        )
+        .pipe(catchError(this.errorHandler.bind(this)))
+        .pipe(tap(this.successHandler.bind(this)));
+    }
+  }
 
+  getUserDetail(id: any): Observable<any> {
+    if (this.util.isRunProtoType) {
+      return new Observable((subscribe) => {
+        subscribe.next(this.editData.Users);
+        subscribe.complete();
+      });
+    } else {
+      this.util.handleLoader(true);
+      return this.http
+        .get(`${this.environmentUrl}v1/user/${id}`, this.restHeader())
+        .pipe(catchError(this.errorHandler.bind(this)))
+        .pipe(tap(this.successHandler.bind(this)));
+    }
+  }
 
+  getPosts(): Observable<any> {
+    return this.http.get(`${this.environmentUrl}getAllUserList`);
+  }
+  getInstanceDetailsById(id: any): Observable<any> {
+    const url = `${this.environmentUrl}getInstanceDataById/${id}`;
 
- 
-getPosts(): Observable<any> {
-  return this.http.get(`${this.environmentUrl}getAllUserList`);
-}
-getInstanceDetailsById(id: any): Observable<any> {
-  
-  const url = `${this.environmentUrl}getInstanceDataById/${id}`;
-  console.log('url', url);
+    return this.http.get(url);
+  }
 
-  console.log('API URL:', url);
-  return this.http.get(url);
-}
-
-
-getChannels(): Observable<any> {
+  getChannels(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}api/channels`);
   }
 
-
   getInstitutions(): Observable<any> {
-  return this.http.get(`${this.baseUrl}api/institutions`);
-}
+    return this.http.get(`${this.baseUrl}api/institutions`);
+  }
+
+  getInstitutionDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/institution/${id}`;
+
+    return this.http.get(url);
+  }
+
+  getGlobalConfigurations(): Observable<any> {
+    return this.http.get(`${this.baseUrl}api/global-configurations`);
+  }
+
+  getGlobalConfigDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/global-configurations/${id}`;
+
+    return this.http.get(url);
+  }
 }
 /*   getAll(id: any): Observable<any> {
     if (this.util.isRunProtoType) {
@@ -796,5 +826,3 @@ getChannels(): Observable<any> {
     }
   }
  */
-
-  
