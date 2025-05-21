@@ -6,7 +6,9 @@
         "activityBar.activeBackground": "#5d7bff",
 
         "titleBar.activeBackground": "#5d7bff",
-        "titleBar.activeForeground": "#000000" 
+        "titleBar.activeForeground": "#000000" ,
+        "titleBar.inactiveBackground": "#5d7bff",
+      
   }
 
 }

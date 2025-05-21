@@ -1,20 +1,28 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../../services/api.service';
 import { UtilityService } from '../../../../services/utility.service';
 import { provideNativeDateAdapter } from '@angular/material/core';
+import { AppConstants } from '../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-global-configuration',
   encapsulation: ViewEncapsulation.None,
   providers: [provideNativeDateAdapter()],
   templateUrl: './add-global-configuration.component.html',
-  styleUrl: './add-global-configuration.component.css'
+  styleUrl: './add-global-configuration.component.css',
 })
-export class AddGlobalConfigurationComponent  implements OnInit{
-  isData: any
+export class AddGlobalConfigurationComponent implements OnInit {
+  @Input() shouldShow: any = '';
+  @Input() viewGlobalConfigId: any;
+  isData: any;
   step = 0;
   panelOpenState = false;
   requestBehaviour = {
@@ -26,7 +34,7 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     MakerCheckerView: 'MCV',
     FileApproval: 'FA',
   };
-  behaviour = "N";
+  behaviour = 'N';
   globalConfigDetails: any = {};
   activeBehaviour: any = {
     addNew: false,
@@ -38,13 +46,7 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     fileApproval: false,
   };
 
- Params: any = {
-    RoleDetailData: [],
-    institutionId: 0,
-    connectorId: 0,
-    Mode: 'N',
-  };
-  form= new FormGroup({
+  form = new FormGroup({
     minConnections: new FormControl('', [Validators.required]),
     maxConnections: new FormControl('', [Validators.required]),
     minThreads: new FormControl('', [Validators.required]),
@@ -54,9 +56,8 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     logLevel: new FormControl('', [Validators.required]),
     configFilePath: new FormControl('', [Validators.required]),
     isTemplate: new FormControl(''),
-  })
+  });
   duplicateForm = new FormGroup({
-
     duplicateMinConnections: new FormControl('', [Validators.required]),
     duplicateMaxConnections: new FormControl('', [Validators.required]),
     duplicateMinThreads: new FormControl('', [Validators.required]),
@@ -65,30 +66,44 @@ export class AddGlobalConfigurationComponent  implements OnInit{
     duplicateLogFilePath: new FormControl('', [Validators.required]),
     duplicateLogLevel: new FormControl('', [Validators.required]),
     duplicateConfigFilePath: new FormControl('', [Validators.required]),
-  })
- 
-  constructor(public route: ActivatedRoute,
+  });
+
+  Params: any = {
+    RoleDetailData: [],
+    globalConfigId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(
+    private fb: FormBuilder,
+    public route: ActivatedRoute,
     private service: ApiService,
     public util: UtilityService,
     private http: HttpClient,
-    public router: Router,) {
-  }
+    public router: Router,
+    public appConstants: AppConstants
+  ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
 
-     this.route.params.subscribe((param) => {
-      console.log('this.route.params ==>',this.route.params, "param ==>", param);
-      
-      this.Params.institutionId = param['id'];
+      this.Params.globalConfigId = param['id'];
       this.Params.Mode = param['behavior'];
-     
+
       if (param['behavior'] == 'N') {
-       // this.pageTitle = 'Add Institution';
-
+        // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
-       // this.pageTitle = 'Edit Institution Details';
-        this.getGlobalConfigDetailsById(  this.Params.institutionId);
-
-      } 
+        // this.pageTitle = 'Edit Institution Details';
+        this.getGlobalConfigDetailsById(this.Params.globalConfigId);
+      } else if (this.shouldShow) {
+        // this.pageTitle = 'Edit Institution Details';
+        this.getGlobalConfigDetailsById(this.viewGlobalConfigId);
+      }
     });
 
     setTimeout(() => {
@@ -117,7 +132,7 @@ export class AddGlobalConfigurationComponent  implements OnInit{
         this.duplicateForm.get('duplicateConfigFilePath')?.setValue(value);
       });
     }, 0);
-    this.duplicateForm.disable()
+    this.duplicateForm.disable();
   }
 
   setStep(index: number) {
@@ -126,36 +141,36 @@ export class AddGlobalConfigurationComponent  implements OnInit{
 
   nextStep() {
     this.step++;
-  
   }
 
   prevStep() {
     this.step--;
   }
 
-
-  submitForm(){
-    console.log('this.form..value',this.form.value);
-    console.log('this.form..valid',this.form.valid);
+  submitForm() {
+    console.log('this.form..value', this.form.value);
+    console.log('this.form..valid', this.form.valid);
     if (this.form.invalid) {
       this.form.markAllAsTouched(); // Show validation errors
       return;
     }
-    if(this.form.valid){
-    
+    if (this.form.valid && this.Params.Mode == 'N') {
+      this.router.navigate([`admin/manage-global-configuration-list`]);
+      this.util.successSnackbar("Global configuration added successfully")
+    } else if (this.form.valid && this.Params.Mode == 'E') {
+      this.router.navigate([`admin/manage-global-configuration-list`]);
+      this.util.successSnackbar("Global configuration updated successfully")
+
     }
   }
 
-
-
-  fieldErrors(controller:string) {
+  fieldErrors(controller: string) {
     let error = '';
-
 
     // Ensure this.form is defined and is an instance of FormGroup
     // if (this.form instanceof FormGroup && this.form.controls[controller]) {
     const control = this.form.get(controller);
-    
+
     if (control) {
       if (control.hasError('required')) {
         error = this.util.ValidationText('required');
@@ -177,13 +192,16 @@ export class AddGlobalConfigurationComponent  implements OnInit{
         }
       } else if (control.hasError('pattern')) {
         if (controller === 'networkGroupName') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+          error =
+            'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
         }
         if (controller === 'networkGroupCode') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+          error =
+            'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
         }
         if (controller === 'networkGroupDescription') {
-          error = 'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
+          error =
+            'Only alphanumeric values and these symbols . - _ ( ) are allowed, with spaces';
         }
       } else if (control.hasError('cannotContainLeadingSpace')) {
         error = this.util.ValidationText('cannotContainLeadingSpace');
@@ -192,13 +210,15 @@ export class AddGlobalConfigurationComponent  implements OnInit{
       }
     }
     return error;
-}
+  }
   getGlobalConfigDetailsById(globalConfigId: any) {
-    this.service.getInstitutionDetailsById(globalConfigId).subscribe(
+    this.service.getGlobalConfigDetailsById(globalConfigId).subscribe(
       (res) => {
         if (res['ResponseCode'] == '00') {
           console.log('globalConfigId ppp ==>', globalConfigId);
           this.globalConfigDetails = res['Data'];
+          this.setValues(res['Data']);
+
           console.log('this.globalConfigDetails ==>', this.globalConfigDetails);
         }
       },
@@ -209,5 +229,22 @@ export class AddGlobalConfigurationComponent  implements OnInit{
       }
     );
   }
-}
 
+  setValues(data: any) {
+    if (data) {
+      this.form.controls.minConnections.setValue(data.minConnections);
+      this.form.controls.maxConnections.setValue(data.maxConnections);
+      this.form.controls.minThreads.setValue(data.minThreads);
+      this.form.controls.maxThreads.setValue(data.maxThreads);
+      this.form.controls.logFileSize.setValue(data.logFileSize);
+      this.form.controls.logFilePath.setValue(data.logFilePath);
+      this.form.controls.logLevel.setValue(data.logLevel);
+      this.form.controls.configFilePath.setValue(data.configFilePath);
+    }
+  }
+
+  cancel() {
+    this.form.reset();
+    this.router.navigate([`admin/manage-global-configuration-list`]);
+  }
+}

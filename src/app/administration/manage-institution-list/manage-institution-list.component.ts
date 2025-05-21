@@ -21,7 +21,8 @@ export class ManageInstitutionListComponent implements OnInit {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   intitutionId: any;
   instanceDetails: any = {};
-
+  showChild: any = "";
+  viewInstitutionId: any;
   pageTitle = 'Network Group';
   requestBehaviour = {
     AddNew: 'N',
@@ -136,9 +137,8 @@ export class ManageInstitutionListComponent implements OnInit {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.intitutionId = row.intitutionId;
-    console.log('this.intitutionId ==>', this.intitutionId);
-
-    this.getInstitutionDetailsById(this.intitutionId);
+    this.showChild = "V";
+    this.viewInstitutionId = this.intitutionId;
   }
   resetTable(): void {
     // Reset table to show all rows

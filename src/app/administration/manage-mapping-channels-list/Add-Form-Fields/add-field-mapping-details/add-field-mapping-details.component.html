@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" *ngIf="this.Params.Mode == 'N'">
     <div class="col-md-12">
 
 
@@ -246,7 +246,7 @@
 </div>
 
 
-<div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
+<div class="card-body py-0 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);" *ngIf="shouldShow">
     <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
 
         <div class="col-md-12">

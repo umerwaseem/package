@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UtilityService } from '../../../../services/utility.service';
 import { filter, pairwise } from 'rxjs';
+import { AppConstants } from '../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-institution-details',
 
   templateUrl: './add-institution-details.component.html',
-  styleUrl: './add-institution-details.component.css'
+  styleUrl: './add-institution-details.component.css',
 })
 export class AddInstitutionDetailsComponent implements OnInit {
+  @Input() shouldShow: any = '';
+  @Input() viewInstitutionId: any;
   requestBehaviour = {
     AddNew: 'N',
     Edit: 'E',
@@ -22,14 +25,10 @@ export class AddInstitutionDetailsComponent implements OnInit {
     MakerCheckerView: 'MCV',
     FileApproval: 'FA',
   };
-    Params: any = {
-    RoleDetailData: [],
-    institutionId: 0,
-    connectorId: 0,
-    Mode: 'N',
-  };
+  instanceDetails: any = {};
+
   pageTitle = '';
-  behaviour = "N";
+  behaviour = 'N';
   breadcrumbs = [];
   activeBehaviour: any = {
     addNew: false,
@@ -41,36 +40,63 @@ export class AddInstitutionDetailsComponent implements OnInit {
     fileApproval: false,
   };
   form = new FormGroup({
-    institutionName: new FormControl('', [Validators.required, Validators.maxLength(50),  Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$')]),
-    contactPersonName: new FormControl('', [Validators.required, Validators.maxLength(50),  Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$')]),
-   
-    contactPersonEmail: new FormControl('', [Validators.required,Validators.pattern("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$")]),
+    institutionName: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(50),
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+    ]),
+    contactPersonName: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(50),
+      Validators.pattern('^(?=.*[A-Za-z0-9])[A-Za-z0-9 ._()-]+$'),
+    ]),
+
+    contactPersonEmail: new FormControl('', [
+      Validators.required,
+      Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$'),
+    ]),
     status: new FormControl('', [Validators.required]),
+  });
 
-  })
-
-  constructor(public route: ActivatedRoute,
+  Params: any = {
+    RoleDetailData: [],
+    InstitutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(
+    private fb: FormBuilder,
+    public route: ActivatedRoute,
     private service: ApiService,
     public util: UtilityService,
     private http: HttpClient,
-    public router: Router,) {
-  }
+    public router: Router,
+    public appConstants: AppConstants
+  ) {}
   ngOnInit(): void {
-     this.route.params.subscribe((param) => {
-      console.log('this.route.params ==>',this.route.params, "param ==>", param);
-      
-      this.Params.institutionId = param['id'];
+    console.log('this.shouldShow ==>', this.shouldShow);
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
+
+      this.Params.InstitutionId = param['id'];
       this.Params.Mode = param['behavior'];
-     
+
       if (param['behavior'] == 'N') {
-        this.pageTitle = 'Add Institution';
-
+         this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
-        this.pageTitle = 'Edit Institution Details';
-        this.getInstitutionDetailsById(  this.Params.institutionId);
-
-      } 
+         this.pageTitle = 'Edit Institution Details';
+        this.getInstitutionDetailsById(this.Params.InstitutionId);
+      } else if (this.shouldShow) {
+         this.pageTitle = 'Edit Institution Details';
+        this.getInstitutionDetailsById(this.viewInstitutionId);
+      }
     });
+
     this.getPreviousRoute();
   }
 
@@ -78,10 +104,8 @@ export class AddInstitutionDetailsComponent implements OnInit {
     console.log('Form Data:', this.form.value);
   }
 
-
   fieldErrors(controller: string) {
     let error = '';
-
 
     // Ensure this.form is defined and is an instance of FormGroup
     // if (this.form instanceof FormGroup && this.form.controls[controller]) {
@@ -145,44 +169,42 @@ export class AddInstitutionDetailsComponent implements OnInit {
       return snapshot.data;
     }
   }
-  navigateBreadcrumbs(breadcrumbsData:any) {
+  navigateBreadcrumbs(breadcrumbsData: any) {
     if (breadcrumbsData) {
       this.router.navigate([breadcrumbsData.url], { relativeTo: this.route });
       // this.router.navigateByUrl(breadcrumbsData.url);
     }
   }
 
+  getInstitutionDetailsById(intitutionId: any) {
+    console.log('intitutionId ==>', intitutionId);
 
-
-    getInstitutionDetailsById(intitutionId: any) {
-      console.log('intitutionId ==>', intitutionId);
-  
-      //this.service.getInstanceDetailsById(intitutionId).subscribe((res: { [x: string]: any; }) => {
-      this.service.getInstitutionDetailsById(intitutionId).subscribe(
-        (res) => {
-          if (res['ResponseCode'] == "00") {
-            console.log('intitutionId ppp ==>', intitutionId);
-  
-            this.setValues(res['Data'])
-       /*      this.form.disable() */
-  
-          }
-        }, (ex: HttpErrorResponse) => {
-          this.service.refreshToken(ex.status).then(
-            () => this.getInstitutionDetailsById(intitutionId)
-          )
-        })
-    }
-  
-    setValues(data: any) {
-       if (data) {
-    console.log('data  ==>', data);
-
-    this.form.controls.institutionName.setValue(data.institutionName);
-    this.form.controls.contactPersonName.setValue(data.contactPersonName);
-    this.form.controls.contactPersonEmail.setValue(data.contactPersonEmail);
-    this.form.controls.status.setValue(data.status);
+    //this.service.getInstanceDetailsById(intitutionId).subscribe((res: { [x: string]: any; }) => {
+    this.service.getInstitutionDetailsById(intitutionId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('intitutionId ppp ==>', intitutionId);
+         this.instanceDetails = res['Data'];
+          this.setValues(res['Data']);
+          /*      this.form.disable() */
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getInstitutionDetailsById(intitutionId));
+      }
+    );
   }
+
+  setValues(data: any) {
+    if (data) {
+      console.log('data  ==>', data);
+
+      this.form.controls.institutionName.setValue(data.institutionName);
+      this.form.controls.contactPersonName.setValue(data.contactPersonName);
+      this.form.controls.contactPersonEmail.setValue(data.contactPersonEmail);
+      this.form.controls.status.setValue(data.status);
     }
-  
+  }
 }

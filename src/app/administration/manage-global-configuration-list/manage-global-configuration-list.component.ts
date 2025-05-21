@@ -22,6 +22,8 @@ export class ManageGlobalConfigurationListComponent {
   globalConfigId: any;
   globalConfigDetails: any = {};
   pageTitle = 'Network Group';
+  showChild: any = "";
+  viewGlobalConfigId: any;
   requestBehaviour = {
     AddNew: 'N',
     Edit: 'E',
@@ -102,35 +104,6 @@ export class ManageGlobalConfigurationListComponent {
       }
     );
   }
-  getGlobalConfigDetailsById(globalConfigId: any) {
-    this.service.getInstitutionDetailsById(globalConfigId).subscribe(
-      (res) => {
-        if (res['ResponseCode'] == '00') {
-          console.log('globalConfigId ppp ==>', globalConfigId);
-          this.globalConfigDetails = res['Data'];
-          console.log('this.globalConfigDetails ==>', this.globalConfigDetails);
-        }
-      },
-      (ex: HttpErrorResponse) => {
-        this.service
-          .refreshToken(ex.status)
-          .then(() => this.getGlobalConfigDetailsById(globalConfigId));
-      }
-    );
-  }
-
-  setValues(data: any) {
-    if (data) {
-      this.form.controls.minConnections.setValue(data.networkGroupDescription);
-      this.form.controls.maxConnections.setValue(data.networkGroupName);
-      this.form.controls.minThreads.setValue(data.networkGroupCode);
-      this.form.controls.maxThreads.setValue(data.globalConfigId);
-      this.form.controls.logFileSize.setValue(data.networkGroupDescription);
-      this.form.controls.logFilePath.setValue(data.networkGroupName);
-      this.form.controls.logLevel.setValue(data.networkGroupCode);
-      this.form.controls.configFilePath.setValue(data.globalConfigId);
-    }
-  }
 
   initializeColumns(data: any[]): void {
     if (data.length > 0) {
@@ -160,7 +133,8 @@ export class ManageGlobalConfigurationListComponent {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.globalConfigId = row.globalConfigId;
-    this.getGlobalConfigDetailsById(this.globalConfigId);
+    this.showChild = "V";
+    this.viewGlobalConfigId = this.globalConfigId;
   }
 
   resetTable(): void {

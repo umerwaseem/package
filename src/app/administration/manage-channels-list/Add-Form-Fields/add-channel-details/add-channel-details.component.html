@@ -1,4 +1,4 @@
-<div class="row"  *ngIf="this.Params.Mode == 'N'">
+<div class="row" *ngIf="this.Params.Mode == 'N'|| this.Params.Mode == 'E'">
     <div class="col-xxl-12">
         <div class="card shadow-none">
             <!--  <div class="card-header d-block pt-3 pb-1">
@@ -13,7 +13,7 @@
                     <!--  </div>
             </div>
             <div class="card "> -->
-                    <form [formGroup]="form"  class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+                    <form [formGroup]="form" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
 
 
                         <div class="row  mx-2 ">
@@ -158,8 +158,8 @@
 </div>
 
 
-<div class="card shadow-none p-2" style="border-radius: 0px;"  *ngIf="shouldShow">
-   
+<div class="card shadow-none p-2" style="border-radius: 0px;" *ngIf="shouldShow">
+
     <div class="row">
         <div class="col-xxl-12">
             <div class="card shadow-none">
@@ -172,39 +172,51 @@
                         <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <p> <b>
-                                Channel Name:
+                                    Channel Name:
                                 </b>
                             </p>
-                            <p class="mb-2">Abcddd Channel</p>
+                            <p class="mb-2">{{this.channelDetails.channelName ?
+                                this.channelDetails.channelName : '-
+                                -'}}</p>
                             <p><b>
-                                Channel Indentifier
+                                    Channel Indentifier
                                 </b></p>
-                            <p class="mb-2">IpHq</p>
+                            <p class="mb-2">{{this.channelDetails.channelIndentifier ?
+                                this.channelDetails.channelIndentifier : '-
+                                -'}}</p>
 
                             <p><b>
-                                Channel Type:
+                                    Channel Type:
                                 </b></p>
 
-                            <p class="mb-2">Banking Channel</p>
+                            <p class="mb-2">{{this.channelDetails.channelType ?
+                                this.channelDetails.channelType : '-
+                                -'}}</p>
 
-                           
+
 
 
 
                         </div>
                         <div class="col-md-6 col-sm-6 col-xs-12 border-dark border-1 border-start">
                             <p><b>
-                                Bin:
+                                    Bin:
                                 </b></p>
-                            <p class="mb-2">!nfhefh248djedod24jNHSDH</p>
+                            <p class="mb-2">{{this.channelDetails.bin ?
+                                this.channelDetails.bin : '-
+                                -'}}</p>
                             <p><b>
-                                Endpoint Type:
+                                    Endpoint Type:
                                 </b>
                             </p>
-                            <p class="mb-2"> JSON</p>
-                            <p ><b>Channel Format</b></p>
+                            <p class="mb-2"> {{this.channelDetails.endpointType ?
+                                this.channelDetails.endpointType : '-
+                                -'}}</p>
+                            <p><b>Channel Format</b></p>
 
-                            <p class="mb-2">JSON</p>
+                            <p class="mb-2">{{this.channelDetails.channelFormat ?
+                                this.channelDetails.channelFormat : '-
+                                -'}}</p>
 
 
                         </div>

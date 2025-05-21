@@ -293,7 +293,7 @@ const routes: Routes = [
       { path: 'manage-channel-details/:behavior/:id', component: ManageChannelDetailsComponent },
       { path: 'manage-global-config-details/:behavior/:id', component: AddGlobalConfigurationComponent },
       { path: 'mapping-channels-list', component: ManageMappingChannelsListComponent },
-      { path: 'manage-mapping-channels-details', component: ManageMappingChannelsDetailsComponent },
+      { path: 'manage-mapping-channels-details/:behavior/:id', component: ManageMappingChannelsDetailsComponent },
       { path: 'preview-channel-mapping', component: PreviewChannelMappingsComponent },
     ]
   },

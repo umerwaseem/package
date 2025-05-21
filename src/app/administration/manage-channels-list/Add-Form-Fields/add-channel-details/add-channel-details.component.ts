@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { UtilityService } from '../../../../../services/utility.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppConstants } from '../../../../../services/AppConstants';
 
@@ -24,9 +24,30 @@ import { AppConstants } from '../../../../../services/AppConstants';
   styleUrl: './add-channel-details.component.css',
 })
 export class AddChannelDetailsComponent {
-  @Input() shouldShow: boolean = false;
+  @Input() shouldShow: any = '';
+  @Input() viewChannelId: any;
   @Output() formSubmitted = new EventEmitter<void>();
   channelType: any;
+  requestBehaviour = {
+    AddNew: 'N',
+    Edit: 'E',
+    ViewSingle: 'V',
+    Approval: 'A',
+    Return: 'R',
+    MakerCheckerView: 'MCV',
+    FileApproval: 'FA',
+  };
+  behaviour = 'N';
+  channelDetails: any = {};
+  activeBehaviour: any = {
+    addNew: false,
+    edit: false,
+    approval: false,
+    view: false,
+    return: false,
+    makerCheckerView: false,
+    fileApproval: false,
+  };
 
   form = new FormGroup({
     firstName: new FormControl(''),
@@ -51,7 +72,7 @@ export class AddChannelDetailsComponent {
   });
   Params: any = {
     RoleDetailData: [],
-    institutionId: 0,
+    channelId: 0,
     connectorId: 0,
     Mode: 'N',
   };
@@ -73,14 +94,17 @@ export class AddChannelDetailsComponent {
         param
       );
 
-      this.Params.institutionId = param['id'];
+      this.Params.channelId = param['id'];
       this.Params.Mode = param['behavior'];
 
       if (param['behavior'] == 'N') {
         // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
         // this.pageTitle = 'Edit Institution Details';
-        // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+        this.getChannelDetailsById(this.Params.channelId);
+      } else if (this.shouldShow) {
+        //this.pageTitle = 'Edit Institution Details';
+        this.getChannelDetailsById(this.viewChannelId);
       }
     });
   }
@@ -148,5 +172,37 @@ export class AddChannelDetailsComponent {
       }
     }
     return error;
+  }
+
+  getChannelDetailsById(channelId: any) {
+    this.service.getChannelDetailsById(channelId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('channelId ppp ==>', channelId);
+          this.channelDetails = res['Data'];
+          this.setValues(res['Data']);
+
+          console.log('this.channelDetails ==>', this.channelDetails);
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getChannelDetailsById(channelId));
+      }
+    );
+  }
+
+  setValues(data: any) {
+    if (data) {
+      this.form.controls.channelName.setValue(data.channelName);
+      this.form.controls.channelIndentifier.setValue(data.channelIndentifier);
+      this.form.controls.channelType.setValue(data.channelType);
+      this.form.controls.bin.setValue(data.bin);
+      this.form.controls.endpointType.setValue(data.endpointType);
+      this.form.controls.channelFormat.setValue(data.channelFormat);
+      this.form.controls.isActive.setValue(data.isActive);
+      this.form.controls.channelTimeout.setValue(data.channelTimeout);
+    }
   }
 }

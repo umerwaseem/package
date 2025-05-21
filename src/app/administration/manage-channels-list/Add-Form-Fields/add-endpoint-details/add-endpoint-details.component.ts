@@ -1,20 +1,28 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder, FormArray } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+  FormArray,
+} from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
 import { ActivatedRoute } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-endpoint-details',
 
   templateUrl: './add-endpoint-details.component.html',
-  styleUrl: './add-endpoint-details.component.css'
+  styleUrl: './add-endpoint-details.component.css',
 })
 export class AddEndpointDetailsComponent {
+  @Input() shouldShow: any = '';
+  @Input() viewChannelId: any;
+  @Output() formSubmitted = new EventEmitter<void>();
 
-
-   @Input() shouldShow: boolean = false;
-  
+  channelDetails: any = {};
   dataSource = [
     {
       urlEndpoint: 'https://abc.com',
@@ -27,17 +35,33 @@ export class AddEndpointDetailsComponent {
       username: 'testUser',
       password: 'password123',
       headers: [
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
       ],
       client: [
         { whiteListIps: '192.168.1.1' },
         { whiteListIps: '192.168.1.2' },
         { whiteListIps: '192.168.1.1' },
-        { whiteListIps: '192.168.1.2' }
-      ]
+        { whiteListIps: '192.168.1.2' },
+      ],
     },
     {
       urlEndpoint: 'https://abc.com',
@@ -51,17 +75,33 @@ export class AddEndpointDetailsComponent {
       password: 'password123',
       isClient: false,
       headers: [
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
       ],
       client: [
         { whiteListIps: '192.168.1.1' },
         { whiteListIps: '192.168.1.2' },
         { whiteListIps: '192.168.1.1' },
-        { whiteListIps: '192.168.1.2' }
-      ]
+        { whiteListIps: '192.168.1.2' },
+      ],
     },
     {
       urlEndpoint: 'https://abc.com',
@@ -75,145 +115,164 @@ export class AddEndpointDetailsComponent {
       password: 'password123',
       isClient: true,
       headers: [
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 },
-        { headerKey: 'Content-Type', headerValue: 'application/json', headerSequence: 1 },
-        { headerKey: 'Authorization', headerValue: 'Bearer token', headerSequence: 2 }
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
+        {
+          headerKey: 'Content-Type',
+          headerValue: 'application/json',
+          headerSequence: 1,
+        },
+        {
+          headerKey: 'Authorization',
+          headerValue: 'Bearer token',
+          headerSequence: 2,
+        },
       ],
       client: [
         { whiteListIps: '192.168.1.1' },
         { whiteListIps: '192.168.1.2' },
         { whiteListIps: '192.168.1.1' },
-        { whiteListIps: '192.168.1.2' }
-      ]
-    }
-  
+        { whiteListIps: '192.168.1.2' },
+      ],
+    },
   ];
-  displayedColumns: string[] = ['urlEndpoint','authtype', 'actions']
-  displayedColumnsView: string[] = ['urlEndpoint', 'connectionTimeout', 'isClient', 'isTls', 'tlsVersion','certPath','keyFilePath', 'authtype', 'username', 'password','headers', 'client'];
- Params: any = {
+  displayedColumns: string[] = ['urlEndpoint', 'authtype', 'actions'];
+  displayedColumnsView: string[] = [
+    'urlEndpoint',
+    'connectionTimeout',
+    'isClient',
+    'isTls',
+    'tlsVersion',
+    'certPath',
+    'keyFilePath',
+    'authtype',
+    'username',
+    'password',
+    'headers',
+    'client',
+  ];
+  Params: any = {
     RoleDetailData: [],
-    institutionId: 0,
+    channelId: 0,
     connectorId: 0,
     Mode: 'N',
   };
 
-  @Output() formSubmitted = new EventEmitter<void>();
   editIndex: number | null = null;
   endpointList: any = [];
   lstHeader: any = [];
   lstClient: any = [];
-  isTlsEnabled: any
-  authType: any
+  isTlsEnabled: any;
+  authType: any;
 
   form = new FormGroup({
-
-
     endPointDetails: this.fb.group({
       urlEndpoint: new FormControl('https://abc.com', [
         Validators.required,
         Validators.maxLength(999),
-       /*  Validators.pattern(
+        /*  Validators.pattern(
           '^(https?:\\/\\/)?([a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)+)(:\\d+)?(\\/[\\S]*)?(\\?[\\S]*)?(#[\\S]*)?$'
         ), */
       ]),
 
-
       connectionTimeout: new FormControl('', [
         Validators.required,
-       /*  Validators.pattern(/^\d+$/), */
-        Validators.max(2)
+        /*  Validators.pattern(/^\d+$/), */
+        Validators.max(2),
       ]),
       isTls: new FormControl(false),
       tlsVersion: new FormControl(''),
       certPath: new FormControl(''),
       keyFilePath: new FormControl(''),
-      isClient: new FormControl('', [
-
-
-      ]),
+      isClient: new FormControl('', []),
       authtype: new FormControl('', [Validators.required]),
       username: new FormControl(''),
       password: new FormControl(''),
 
-      sequence: new FormControl('',),
-
+      sequence: new FormControl(''),
 
       header: this.fb.group({
-
-
         headerKey: ['', []],
         headerValue: ['', []],
         headerSequence: ['', []],
-
       }),
-
 
       client: this.fb.group({
-
-
         whiteListIps: ['', []],
-
-
       }),
     }),
-  })
-  constructor(private fb: FormBuilder, private service: ApiService, public util: UtilityService,public route: ActivatedRoute,) {
-
-  }
+  });
+  constructor(
+    private fb: FormBuilder,
+    private service: ApiService,
+    public util: UtilityService,
+    public route: ActivatedRoute
+  ) {}
   ngOnInit(): void {
-this.route.params.subscribe((param) => {
-      console.log('this.route.params ==>',this.route.params, "param ==>", param);
-      
-      this.Params.institutionId = param['id'];
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
+
+      this.Params.channelId = param['id'];
       this.Params.Mode = param['behavior'];
-     
+
       if (param['behavior'] == 'N') {
-       // this.pageTitle = 'Add Institution';
-
+        // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
-       // this.pageTitle = 'Edit Institution Details';
-       // this.getGlobalConfigDetailsById(  this.Params.institutionId);
-
-      } 
+        // this.pageTitle = 'Edit Institution Details';
+        this.getChannelEndpointsById(this.Params.channelId);
+      } else if (this.shouldShow) {
+        //this.pageTitle = 'Edit Institution Details';
+        this.getChannelEndpointsById(this.viewChannelId);
+      }
     });
-
   }
   getHeaderKeys(headers: any[]): string[] {
-    return headers.map(header => header.headerKey);
+    return headers.map((header) => header.headerKey);
   }
 
   getHeaderValues(headers: any[]): string[] {
-    return headers.map(header => header.headerValue);
+    return headers.map((header) => header.headerValue);
   }
 
   getHeaderSequences(headers: any[]): number[] {
-    return headers.map(header => header.headerSequence);
-  } 
+    return headers.map((header) => header.headerSequence);
+  }
 
   getWhitelistIps(client: any[]): string[] {
-    return client.map(c => c.whiteListIps);
+    return client.map((c) => c.whiteListIps);
   }
   onSubmit() {
-    
     if (this.endpointList.length === 0) {
       this.util.failureSnackbar('At least one header or IP is required.');
     }
 
-    let obj = this.form.getRawValue()
-    console.log('obj', obj)
-    obj.endPointDetails = this.endpointList
+    let obj = this.form.getRawValue();
+    console.log('obj', obj);
+    obj.endPointDetails = this.endpointList;
 
-    console.log('endpointList', this.endpointList)
+    console.log('endpointList', this.endpointList);
   }
   onChangeServer() {
-    this.lstClient = []
-    this.lstHeader = []
+    this.lstClient = [];
+    this.lstHeader = [];
     this.form.get('endPointDetails.isClient')?.value;
   }
   onChangeClient() {
-    this.lstClient = []
-    this.lstHeader = []
+    this.lstClient = [];
+    this.lstHeader = [];
     this.form.get('endPointDetails.isClient')?.value;
   }
 
@@ -222,9 +281,15 @@ this.route.params.subscribe((param) => {
     this.isTlsEnabled = this.form.get('endPointDetails.isTls')?.value;
 
     if (this.isTlsEnabled) {
-      this.form.get('endPointDetails.tlsVersion')?.setValidators([Validators.required]);
-      this.form.get('endPointDetails.keyFilePath')?.setValidators([Validators.required]);
-      this.form.get('endPointDetails.certPath')?.setValidators([Validators.required]);
+      this.form
+        .get('endPointDetails.tlsVersion')
+        ?.setValidators([Validators.required]);
+      this.form
+        .get('endPointDetails.keyFilePath')
+        ?.setValidators([Validators.required]);
+      this.form
+        .get('endPointDetails.certPath')
+        ?.setValidators([Validators.required]);
     } else {
       this.form.get('endPointDetails.tlsVersion')?.reset();
       this.form.get('endPointDetails.tlsVersion')?.clearValidators();
@@ -232,7 +297,6 @@ this.route.params.subscribe((param) => {
       this.form.get('endPointDetails.keyFilePath')?.clearValidators();
       this.form.get('endPointDetails.certPath')?.reset();
       this.form.get('endPointDetails.certPath')?.clearValidators();
-
     }
 
     this.form.updateValueAndValidity();
@@ -246,7 +310,7 @@ this.route.params.subscribe((param) => {
       this.form.markAllAsTouched();
       return;
     }
-   /*  if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
+    /*  if (this.lstHeader.length === 0 && this.lstClient.length === 0) {
       return this.util.failureSnackbar('At least one Header or Ip is required.');
     } */
     if (this.form.get('endPointDetails')?.valid) {
@@ -259,7 +323,7 @@ this.route.params.subscribe((param) => {
       } else {
         // Add new entry
 
-        this.endpointList = [...this.endpointList, endPointDetails]; 
+        this.endpointList = [...this.endpointList, endPointDetails];
       }
 
       this.form.get('endPointDetails')?.reset(); // Clear form after adding/updating
@@ -285,7 +349,6 @@ this.route.params.subscribe((param) => {
   addHeader() {
     console.log('this.objHeader', this.objHeader);
 
-
     let headerForm = this.objHeader;
 
     // Get values from form fields
@@ -293,10 +356,11 @@ this.route.params.subscribe((param) => {
     let headerValue = headerForm.controls['headerValue'].value?.trim();
     let headerSequence = headerForm.controls['headerSequence'].value?.trim();
 
-
     if (!headerKey || !headerValue || !headerSequence) {
       console.log('headerForm.controls ==>', headerForm.controls);
-      return this.util.failureSnackbar('At least one Header or IP is required.');
+      return this.util.failureSnackbar(
+        'At least one Header or IP is required.'
+      );
     }
 
     // Check for duplicates
@@ -336,9 +400,7 @@ this.route.params.subscribe((param) => {
       return;
     }
     const isDuplicate = this.lstHeader.some(
-      (client: any) =>
-        client.whiteListIps === ips
-
+      (client: any) => client.whiteListIps === ips
     );
 
     if (isDuplicate) {
@@ -355,24 +417,58 @@ this.route.params.subscribe((param) => {
     clientForm.reset();
   }
 
-
   /* removeIp(ip: string) {
      // Remove the IP from the array
      this.whiteListIps.setValue(this.whiteListIps.value.filter((item: string) => item !== ip));
    } */
-   removeHeader(headerSequence: number) {
-     this.lstHeader = this.lstHeader.filter((header:any) => header.headerSequence !== headerSequence);
-   }
+  removeHeader(headerSequence: number) {
+    this.lstHeader = this.lstHeader.filter(
+      (header: any) => header.headerSequence !== headerSequence
+    );
+  }
 
+  getChannelEndpointsById(channelId: any) {
+    this.service.getChannelEndpointsById(channelId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('channelId ppp ==>', channelId);
+          //this.endpointList = [res['Data']];
+          //    this.setValues(res['Data']);
+          this.endpointList = res['Data'];
+          console.log('this.channelDetails ==>', this.channelDetails);
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getChannelEndpointsById(channelId));
+      }
+    );
+  }
 
+  /*   setValues(data: any) {
+    if (data) {
+      this.form.controls.urlEndpoint.setValue(data.channelName);
+      this.form.controls.connectionTimeout.setValue(data.channelIndentifier);
+      this.form.controls.isTls.setValue(data.channelType);
+      this.form.controls.tlsVersion.setValue(data.bin);
+      this.form.controls.certPath.setValue(data.endpointType);
+      this.form.controls.keyFilePath.setValue(data.channelFormat);
+      this.form.controls.isClient.setValue(data.isActive);
+      this.form.controls.authtype.setValue(data.channelTimeout);
+            this.form.controls.username.setValue(data.channelFormat);
+      this.form.controls.password.setValue(data.isActive);
+      this.form.controls.sequence.setValue(data.channelTimeout);
+    }
+  }
+ */
 
   fieldErrors(controller: string) {
     let error = '';
 
-
     // Ensure this.form is defined and is an instance of FormGroup
     // if (this.form instanceof FormGroup && this.form.controls[controller]) {
-    let control = this.form.get(`endPointDetails.${controller}`)
+    let control = this.form.get(`endPointDetails.${controller}`);
 
     if (control) {
       if (control.hasError('required')) {
@@ -385,7 +481,6 @@ this.route.params.subscribe((param) => {
         }
         if (controller === 'subStringLength') {
           error = 'Maximum length of substring length is 99';
-
         }
       } else if (control.hasError('maxlength')) {
         if (controller === 'fieldTagName') {
@@ -417,14 +512,12 @@ this.route.params.subscribe((param) => {
   }
 }
 
-
 export interface PeriodicElement {
   name: string;
   position: number;
   weight: number;
   symbol: string;
 }
-
 
 const ELEMENT_DATA: PeriodicElement[] = [
   { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },

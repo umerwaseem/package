@@ -118,76 +118,7 @@
                     </div>
                 </div>
             </ng-container>
-            <div class="row">
-                <div class="col-xxl-12">
-                    <div class="card shadow-none">
-                        <!--  <div class="card-header d-block pt-3 pb-1">
-                            <h5 class="mb-2"><b>Custom Fields</b></h5>
-                        </div> -->
-                        <div class="card-body px-0">
-
-                            <div class="row">
-                                <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <p> <b>
-                                            Minimum Connections:
-                                        </b>
-                                    </p>
-                                    <p class="mb-2">{{this.globalConfigDetails.institutionName ?
-                                        this.globalConfigDetails.institutionName : '-
-                                        -'}}</p>
-                                    <p><b>
-                                            Maximum Connections:
-                                        </b></p>
-                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonName ?
-                                        this.globalConfigDetails.contactPersonName : '-
-                                        -'}}</p>
-
-                                    <p><b>
-                                            Minimum Threads:
-                                        </b></p>
-
-                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonNumber ?
-                                        this.globalConfigDetails.contactPersonNumber : '-
-                                        -'}}</p>
-
-                                    <p><b>
-                                            Maximum Threads:
-                                        </b></p>
-                                    <p class="mb-2">{{this.globalConfigDetails.contactPersonEmail ?
-                                        this.globalConfigDetails.contactPersonEmail : '- -'}}</p>
-
-
-
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12 border-dark border-1 border-start">
-
-                                    <p><b>
-                                            Max Log File Size:
-                                        </b>
-                                    </p>
-                                    <p class="mb-2"> {{this.globalConfigDetails.status? this.globalConfigDetails.status : '-
-                                        -'}}</p>
-                                    <p><b>Log File Path</b></p>
-                                    <p class="mb-2">{{this.globalConfigDetails.role? this.globalConfigDetails.role : '- -'}}</p>
-                                    <p><b>Log Level</b></p>
-
-                                    <p class="mb-2">{{this.globalConfigDetails.passwordPolicy?
-                                        this.globalConfigDetails.passwordPolicy : '- -'}}</p>
-                                    <p><b>Service Config File Path</b></p>
-
-                                    <p class="mb-2">{{this.globalConfigDetails.passwordPolicy?
-                                        this.globalConfigDetails.passwordPolicy : '- -'}}</p>
-
-
-                                </div>
-
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <app-add-global-configuration [shouldShow]="showChild" [viewGlobalConfigId] ="viewGlobalConfigId"></app-add-global-configuration>
         </div>
     </div>
 </div>

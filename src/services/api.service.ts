@@ -784,9 +784,34 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  ///////////Channel APIs START FROM HERE
   getChannels(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}api/channels`);
   }
+
+  getChannelDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/channel/${id}`;
+
+    return this.http.get(url);
+  }
+
+    getChannelEndpointsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/channel-endpoints/${id}`;
+
+    return this.http.get(url);
+  }
+  getServiceQueuesByChannelId(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/service-queues/${id}`;
+
+    return this.http.get(url);
+  }
+
+  getChannelServicesByChannelId(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/channel-services/${id}`;
+
+    return this.http.get(url);
+  }
+  ///////////Channel APIs Ends HERE
 
   getInstitutions(): Observable<any> {
     return this.http.get(`${this.baseUrl}api/institutions`);
@@ -807,22 +832,9 @@ export class ApiService {
 
     return this.http.get(url);
   }
-}
-/*   getAll(id: any): Observable<any> {
-    if (this.util.isRunProtoType) {
-      return new Observable((subscribe) => {
-        subscribe.next(this.editData.Roles);
-        subscribe.complete();
-      });
-    } else {
-      this.util.handleLoader(true);
-      return this.http
-        .get(
-          `${this.environmentUrl}v1/payout/rule/${id}`,
-          this.restHeader()
-        )
-        .pipe(catchError(this.errorHandler.bind(this)))
-        .pipe(tap(this.successHandler.bind(this)));
-    }
+
+   getMappingChannels(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}api/getAllMappings`);
   }
- */
+}
+

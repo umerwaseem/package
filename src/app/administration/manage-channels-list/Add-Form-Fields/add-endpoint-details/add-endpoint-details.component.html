@@ -1,4 +1,4 @@
-<div class="row"  *ngIf="this.Params.Mode == 'N'">
+<div class="row" *ngIf="this.Params.Mode == 'N'|| this.Params.Mode == 'E'">
     <div class="col-md-12">
 
 
@@ -486,7 +486,7 @@
 
             <ng-container matColumnDef="urlEndpoint">
                 <th mat-header-cell *matHeaderCellDef> urlEndpoint </th>
-                <td mat-cell *matCellDef="let record"> {{ record.servicurlEndpoint || '--' }} </td>
+                <td mat-cell *matCellDef="let record"> {{ record.urlEndpoint || '--' }} </td>
             </ng-container>
 
 
@@ -496,7 +496,7 @@
             </ng-container>
  
             <ng-container matColumnDef="isTls">
-                <th mat-header-cell *matHeaderCellDef> Service Type </th>
+                <th mat-header-cell *matHeaderCellDef> is Tls </th>
                 <td mat-cell *matCellDef="let record"> {{ record.serviceTypeId || '--' }} </td>
             </ng-container>
 
@@ -537,13 +537,25 @@
             </ng-container>
            
             <ng-container matColumnDef="headers">
-                <th mat-header-cell *matHeaderCellDef>headers </th>
-                <td mat-cell *matCellDef="let record"> {{ record.headers || '--' }} </td><!-- | json  -->
-            </ng-container>
-            <ng-container matColumnDef="client">
-                <th mat-header-cell *matHeaderCellDef>client </th>
-                <td mat-cell *matCellDef="let record"> {{ record.client || '--' }} </td><!-- | json  -->
-            </ng-container>
+  <th mat-header-cell *matHeaderCellDef>Headers</th>
+  <td mat-cell *matCellDef="let record">
+    <div *ngIf="record.header; else noHeader">
+      Key: {{ record.header.headerKey || '--' }}<br />
+      Value: {{ record.header.headerValue || '--' }}<br />
+      Sequence: {{ record.header.headerSequence || '--' }}
+    </div>
+    <ng-template #noHeader>--</ng-template>
+  </td>
+</ng-container>
+           <ng-container matColumnDef="client">
+  <th mat-header-cell *matHeaderCellDef>Client</th>
+  <td mat-cell *matCellDef="let record">
+    <div *ngIf="record.client?.whiteListIps; else noClient">
+      IPs: {{ record.client.whiteListIps }}
+    </div>
+    <ng-template #noClient>--</ng-template>
+  </td>
+</ng-container>
            
 
 

@@ -1,4 +1,7 @@
-<div class="content-body">
+<div
+  class="content-body"
+  *ngIf="this.Params.Mode == 'N' || this.Params.Mode == 'E'"
+>
   <div class="container-fluid">
     <div class="card">
       <div class="card-header p-3">
@@ -107,7 +110,7 @@
               >
                 Create Institution
               </button>
-          
+
               <button
                 mat-flat-button
                 color="primary"
@@ -120,6 +123,89 @@
             </div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="shouldShow">
+  <div class="col-xxl-12">
+    <div class="card shadow-none">
+      <!--  <div class="card-header d-block pt-3 pb-1">
+                            <h5 class="mb-2"><b>Custom Fields</b></h5>
+                        </div> -->
+      <div class="card-body px-0">
+        <div class="row">
+          <!-- <p class="my-1"><strong>Instance Summary</strong></p> -->
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <p><b> Institution Name: </b></p>
+            <p class="mb-2">
+              {{
+                this.instanceDetails.institutionName
+                  ? this.instanceDetails.institutionName
+                  : "-
+              -"
+              }}
+            </p>
+            <p><b> Contact Person Name: </b></p>
+            <p class="mb-2">
+              {{
+                this.instanceDetails.contactPersonName
+                  ? this.instanceDetails.contactPersonName
+                  : "-
+              -"
+              }}
+            </p>
+
+            <p><b> Contact Person Number: </b></p>
+
+            <p class="mb-2">
+              {{
+                this.instanceDetails.contactPersonNumber
+                  ? this.instanceDetails.contactPersonNumber
+                  : "-
+              -"
+              }}
+            </p>
+
+            <p><b> Contact Person Id: </b></p>
+            <p class="mb-2">
+              {{
+                this.instanceDetails.contactPersonEmail
+                  ? this.instanceDetails.contactPersonEmail
+                  : "- -"
+              }}
+            </p>
+          </div>
+          <div
+            class="col-md-6 col-sm-6 col-xs-12 border-dark border-1 border-start"
+          >
+            <p><b> Status: </b></p>
+            <p class="mb-2">
+              {{
+                this.instanceDetails.status
+                  ? this.instanceDetails.status
+                  : "-
+              -"
+              }}
+            </p>
+            <p><b>Role</b></p>
+            <p class="mb-2">
+              {{
+                this.instanceDetails.role ? this.instanceDetails.role : "- -"
+              }}
+            </p>
+            <p><b>passwordPolicy</b></p>
+
+            <p class="mb-2">
+              {{
+                this.instanceDetails.passwordPolicy
+                  ? this.instanceDetails.passwordPolicy
+                  : "- -"
+              }}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

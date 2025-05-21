@@ -1,10 +1,21 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, ElementRef, inject, Inject, signal, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  inject,
+  Inject,
+  signal,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../services/api.service';
-import { MatDialog, MAT_DIALOG_DATA,MatDialogRef  } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { ViewEndpointDetailsDialogComponent } from './View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -18,41 +29,54 @@ import { UtilityService } from '../../../services/utility.service';
   selector: 'app-manage-channels-list',
 
   templateUrl: './manage-channels-list.component.html',
-  styleUrl: './manage-channels-list.component.css'
+  styleUrl: './manage-channels-list.component.css',
 })
 export class ManageChannelsListComponent {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   //dataSource = new MatTableDataSource<any>(); // Data source for the table
-    dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-  channelId: any
-  instanceDetails: any = {}
-showChild: boolean = false;
+  channelId: any;
+  instanceDetails: any = {};
+  showChild: any = '';
+  viewChannelId: any;
+  displayedColumnssss: string[] = [
+    'position',
+    'name',
+    'weight',
+    'symbol',
+    'position',
+    'name',
+    'weight',
+    'symbol',
+    'position',
+    'name',
+    'weight',
+    'symbol',
+  ];
+  form = new FormGroup({
+    firstName: new FormControl(''),
 
-  
- displayedColumnssss: string[] = ['position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol','position', 'name', 'weight', 'symbol'];
-    form = new FormGroup({
-      firstName: new FormControl('',),
-
-      channelName: new FormControl('',),
-      channelIndentifier: new FormControl('',),
-      channelType: new FormControl('',),
-      bin: new FormControl('',),
-      endpointType: new FormControl('',),
-      channelFormat: new FormControl('',),
-      channelTimeout: new FormControl('',),
+    channelName: new FormControl(''),
+    channelIndentifier: new FormControl(''),
+    channelType: new FormControl(''),
+    bin: new FormControl(''),
+    endpointType: new FormControl(''),
+    channelFormat: new FormControl(''),
+    channelTimeout: new FormControl(''),
     //  channelIndentifier: new FormControl('',[ Validators.required]),
-    })
+  });
   filteredFruits: any;
   fruitCtrl: any;
   allFruits: any;
-  constructor(   private service: ApiService,
-      private dialog: MatDialog,
-      private route: ActivatedRoute,
-      public router: Router,
-      public util: UtilityService) { 
-    }
+  constructor(
+    private service: ApiService,
+    private dialog: MatDialog,
+    private route: ActivatedRoute,
+    public router: Router,
+    public util: UtilityService
+  ) {}
   _filter(fruit: string): any {
     throw new Error('Method not implemented.');
   }
@@ -99,7 +123,7 @@ showChild: boolean = false;
         this.columnVisibility['channelId'] = true;
       }
     }
-    return
+    return;
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -115,33 +139,31 @@ showChild: boolean = false;
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.channelId = row.channelId;
-    this.showChild = !this.showChild;
+    this.showChild = 'V';
+    this.viewChannelId = this.channelId;
   }
 
   resetTable(): void {
     // Reset table to show all rows
-    this.channelId = ''
+    this.channelId = '';
     this.getChannels();
     console.log();
-    
   }
   tabs = [
     { label: 'Channels', type: 'Channels' },
     { label: 'Channel Endpoints', type: 'Channel Endpoints' },
     { label: 'Channel Queues', type: 'Channel Queues' },
 
-    { label: 'Channel Services' , type: 'Channel Services'},
-    { label: 'Field Definition' , type: 'Field Definition'},
-    { label: 'Message Initialization' , type: 'Message Initialization'},
-    
-    
-    { label: 'Custom Fields' , type: 'Custom Fields'},
+    { label: 'Channel Services', type: 'Channel Services' },
+    { label: 'Field Definition', type: 'Field Definition' },
+    { label: 'Message Initialization', type: 'Message Initialization' },
 
+    { label: 'Custom Fields', type: 'Custom Fields' },
 
-/*     { label: 'Tags' } */
+    /*     { label: 'Tags' } */
   ];
 
-  viewEndPointDetails(val:any) {
+  viewEndPointDetails(val: any) {
     // let obj = { behaviour: "V", userData: val, channelId: this.form.controls.channelId.value };
     let obj = val;
 
@@ -151,11 +173,15 @@ showChild: boolean = false;
       // Ensure this is passed
     });
   }
-  
+
   /// chip datA
   readonly addOnBlur = true;
   readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  readonly fruits = signal<Fruit[]>([{name: 'Lemon'}, {name: 'Lime'}, {name: 'Apple'}]);
+  readonly fruits = signal<Fruit[]>([
+    { name: 'Lemon' },
+    { name: 'Lime' },
+    { name: 'Apple' },
+  ]);
   readonly announcer = inject(LiveAnnouncer);
 
   add(event: MatChipInputEvent): void {
@@ -163,7 +189,7 @@ showChild: boolean = false;
 
     // Add our fruit
     if (value) {
-      this.fruits.update(fruits => [...fruits, {name: value}]);
+      this.fruits.update((fruits) => [...fruits, { name: value }]);
     }
 
     // Clear the input value
@@ -171,7 +197,7 @@ showChild: boolean = false;
   }
 
   remove(fruit: Fruit): void {
-    this.fruits.update(fruits => {
+    this.fruits.update((fruits) => {
       const index = fruits.indexOf(fruit);
       if (index < 0) {
         return fruits;
@@ -193,7 +219,7 @@ showChild: boolean = false;
     }
 
     // Edit existing fruit
-    this.fruits.update(fruits => {
+    this.fruits.update((fruits) => {
       const index = fruits.indexOf(fruit);
       if (index >= 0) {
         fruits[index].name = value;
@@ -203,11 +229,12 @@ showChild: boolean = false;
     });
   }
 
-
-  addchannelDetails(){
-
+  addchannelDetails() {
     this.router.navigate([`/admin/manage-channel-details/N/0`]);
+  }
 
+  editChannelDetails() {
+    this.router.navigate([`/admin/manage-channel-details/E/${this.channelId}`]);
   }
 }
 export interface Fruit {
@@ -215,99 +242,98 @@ export interface Fruit {
 }
 const ELEMENT_DATA = [
   {
-    "ResponseCode": "00",
-    "Data": [
-        {
-            "value": 15,
-            "strValue": null,
-            "text": "Mastercard",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 33,
-            "strValue": null,
-            "text": "VISA",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 37,
-            "strValue": null,
-            "text": "Stripe",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 38,
-            "strValue": null,
-            "text": "Host network",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 39,
-            "strValue": null,
-            "text": "Paypal",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 60,
-            "strValue": null,
-            "text": "network test license",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 66,
-            "strValue": null,
-            "text": "network",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 68,
-            "strValue": null,
-            "text": "network to test",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        },
-        {
-            "value": 78,
-            "strValue": null,
-            "text": "StripeForPayoutFile",
-            "attr1": null,
-            "attr2": null,
-            "institutionId": null,
-            "fileType": null,
-            "useCase": null
-        }
-    ]
-}
+    ResponseCode: '00',
+    Data: [
+      {
+        value: 15,
+        strValue: null,
+        text: 'Mastercard',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 33,
+        strValue: null,
+        text: 'VISA',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 37,
+        strValue: null,
+        text: 'Stripe',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 38,
+        strValue: null,
+        text: 'Host network',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 39,
+        strValue: null,
+        text: 'Paypal',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 60,
+        strValue: null,
+        text: 'network test license',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 66,
+        strValue: null,
+        text: 'network',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 68,
+        strValue: null,
+        text: 'network to test',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+      {
+        value: 78,
+        strValue: null,
+        text: 'StripeForPayoutFile',
+        attr1: null,
+        attr2: null,
+        institutionId: null,
+        fileType: null,
+        useCase: null,
+      },
+    ],
+  },
 ];
-

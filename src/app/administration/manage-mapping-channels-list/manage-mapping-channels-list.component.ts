@@ -9,6 +9,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { ApiService } from '../../../services/api.service';
 import { ViewEndpointDetailsDialogComponent } from '../manage-channels-list/View-Dialog-Boxes/view-endpoint-details-dialog/view-endpoint-details-dialog.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UtilityService } from '../../../services/utility.service';
 
 @Component({
   selector: 'app-manage-mapping-channels-list',
@@ -22,8 +24,9 @@ export class ManageMappingChannelsListComponent {
     dataSource = new MatTableDataSource(ELEMENT_DATA);
   displayedColumns: string[] = []; // Columns to display dynamically
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
-  networkGroupId: any
+  mappingId: any
   instanceDetails: any = {}
+showChild: boolean = false;
 
 
   
@@ -43,13 +46,18 @@ export class ManageMappingChannelsListComponent {
   filteredFruits: any;
   fruitCtrl: any;
   allFruits: any;
-  constructor(private service: ApiService,public dialog: MatDialog) { 
-    }
+ constructor(
+     private service: ApiService,
+     private dialog: MatDialog,
+     private route: ActivatedRoute,
+     public router: Router,
+     public util: UtilityService
+   ) {}
   _filter(fruit: string): any {
     throw new Error('Method not implemented.');
   }
   ngOnInit(): void {
-    this.getPosts();
+    this.getMappingChannels();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -58,8 +66,8 @@ export class ManageMappingChannelsListComponent {
   onSubmit() {
     console.log('Form Data:', this.form.value);
   }
-  getPosts(): void {
-    this.service.getPosts().subscribe(
+  getMappingChannels(): void {
+    this.service.getMappingChannels().subscribe(
       (res) => {
         if (res['ResponseCode'] === '00') {
           this.dataSource.data = res['Data']; // Assign API data to the table
@@ -74,7 +82,7 @@ export class ManageMappingChannelsListComponent {
         }
       },
       (ex: HttpErrorResponse) => {
-        this.service.refreshToken(ex.status).then(() => this.getPosts());
+        this.service.refreshToken(ex.status).then(() => this.getMappingChannels());
       }
     );
   }
@@ -86,9 +94,9 @@ export class ManageMappingChannelsListComponent {
         this.columnVisibility[col] = true; // Make all columns visible by default
       });
 
-      // Ensure 'networkGroupId' is always visible
-      if (this.columnVisibility['networkGroupId'] === undefined) {
-        this.columnVisibility['networkGroupId'] = true;
+      // Ensure 'mappingId' is always visible
+      if (this.columnVisibility['mappingId'] === undefined) {
+        this.columnVisibility['mappingId'] = true;
       }
     }
     return
@@ -106,24 +114,16 @@ export class ManageMappingChannelsListComponent {
   filterToSingleRow(row: any): void {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
-    this.networkGroupId = row.networkGroupId;
+    this.mappingId = row.mappingId;
   }
 
   resetTable(): void {
     // Reset table to show all rows
-    this.networkGroupId = ''
-    this.getPosts();
+    this.mappingId = ''
+    this.getMappingChannels();
   }
   tabs = [
-    { label: 'Channels', type: 'Channels' },
-    { label: 'Channel Endpoints', type: 'Channel Endpoints' },
-    { label: 'Channel Queues', type: 'Channel Queues' },
 
-    { label: 'Channel Services' , type: 'Channel Services'},
-    { label: 'Message Initialization' , type: 'Message Initialization'},
-    
-    
-    { label: 'Custom Fields' , type: 'Custom Fields'},
     { label: 'Message Field Mapping' , type: 'Message Field Mapping'},
     { label: 'Message Routing' , type: 'Message Routing'},
     { label: 'Message Processing Rules' , type: 'Message Processing Rules'},
@@ -133,7 +133,7 @@ export class ManageMappingChannelsListComponent {
   ];
 
   viewEndPointDetails(val:any) {
-    // let obj = { behaviour: "V", userData: val, networkGroupId: this.form.controls.networkGroupId.value };
+    // let obj = { behaviour: "V", userData: val, mappingId: this.form.controls.mappingId.value };
     let obj = val;
 
     this.dialog.open(ViewEndpointDetailsDialogComponent, {
@@ -192,6 +192,15 @@ export class ManageMappingChannelsListComponent {
       }
       return fruits;
     });
+  }
+
+  addChannelMapping(){
+        this.router.navigate([`/admin/manage-mapping-channels-details/N/0`]);
+
+  }
+  editChannelMappingDetails(mappingId: any){
+        this.router.navigate([`/admin/manage-mapping-channels-details/E/${mappingId}`]);
+
   }
 }
 export interface Fruit {

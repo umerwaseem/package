@@ -1,18 +1,44 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppConstants } from '../../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-services-details',
 
   templateUrl: './add-services-details.component.html',
-  styleUrl: './add-services-details.component.css'
+  styleUrl: './add-services-details.component.css',
 })
 export class AddServicesDetailsComponent {
+  @Input() shouldShow: any = '';
+  @Input() viewChannelId: any;
   channelServiceList: any = [];
+  pageTitle = '';
+  channelDetails: any = {};
   displayedColumns: string[] = ['serviceTypeId', 'nodeId', 'actions'];
-  displayedColumnsView: string[] = ['serviceTypeId', 'nodeId', 'readQueue', 'writeQueue', 'serviceFilePath', 'listeningIp', 'soapDirectory', 'soapEnvelop', 'logFileName', 'isAutoStart', 'retryCount', 'writeOutboundQueue', 'readOutboundQueue',];
+  displayedColumnsView: string[] = [
+    'serviceTypeId',
+    'nodeId',
+    'readQueue',
+    'writeQueue',
+    'serviceFilePath',
+    'listeningIp',
+    'soapDirectory',
+    'soapEnvelop',
+    'logFileName',
+    'isAutoStart',
+    'retryCount',
+    'writeOutboundQueue',
+    'readOutboundQueue',
+  ];
 
   editIndex: number | null = null;
   form = new FormGroup({
@@ -32,59 +58,97 @@ export class AddServicesDetailsComponent {
       isAutoStart: new FormControl(''),
       retryCount: new FormControl('', [Validators.required]),
 
-
       writeOutboundQueue: new FormControl(''),
       readOutboundQueue: new FormControl(''),
     }),
-
-  })
-  constructor(public util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
+  });
+  Params: any = {
+    RoleDetailData: [],
+    institutionId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(
+    private fb: FormBuilder,
+    public route: ActivatedRoute,
+    private service: ApiService,
+    public util: UtilityService,
+    private http: HttpClient,
+    public router: Router,
+    public appConstants: AppConstants
+  ) {}
   ngOnInit(): void {
-    this.onChangeAutoCreateService()
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
+
+      this.Params.institutionId = param['id'];
+      this.Params.Mode = param['behavior'];
+
+       if (param['behavior'] == 'N') {
+         this.pageTitle = 'Add Channel Service';
+      } else if (param['behavior'] == 'E') {
+         this.pageTitle = 'Edit Channel Service Details';
+        this.getChannelServicesByChannelId(this.Params.channelId);
+      } else if (this.shouldShow) {
+        this.pageTitle = 'Channel Service Details';
+        this.getChannelServicesByChannelId(this.viewChannelId);
+      }
+    
+    });
+    this.onChangeAutoCreateService();
   }
   onSubmit() {
     if (this.channelServiceList.length === 0) {
       this.util.failureSnackbar('At least one channel service is required.');
     }
 
-    let obj = this.form.getRawValue()
-    console.log('obj', obj)
-    obj.channelServiceDetails = this.channelServiceList
+    let obj = this.form.getRawValue();
+    console.log('obj', obj);
+    obj.channelServiceDetails = this.channelServiceList;
 
-    console.log('channelServiceList', this.channelServiceList)
+    console.log('channelServiceList', this.channelServiceList);
   }
-
 
   onChangeAutoCreateService() {
     if (this.form.controls.isAutoCreateService.value) {
-      this.channelServiceList = [{ serviceTypeId: 'TCP/IP', node: 'TCP node' }, { serviceTypeId: 'SOAP/REST', node: 'TCP node' }]
-
+      this.channelServiceList = [
+        { serviceTypeId: 'TCP/IP', node: 'TCP node' },
+        { serviceTypeId: 'SOAP/REST', node: 'TCP node' },
+      ];
+    } else {
+      this.channelServiceList = [];
     }
-    else {
-      this.channelServiceList = []
-    }
-
   }
   addChannelService() {
     if (this.form.get('channelServiceDetails')?.valid) {
-      const channelServiceDetails = this.form.get('channelServiceDetails')?.value;
+      const channelServiceDetails = this.form.get(
+        'channelServiceDetails'
+      )?.value;
 
       if (this.editIndex !== null) {
         this.channelServiceList[this.editIndex] = channelServiceDetails;
         this.editIndex = null;
       } else {
-       
-        this.channelServiceList = [...this.channelServiceList, channelServiceDetails]; 
+        this.channelServiceList = [
+          ...this.channelServiceList,
+          channelServiceDetails,
+        ];
       }
 
       this.form.get('channelServiceDetails')?.reset();
-
     }
   }
 
   editChannelService(index: number) {
     this.editIndex = index;
-    this.form.get('channelServiceDetails')?.setValue(this.channelServiceList[index]);
+    this.form
+      .get('channelServiceDetails')
+      ?.setValue(this.channelServiceList[index]);
   }
 
   removeChannelService(index: number) {
@@ -94,4 +158,24 @@ export class AddServicesDetailsComponent {
       this.form.get('channelServiceDetails')?.reset();
     }
   }
+
+    getChannelServicesByChannelId(channelId: any) {
+      this.service.getChannelServicesByChannelId(channelId).subscribe(
+        (res) => {
+          if (res['ResponseCode'] == '00') {
+            console.log('channelId ppp ==>', channelId);
+            //this.endpointList = [res['Data']];
+            //    this.setValues(res['Data']);
+            this.channelServiceList = res['Data'];
+            console.log('this.channelDetails ==>', this.channelDetails);
+          }
+        },
+        (ex: HttpErrorResponse) => {
+          this.service
+            .refreshToken(ex.status)
+            .then(() => this.getChannelServicesByChannelId(channelId));
+        }
+      );
+    }
+  
 }

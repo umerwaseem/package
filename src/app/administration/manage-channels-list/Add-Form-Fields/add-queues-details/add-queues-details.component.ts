@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppConstants } from '../../../../../services/AppConstants';
 
@@ -13,7 +13,8 @@ import { AppConstants } from '../../../../../services/AppConstants';
   styleUrl: './add-queues-details.component.css'
 })
 export class AddQueuesDetailsComponent {
-   @Input() shouldShow: boolean = false;
+  @Input() shouldShow: boolean = false;
+  @Input() viewChannelId: any;
   
   channelQueueList: any = [];
   displayedColumns: string[] = ['serviceType', 'queueName', 'actions'];
@@ -33,7 +34,7 @@ export class AddQueuesDetailsComponent {
   })
    Params: any = {
     RoleDetailData: [],
-    institutionId: 0,
+    channelId: 0,
     connectorId: 0,
     Mode: 'N',
   };
@@ -47,7 +48,7 @@ export class AddQueuesDetailsComponent {
     this.route.params.subscribe((param) => {
       console.log('this.route.params ==>',this.route.params, "param ==>", param);
       
-      this.Params.institutionId = param['id'];
+      this.Params.channelId = param['id'];
       this.Params.Mode = param['behavior'];
      
       if (param['behavior'] == 'N') {
@@ -55,9 +56,12 @@ export class AddQueuesDetailsComponent {
 
       } else if (param['behavior'] == 'E') {
        // this.pageTitle = 'Edit Institution Details';
-       // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+        this.getServiceQueuesByChannelId(  this.Params.channelId);
 
       } 
+      else if (this.shouldShow) {
+         this.getServiceQueuesByChannelId(this.viewChannelId);
+      }
     });
     this.onChangeAutoQueue()
   }
@@ -121,7 +125,23 @@ export class AddQueuesDetailsComponent {
       this.form.get('channelQueueDetails')?.reset();
     }
   }
-
+getServiceQueuesByChannelId(channelId: any) {
+    this.service.getServiceQueuesByChannelId(channelId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('channelId ppp ==>', channelId);
+          //this.endpointList = [res['Data']];
+          //    this.setValues(res['Data']);
+          this.channelQueueList = res['Data'];
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getServiceQueuesByChannelId(channelId));
+      }
+    );
+  }
   fieldErrors(controller: string) {
     let error = '';
 
