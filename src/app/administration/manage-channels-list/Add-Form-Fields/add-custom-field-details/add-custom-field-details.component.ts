@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
 import { AppConstants } from '../../../../../services/AppConstants';
 import { VOLUME_DOWN } from '@angular/cdk/keycodes';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -14,8 +14,10 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './add-custom-field-details.component.css'
 })
 export class AddCustomFieldDetailsComponent {
-  @Input() shouldShow: boolean = false;
-
+@Input() shouldShow: any = '';
+  @Input() viewChannelId: any;
+  @Output() formSubmitted = new EventEmitter<void>();
+  channelDetails: any = {};
   displayedColumns: string[] = ['channelId', 'messageId', 'isConditional', 'directionId']
   displayedColumnsView: string[] = [
     'channelId',
@@ -60,7 +62,7 @@ export class AddCustomFieldDetailsComponent {
   })
  Params: any = {
     RoleDetailData: [],
-    institutionId: 0,
+    channelId: 0,
     connectorId: 0,
     Mode: 'N',
   };
@@ -82,14 +84,18 @@ export class AddCustomFieldDetailsComponent {
         param
       );
 
-      this.Params.institutionId = param['id'];
+      this.Params.channelId = param['id'];
       this.Params.Mode = param['behavior'];
 
+     
       if (param['behavior'] == 'N') {
         // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
         // this.pageTitle = 'Edit Institution Details';
-        // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+        this.getChannelCustomFieldById(this.Params.channelId);
+      } else if (this.shouldShow) {
+        //this.pageTitle = 'Edit Institution Details';
+        this.getChannelCustomFieldById(this.viewChannelId);
       }
     });
 
@@ -208,6 +214,24 @@ export class AddCustomFieldDetailsComponent {
   }
 
 
+  getChannelCustomFieldById(channelId: any) {
+    this.service.getChannelCustomFieldById(channelId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('channelId ppp ==>', channelId);
+          //this.endpointList = [res['Data']];
+          //    this.setValues(res['Data']);
+          this.customFieldsList = res['Data'];
+          console.log('this.channelDetails ==>', this.channelDetails);
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getChannelCustomFieldById(channelId));
+      }
+    );
+  }
 
 
   fieldErrors(controller: string) {

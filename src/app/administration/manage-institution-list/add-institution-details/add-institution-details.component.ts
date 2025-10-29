@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { ApiService } from '../../../../services/api.service';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { UtilityService } from '../../../../services/utility.service';
-import { filter, pairwise } from 'rxjs';
+import { filter, pairwise, Subject, takeUntil } from 'rxjs';
 import { AppConstants } from '../../../../services/AppConstants';
 
 @Component({
@@ -16,6 +16,7 @@ import { AppConstants } from '../../../../services/AppConstants';
 export class AddInstitutionDetailsComponent implements OnInit {
   @Input() shouldShow: any = '';
   @Input() viewInstitutionId: any;
+    private destroy$ = new Subject<void>();
   requestBehaviour = {
     AddNew: 'N',
     Edit: 'E',
@@ -71,7 +72,8 @@ export class AddInstitutionDetailsComponent implements OnInit {
     public util: UtilityService,
     private http: HttpClient,
     public router: Router,
-    public appConstants: AppConstants
+    public appConstants: AppConstants,
+    private cdr: ChangeDetectorRef
   ) {}
   ngOnInit(): void {
     console.log('this.shouldShow ==>', this.shouldShow);
@@ -101,7 +103,27 @@ export class AddInstitutionDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('Form Data:', this.form.value);
+       console.log('this.form..value', this.form.value);
+    console.log('this.form..valid', this.form.valid);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); // Show validation errors
+      return;
+    }
+    if (this.form.valid && this.Params.Mode == 'N') {
+        this.service.addInstitution(this.form.value).pipe(takeUntil(this.destroy$))
+        .subscribe((response:any) => {
+          this.cdr.markForCheck();
+          if (response['ResponseCode'] == '00') {
+               this.router.navigate([`admin/manage-institution-list`]);
+      this.util.successSnackbar("Institution added successfully")
+          }
+        });
+   
+    } else if (this.form.valid && this.Params.Mode == 'E') {
+      this.router.navigate([`admin/manage-institution-list`]);
+      this.util.successSnackbar("Institution updated successfully")
+
+    }
   }
 
   fieldErrors(controller: string) {

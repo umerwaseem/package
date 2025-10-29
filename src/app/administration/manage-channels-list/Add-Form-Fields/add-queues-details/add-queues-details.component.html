@@ -99,6 +99,10 @@
                         <ng-container matColumnDef="actions">
                             <th mat-header-cell *matHeaderCellDef> Actions </th>
                             <td mat-cell *matCellDef="let record">
+                                <span class="mx-2 pointer" (click)="editFieldMapping(record)">
+                                    
+                                    <i class="fa fa-pen" style="color: #003F9B"></i>
+                                </span>
                                 <span class="mx-2 pointer">
                                     <i class="fa fa-trash" style="color: #ff1c1c"></i>
                                 </span>

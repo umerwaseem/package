@@ -1,10 +1,11 @@
-<div class="row" *ngIf="this.Params.Mode == 'N'">
+<div class="row" *ngIf="this.Params.Mode == 'N' || this.Params.Mode == 'E'">
     <div class="col-md-12">
 
 
         <div class="card m-2">
             <div class="card-header d-block pt-3 pb-1">
-                <h4><b>Create Field Mapping</b></h4>
+                <h4><b>{{this.pageTitle}}</b></h4>
+
             </div>
             <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
 
@@ -292,7 +293,7 @@
                 <th mat-header-cell *matHeaderCellDef> internalTag </th>
                 <td mat-cell *matCellDef="let record"> {{ record.internalTag || '--' }} </td>
             </ng-container>
- 
+
 
 
             <mat-header-row *matHeaderRowDef="displayedColumnsView"></mat-header-row>

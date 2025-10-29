@@ -1,23 +1,33 @@
-import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder,
+} from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppConstants } from '../../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-processing-rule-details',
 
   templateUrl: './add-processing-rule-details.component.html',
-  styleUrl: './add-processing-rule-details.component.css'
+  styleUrl: './add-processing-rule-details.component.css',
 })
 export class AddProcessingRuleDetailsComponent {
+  @Input() shouldShow: any = '';
+  @Input() viewMappingId: any;
+  @Output() formSubmitted = new EventEmitter<void>();
   ruleProcessingList: any[] = [];
   lstRules: any = [];
   editIndex: number | null = null;
-
+  pageTitle: any;
   form = new FormGroup({
     ruleprocessingDetails: this.fb.group({
-      routingChannelId: new FormControl('',),
-
+      routingChannelId: new FormControl(''),
 
       messageNameId: new FormControl('', [Validators.required]),
       firstIdentifier: new FormControl('', [Validators.required]),
@@ -41,20 +51,52 @@ export class AddProcessingRuleDetailsComponent {
         resultThree: new FormControl(''),
         resultFour: new FormControl(''),
         resultFive: new FormControl(''),
-      })
-    })
-  })
-  constructor(private util: UtilityService, private fb: FormBuilder, private service: ApiService,) { }
+      }),
+    }),
+  });
+  Params: any = {
+    RoleDetailData: [],
+    mappingId: 0,
+    connectorId: 0,
+    Mode: 'N',
+  };
+  constructor(
+    private fb: FormBuilder,
+    public route: ActivatedRoute,
+    private service: ApiService,
+    public util: UtilityService,
+    private http: HttpClient,
+    public router: Router,
+    public appConstants: AppConstants
+  ) {}
   ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      console.log(
+        'this.route.params ==>',
+        this.route.params,
+        'param ==>',
+        param
+      );
 
+      this.Params.mappingId = param['id'];
+      this.Params.Mode = param['behavior'];
+
+      if (param['behavior'] == 'N') {
+        this.pageTitle = 'Add Message Processing';
+      } else if (param['behavior'] == 'E') {
+        this.pageTitle = 'Edit Message Processing Details';
+        this.getMessageProcessingDetailsById(this.Params.mappingId);
+      } else if (this.shouldShow) {
+        this.pageTitle = 'Message Processing Details';
+        this.getMessageProcessingDetailsById(this.viewMappingId);
+      }
+    });
   }
-
 
   onSubmit() {
     if (this.ruleProcessingList.length == 0) {
-      this.util.failureSnackbar('Atleast 1')
+      this.util.failureSnackbar('Atleast 1');
     }
-
   }
 
   addRuleProcessing() {
@@ -86,7 +128,6 @@ export class AddProcessingRuleDetailsComponent {
     }
   }
 
-
   get objRules(): FormGroup {
     return this.form.get('ruleprocessingDetails.ruleDetails') as FormGroup;
   }
@@ -105,8 +146,18 @@ export class AddProcessingRuleDetailsComponent {
     const resultFive = rulesForm.controls['resultFive'].value?.trim();
 
     // Validation: Ensure values are not empty
-    if (!routingName || !resultZero || !resultOne || !resultTwo || !resultThree || !resultFour || !resultFive) {
-      this.util.failureSnackbar('Header key, value, or sequence cannot be empty.');
+    if (
+      !routingName ||
+      !resultZero ||
+      !resultOne ||
+      !resultTwo ||
+      !resultThree ||
+      !resultFour ||
+      !resultFive
+    ) {
+      this.util.failureSnackbar(
+        'Header key, value, or sequence cannot be empty.'
+      );
       return;
     }
 
@@ -130,10 +181,28 @@ export class AddProcessingRuleDetailsComponent {
       resultTwo,
       resultThree,
       resultFour,
-      resultFive // Use the actual user input instead of Math.random()
+      resultFive, // Use the actual user input instead of Math.random()
     });
 
     // Clear form after adding
     rulesForm.reset();
+  }
+
+  getMessageProcessingDetailsById(mappingId: any) {
+    this.service.getMessageProcessingDetailsById(mappingId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('mappingId ppp ==>', mappingId);
+          //this.endpointList = [res['Data']];
+          //    this.setValues(res['Data']);
+          this.ruleProcessingList = res['Data'];
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getMessageProcessingDetailsById(mappingId));
+      }
+    );
   }
 }

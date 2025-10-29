@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { ApiService } from '../../../../../services/api.service';
 import { UtilityService } from '../../../../../services/utility.service';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AppConstants } from '../../../../../services/AppConstants';
 
 @Component({
   selector: 'app-add-message-routing-details',
@@ -10,7 +13,10 @@ import { UtilityService } from '../../../../../services/utility.service';
   styleUrl: './add-message-routing-details.component.css'
 })
 export class AddMessageRoutingDetailsComponent {
-
+ @Input() shouldShow: any = '';
+  @Input() viewMappingId: any;
+  @Output() formSubmitted = new EventEmitter<void>();
+  pageTitle:any
   messageRoutingList: any = [];
 
   editIndex: number | null = null;
@@ -33,10 +39,44 @@ export class AddMessageRoutingDetailsComponent {
     }),
 
   })
-  constructor(private util:UtilityService, private fb: FormBuilder, private service: ApiService,) { }
-  ngOnInit(): void {
-
-  }
+ Params: any = {
+     RoleDetailData: [],
+     mappingId: 0,
+     connectorId: 0,
+     Mode: 'N',
+   };
+    constructor(
+      private fb: FormBuilder,
+      public route: ActivatedRoute,
+      private service: ApiService,
+      public util: UtilityService,
+      private http: HttpClient,
+      public router: Router,
+      public appConstants: AppConstants
+    ) {}
+     ngOnInit(): void {
+     this.route.params.subscribe((param) => {
+       console.log(
+         'this.route.params ==>',
+         this.route.params,
+         'param ==>',
+         param
+       );
+ 
+       this.Params.mappingId = param['id'];
+       this.Params.Mode = param['behavior'];
+ 
+       if (param['behavior'] == 'N') {
+          this.pageTitle = 'Add Message Routing';
+       } else if (param['behavior'] == 'E') {
+          this.pageTitle = 'Edit Message Routing Details';
+         this.getMessageRoutingDetailsById(this.Params.mappingId);
+       } else if (this.shouldShow) {
+         this.pageTitle = 'Edit Message Routing Details';
+         this.getMessageRoutingDetailsById(this.viewMappingId);
+       }
+     });
+   }
   onSubmit() {
     if (this.messageRoutingList.length == 0) {
       this.util.failureSnackbar('Atleast 1 message routing is required.')
@@ -78,4 +118,22 @@ export class AddMessageRoutingDetailsComponent {
       this.form.get('messageRoutingDetails')?.reset();
     }
   }
+
+  getMessageRoutingDetailsById(mappingId: any) {
+      this.service.getMessageRoutingDetailsById(mappingId).subscribe(
+        (res) => {
+          if (res['ResponseCode'] == '00') {
+            console.log('mappingId ppp ==>', mappingId);
+            //this.endpointList = [res['Data']];
+            //    this.setValues(res['Data']);
+            this.messageRoutingList = res['Data'];
+          }
+        },
+        (ex: HttpErrorResponse) => {
+          this.service
+            .refreshToken(ex.status)
+            .then(() => this.getMessageRoutingDetailsById(mappingId));
+        }
+      );
+    }
 }

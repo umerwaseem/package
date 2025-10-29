@@ -795,7 +795,7 @@ export class ApiService {
     return this.http.get(url);
   }
 
-    getChannelEndpointsById(id: any): Observable<any> {
+  getChannelEndpointsById(id: any): Observable<any> {
     const url = `${this.baseUrl}api/channel-endpoints/${id}`;
 
     return this.http.get(url);
@@ -811,8 +811,28 @@ export class ApiService {
 
     return this.http.get(url);
   }
+
+  getChannelFieldsByChannelId(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/channel-fields/${id}`;
+
+    return this.http.get(url);
+  }
+
+  getChannelMessageInitializationById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/message-initialization/${id}`;
+
+    return this.http.get(url);
+  }
+  getChannelCustomFieldById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/custom-fields/${id}`;
+
+    return this.http.get(url);
+  }
   ///////////Channel APIs Ends HERE
 
+
+
+    ///////////Institution APIs START FROM HERE
   getInstitutions(): Observable<any> {
     return this.http.get(`${this.baseUrl}api/institutions`);
   }
@@ -822,6 +842,16 @@ export class ApiService {
 
     return this.http.get(url);
   }
+
+  addInstitution(obj: any): Observable<any> {
+  
+      return this.http
+        .post(`${this.baseUrl}api/institution/add`, obj, this.restHeader())
+     
+    
+  }
+  
+  ///////////Institution APIs Ends HERE
 
   getGlobalConfigurations(): Observable<any> {
     return this.http.get(`${this.baseUrl}api/global-configurations`);
@@ -833,8 +863,26 @@ export class ApiService {
     return this.http.get(url);
   }
 
-   getMappingChannels(): Observable<any> {
+  ///////////Mapping APIs START FROM HERE
+  getMappingChannels(): Observable<any> {
     return this.http.get<any>(`${this.baseUrl}api/getAllMappings`);
   }
-}
+  getFieldMappingDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/channel-field-mapping/${id}`;
 
+    return this.http.get(url);
+  }
+
+   getMessageRoutingDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/message-routing/${id}`;
+
+    return this.http.get(url);
+  }
+
+   getMessageProcessingDetailsById(id: any): Observable<any> {
+    const url = `${this.baseUrl}api/message-processing/${id}`;
+
+    return this.http.get(url);
+  }
+  ///////////Channel APIs Ends HERE
+}

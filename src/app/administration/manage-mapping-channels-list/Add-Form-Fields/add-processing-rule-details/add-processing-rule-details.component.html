@@ -1,334 +1,253 @@
-<div class="row">
+<div class="row" *ngIf="this.Params.Mode == 'N' || this.Params.Mode == 'E'">
     <div class="col-md-12">
-
-
         <div class="card m-2">
             <div class="card-header d-block pt-3 pb-1">
-                <h4><b>Create Message Processing</b></h4>
+                <h4>
+                    <b>{{ this.pageTitle }}</b>
+                </h4>
             </div>
-            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12  col-lg-12 col-sm-12 ">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()" class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
                 <ng-container formGroupName="ruleprocessingDetails">
-                    <div class="card-body pb-0 mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-
-
-                        <div class="row  mx-2">
+                    <div class="card-body pb-0 mb-3 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)">
+                        <div class="row mx-2">
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Routing Channel</mat-label>
                                     <mat-select formControlName="routingChannelId">
                                         <!-- <mat-select placeholder="Institution" > -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Source Channel</mat-label>
                                     <mat-select formControlName="sourceChannelId">
                                         <!-- <mat-select placeholder="Institution" formControlName="institutionId"> -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Message Name</mat-label>
                                     <mat-select formControlName="messageNameId">
                                         <!-- <mat-select placeholder="Institution"> -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-
-
-
                         </div>
                         <!-- CHECKBOXes -->
-                        <div class="row  mx-2">
+                        <div class="row mx-2">
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Identifier 1</mat-label>
                                     <mat-select formControlName="firstIdentifier">
                                         <!-- <mat-select placeholder="Institution"> -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                <mat-form-field style="font-size: 14px" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Identifier 1 Value</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="firstIdentifierValue">
+                                    <input matInput placeholder="First Name*" formControlName="firstIdentifierValue" />
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Identifier 2</mat-label>
                                     <mat-select formControlName="secondIdentifier">
                                         <!-- <mat-select placeholder="Institution"> -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
                             <div class="col-md-3 mb-3">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
+                                <mat-form-field style="font-size: 14px" appearance="outline"
                                     class="custom-size-form-field">
                                     <mat-label>Identifier 2 Value</mat-label>
-                                    <input matInput placeholder="First Name*" formControlName="secondIdentifierValue">
+                                    <input matInput placeholder="First Name*" formControlName="secondIdentifierValue" />
                                     <mat-error>
                                         <small>Required</small>
                                     </mat-error>
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="row  mx-2">
-                            <div class="col-md-4 mb-1 d-flex justify-content-start ">
-                                <mat-checkbox style="font-size: 8px;" formControlName="isSettlementDate">Settlement
+                        <div class="row mx-2">
+                            <div class="col-md-4 mb-1 d-flex justify-content-start">
+                                <mat-checkbox style="font-size: 8px" formControlName="isSettlementDate">Settlement
                                     Date</mat-checkbox>
                             </div>
-                            <div class="col-md-4 mb-1 d-flex justify-content-start ">
-                                <mat-checkbox style="font-size: 8px;"
-                                    formControlName="isDestinationProcessing">Destination
-                                    Processing</mat-checkbox>
+                            <div class="col-md-4 mb-1 d-flex justify-content-start">
+                                <mat-checkbox style="font-size: 8px"
+                                    formControlName="isDestinationProcessing">Destination Processing</mat-checkbox>
                             </div>
-                            <div class="col-md-4 mb-1 ">
-                                <mat-checkbox style="font-size: 8px;" formControlName="isDestinationComms">Destination
+                            <div class="col-md-4 mb-1">
+                                <mat-checkbox style="font-size: 8px" formControlName="isDestinationComms">Destination
                                     Comms
                                 </mat-checkbox>
                             </div>
 
-
-
-
-
-                            <div class="col-md-4 mb-1 d-flex justify-content-start ">
-                                <mat-checkbox style="font-size: 8px;"
+                            <div class="col-md-4 mb-1 d-flex justify-content-start">
+                                <mat-checkbox style="font-size: 8px"
                                     formControlName="isDestinationSettlement">Destination Settlement Date</mat-checkbox>
                             </div>
-                            <div class="col-md-4 mb-1 d-flex justify-content-start ">
-                                <mat-checkbox style="font-size: 8px;" formControlName="isSourceChannel">Source
+                            <div class="col-md-4 mb-1 d-flex justify-content-start">
+                                <mat-checkbox style="font-size: 8px" formControlName="isSourceChannel">Source
                                     Channel</mat-checkbox>
                             </div>
-                            <div class="col-md-4 mb-1 d-flex justify-content-start ">
-                                <mat-checkbox style="font-size: 8px;" formControlName="isDestinationChannel">Destination
+                            <div class="col-md-4 mb-1 d-flex justify-content-start">
+                                <mat-checkbox style="font-size: 8px" formControlName="isDestinationChannel">Destination
                                     Channel</mat-checkbox>
                             </div>
-
-
                         </div>
                     </div>
                     <!-- Define rule Container -->
-                    <div class="card-body py-2  mb-3 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-
+                    <div class="card-body py-2 mb-3 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)">
                         <h4 class="mx-4"><b>Define Rules</b></h4>
-                        <div class="row  mx-2">
-                            <div class="col-md-3 mb-3 ">
-                                <mat-form-field style="font-size: 14px;" appearance="outline"
-                                    class=" custom-size-form-field ">
+                        <div class="row mx-2">
+                            <div class="col-md-3 mb-3">
+                                <mat-form-field style="font-size: 14px" appearance="outline"
+                                    class="custom-size-form-field">
                                     <mat-label>Existing Rule</mat-label>
                                     <mat-select formControlName="existingRuleId">
                                         <!-- <mat-select placeholder="Institution"> -->
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
-                                        <mat-option [value]="1">
-                                            1
-                                        </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
+                                        <mat-option [value]="1"> 1 </mat-option>
                                     </mat-select>
                                 </mat-form-field>
                             </div>
-
                         </div>
 
-
-
-
-                        <div class="row  mx-2">
-
+                        <div class="row mx-2">
                             <ng-container formGroupName="ruleDetails">
-
                                 <div class="col-md-3 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Enter Routine Name</mat-label>
-                                        <input matInput placeholder="Routine Name" formControlName="routingName">
+                                        <input matInput placeholder="Routine Name" formControlName="routingName" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultZero">
+                                        <input matInput placeholder="First Name*" formControlName="resultZero" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultOne">
+                                        <input matInput placeholder="First Name*" formControlName="resultOne" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultTwo">
+                                        <input matInput placeholder="First Name*" formControlName="resultTwo" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultThree">
+                                        <input matInput placeholder="First Name*" formControlName="resultThree" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultFour">
+                                        <input matInput placeholder="First Name*" formControlName="resultFour" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-1 mb-3">
-                                    <mat-form-field style="font-size: 14px;" appearance="outline"
+                                    <mat-form-field style="font-size: 14px" appearance="outline"
                                         class="custom-size-form-field">
                                         <mat-label>Result 1 </mat-label>
-                                        <input matInput placeholder="First Name*" formControlName="resultFive">
+                                        <input matInput placeholder="First Name*" formControlName="resultFive" />
                                         <mat-error>
                                             <small>Required</small>
                                         </mat-error>
                                     </mat-form-field>
                                 </div>
 
-                                <div class="col-md-3  " style="    display: flex ;justify-content: end;">
+                                <div class="col-md-3" style="display: flex; justify-content: end">
                                     <!-- <button mat-flat-button color="primary" class="rounded-3 custom-button" >Add
                                     Channel</button> -->
-                                    <div class="col-md-12 col-lg-12 col-sm-12 " style="    display: flex ;justify-content: end;">
+                                    <div class="col-md-12 col-lg-12 col-sm-12"
+                                        style="display: flex; justify-content: end">
                                         <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                                            type="submit" (click)="addRules()" style="background-color: #007F5F;">Add
-                                            Auth
-                                            Matrix
+                                            type="submit" (click)="addRules()" style="background-color: #007f5f">
+                                            Add Auth Matrix
                                         </button>
                                     </div>
                                 </div>
-
                             </ng-container>
                         </div>
                         <h4 class="mx-4"><b>Processing Rules</b></h4>
 
-
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th><small>
+                                    <th><small> sequence </small></th>
+                                    <th><small> Routine Name </small></th>
+                                    <th><small> Result 0 </small></th>
+                                    <th><small> Result 1 </small></th>
+                                    <th><small> Result 2 </small></th>
+                                    <th><small> Result 3 </small></th>
+                                    <th><small> Result 4 </small></th>
+                                    <th><small> Result 5 </small></th>
 
-                                            sequence
-                                        </small>
-                                    </th>
-                                    <th><small>
-
-                                            Routine Name
-                                        </small>
-                                    </th>
-                                    <th><small>
-
-                                            Result 0
-                                        </small>
-                                    </th>
-                                    <th><small>
-                                            Result 1
-                                        </small>
-                                    </th>
-                                    <th><small>
-                                            Result 2
-                                        </small>
-                                    </th>
-                                    <th><small>
-
-                                            Result 3
-                                        </small>
-                                    </th>
-                                    <th><small>
-                                            Result 4
-                                        </small>
-                                    </th>
-                                    <th><small>
-
-                                            Result 5
-                                        </small>
-                                    </th>
-
-
-                                    <th><small>
-
-                                            Actions
-                                        </small>
-                                    </th>
-
+                                    <th><small> Actions </small></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let record of lstRules; let i = index">
-                                    <td>{{i + 1 || "--"}}</td>
-                                    <td>{{record.routingName || "--"}}</td>
-                                    <td>{{record.resultZero || "--"}}</td>
-                                    <td>{{record.resultOne || "--"}}</td>
-                                    <td>{{record.resultTwo || "--"}}</td>
-                                    <td>{{record.resultThree || "--"}}</td>
-                                    <td>{{record.resultFour || "--"}}</td>
-                                    <td>{{record.resultFive || "--"}}</td>
-
+                                    <td>{{ i + 1 || "--" }}</td>
+                                    <td>{{ record.routingName || "--" }}</td>
+                                    <td>{{ record.resultZero || "--" }}</td>
+                                    <td>{{ record.resultOne || "--" }}</td>
+                                    <td>{{ record.resultTwo || "--" }}</td>
+                                    <td>{{ record.resultThree || "--" }}</td>
+                                    <td>{{ record.resultFour || "--" }}</td>
+                                    <td>{{ record.resultFive || "--" }}</td>
 
                                     <td>
                                         <!--      <button mat-icon-button color="primary" (click)="editRuleProcessing(i)">
@@ -347,79 +266,46 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="row  mx-1">
-                            <div class="col-md-12  mb-3 d-flex justify-content-end">
+                        <div class="row mx-1">
+                            <div class="col-md-12 mb-3 d-flex justify-content-end">
                                 <div class="col-md-3 col-lg-2 col-sm-2 d-flex justify-content-end">
                                     <!-- <button mat-flat-button color="primary" class="rounded-3 custom-button" >Auth Matrix
                                     Channel</button> -->
                                     <button mat-flat-button color="primary" class="rounded-3 custom-button"
-                                        type="submit" (click)="addRuleProcessing()"
-                                        style="background-color: #007F5F;">Add
-                                        Rules</button>
+                                        type="submit" (click)="addRuleProcessing()" style="background-color: #007f5f">
+                                        Add Rules
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ng-container>
-
-
             </form>
-            <div class="card-body py-2 px-0" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);">
-
+            <div class="card-body py-2 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)">
                 <h4 class="mx-4"><b>Message Processing</b></h4>
 
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th><small>
+                            <th><small> sequence </small></th>
+                            <th><small> Routing channel </small></th>
+                            <th><small> Source Channel </small></th>
 
-                                    sequence
-                                </small>
-                            </th>
-                            <th><small>
+                            <th><small> Message Name </small></th>
+                            <th><small> Routine Count </small></th>
+                            <th><small> Identifier Field Name </small></th>
 
-                                    Routing channel
-                                </small>
-                            </th>
-                            <th><small>
-
-                                    Source Channel
-                                </small>
-                            </th>
-
-                            <th><small>
-
-                                    Message Name
-                                </small>
-                            </th>
-                            <th><small>
-
-                                    Routine Count
-                                </small>
-                            </th>
-                            <th><small>
-
-                                    Identifier Field Name
-                                </small>
-                            </th>
-
-                            <th><small>
-
-                                    Actions
-                                </small>
-                            </th>
-
+                            <th><small> Actions </small></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let record of ruleProcessingList; let i = index">
-                            <td>{{i+1 || "--"}}</td>
-                            <td>{{record.routingChannelId || "--"}}</td>
-                            <td>{{record.sourceChannelId || "--"}}</td>
-                            <td>{{record.messageNameId || "--"}}</td>
-                            <td>{{this.ruleProcessingList.length || "--"}}</td>
-                            <td>{{record.secondIdentifier || "--"}}</td>
-
+                            <td>{{ i + 1 || "--" }}</td>
+                            <td>{{ record.routingChannelId || "--" }}</td>
+                            <td>{{ record.sourceChannelId || "--" }}</td>
+                            <td>{{ record.messageNameId || "--" }}</td>
+                            <td>{{ this.ruleProcessingList.length || "--" }}</td>
+                            <td>{{ record.secondIdentifier || "--" }}</td>
 
                             <td>
                                 <button mat-icon-button color="primary" (click)="editRuleProcessing(i)">
@@ -442,17 +328,59 @@
         </div>
 
         <div class="my-2 fixed-bottom-bar">
-
             <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button">
                 Previous
             </button>
 
-
-            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007F5F;"
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007f5f"
                 type="submit">
                 Next
             </button>
-
         </div>
     </div>
+</div>
+
+<div class="card-body py-0 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)" *ngIf="shouldShow">
+    <h4 class="mx-4"><b>Message Processing</b></h4>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th><small> sequence </small></th>
+                <th><small> Routing channel </small></th>
+                <th><small> Source Channel </small></th>
+
+                <th><small> Message Name </small></th>
+                <th><small> Routine Count </small></th>
+                <th><small> Identifier Field Name </small></th>
+
+                <th><small> Actions </small></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of ruleProcessingList; let i = index">
+                <td>{{ i + 1 || "--" }}</td>
+                <td>{{ record.routingChannelId || "--" }}</td>
+                <td>{{ record.sourceChannelId || "--" }}</td>
+                <td>{{ record.messageNameId || "--" }}</td>
+                <td>{{ this.ruleProcessingList.length || "--" }}</td>
+                <td>{{ record.secondIdentifier || "--" }}</td>
+
+                <td>
+                    <button mat-icon-button color="primary" (click)="editRuleProcessing(i)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="removeRuleProcessing(i)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </td>
+            </tr>
+
+            <tr *ngIf="ruleProcessingList.length == 0">
+                <td colspan="4">
+                    <span>Data not found.</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

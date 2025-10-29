@@ -53,7 +53,7 @@ export class AddQueuesDetailsComponent {
      
       if (param['behavior'] == 'N') {
        // this.pageTitle = 'Add Institution';
-
+   this.onChangeAutoQueue()
       } else if (param['behavior'] == 'E') {
        // this.pageTitle = 'Edit Institution Details';
         this.getServiceQueuesByChannelId(  this.Params.channelId);
@@ -63,7 +63,7 @@ export class AddQueuesDetailsComponent {
          this.getServiceQueuesByChannelId(this.viewChannelId);
       }
     });
-    this.onChangeAutoQueue()
+ 
   }
   onSubmit() {
     if (this.channelQueueList.length === 0) {
@@ -132,6 +132,7 @@ getServiceQueuesByChannelId(channelId: any) {
           console.log('channelId ppp ==>', channelId);
           //this.endpointList = [res['Data']];
           //    this.setValues(res['Data']);
+          this.onChangeAutoQueue()
           this.channelQueueList = res['Data'];
         }
       },

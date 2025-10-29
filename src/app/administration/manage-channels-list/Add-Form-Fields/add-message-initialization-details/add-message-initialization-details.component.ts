@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormGroup,
   FormControl,
@@ -15,7 +15,7 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AppConstants } from '../../../../../services/AppConstants';
 
@@ -26,7 +26,9 @@ import { AppConstants } from '../../../../../services/AppConstants';
   styleUrl: './add-message-initialization-details.component.css',
 })
 export class AddMessageInitializationDetailsComponent {
-  @Input() shouldShow: boolean = false;
+  @Input() shouldShow: any = '';
+  @Input() viewChannelId: any;
+  @Output() formSubmitted = new EventEmitter<void>();
 
   todo = ['Yellow Color', '4 wheels', '2 Wheels', 'Red'];
   sourceItems = [
@@ -140,9 +142,9 @@ export class AddMessageInitializationDetailsComponent {
       importedFile: new FormControl('', [Validators.required]),
     }),
   });
-  Params: any = {
+ Params: any = {
     RoleDetailData: [],
-    institutionId: 0,
+    channelId: 0,
     connectorId: 0,
     Mode: 'N',
   };
@@ -164,21 +166,24 @@ export class AddMessageInitializationDetailsComponent {
         param
       );
 
-      this.Params.institutionId = param['id'];
+      this.Params.channelId = param['id'];
       this.Params.Mode = param['behavior'];
 
-      if (param['behavior'] == 'N') {
+     if (param['behavior'] == 'N') {
         // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
         // this.pageTitle = 'Edit Institution Details';
-        // this.getGlobalConfigDetailsById(  this.Params.institutionId);
+        this.getChannelMessageInitializationById(this.Params.channelId);
+      } else if (this.shouldShow) {
+        //this.pageTitle = 'Edit Institution Details';
+        this.getChannelMessageInitializationById(this.viewChannelId);
       }
     });
     this.page.totalElements = this.fieldDefinitionList.length; // Set total elements
     this.updatePagedList(); // Initial data load
 
     if (this.isEditMode) {
-      this.targetItems = ['Item 3', 'Item 4'];
+      this.targetItems = [''];
       this.sourceItems = this.sourceItems.filter(
         (item) => !this.targetItems.includes(item)
       );
@@ -250,7 +255,24 @@ export class AddMessageInitializationDetailsComponent {
         ?.reset();
     }
   }
-
+getChannelMessageInitializationById(channelId: any) {
+    this.service.getChannelMessageInitializationById(channelId).subscribe(
+      (res) => {
+        if (res['ResponseCode'] == '00') {
+          console.log('channelId ppp ==>', channelId);
+          //this.endpointList = [res['Data']];
+          //    this.setValues(res['Data']);
+          this.messageInitializationList = res['Data'];
+           this.targetItems=this.messageInitializationList.messageFields
+        }
+      },
+      (ex: HttpErrorResponse) => {
+        this.service
+          .refreshToken(ex.status)
+          .then(() => this.getChannelMessageInitializationById(channelId));
+      }
+    );
+  }
   fieldErrors(controller: string) {
     let error = '';
 

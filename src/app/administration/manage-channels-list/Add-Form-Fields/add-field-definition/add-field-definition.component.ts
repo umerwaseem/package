@@ -151,10 +151,10 @@ export class AddFieldDefinitionComponent {
         // this.pageTitle = 'Add Institution';
       } else if (param['behavior'] == 'E') {
         // this.pageTitle = 'Edit Institution Details';
-        this.getChannelEndpointsById(this.Params.channelId);
+        this.getChannelFieldsByChannelId(this.Params.channelId);
       } else if (this.shouldShow) {
         //this.pageTitle = 'Edit Institution Details';
-        this.getChannelEndpointsById(this.viewChannelId);
+        this.getChannelFieldsByChannelId(this.viewChannelId);
       }
     });
 
@@ -256,8 +256,8 @@ export class AddFieldDefinitionComponent {
     }
   }
 
-    getChannelEndpointsById(channelId: any) {
-      this.service.getChannelEndpointsById(channelId).subscribe(
+    getChannelFieldsByChannelId(channelId: any) {
+      this.service.getChannelFieldsByChannelId(channelId).subscribe(
         (res) => {
           if (res['ResponseCode'] == '00') {
             console.log('channelId ppp ==>', channelId);
@@ -270,7 +270,7 @@ export class AddFieldDefinitionComponent {
         (ex: HttpErrorResponse) => {
           this.service
             .refreshToken(ex.status)
-            .then(() => this.getChannelEndpointsById(channelId));
+            .then(() => this.getChannelFieldsByChannelId(channelId));
         }
       );
     }

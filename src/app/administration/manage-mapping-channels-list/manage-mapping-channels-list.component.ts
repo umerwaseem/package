@@ -26,7 +26,8 @@ export class ManageMappingChannelsListComponent {
   columnVisibility: { [key: string]: boolean } = {}; // Visibility for each column
   mappingId: any
   instanceDetails: any = {}
-showChild: boolean = false;
+  showChild: any = '';
+  viewMappingId: any;
 
 
   
@@ -111,11 +112,14 @@ showChild: boolean = false;
     return this.displayedColumns.filter((col) => this.columnVisibility[col]);
   }
 
-  filterToSingleRow(row: any): void {
+   filterToSingleRow(row: any): void {
     // Filter table to show only the selected row
     this.dataSource.data = [row];
     this.mappingId = row.mappingId;
+    this.showChild = 'V';
+    this.viewMappingId = this.mappingId;
   }
+
 
   resetTable(): void {
     // Reset table to show all rows

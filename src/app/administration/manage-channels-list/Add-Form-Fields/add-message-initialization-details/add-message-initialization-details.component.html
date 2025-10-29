@@ -1,49 +1,27 @@
-<div class="row" *ngIf="this.Params.Mode == 'N'">
+<div class="row" *ngIf="this.Params.Mode == 'N' || this.Params.Mode == 'E'">
   <div class="col-md-12">
     <div class="card m-2">
       <div class="card-header d-block pt-3 pb-1">
         <h4><b>Create Message Initialization</b></h4>
       </div>
-      <div
-        class="card-body pb-0 mb-3 px-0"
-        style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)"
-      >
-        <form
-          [formGroup]="messageInitializationForm"
-          (ngSubmit)="onSubmit()"
-          class="col-md-12 col-xs-12 col-lg-12 col-sm-12"
-        >
+      <div class="card-body pb-0 mb-3 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)">
+        <form [formGroup]="messageInitializationForm" (ngSubmit)="onSubmit()"
+          class="col-md-12 col-xs-12 col-lg-12 col-sm-12">
           <ng-container formGroupName="messageInitializationDetails">
             <div class="row mx-2">
               <div class="col-md-3 mb-3">
-                <mat-form-field
-                  style="font-size: 14px"
-                  appearance="outline"
-                  class="custom-size-form-field"
-                >
+                <mat-form-field style="font-size: 14px" appearance="outline" class="custom-size-form-field">
                   <mat-label>Message Name </mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Message Name"
-                    formControlName="messageName"
-                  />
+                  <input matInput placeholder="Enter Message Name" formControlName="messageName" />
                   <mat-error>
                     <small> {{ fieldErrors("messageName") }}</small>
                   </mat-error>
                 </mat-form-field>
               </div>
               <div class="col-md-3 mb-3">
-                <mat-form-field
-                  style="font-size: 14px"
-                  appearance="outline"
-                  class="custom-size-form-field"
-                >
+                <mat-form-field style="font-size: 14px" appearance="outline" class="custom-size-form-field">
                   <mat-label>Concat</mat-label>
-                  <mat-select
-                    formControlName="identifierFields"
-                    multiple
-                    placeholder="Select Fields"
-                  >
+                  <mat-select formControlName="identifierFields" multiple placeholder="Select Fields">
                     @for (topping of toppingList; track topping) {
                     <mat-option [value]="topping">{{ topping }}</mat-option>
                     }
@@ -54,17 +32,9 @@
                 </mat-form-field>
               </div>
               <div class="col-md-3 mb-3">
-                <mat-form-field
-                  style="font-size: 14px"
-                  appearance="outline"
-                  class="custom-size-form-field"
-                >
+                <mat-form-field style="font-size: 14px" appearance="outline" class="custom-size-form-field">
                   <mat-label>Identifier Field Value </mat-label>
-                  <input
-                    matInput
-                    placeholder="Enter Identifier Field Value"
-                    formControlName="identifierFieldValue"
-                  />
+                  <input matInput placeholder="Enter Identifier Field Value" formControlName="identifierFieldValue" />
                   <mat-error>
                     <small> {{ fieldErrors("identifierFieldValue") }}</small>
                   </mat-error>
@@ -86,31 +56,18 @@
                                 </mat-form-field>
                             </div> -->
               <div class="col-md-3 mb-3 d-flex align-items-center">
-                <div
-                  style="font-size: 14px"
-                  appearance="outline"
-                  class="custom-size-form-field"
-                >
-                  <input
-                    type="file"
-                    style="font-size: 14px"
-                    appearance="outline"
-                    class="custom-size-form-field"
-                    formControlName="importedFile"
-                  />
+                <div style="font-size: 14px" appearance="outline" class="custom-size-form-field">
+                  <input type="file" style="font-size: 14px" appearance="outline" class="custom-size-form-field"
+                    formControlName="importedFile" />
 
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       messageInitializationForm.get(
                         'messageInitializationDetails.importedFile'
                       )?.invalid &&
                       messageInitializationForm.get(
                         'messageInitializationDetails.importedFile'
                       )?.touched
-                    "
-                    class="text-danger"
-                    style="font-size: 11px"
-                  >
+                    " class="text-danger" style="font-size: 11px">
                     File is required.
                   </div>
                 </div>
@@ -118,57 +75,29 @@
             </div>
           </ng-container>
           <div class="d-flex justify-content-between mx-4 mb-3">
-            <div
-              class="example-container col-md-5"
-              style="border: 1px solid lightgray; height: 115px"
-            >
+            <div class="example-container col-md-5" style="border: 1px solid lightgray; height: 115px">
               <h5 class="p-2 mb-0">All Fields</h5>
 
               <!-- Source List -->
-              <div
-                class="example-list"
-                cdkDropList
-                #sourceList="cdkDropList"
-                [cdkDropListData]="sourceItems"
-                [cdkDropListConnectedTo]="[targetList]"
-                (cdkDropListDropped)="drop($event)"
-              >
-                <div
-                  class="example-box"
-                  *ngFor="let item of sourceItems"
-                  cdkDrag
-                >
+              <div class="example-list" cdkDropList #sourceList="cdkDropList" [cdkDropListData]="sourceItems"
+                [cdkDropListConnectedTo]="[targetList]" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let item of sourceItems" cdkDrag>
                   {{ item }}
                 </div>
               </div>
             </div>
-            <div
-              class="col-md-2"
-              style="
+            <div class="col-md-2" style="
                 display: flex;
                 align-items: center;
                 justify-content: center;
-              "
-              matTooltip="Drag & Drop"
-            >
-              <mat-icon style="font-size: 5rem; height: 72px; width: 72px"
-                >compare_arrows</mat-icon
-              >
+              " matTooltip="Drag & Drop">
+              <mat-icon style="font-size: 5rem; height: 72px; width: 72px">compare_arrows</mat-icon>
             </div>
             <!-- Target List -->
-            <div
-              class="example-container col-md-5"
-              style="border: 1px solid lightgray; height: 115px"
-            >
+            <div class="example-container col-md-5" style="border: 1px solid lightgray; height: 115px">
               <h5 class="p-2 mb-0">All Fields</h5>
-              <div
-                class="example-list"
-                cdkDropList
-                #targetList="cdkDropList"
-                [cdkDropListData]="targetItems"
-                [cdkDropListConnectedTo]="[sourceList]"
-                (cdkDropListDropped)="drop($event)"
-              >
+              <div class="example-list" cdkDropList #targetList="cdkDropList" [cdkDropListData]="targetItems"
+                [cdkDropListConnectedTo]="[sourceList]" (cdkDropListDropped)="drop($event)">
                 <div class="example-box" *ngFor="let item of targetItems" cdkDrag>
                   {{ item }}
                 </div>
@@ -213,30 +142,19 @@
                                     HTTP Headers</button>
 -->
 
-            <button
-              mat-flat-button
-              color="primary"
-              class="rounded-3 custom-button"
-              type="submit"
-              (click)="addMessageInitialization()"
-              style="background-color: #007f5f"
-            >
+            <button mat-flat-button color="primary" class="rounded-3 custom-button" type="submit"
+              (click)="addMessageInitialization()" style="background-color: #007f5f">
               Add Message
             </button>
           </div>
         </div>
       </div>
-      <div
-        class="card-body py-0 px-0"
-        style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)"
-      >
+      <div class="card-body py-0 px-0" style="box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35)">
         <div class="col-md-12">
           <h5 style="padding: 10px 32px">
-            <b
-              >Message List ({{
-                this.messageInitializationList.length || 0
-              }})</b
-            >
+            <b>Message List ({{
+              this.messageInitializationList.length || 0
+              }})</b>
           </h5>
         </div>
 
@@ -261,11 +179,7 @@
                 <!--    <button mat-icon-button color="primary" (click)="editMessageInitialization(i)">
                                            <mat-icon>edit</mat-icon>
                                        </button> -->
-                <button
-                  mat-icon-button
-                  color="warn"
-                  (click)="removeMessageInitialization(i)"
-                >
+                <button mat-icon-button color="warn" (click)="removeMessageInitialization(i)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </td>
@@ -281,22 +195,12 @@
       </div>
     </div>
     <div class="my-2 fixed-bottom-bar">
-      <button
-        mat-flat-button
-        color="primary"
-        class="rounded-3 custom-button"
-        type="button"
-      >
+      <button mat-flat-button color="primary" class="rounded-3 custom-button" type="button">
         Previous
       </button>
 
-      <button
-        mat-flat-button
-        color="primary"
-        class="rounded-3 custom-button"
-        style="background-color: #007f5f"
-        type="submit"
-      >
+      <button mat-flat-button color="primary" class="rounded-3 custom-button" style="background-color: #007f5f"
+        type="submit">
         Next
       </button>
     </div>
@@ -304,50 +208,44 @@
 </div>
 <div class="card-body py-0 px-0 mb-5" style="  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.35);" *ngIf="shouldShow">
 
-    <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
-        <div class="col-md-12">
+  <div class="table-responsive" style="overflow-x: auto; max-width: 100%; ">
+    <div class="col-md-12">
 
-            <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.messageInitializationList.length || 0 }})</b>
-            </h5>
+      <h5 style="padding: 10px 32px;"><b>Defined Fields ({{ this.messageInitializationList.length || 0 }})</b>
+      </h5>
 
-        </div>
-          <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th><small> Sequence </small></th>
-              <th><small> Message Name </small></th>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th><small> Sequence </small></th>
+          <th><small> Message Name </small></th>
 
-              <th><small> Identifier Fields </small></th>
-              <th><small> Message Fields </small></th>
-              <th><small> Actions </small></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let record of messageInitializationList; let i = index">
-              <td>{{ i + 1 }}</td>
-              <td>{{ record.messageName || "--" }}</td>
-              <td>{{ record.identifierFields || "--" }}</td>
-              <td>{{ record.messageFields || "--" }}</td>
-              <td>
-                <!--    <button mat-icon-button color="primary" (click)="editMessageInitialization(i)">
-                                           <mat-icon>edit</mat-icon>
-                                       </button> -->
-                <button
-                  mat-icon-button
-                  color="warn"
-                  (click)="removeMessageInitialization(i)"
-                >
-                  <mat-icon>delete</mat-icon>
-                </button>
-              </td>
-            </tr>
+          <th><small> Identifier Fields </small></th>
+          <th><small> Message Fields </small></th>
+          <th><small> Actions </small></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of messageInitializationList; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ record.messageName || "--" }}</td>
+          <td>{{ record.identifierFields || "--" }}</td>
+          <td>{{ record.messageFields || "--" }}</td>
+          <td>
 
-            <tr *ngIf="messageInitializationList.length == 0">
-              <td colspan="4">
-                <span>Data not found.</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-          </div>
+            <button mat-icon-button color="warn" (click)="removeMessageInitialization(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+
+        <tr *ngIf="messageInitializationList.length == 0">
+          <td colspan="4">
+            <span>Data not found.</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

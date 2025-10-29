@@ -94,7 +94,7 @@
                     <div class="col-md-8">
                         <h5 class="my-2"
                             style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;">
-                            <b>View Institution
+                            <b>View Channel Details
                             </b><!-- {{item.jsonParseData ? item.jsonParseData.instance : '--'}} -->
                         </h5>
                     </div>
@@ -143,16 +143,16 @@
                         <app-add-services-details [shouldShow]="showChild" [viewChannelId] ="viewChannelId"></app-add-services-details>
                     </div>
                     <div *ngIf="tab.type === 'Field Definition'">
-                        <app-add-field-definition [shouldShow]="showChild"></app-add-field-definition>
+                        <app-add-field-definition [shouldShow]="showChild" [viewChannelId] ="viewChannelId"></app-add-field-definition>
                     </div>
 
                     <div *ngIf="tab.type === 'Message Initialization'">
                         <app-add-message-initialization-details
-                            [shouldShow]="showChild"></app-add-message-initialization-details>
+                            [shouldShow]="showChild" [viewChannelId] ="viewChannelId"></app-add-message-initialization-details>
                     </div>
 
                     <div *ngIf="tab.type === 'Custom Fields'">
-                        <app-add-custom-field-details [shouldShow]="showChild"></app-add-custom-field-details>
+                        <app-add-custom-field-details [shouldShow]="showChild" [viewChannelId] ="viewChannelId"></app-add-custom-field-details>
                     </div>
 
 

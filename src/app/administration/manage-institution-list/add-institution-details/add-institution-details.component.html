@@ -106,7 +106,7 @@
                 color="primary"
                 class="rounded-3"
                 *ngIf="this.Params.Mode == 'N'"
-                routerLink="/admin/manage-institution-details"
+                type="button" (click)="onSubmit()"
               >
                 Create Institution
               </button>
@@ -116,7 +116,7 @@
                 color="primary"
                 class="rounded-3"
                 *ngIf="this.Params.Mode == 'E'"
-                routerLink="/admin/manage-institution-details"
+                type="button" (click)="onSubmit()"
               >
                 Update Institution
               </button>
